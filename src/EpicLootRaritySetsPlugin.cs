@@ -8,6 +8,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using EpicLoot;
+using EpicLoot.Compendium;
 using EpicLoot.LegendarySystem;
 using EpicLoot.MagicItemEffects;
 using HarmonyLib;
@@ -26,7 +27,7 @@ namespace Fran.EpicLootRaritySets
     {
         public const string PluginGuid = "fran.mods.epiclootraritysets";
         public const string PluginName = "Epic Loot Rarity Sets";
-        public const string PluginVersion = "0.1.36";
+        public const string PluginVersion = "0.1.37";
 
         internal static ManualLogSource Log;
         internal static ConfigFile PluginConfig;
@@ -964,6 +965,14 @@ namespace Fran.EpicLootRaritySets
             ItemRarity.Ancient
         };
 
+        private static readonly ItemRarity[] EpicLootSetCompendiumRarities =
+        {
+            ItemRarity.Magic,
+            ItemRarity.Rare,
+            ItemRarity.Epic,
+            ItemRarity.Ancient
+        };
+
         private static readonly Dictionary<ItemRarity, List<LegendaryInfo>> ItemsByRarity = new Dictionary<ItemRarity, List<LegendaryInfo>>();
         private static readonly Dictionary<string, LegendaryInfo> ItemById = new Dictionary<string, LegendaryInfo>();
         private static readonly Dictionary<string, ItemRarity> ItemRarityById = new Dictionary<string, ItemRarity>();
@@ -1070,6 +1079,26 @@ namespace Fran.EpicLootRaritySets
 
             string setId;
             return SetIdByItemId.TryGetValue(info.ID, out setId) ? setId : null;
+        }
+
+        internal static IEnumerable<KeyValuePair<ItemRarity, LegendarySetInfo>> GetEpicLootCompendiumSets()
+        {
+            foreach (ItemRarity rarity in EpicLootSetCompendiumRarities)
+            {
+                foreach (KeyValuePair<string, LegendarySetInfo> pair in SetById.OrderBy(x => x.Key))
+                {
+                    if (pair.Value == null)
+                    {
+                        continue;
+                    }
+
+                    ItemRarity setRarity;
+                    if (SetRarityById.TryGetValue(pair.Key, out setRarity) && setRarity == rarity)
+                    {
+                        yield return new KeyValuePair<ItemRarity, LegendarySetInfo>(rarity, pair.Value);
+                    }
+                }
+            }
         }
 
         internal static bool TryGetEffectValues(string itemId, string effectType, out MagicItemEffectDefinition.ValueDef values)
@@ -2194,21 +2223,73 @@ namespace Fran.EpicLootRaritySets
         }
     }
 
-    [HarmonyPatch(typeof(TextsDialog), "FillTextList")]
+    [HarmonyPatch(typeof(TextsDialog), "UpdateTextsList")]
+    [HarmonyAfter("randyknapp.mods.epicloot")]
     internal static class RaritySetsCompendiumTextPatch
     {
-        private static void Prefix(TextsDialog __instance)
+        private static void Postfix(TextsDialog __instance)
         {
-            RaritySetsCompendiumEntry.AddTo(__instance);
+            RaritySetsCompendiumEntry.AddToTextsDialog(__instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(SetInfo), "Build")]
+    internal static class RaritySetsLegendarySetsCompendiumPatch
+    {
+        private static readonly MethodInfo FormatSetInfoMethod = AccessTools.Method(typeof(SetInfo), "FormatSetInfo", new[] { typeof(MagicPages), typeof(LegendarySetInfo), typeof(ItemRarity) });
+        private static bool _loggedMissingFormatter;
+
+        private static void Postfix(MagicPages instance)
+        {
+            if (instance == null)
+            {
+                return;
+            }
+
+            if (FormatSetInfoMethod == null)
+            {
+                if (!_loggedMissingFormatter)
+                {
+                    _loggedMissingFormatter = true;
+                    EpicLootRaritySetsPlugin.Log.LogWarning("Could not extend EpicLoot legendary sets compendium page because SetInfo.FormatSetInfo was not found.");
+                }
+
+                return;
+            }
+
+            foreach (KeyValuePair<ItemRarity, LegendarySetInfo> pair in RaritySetRegistry.GetEpicLootCompendiumSets())
+            {
+                try
+                {
+                    FormatSetInfoMethod.Invoke(null, new object[] { instance, pair.Value, pair.Key });
+                }
+                catch (Exception ex)
+                {
+                    EpicLootRaritySetsPlugin.Log.LogWarning("Could not add " + pair.Key + " set " + (pair.Value != null ? pair.Value.ID : "<null>") + " to EpicLoot compendium. " + ex.GetBaseException().Message);
+                }
+            }
+        }
+    }
+
+    internal sealed class RaritySetsMagicTextInfo : MagicTextInfo
+    {
+        internal RaritySetsMagicTextInfo()
+            : base(RaritySetsCompendiumEntry.Topic, true)
+        {
+        }
+
+        public override void Build(MagicPages instance)
+        {
+            RaritySetsCompendiumEntry.BuildMagicPage(instance);
         }
     }
 
     internal static class RaritySetsCompendiumEntry
     {
-        private const string Topic = "Epic Loot Rarity Sets";
+        internal const string Topic = "Epic Loot Rarity Sets";
         private static readonly FieldInfo TextsField = AccessTools.Field(typeof(TextsDialog), "m_texts");
 
-        internal static void AddTo(TextsDialog dialog)
+        internal static void AddToTextsDialog(TextsDialog dialog)
         {
             if (dialog == null || TextsField == null)
             {
@@ -2221,51 +2302,87 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            string text = BuildText();
             for (int i = 0; i < texts.Count; i++)
             {
                 TextsDialog.TextInfo info = texts[i];
-                if (info == null || !string.Equals(info.m_topic, Topic, StringComparison.OrdinalIgnoreCase))
+                if (!IsOurTopic(info))
                 {
                     continue;
                 }
 
-                info.m_text = text;
+                if (!(info is RaritySetsMagicTextInfo))
+                {
+                    texts[i] = new RaritySetsMagicTextInfo();
+                }
+
                 return;
             }
 
-            texts.Add(new TextsDialog.TextInfo(Topic, text));
+            int insertIndex = GetInsertIndex(texts);
+            texts.Insert(insertIndex, new RaritySetsMagicTextInfo());
         }
 
-        private static string BuildText()
+        internal static void BuildMagicPage(MagicPages instance)
         {
-            return string.Join("\n\n", new[]
+            if (instance == null || instance.MagicPagesTextArea == null)
+            {
+                return;
+            }
+
+            instance.MagicPagesTextArea.Add("Resumen", new[]
             {
                 "Epic Loot Rarity Sets convierte EpicLoot en una progresion de clases por equipo. Completar las piezas necesarias de un set activa un buff con el nombre base del set y desbloquea las habilidades de esa clase.",
                 "Rarezas disponibles: Magic, Rare, Epic, Legendary, Mythic y Ancient. Los sets suben de piezas y bonus con la rareza. Magic/Rare/Epic/Ancient pueden aparecer por drops naturales; Legendary y Mythic entran por las secciones generadas de EpicLoot y sus pools propios. Los bosses fuerzan una pieza de set garantizada cuando la regla de etapa encuentra una tirada valida.",
-                "Entradas de clase y habilidades completas:",
-                BuildSetBlock("Heimdall", "Tanque de escudo. Bloquea para ganar reduccion y dano, atrae amenaza con rayos y convierte el dano recibido en reflejo."),
-                BuildSetBlock("Ragnar", "Berserker de hachas. Gana furia por golpes melee, robo de vida, velocidad de ataque y un aura de decadencia a costa de vigor."),
-                BuildSetBlock("Hraesvelgr", "Arquero fisico. Usa sigilo, invocaciones, trampas, dash y rafagas de arco para jugar a distancia."),
-                BuildSetBlock("SolomonKane", "Ballestero cazador de brujas. Prepara virotes imbuidos, bombas y marcas que convierten el siguiente disparo en sentencia encadenada."),
-                BuildSetBlock("Nott", "Duelista de cuchillos y sigilo. Entra y sale de combate con Warp, veneno, velocidad por golpe e invisibilidad en sigilo."),
-                BuildSetBlock("Seidr", "Mago elemental. Controla zona con Nanocube, escudo de eitr, golem y Frost Nova."),
-                BuildSetBlock("Helveig", "Mago de sangre. Cura, canaliza Blood Rite, golpea a distancia con Holy Strike e invoca no muertos segun Magia de sangre."),
-                BuildSetBlock("Moonvein", "Arquero magico. El Moonbow consume eitr, carga hechizos cada tercer disparo y puede invocar Meteor o Tornado Shot."),
-                BuildSetBlock("Frostbrand", "Spellblade de espada a dos manos. Combina eitr, Surt Slash/Crush, escudo elemental y Fire Ball por ataques cargados."),
-                BuildPassiveSetBlock("Thor", "Set Epic especial de tormenta. No tiene controlador de hotkeys propio de clase; su identidad viene de hacha arrojadiza, recall, dano de rayo y ChainLightning en sus piezas/bonus."),
-                BuildPassiveSetBlock("Floki", "Set Epic especial de constructor. No tiene controlador de hotkeys propio de clase; potencia martillo de construccion, FreeBuild, distancia de construccion, carga, stamina y herramientas.")
+                "La entrada Conjuntos legendarios de EpicLoot se amplia desde este mod con los sets Magic, Rare, Epic y Ancient para que puedas comparar piezas y bonus de set desde la pagina nativa de EpicLoot."
             });
+
+            AddSetBlock(instance, "Heimdall", "Tanque de escudo. Bloquea para ganar reduccion y dano, atrae amenaza con rayos y convierte el dano recibido en reflejo.");
+            AddSetBlock(instance, "Ragnar", "Berserker de hachas. Gana furia por golpes melee, robo de vida, velocidad de ataque y un aura de decadencia a costa de vigor.");
+            AddSetBlock(instance, "Hraesvelgr", "Arquero fisico. Usa sigilo, invocaciones, trampas, dash y rafagas de arco para jugar a distancia.");
+            AddSetBlock(instance, "SolomonKane", "Ballestero cazador de brujas. Prepara virotes imbuidos, bombas y marcas que convierten el siguiente disparo en sentencia encadenada.");
+            AddSetBlock(instance, "Nott", "Duelista de cuchillos y sigilo. Entra y sale de combate con Warp, veneno, velocidad por golpe e invisibilidad en sigilo.");
+            AddSetBlock(instance, "Seidr", "Mago elemental. Controla zona con Nanocube, escudo de eitr, golem y Frost Nova.");
+            AddSetBlock(instance, "Helveig", "Mago de sangre. Cura, canaliza Blood Rite, golpea a distancia con Holy Strike e invoca no muertos segun Magia de sangre.");
+            AddSetBlock(instance, "Moonvein", "Arquero magico. El Moonbow consume eitr, carga hechizos cada tercer disparo y puede invocar Meteor o Tornado Shot.");
+            AddSetBlock(instance, "Frostbrand", "Spellblade de espada a dos manos. Combina eitr, Surt Slash/Crush, escudo elemental y Fire Ball por ataques cargados.");
+            AddPassiveSetBlock(instance, "Thor", "Set Epic especial de tormenta. No tiene controlador de hotkeys propio de clase; su identidad viene de hacha arrojadiza, recall, dano de rayo y ChainLightning en sus piezas/bonus.");
+            AddPassiveSetBlock(instance, "Floki", "Set Epic especial de constructor. No tiene controlador de hotkeys propio de clase; potencia martillo de construccion, FreeBuild, distancia de construccion, carga, stamina y herramientas.");
         }
 
-        private static string BuildSetBlock(string baseSetName, string description)
+        private static bool IsOurTopic(TextsDialog.TextInfo info)
         {
-            return "== " + GetDisplayName(baseSetName) + " ==\n" + description + "\n\n" + SetActivationBuffController.GetBuffTooltip(baseSetName);
+            return info != null && string.Equals(info.m_topic, Topic, StringComparison.OrdinalIgnoreCase);
         }
 
-        private static string BuildPassiveSetBlock(string baseSetName, string description)
+        private static int GetInsertIndex(List<TextsDialog.TextInfo> texts)
         {
-            return "== " + baseSetName + " ==\n" + description;
+            for (int i = 0; i < texts.Count; i++)
+            {
+                TextsDialog.TextInfo info = texts[i];
+                if (info is SetInfo || (info != null && string.Equals(info.m_topic, "$mod_epicloot_legendary_sets", StringComparison.OrdinalIgnoreCase)))
+                {
+                    return i + 1;
+                }
+            }
+
+            return texts.Count;
+        }
+
+        private static void AddSetBlock(MagicPages instance, string baseSetName, string description)
+        {
+            List<string> content = new List<string> { description };
+            string tooltip = SetActivationBuffController.GetBuffTooltip(baseSetName);
+            if (!string.IsNullOrEmpty(tooltip))
+            {
+                content.AddRange(tooltip.Split(new[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            instance.MagicPagesTextArea.Add(GetDisplayName(baseSetName), content.ToArray());
+        }
+
+        private static void AddPassiveSetBlock(MagicPages instance, string baseSetName, string description)
+        {
+            instance.MagicPagesTextArea.Add(baseSetName, new[] { description });
         }
 
         private static string GetDisplayName(string baseSetName)

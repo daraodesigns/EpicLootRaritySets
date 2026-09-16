@@ -1,6 +1,6 @@
 {
   "name": "EpicLootRaritySets",
-  "version_number": "0.1.36",
+  "version_number": "0.1.37",
   "website_url": "",
   "description": "EpicLoot set progression with rarity tiers, class builds, boss drops and complete-set abilities.",
   "dependencies": [
