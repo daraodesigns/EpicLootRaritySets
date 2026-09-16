@@ -2194,10 +2194,10 @@ namespace Fran.EpicLootRaritySets
         }
     }
 
-    [HarmonyPatch(typeof(TextsDialog), "Setup")]
+    [HarmonyPatch(typeof(TextsDialog), "FillTextList")]
     internal static class RaritySetsCompendiumTextPatch
     {
-        private static void Postfix(TextsDialog __instance)
+        private static void Prefix(TextsDialog __instance)
         {
             RaritySetsCompendiumEntry.AddTo(__instance);
         }
@@ -2207,7 +2207,6 @@ namespace Fran.EpicLootRaritySets
     {
         private const string Topic = "Epic Loot Rarity Sets";
         private static readonly FieldInfo TextsField = AccessTools.Field(typeof(TextsDialog), "m_texts");
-        private static readonly MethodInfo UpdateTextsListMethod = AccessTools.Method(typeof(TextsDialog), "UpdateTextsList", Type.EmptyTypes);
 
         internal static void AddTo(TextsDialog dialog)
         {
@@ -2232,29 +2231,10 @@ namespace Fran.EpicLootRaritySets
                 }
 
                 info.m_text = text;
-                Refresh(dialog);
                 return;
             }
 
             texts.Add(new TextsDialog.TextInfo(Topic, text));
-            Refresh(dialog);
-        }
-
-        private static void Refresh(TextsDialog dialog)
-        {
-            if (UpdateTextsListMethod == null)
-            {
-                return;
-            }
-
-            try
-            {
-                UpdateTextsListMethod.Invoke(dialog, null);
-            }
-            catch (Exception ex)
-            {
-                EpicLootRaritySetsPlugin.Log.LogWarning("Could not refresh Epic Loot Rarity Sets compendium entry. " + ex.GetBaseException().Message);
-            }
         }
 
         private static string BuildText()
