@@ -157,7 +157,7 @@ Habilidades con set completo:
 
 - `Mouse3` - `Infused Bolt`: coste `25` vigor, cooldown `12s`; arma el siguiente virote durante `8s`; al impactar explota en `3.5m`; dano total `24 + 0.55` por nivel de Ballestas, repartido entre frost y espiritu; aplica slow `35%` durante `4s`.
 - `Mouse4` - `Blackpowder Bomb`: coste `35` vigor, cooldown `18s`; rango `35m`, radio `5m`, empuje `120`; dano total `38 + 0.65` por nivel de Ballestas, repartido en `40%` fuego y `60%` contundente.
-- `Ctrl + Mouse4` - `Bat Form`: coste `40` vigor, cooldown `45s`; transforma temporalmente al personaje durante `12s`, oculta el cuerpo/equipo visible, adjunta un visual de murcielago y activa vuelo temporal a velocidad base `9`. Pulsar de nuevo cancela la forma y restaura visibilidad, gravedad y estado de vuelo previo.
+- `Ctrl + Mouse4` - `Bat Form`: coste `40` vigor, cooldown `45s`; transforma temporalmente al personaje durante `12s`, oculta el cuerpo/equipo visible y activa vuelo temporal a velocidad base `9`. Si `Shawesome's Dark Gift` esta instalado, usa el visual `vampireformIV` incluido en `shwsmDarkGiftIV`; si no, vuelve al visual de murcielago disponible. Pulsar de nuevo cancela la forma y restaura visibilidad, gravedad y estado de vuelo previo.
 - Pasiva `Witchmark`: impactos directos con ballesta Solomon Kane marcan enemigos durante `8s`.
 - Pasiva `Silver Verdict`: matar a un marcado o golpearle punto debil arma el siguiente virote; suma dano espiritu `30 + 0.60` por nivel de Ballestas, encadena hasta `2` enemigos en `15m`, pierde `30%` por salto y devuelve `15` vigor al consumirse.
 

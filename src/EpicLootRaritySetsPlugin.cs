@@ -27,7 +27,7 @@ namespace Fran.EpicLootRaritySets
     {
         public const string PluginGuid = "fran.mods.epiclootraritysets";
         public const string PluginName = "Epic Loot Rarity Sets";
-        public const string PluginVersion = "0.1.37";
+        public const string PluginVersion = "0.1.39";
 
         internal static ManualLogSource Log;
         internal static ConfigFile PluginConfig;
@@ -2287,6 +2287,12 @@ namespace Fran.EpicLootRaritySets
     internal static class RaritySetsCompendiumEntry
     {
         internal const string Topic = "Epic Loot Rarity Sets";
+        private const string HeaderColor = "#FFA626";
+        private const string AccentColor = "#f5da53";
+        private const string TextColor = "#c0c0c0ff";
+        private const string DimColor = "#808080";
+        private const string GoodColor = "#70f56c";
+        private const string InfoColor = "#00f0ff";
         private static readonly FieldInfo TextsField = AccessTools.Field(typeof(TextsDialog), "m_texts");
 
         internal static void AddToTextsDialog(TextsDialog dialog)
@@ -2329,24 +2335,25 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            instance.MagicPagesTextArea.Add("Resumen", new[]
+            instance.MagicPagesTextArea.Add(Title("Resumen"), new[]
             {
-                "Epic Loot Rarity Sets convierte EpicLoot en una progresion de clases por equipo. Completar las piezas necesarias de un set activa un buff con el nombre base del set y desbloquea las habilidades de esa clase.",
-                "Rarezas disponibles: Magic, Rare, Epic, Legendary, Mythic y Ancient. Los sets suben de piezas y bonus con la rareza. Magic/Rare/Epic/Ancient pueden aparecer por drops naturales; Legendary y Mythic entran por las secciones generadas de EpicLoot y sus pools propios. Los bosses fuerzan una pieza de set garantizada cuando la regla de etapa encuentra una tirada valida.",
-                "La entrada Conjuntos legendarios de EpicLoot se amplia desde este mod con los sets Magic, Rare, Epic y Ancient para que puedas comparar piezas y bonus de set desde la pagina nativa de EpicLoot."
+                Text("Epic Loot Rarity Sets convierte EpicLoot en una progresion de clases por equipo. Completar las piezas necesarias de un set activa un buff con el nombre base del set y desbloquea las habilidades de esa clase."),
+                Label("Rarezas") + RarityBadge(ItemRarity.Magic) + Separator() + RarityBadge(ItemRarity.Rare) + Separator() + RarityBadge(ItemRarity.Epic) + Separator() + RarityBadge(ItemRarity.Legendary) + Separator() + RarityBadge(ItemRarity.Mythic) + Separator() + RarityBadge(ItemRarity.Ancient),
+                Label("Drops") + TextInline("Magic, Rare, Epic y Ancient pueden aparecer por drops naturales. Legendary/Mythic se apoyan en las secciones generadas de EpicLoot y sus pools propios."),
+                Label("Compendio") + TextInline("La pagina ") + Highlight("Conjuntos legendarios") + TextInline(" de EpicLoot se amplia con Magic, Rare, Epic y Ancient para comparar piezas y bonus desde la pagina nativa.")
             });
 
-            AddSetBlock(instance, "Heimdall", "Tanque de escudo. Bloquea para ganar reduccion y dano, atrae amenaza con rayos y convierte el dano recibido en reflejo.");
-            AddSetBlock(instance, "Ragnar", "Berserker de hachas. Gana furia por golpes melee, robo de vida, velocidad de ataque y un aura de decadencia a costa de vigor.");
-            AddSetBlock(instance, "Hraesvelgr", "Arquero fisico. Usa sigilo, invocaciones, trampas, dash y rafagas de arco para jugar a distancia.");
-            AddSetBlock(instance, "SolomonKane", "Ballestero cazador de brujas. Prepara virotes imbuidos, bombas y marcas que convierten el siguiente disparo en sentencia encadenada.");
-            AddSetBlock(instance, "Nott", "Duelista de cuchillos y sigilo. Entra y sale de combate con Warp, veneno, velocidad por golpe e invisibilidad en sigilo.");
-            AddSetBlock(instance, "Seidr", "Mago elemental. Controla zona con Nanocube, escudo de eitr, golem y Frost Nova.");
-            AddSetBlock(instance, "Helveig", "Mago de sangre. Cura, canaliza Blood Rite, golpea a distancia con Holy Strike e invoca no muertos segun Magia de sangre.");
-            AddSetBlock(instance, "Moonvein", "Arquero magico. El Moonbow consume eitr, carga hechizos cada tercer disparo y puede invocar Meteor o Tornado Shot.");
-            AddSetBlock(instance, "Frostbrand", "Spellblade de espada a dos manos. Combina eitr, Surt Slash/Crush, escudo elemental y Fire Ball por ataques cargados.");
-            AddPassiveSetBlock(instance, "Thor", "Set Epic especial de tormenta. No tiene controlador de hotkeys propio de clase; su identidad viene de hacha arrojadiza, recall, dano de rayo y ChainLightning en sus piezas/bonus.");
-            AddPassiveSetBlock(instance, "Floki", "Set Epic especial de constructor. No tiene controlador de hotkeys propio de clase; potencia martillo de construccion, FreeBuild, distancia de construccion, carga, stamina y herramientas.");
+            AddSetBlock(instance, "Heimdall", "Tanque de escudo", "Bloquea para ganar reduccion y dano, atrae amenaza con rayos y convierte el dano recibido en reflejo.");
+            AddSetBlock(instance, "Ragnar", "Berserker de hachas", "Gana furia por golpes melee, robo de vida, velocidad de ataque y un aura de decadencia a costa de vigor.");
+            AddSetBlock(instance, "Hraesvelgr", "Arquero fisico", "Usa sigilo, invocaciones, trampas, dash y rafagas de arco para jugar a distancia.");
+            AddSetBlock(instance, "SolomonKane", "Ballestero cazador de brujas", "Prepara virotes imbuidos, bombas y marcas que convierten el siguiente disparo en sentencia encadenada.");
+            AddSetBlock(instance, "Nott", "Duelista de cuchillos y sigilo", "Entra y sale de combate con Warp, veneno, velocidad por golpe e invisibilidad en sigilo.");
+            AddSetBlock(instance, "Seidr", "Mago elemental", "Controla zona con Nanocube, escudo de eitr, golem y Frost Nova.");
+            AddSetBlock(instance, "Helveig", "Mago de sangre", "Cura, canaliza Blood Rite, golpea a distancia con Holy Strike e invoca no muertos segun Magia de sangre.");
+            AddSetBlock(instance, "Moonvein", "Arquero magico", "El Moonbow consume eitr, carga hechizos cada tercer disparo y puede invocar Meteor o Tornado Shot.");
+            AddSetBlock(instance, "Frostbrand", "Spellblade de espada a dos manos", "Combina eitr, Surt Slash/Crush, escudo elemental y Fire Ball por ataques cargados.");
+            AddPassiveSetBlock(instance, "Thor", "Set Epic especial de tormenta", "No tiene controlador de hotkeys propio de clase; su identidad viene de hacha arrojadiza, recall, dano de rayo y ChainLightning en sus piezas/bonus.");
+            AddPassiveSetBlock(instance, "Floki", "Set Epic especial de constructor", "No tiene controlador de hotkeys propio de clase; potencia martillo de construccion, FreeBuild, distancia de construccion, carga, stamina y herramientas.");
         }
 
         private static bool IsOurTopic(TextsDialog.TextInfo info)
@@ -2368,26 +2375,146 @@ namespace Fran.EpicLootRaritySets
             return texts.Count;
         }
 
-        private static void AddSetBlock(MagicPages instance, string baseSetName, string description)
+        private static void AddSetBlock(MagicPages instance, string baseSetName, string role, string description)
         {
-            List<string> content = new List<string> { description };
+            List<string> content = new List<string>
+            {
+                Label("Rol") + Highlight(role) + TextInline(" - " + description)
+            };
+
             string tooltip = SetActivationBuffController.GetBuffTooltip(baseSetName);
             if (!string.IsNullOrEmpty(tooltip))
             {
-                content.AddRange(tooltip.Split(new[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries));
+                content.AddRange(FormatTooltip(tooltip, baseSetName));
             }
 
-            instance.MagicPagesTextArea.Add(GetDisplayName(baseSetName), content.ToArray());
+            instance.MagicPagesTextArea.Add(Title(GetDisplayName(baseSetName)), content.ToArray());
         }
 
-        private static void AddPassiveSetBlock(MagicPages instance, string baseSetName, string description)
+        private static void AddPassiveSetBlock(MagicPages instance, string baseSetName, string role, string description)
         {
-            instance.MagicPagesTextArea.Add(baseSetName, new[] { description });
+            instance.MagicPagesTextArea.Add(Title(baseSetName), new[]
+            {
+                Label("Rol") + Highlight(role) + TextInline(" - " + description),
+                Label("Habilidades") + TextInline("Sin controlador de hotkeys propio. Sus efectos viven en piezas, encantamientos y bonus de set."),
+                Label("Lectura rapida") + TextInline("Revisalo tambien en ") + Highlight("Conjuntos legendarios") + TextInline(" para ver piezas y bonus con el formato nativo de EpicLoot.")
+            });
         }
 
         private static string GetDisplayName(string baseSetName)
         {
             return string.Equals(baseSetName, "SolomonKane", StringComparison.OrdinalIgnoreCase) ? "Solomon Kane" : baseSetName;
+        }
+
+        private static IEnumerable<string> FormatTooltip(string tooltip, string baseSetName)
+        {
+            string normalized = tooltip.Replace("\r\n", "\n");
+            string[] blocks = normalized.Split(new[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string block in blocks)
+            {
+                string trimmedBlock = block.Trim();
+                if (trimmedBlock.Length == 0 ||
+                    trimmedBlock.Equals(baseSetName + " set completo activo.", StringComparison.OrdinalIgnoreCase) ||
+                    trimmedBlock.Equals(GetDisplayName(baseSetName) + " set completo activo.", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                string[] lines = trimmedBlock.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => x.Trim())
+                    .Where(x => x.Length > 0)
+                    .ToArray();
+
+                if (lines.Length == 0)
+                {
+                    continue;
+                }
+
+                if (lines.Length == 1)
+                {
+                    yield return FormatDetailLine(lines[0]);
+                    continue;
+                }
+
+                string first = lines[0];
+                if (first.EndsWith(":", StringComparison.Ordinal))
+                {
+                    yield return Section(first.TrimEnd(':')) + "\n" + string.Join("\n", lines.Skip(1).Select(FormatDetailLine).ToArray());
+                    continue;
+                }
+
+                yield return string.Join("\n", lines.Select(FormatDetailLine).ToArray());
+            }
+        }
+
+        private static string FormatDetailLine(string line)
+        {
+            string trimmed = line.Trim();
+            if (trimmed.Length == 0)
+            {
+                return string.Empty;
+            }
+
+            if (trimmed.EndsWith(":", StringComparison.Ordinal))
+            {
+                return Section(trimmed.TrimEnd(':'));
+            }
+
+            int colon = trimmed.IndexOf(':');
+            if (colon > 0 && colon <= 34)
+            {
+                string key = trimmed.Substring(0, colon).Trim();
+                string value = trimmed.Substring(colon + 1).Trim();
+                return "\t" + InlineLabel(key) + (value.Length > 0 ? TextInline(value) : string.Empty);
+            }
+
+            return "\t" + TextInline("- " + trimmed);
+        }
+
+        private static string Title(string value)
+        {
+            return "<size=20><color=" + HeaderColor + "><b>" + value + "</b></color></size>";
+        }
+
+        private static string Section(string value)
+        {
+            return "<color=" + HeaderColor + "><b>" + value + "</b></color>";
+        }
+
+        private static string Label(string value)
+        {
+            return "<color=" + AccentColor + "><b>" + value + ":</b></color> ";
+        }
+
+        private static string InlineLabel(string value)
+        {
+            return "<color=" + GoodColor + "><b>" + value + ":</b></color> ";
+        }
+
+        private static string Highlight(string value)
+        {
+            return "<color=" + InfoColor + "><b>" + value + "</b></color>";
+        }
+
+        private static string Text(string value)
+        {
+            return "<color=" + TextColor + ">" + value + "</color>";
+        }
+
+        private static string TextInline(string value)
+        {
+            return "<color=" + TextColor + ">" + value + "</color>";
+        }
+
+        private static string Separator()
+        {
+            return "<color=" + DimColor + ">  |  </color>";
+        }
+
+        private static string RarityBadge(ItemRarity rarity)
+        {
+            return "<color=" + EpicLoot.EpicLoot.GetRarityColor(rarity) + "><b>" + rarity + "</b></color>";
         }
     }
 
@@ -10161,6 +10288,8 @@ namespace Fran.EpicLootRaritySets
         private const string InfusedSlowBuffCategory = "FranSolomonKaneInfusedSlow";
         private const string BatFormBuffName = "FranSolomonKaneBatForm";
         private const string BatFormBuffCategory = "FranSolomonKaneBatForm";
+        private const string DarkGiftFinalVampireRootName = "shwsmDarkGiftIV";
+        private const string DarkGiftFinalVampireVisualName = "vampireformIV";
         private const float WitchmarkRefreshInterval = 0.45f;
 
         private static readonly MethodInfo ApplyMagicDamageModifiersMethod = AccessTools.Method(typeof(ModifyDamage), "ApplyMagicDamageModifiers");
@@ -11308,17 +11437,73 @@ namespace Fran.EpicLootRaritySets
 
         private static GameObject GetBatPrefab()
         {
-            if (ZNetScene.instance == null)
+            GameObject darkGiftVisual = GetDarkGiftFinalVampireVisualPrefab();
+            if (darkGiftVisual != null)
+            {
+                return darkGiftVisual;
+            }
+
+            foreach (string prefabName in new[] { DarkGiftFinalVampireVisualName, "Bat", "bat", "Bat_TW", "GiantBat", "Bats" })
+            {
+                GameObject prefab = GetRegisteredPrefab(prefabName);
+                if (prefab != null)
+                {
+                    return prefab;
+                }
+            }
+
+            return null;
+        }
+
+        private static GameObject GetDarkGiftFinalVampireVisualPrefab()
+        {
+            GameObject darkGiftItem = GetRegisteredPrefab(DarkGiftFinalVampireRootName);
+            if (darkGiftItem == null)
             {
                 return null;
             }
 
-            foreach (string prefabName in new[] { "Bat", "bat", "Bat_TW", "GiantBat", "Bats" })
+            Transform visual = FindChildRecursive(darkGiftItem.transform, DarkGiftFinalVampireVisualName);
+            return visual != null ? visual.gameObject : null;
+        }
+
+        private static GameObject GetRegisteredPrefab(string prefabName)
+        {
+            if (string.IsNullOrEmpty(prefabName))
             {
-                GameObject prefab = ZNetScene.instance.GetPrefab(prefabName);
-                if (prefab != null)
+                return null;
+            }
+
+            if (ObjectDB.instance != null)
+            {
+                GameObject itemPrefab = ObjectDB.instance.GetItemPrefab(prefabName);
+                if (itemPrefab != null)
                 {
-                    return prefab;
+                    return itemPrefab;
+                }
+            }
+
+            return ZNetScene.instance != null ? ZNetScene.instance.GetPrefab(prefabName) : null;
+        }
+
+        private static Transform FindChildRecursive(Transform root, string childName)
+        {
+            if (root == null || string.IsNullOrEmpty(childName))
+            {
+                return null;
+            }
+
+            if (string.Equals(root.name, childName, StringComparison.OrdinalIgnoreCase))
+            {
+                return root;
+            }
+
+            for (int i = 0; i < root.childCount; i++)
+            {
+                Transform match = FindChildRecursive(root.GetChild(i), childName);
+                if (match != null)
+                {
+                    return match;
                 }
             }
 

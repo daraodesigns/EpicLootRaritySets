@@ -87,7 +87,7 @@ $shopCounts = [pscustomobject]@{
 }
 
 $source = Get-Content -LiteralPath $sourcePath -Raw
-foreach ($needle in @('PluginVersion = "0.1.36"', 'radamanto.Bestiary', 'GeneratedConfigSynchronizer', 'MoonveinBowEitrUse', 'NottAbilityController', 'SolomonKaneAbilityController', 'Bat Form', 'TrySafeWarp', 'NorseNjordTornadoBridge', 'NorseWaterSphereBridge', 'HelveigAbilityController', 'HraesvelgrRapidVolleyEquipmentEffectValuesForPatch', 'WhirlwindMinDuration', 'MaterialManPropertyContainerUpdateBlockPatch', 'itemDrop.m_itemData.m_dropPrefab = template.gameObject')) {
+foreach ($needle in @('PluginVersion = "0.1.39"', 'radamanto.Bestiary', 'GeneratedConfigSynchronizer', 'MoonveinBowEitrUse', 'NottAbilityController', 'SolomonKaneAbilityController', 'Bat Form', 'vampireformIV', 'TrySafeWarp', 'NorseNjordTornadoBridge', 'NorseWaterSphereBridge', 'HelveigAbilityController', 'HraesvelgrRapidVolleyEquipmentEffectValuesForPatch', 'WhirlwindMinDuration', 'MaterialManPropertyContainerUpdateBlockPatch', 'itemDrop.m_itemData.m_dropPrefab = template.gameObject')) {
     if ($source -notlike "*$needle*") {
         throw "Source check failed: $needle"
     }
