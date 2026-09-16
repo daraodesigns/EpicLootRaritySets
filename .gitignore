@@ -1,0 +1,17 @@
+# Local build and package outputs
+EpicLootRaritySets.dll
+EpicLootRaritySets.zip
+build/*.dll
+build/*.exe
+*.pdb
+
+# Generated documents and temporary office locks
+*.docx
+~$*
+
+# Local helper output
+.tools/
+
+# Logs/backups
+*.log
+*.bak-fran-managed-*

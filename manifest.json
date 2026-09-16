@@ -1,0 +1,11 @@
+{
+  "name": "EpicLootRaritySets",
+  "version_number": "0.1.36",
+  "website_url": "",
+  "description": "EpicLoot set progression with rarity tiers, class builds, boss drops and complete-set abilities.",
+  "dependencies": [
+    "RandyKnapp-EpicLoot-0.14.5",
+    "Alpus-NorseDemigods-1.7.1",
+    "Radamanto-Bestiary-1.1.9"
+  ]
+}

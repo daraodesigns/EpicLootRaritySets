@@ -1,0 +1,946 @@
+{
+  "ItemInfo": [
+    {
+      "Type": "Swords",
+      "Fallback": null,
+      "ItemFallback": "SwordWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "THSwordWood",
+          "SwordWood"
+        ],
+        "defeated_eikthyr": [],
+        "defeated_gdking": [
+          "SwordBronze"
+        ],
+        "defeated_bonemass": [
+          "SwordIron"
+        ],
+        "defeated_dragon": [
+          "SwordSilver"
+        ],
+        "defeated_goblinking": [
+          "SwordBlackmetal",
+          "SP_SwordBlackmetal",
+          "FW_SwordBlackmetal"
+        ],
+        "defeated_queen": [
+          "THSwordKrom",
+          "SwordMistwalker"
+        ],
+        "defeated_fader": [
+          "SwordNiedhoggNature",
+          "SwordNiedhogg",
+          "THSwordSlayer",
+          "THSwordSlayerBlood",
+          "SwordNiedhoggBlood",
+          "SwordNiedhoggLightning",
+          "THSwordSlayerNature",
+          "SwordDyrnwyn",
+          "THSwordSlayerLightning"
+        ],
+        "defeated_frozenking_p3": [
+          "SwordGold",
+          "SwordGold_BloodLightning",
+          "THSwordGold",
+          "THSwordGold_BloodLightning",
+          "SwordGold_FrostFire",
+          "THSwordGold_FrostFire"
+        ]
+      }
+    },
+    {
+      "Type": "Axes",
+      "Fallback": null,
+      "ItemFallback": "AxeWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "AxeWood"
+        ],
+        "defeated_eikthyr": [
+          "AxeFlint",
+          "AxeStone"
+        ],
+        "defeated_gdking": [
+          "AxeBronze",
+          "FW_AxeBronze",
+          "SP_AxeBronze"
+        ],
+        "defeated_bonemass": [
+          "AxeIron"
+        ],
+        "defeated_dragon": [],
+        "defeated_goblinking": [
+          "AxeBlackMetal"
+        ],
+        "defeated_queen": [
+          "AxeJotunBane"
+        ],
+        "defeated_fader": [],
+        "defeated_frozenking_p3": [
+          "AxeGold",
+          "AxeGold_BloodLightning",
+          "AxeGold_FrostFire"
+        ]
+      }
+    },
+    {
+      "Type": "TwoHandAxes",
+      "Fallback": null,
+      "ItemFallback": "BattleaxeWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "BattleaxeWood"
+        ],
+        "defeated_eikthyr": [
+          "AxeEarly"
+        ],
+        "defeated_gdking": [],
+        "defeated_bonemass": [
+          "Battleaxe"
+        ],
+        "defeated_dragon": [
+          "FW_BattleaxeCrystal",
+          "SP_BattleaxeCrystal",
+          "BattleaxeCrystal"
+        ],
+        "defeated_goblinking": [
+          "BattleaxeBlackmetal"
+        ],
+        "defeated_queen": [
+          "BattleaxeSkullSplittur"
+        ],
+        "defeated_fader": [
+          "AxeBerzerkrNature",
+          "AxeBerzerkr",
+          "AxeBerzerkrBlood",
+          "AxeBerzerkrLightning"
+        ],
+        "defeated_frozenking_p3": [
+          "BattleaxeGold",
+          "BattleaxeGold_FrostFire",
+          "BattleaxeGold_BloodLightning"
+        ]
+      }
+    },
+    {
+      "Type": "Knives",
+      "Fallback": null,
+      "ItemFallback": "KnifeWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "KnifeWood"
+        ],
+        "defeated_eikthyr": [
+          "KnifeFlint"
+        ],
+        "defeated_gdking": [
+          "KnifeButcher",
+          "KnifeCopper"
+        ],
+        "defeated_bonemass": [
+          "KnifeChitin"
+        ],
+        "defeated_dragon": [
+          "KnifeSilver",
+          "FW_KnifeSilver",
+          "SP_KnifeSilver"
+        ],
+        "defeated_goblinking": [
+          "KnifeBlackMetal"
+        ],
+        "defeated_queen": [
+          "SP_KnifeSkollAndHati",
+          "FW_KnifeSkollAndHati",
+          "KnifeSkollAndHati"
+        ],
+        "defeated_fader": [],
+        "defeated_frozenking_p3": [
+          "KnifeGold",
+          "KnifeVoid",
+          "KnifeGold_BloodLightning",
+          "KnifeGold_FrostFire"
+        ]
+      }
+    },
+    {
+      "Type": "Fists",
+      "Fallback": null,
+      "ItemFallback": "MaceWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [],
+        "defeated_gdking": [
+          "FistBjornClaw"
+        ],
+        "defeated_bonemass": [],
+        "defeated_dragon": [
+          "FistFenrirClaw"
+        ],
+        "defeated_goblinking": [
+          "FistBjornUndeadClaw"
+        ],
+        "defeated_queen": [],
+        "defeated_fader": [],
+        "defeated_frozenking_p3": [
+          "FistGold_BloodLightning",
+          "FistGold",
+          "FistGold_FrostFire"
+        ]
+      }
+    },
+    {
+      "Type": "Staffs",
+      "Fallback": null,
+      "ItemFallback": "StaffFireball",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffShield"
+        ],
+        "defeated_gdking": [
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffLightning",
+          "StaffShield"
+        ],
+        "defeated_bonemass": [
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffLightning",
+          "StaffShield",
+          "StaffClusterbomb"
+        ],
+        "defeated_dragon": [
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffLightning",
+          "StaffShield",
+          "StaffClusterbomb",
+          "StaffGreenRoots",
+          "StaffRedTroll"
+        ],
+        "defeated_goblinking": [
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffLightning",
+          "StaffShield",
+          "StaffClusterbomb",
+          "StaffGreenRoots",
+          "StaffRedTroll"
+        ],
+        "defeated_queen": [
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffLightning",
+          "StaffShield",
+          "StaffClusterbomb",
+          "StaffGreenRoots",
+          "StaffRedTroll"
+        ],
+        "defeated_fader": [
+          "StaffLightning",
+          "StaffGreenRoots",
+          "StaffRedTroll",
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffShield",
+          "StaffClusterbomb",
+          "StaffOrbofAhri",
+          "StaffFrostOrbs",
+          "StaffThunderBlood",
+          "StaffSpiritCaller"
+        ],
+        "defeated_frozenking_p3": [
+          "StaffLightning",
+          "StaffGreenRoots",
+          "StaffRedTroll",
+          "StaffSkeleton",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffShield",
+          "StaffClusterbomb",
+          "StaffOrbofAhri",
+          "StaffFrostOrbs",
+          "StaffThunderBlood",
+          "StaffSpiritCaller"
+        ]
+      }
+    },
+    {
+      "Type": "Clubs",
+      "Fallback": null,
+      "ItemFallback": "MaceWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "MaceWood"
+        ],
+        "defeated_eikthyr": [
+          "Club"
+        ],
+        "defeated_gdking": [
+          "MaceBronze"
+        ],
+        "defeated_bonemass": [
+          "MaceIron"
+        ],
+        "defeated_dragon": [
+          "MaceSilver"
+        ],
+        "defeated_goblinking": [
+          "MaceNeedle"
+        ],
+        "defeated_queen": [],
+        "defeated_fader": [
+          "MaceEldnerBlood",
+          "MaceEldner",
+          "MaceEldnerLightning",
+          "MaceEldnerNature"
+        ],
+        "defeated_frozenking_p3": [
+          "MaceGold",
+          "MaceGold_FrostFire",
+          "MaceGold_BloodLightning"
+        ]
+      }
+    },
+    {
+      "Type": "Sledges",
+      "Fallback": null,
+      "ItemFallback": "SledgeWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "SledgeWood"
+        ],
+        "defeated_eikthyr": [
+          "SledgeStagbreaker"
+        ],
+        "defeated_gdking": [],
+        "defeated_bonemass": [
+          "SledgeIron"
+        ],
+        "defeated_dragon": [],
+        "defeated_goblinking": [],
+        "defeated_queen": [
+          "SledgeDemolisher"
+        ],
+        "defeated_fader": [],
+        "defeated_frozenking_p3": [
+          "SledgeGold_BloodLightning",
+          "SledgeGold",
+          "SledgeGold_FrostFire"
+        ]
+      }
+    },
+    {
+      "Type": "Polearms",
+      "Fallback": null,
+      "ItemFallback": "AtgeirWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "AtgeirWood"
+        ],
+        "defeated_eikthyr": [],
+        "defeated_gdking": [
+          "AtgeirBronze"
+        ],
+        "defeated_bonemass": [
+          "AtgeirIron"
+        ],
+        "defeated_dragon": [
+          "Scythe"
+        ],
+        "defeated_goblinking": [
+          "AtgeirBlackmetal"
+        ],
+        "defeated_queen": [
+          "AtgeirHimminAfl"
+        ],
+        "defeated_fader": [
+          "Shovel"
+        ],
+        "defeated_frozenking_p3": [
+          "AtgeirGold",
+          "AtgeirGold_BloodLightning",
+          "AtgeirGold_FrostFire"
+        ]
+      }
+    },
+    {
+      "Type": "Spears",
+      "Fallback": null,
+      "ItemFallback": "SpearWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "SpearWood"
+        ],
+        "defeated_eikthyr": [
+          "SpearFlint"
+        ],
+        "defeated_gdking": [
+          "SpearBronze"
+        ],
+        "defeated_bonemass": [
+          "SpearChitin",
+          "SpearElderbark"
+        ],
+        "defeated_dragon": [
+          "SpearWolfFang"
+        ],
+        "defeated_goblinking": [],
+        "defeated_queen": [
+          "SpearCarapace"
+        ],
+        "defeated_fader": [
+          "SpearSplitner",
+          "SpearSplitner_Lightning",
+          "SpearSplitner_Nature",
+          "SpearSplitner_Blood"
+        ],
+        "defeated_frozenking_p3": [
+          "SpearGold",
+          "SpearGold_BloodLightning",
+          "SpearGold_FrostFire"
+        ]
+      }
+    },
+    {
+      "Type": "Pickaxes",
+      "Fallback": null,
+      "ItemFallback": "AxeStone",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "PickaxeAntler"
+        ],
+        "defeated_gdking": [
+          "PickaxeBronze"
+        ],
+        "defeated_bonemass": [
+          "PickaxeIron"
+        ],
+        "defeated_dragon": [],
+        "defeated_goblinking": [
+          "PickaxeBlackMetal"
+        ],
+        "defeated_queen": [],
+        "defeated_fader": []
+      }
+    },
+    {
+      "Type": "Bows",
+      "Fallback": null,
+      "ItemFallback": "Bow",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "Bow"
+        ],
+        "defeated_gdking": [
+          "BowFineWood"
+        ],
+        "defeated_bonemass": [
+          "BowHuntsman"
+        ],
+        "defeated_dragon": [
+          "FW_BowDraugrFang",
+          "BowDraugrFang",
+          "SP_BowDraugrFang"
+        ],
+        "defeated_goblinking": [],
+        "defeated_queen": [
+          "GrapplingHook",
+          "CrossbowArbalest",
+          "DvergerArbalest_shootAshlands",
+          "DvergerArbalest_shoot",
+          "BowSpineSnap",
+          "DvergerArbalest_shootDeepNorth"
+        ],
+        "defeated_fader": [
+          "CrossbowRipper",
+          "CrossbowRipperBlood",
+          "BowAshlands",
+          "BowAshlandsRoot",
+          "BowAshlandsBlood",
+          "BowAshlandsStorm",
+          "CrossbowRipperLightning",
+          "CrossbowRipperNature"
+        ],
+        "defeated_frozenking_p3": [
+          "CrossbowGold_FrostFire",
+          "BowGold_FrostFire",
+          "BowGold",
+          "CrossbowGold",
+          "BowGold_BloodLightning",
+          "CrossbowGold_BloodLightning"
+        ]
+      }
+    },
+    {
+      "Type": "Bucklers",
+      "Fallback": null,
+      "ItemFallback": "ShieldWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [],
+        "defeated_gdking": [
+          "ShieldBronzeBuckler"
+        ],
+        "defeated_bonemass": [
+          "ShieldIronBuckler"
+        ],
+        "defeated_dragon": [],
+        "defeated_goblinking": [],
+        "defeated_queen": [
+          "ShieldCarapaceBuckler"
+        ],
+        "defeated_fader": [],
+        "defeated_frozenking_p3": [
+          "ShieldGoldBuckler"
+        ]
+      }
+    },
+    {
+      "Type": "RoundShields",
+      "Fallback": null,
+      "ItemFallback": "ShieldWood",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "ShieldWood"
+        ],
+        "defeated_gdking": [],
+        "defeated_bonemass": [
+          "ShieldBanded"
+        ],
+        "defeated_dragon": [
+          "ShieldSilver"
+        ],
+        "defeated_goblinking": [
+          "ShieldBlackmetal"
+        ],
+        "defeated_queen": [
+          "ShieldCarapace"
+        ],
+        "defeated_fader": [
+          "ShieldFlametal"
+        ],
+        "defeated_frozenking_p3": [
+          "ShieldGold",
+          "ShieldRoots"
+        ]
+      }
+    },
+    {
+      "Type": "TowerShields",
+      "Fallback": null,
+      "ItemFallback": "ShieldWoodTower",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "ShieldWoodTower"
+        ],
+        "defeated_gdking": [
+          "ShieldBoneTower"
+        ],
+        "defeated_bonemass": [
+          "ShieldIronTower",
+          "ShieldSerpentscale"
+        ],
+        "defeated_dragon": [],
+        "defeated_goblinking": [
+          "FW_ShieldBlackmetalTower",
+          "ShieldBlackmetalTower",
+          "SP_ShieldBlackmetalTower"
+        ],
+        "defeated_queen": [],
+        "defeated_fader": [
+          "ShieldFlametalTower"
+        ],
+        "defeated_frozenking_p3": [
+          "ShieldGoldTower"
+        ]
+      }
+    },
+    {
+      "Type": "ChestArmor",
+      "Fallback": null,
+      "ItemFallback": "ArmorRagsChest",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "ArmorRagsChest"
+        ],
+        "defeated_eikthyr": [
+          "ArmorLeatherChest"
+        ],
+        "defeated_gdking": [
+          "ArmorTrollLeatherChest",
+          "ArmorBronzeChest",
+          "SP_ArmorTrollLeatherChest",
+          "ArmorBerserkerChest",
+          "SP_ArmorBronzeChest",
+          "FW_ArmorBronzeChest",
+          "FW_ArmorTrollLeatherChest"
+        ],
+        "defeated_bonemass": [
+          "ArmorIronChest",
+          "ArmorRootChest"
+        ],
+        "defeated_dragon": [
+          "ArmorFenringChest",
+          "ArmorWolfChest",
+          "SP_ArmorFenringChest",
+          "FW_ArmorFenringChest"
+        ],
+        "defeated_goblinking": [
+          "ArmorPaddedCuirass",
+          "SP_ArmorPaddedCuirass",
+          "ArmorBerserkerUndeadChest",
+          "FW_ArmorPaddedCuirass"
+        ],
+        "defeated_queen": [
+          "ArmorMageChest",
+          "ArmorCarapaceChest",
+          "FW_ArmorMageChest",
+          "SP_ArmorMageChest"
+        ],
+        "defeated_fader": [
+          "SP_ArmorMageChest_Ashlands",
+          "ArmorMageChest_Ashlands",
+          "ArmorAshlandsMediumChest",
+          "ArmorFlametalChest",
+          "FW_ArmorMageChest_Ashlands",
+          "ArmorLoxChest"
+        ],
+        "defeated_frozenking_p3": [
+          "ArmorDeepNorthMediumChest",
+          "ArmorDeepNorthHeavyChest",
+          "ArmorDeepNorthMageChest",
+          "ArmorLoxChest"
+        ]
+      }
+    },
+    {
+      "Type": "LegsArmor",
+      "Fallback": null,
+      "ItemFallback": "ArmorRagsLegs",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [
+          "ArmorRagsLegs"
+        ],
+        "defeated_eikthyr": [
+          "SP_ArmorLeatherLegs",
+          "ArmorLeatherLegs"
+        ],
+        "defeated_gdking": [
+          "ArmorTrollLeatherLegs",
+          "ArmorBerserkerLegs",
+          "FW_ArmorBronzeLegs",
+          "ArmorBronzeLegs",
+          "SP_ArmorTrollLeatherLegs",
+          "SP_ArmorBronzeLegs",
+          "FW_ArmorTrollLeatherLegs"
+        ],
+        "defeated_bonemass": [
+          "ArmorIronLegs",
+          "ArmorRootLegs"
+        ],
+        "defeated_dragon": [
+          "FW_ArmorFenringLegs",
+          "ArmorFenringLegs",
+          "ArmorWolfLegs",
+          "SP_ArmorFenringLegs"
+        ],
+        "defeated_goblinking": [
+          "FW_ArmorPaddedGreaves",
+          "ArmorBerserkerUndeadLegs",
+          "ArmorPaddedGreaves",
+          "SP_ArmorPaddedGreaves"
+        ],
+        "defeated_queen": [
+          "ArmorMageLegs",
+          "ArmorCarapaceLegs",
+          "SP_ArmorMageLegs",
+          "SP_ArmorMageLegs_Ashlands",
+          "FW_ArmorMageLegs_Ashlands",
+          "FW_ArmorMageLegs"
+        ],
+        "defeated_fader": [
+          "ArmorFlametalLegs",
+          "ArmorAshlandsMediumlegs",
+          "ArmorMageLegs_Ashlands",
+          "ArmorLoxLegs"
+        ],
+        "defeated_frozenking_p3": [
+          "ArmorDeepNorthHeavylegs",
+          "ArmorDeepNorthMediumlegs",
+          "ArmorDeepNorthMagelegs",
+          "ArmorLoxLegs"
+        ]
+      }
+    },
+    {
+      "Type": "HeadArmor",
+      "Fallback": null,
+      "ItemFallback": "ArmorRagsLegs",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "HelmetLeather"
+        ],
+        "defeated_gdking": [
+          "HelmetBronze",
+          "HelmetCelebration",
+          "SP_HelmetBronze",
+          "HelmetTrollLeather",
+          "FW_HelmetBronze",
+          "HelmetBerserkerHood"
+        ],
+        "defeated_bonemass": [
+          "HelmetIron",
+          "HelmetRoot"
+        ],
+        "defeated_dragon": [
+          "HelmetDrake",
+          "HelmetFenring"
+        ],
+        "defeated_goblinking": [
+          "HelmetBerserkerUndead",
+          "HelmetPadded"
+        ],
+        "defeated_queen": [
+          "HelmetMage",
+          "HelmetCarapace"
+        ],
+        "defeated_fader": [
+          "HelmetFlametal",
+          "HelmetAshlandsMediumHood",
+          "HelmetMage_Ashlands",
+          "HelmetLox"
+        ],
+        "defeated_frozenking_p3": [
+          "HelmetDNMage",
+          "HelmetDNHeavy",
+          "HelmetLox",
+          "HelmetDNMediumHood",
+          "HelmetCrownofValheim"
+        ]
+      }
+    },
+    {
+      "Type": "ShouldersArmor",
+      "Fallback": null,
+      "ItemFallback": "ArmorRagsChest",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "CapeDeerHide"
+        ],
+        "defeated_gdking": [
+          "SP_CapeTrollHide",
+          "FW_CapeTrollHide",
+          "CapeTrollHide"
+        ],
+        "defeated_bonemass": [],
+        "defeated_dragon": [
+          "CapeWolf",
+          "FW_CapeWolf",
+          "SP_CapeWolf"
+        ],
+        "defeated_goblinking": [
+          "FW_CapeLinen",
+          "SP_CapeLinen",
+          "CapeLox",
+          "CapeLinen"
+        ],
+        "defeated_queen": [
+          "CapeFeather"
+        ],
+        "defeated_fader": [
+          "CapeAsksvin",
+          "CapeAsh"
+        ],
+        "defeated_frozenking_p3": [
+          "CapeDeepNorth",
+          "CapeDeepNorthMage"
+        ]
+      }
+    },
+    {
+      "Type": "Torches",
+      "Fallback": null,
+      "ItemFallback": "Torch",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "Torch"
+        ],
+        "defeated_gdking": [],
+        "defeated_bonemass": [],
+        "defeated_dragon": [],
+        "defeated_goblinking": [],
+        "defeated_queen": [
+          "Lantern"
+        ],
+        "defeated_fader": []
+      }
+    },
+    {
+      "Type": "Tools",
+      "Fallback": null,
+      "ItemFallback": "Hammer",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "Hoe",
+          "Hammer"
+        ],
+        "defeated_gdking": [
+          "FishingRod",
+          "Cultivator"
+        ],
+        "defeated_bonemass": [],
+        "defeated_dragon": [],
+        "defeated_goblinking": [],
+        "defeated_queen": [],
+        "defeated_fader": []
+      }
+    },
+    {
+      "Type": "Utility",
+      "Fallback": null,
+      "ItemFallback": "BeltStrength",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [
+          "LeatherBelt"
+        ],
+        "defeated_gdking": [
+          "GoldRubyRing",
+          "LeatherBelt",
+          "BeltStrength"
+        ],
+        "defeated_bonemass": [
+          "GoldRubyRing",
+          "LeatherBelt",
+          "BeltStrength"
+        ],
+        "defeated_dragon": [
+          "SilverRing",
+          "BeltStrength"
+        ],
+        "defeated_goblinking": [
+          "SilverRing",
+          "BeltStrength"
+        ],
+        "defeated_queen": [
+          "BeltStrength",
+          "Demister"
+        ],
+        "defeated_fader": [
+          "BeltStrength",
+          "Demister",
+          "LeatherQuiver"
+        ],
+        "defeated_frozenking_p3": [
+          "BeltStrength",
+          "Demister",
+          "LeatherQuiver"
+        ]
+      }
+    },
+    {
+      "Type": "Trinket",
+      "Fallback": null,
+      "ItemFallback": "Hoe",
+      "Items": [],
+      "IgnoredItems": [],
+      "ItemsByBoss": {
+        "none": [],
+        "defeated_eikthyr": [],
+        "defeated_gdking": [
+          "TrinketChitinSwim",
+          "TrinketBronzeStamina",
+          "TrinketBronzeHealth"
+        ],
+        "defeated_bonemass": [
+          "TrinketIronStamina",
+          "TrinketIronHealth"
+        ],
+        "defeated_dragon": [
+          "TrinketSilverResist",
+          "TrinketSilverDamage"
+        ],
+        "defeated_goblinking": [
+          "TrinketBlackDamageHealth",
+          "TrinketBlackStamina"
+        ],
+        "defeated_queen": [
+          "TrinketCarapaceEitr",
+          "TrinketScaleStaminaDamage"
+        ],
+        "defeated_fader": [
+          "TrinketFlametalEitr",
+          "TrinketFlametalStaminaHealth"
+        ],
+        "defeated_frozenking_p3": [
+          "TrinketBloodGoldHealth",
+          "TrinketBloodGoldStamina"
+        ]
+      }
+    }
+  ]
+}

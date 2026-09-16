@@ -1,0 +1,5754 @@
+{
+  "LegendaryItems": [
+    {
+      "ID": "Dyrnwyn",
+      "Name": "$mod_epicloot_l_dyrnwyn",
+      "Description": "$mod_epicloot_l_dyrnwyn_desc",
+      "EquipFx": "FireAura",
+      "EquipFxMode": "EquipRoot",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Swords"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddFireDamage"
+        }
+      ]
+    },
+    {
+      "ID": "SleipnirsHoof",
+      "Name": "$mod_epicloot_l_sleipnirshoof",
+      "Description": "$mod_epicloot_l_sleipnirshoof_desc",
+      "EquipFx": "WhiteAura",
+      "EquipFxMode": "EquipRoot",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Clubs"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        }
+      ]
+    },
+    {
+      "ID": "Gungnir",
+      "Name": "$mod_epicloot_l_gungnir",
+      "Description": "$mod_epicloot_l_gungnir_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Spears"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyDamage"
+        }
+      ]
+    },
+    {
+      "ID": "Mjolnir",
+      "Name": "$mod_epicloot_l_mjolnir",
+      "Description": "$mod_epicloot_l_mjolnir_desc",
+      "EquipFx": "LightningAuraSledge",
+      "EquipFxMode": "EquipRoot",
+      "Requirements": {
+        "AllowedItemNames": [
+          "$item_sledge_iron"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyPhysicalDamage"
+        },
+        {
+          "Type": "AddLightningDamage"
+        },
+        {
+          "Type": "Throwable"
+        },
+        {
+          "Type": "RecallWeapon"
+        }
+      ]
+    },
+    {
+      "ID": "Lindisfarne",
+      "Name": "$mod_epicloot_l_lind",
+      "Description": "$mod_epicloot_l_lind_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Axes"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "Throwable"
+        },
+        {
+          "Type": "RecallWeapon"
+        },
+        {
+          "Type": "Opportunist"
+        },
+        {
+          "Type": "ModifyBackstab"
+        }
+      ]
+    },
+    {
+      "ID": "Gram",
+      "Name": "$mod_epicloot_l_gram",
+      "Description": "$mod_epicloot_l_gram_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Swords"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddSlashingDamage"
+        },
+        {
+          "Type": "Executioner"
+        },
+        {
+          "Type": "ModifyPhysicalDamage"
+        }
+      ]
+    },
+    {
+      "ID": "Angurvadal",
+      "Name": "$mod_epicloot_l_angurvadal",
+      "Description": "$mod_epicloot_l_angurvadal_desc",
+      "EquipFx": "WhiteAura",
+      "EquipFxMode": "EquipRoot",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Swords"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "Glowing"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        },
+        {
+          "Type": "Opportunist"
+        },
+        {
+          "Type": "ModifyBackstab"
+        }
+      ]
+    },
+    {
+      "ID": "Laevateinn",
+      "Name": "$mod_epicloot_l_lokis",
+      "Description": "$mod_epicloot_l_lokis_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Knives"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "Throwable"
+        },
+        {
+          "Type": "RecallWeapon"
+        },
+        {
+          "Type": "AddPoisonDamage"
+        },
+        {
+          "Type": "ModifyBackstab"
+        }
+      ]
+    },
+    {
+      "ID": "NjordsFavor",
+      "Name": "$mod_epicloot_l_njord",
+      "Description": "$mod_epicloot_l_njord_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Knives"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddSlashingDamage"
+        },
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifyAttackSpeed"
+        }
+      ]
+    },
+    {
+      "ID": "ValkyriesBlessing",
+      "Name": "$mod_epicloot_l_valk",
+      "Description": "$mod_epicloot_l_valk_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "TwoHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Axes"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeedLowHealth"
+        },
+        {
+          "Type": "ModifyStaminaRegenLowHealth"
+        },
+        {
+          "Type": "ModifyDamageLowHealth"
+        },
+        {
+          "Type": "ModifyAttackSpeedLowHealth"
+        },
+        {
+          "Type": "AvoidDamageTakenLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "Skofnung",
+      "Name": "$mod_epicloot_l_skofnung",
+      "Description": "$mod_epicloot_l_skofnung_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Swords"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddSlashingDamage"
+        },
+        {
+          "Type": "ModifyAttackStaminaUse"
+        },
+        {
+          "Type": "ModifyAttackSpeed"
+        },
+        {
+          "Type": "Indestructible"
+        }
+      ]
+    },
+    {
+      "ID": "Hofund",
+      "Name": "$mod_epicloot_l_hofund",
+      "Description": "$mod_epicloot_l_hofund_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Swords"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddSlashingDamage"
+        },
+        {
+          "Type": "ModifyAttackStaminaUse"
+        },
+        {
+          "Type": "LifeSteal"
+        },
+        {
+          "Type": "Indestructible"
+        }
+      ]
+    },
+    {
+      "ID": "ShardMace",
+      "Name": "$mod_epicloot_l_shard",
+      "Description": "$mod_epicloot_l_shard_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Clubs"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddFireDamage"
+        },
+        {
+          "Type": "AddFrostDamage"
+        },
+        {
+          "Type": "AddLightningDamage"
+        },
+        {
+          "Type": "AddPoisonDamage"
+        }
+      ]
+    },
+    {
+      "ID": "Bloodmace",
+      "Name": "$mod_epicloot_l_bloodmace",
+      "Description": "$mod_epicloot_l_bloodmace_desc",
+      "Requirements": {
+        "AllowedItemNames": [
+          "$item_mace_needle"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddPiercingDamage"
+        },
+        {
+          "Type": "LifeSteal"
+        },
+        {
+          "Type": "LifeStealLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "GunnarsAtgeir",
+      "Name": "$mod_epicloot_l_gunnar",
+      "Description": "$mod_epicloot_l_gunnar_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "TwoHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Polearms"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddPiercingDamage"
+        },
+        {
+          "Type": "ModifyAttackSpeed"
+        },
+        {
+          "Type": "ModifyAttackStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "SkadiBow",
+      "Name": "$mod_epicloot_l_skadi",
+      "Description": "$mod_epicloot_l_skadi_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "Bow"
+        ],
+        "AllowedSkillTypes": [
+          "Bows"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        }
+      ]
+    },
+    {
+      "ID": "UllrBow",
+      "Name": "$mod_epicloot_l_ullr",
+      "Description": "$mod_epicloot_l_ullr_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "Bow"
+        ],
+        "AllowedSkillTypes": [
+          "Bows"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ExplosiveArrows"
+        },
+        {
+          "Type": "AddFrostDamage"
+        },
+        {
+          "Type": "Indestructible"
+        }
+      ]
+    },
+    {
+      "ID": "EndlessBow",
+      "Name": "$mod_epicloot_l_endbow",
+      "Description": "$mod_epicloot_l_endbow_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "Bow"
+        ],
+        "AllowedSkillTypes": [
+          "Bows"
+        ]
+      },
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyAttackStaminaUse"
+        },
+        {
+          "Type": "Indestructible"
+        }
+      ]
+    },
+    {
+      "ID": "BlackSunSpite",
+      "Name": "$mod_epicloot_l_spite",
+      "Description": "$mod_epicloot_l_spite_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "OneHandedWeapon"
+        ],
+        "AllowedSkillTypes": [
+          "Knives"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyAttackStaminaUse"
+        },
+        {
+          "Type": "ModifyAttackSpeed"
+        },
+        {
+          "Type": "AddLightningDamage"
+        },
+        {
+          "Type": "AddPiercingDamage"
+        },
+        {
+          "Type": "ModifyMovementSpeed"
+        }
+      ]
+    },
+    {
+      "ID": "HeimdallTowerShield",
+      "Name": "Heimdall's Watch Tower Shield",
+      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ShieldFlametalTower"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyBlockPower"
+        },
+        {
+          "Type": "ModifyBlockStaminaUse"
+        },
+        {
+          "Type": "ModifyBlockForce"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "IncreaseHealth"
+        }
+      ]
+    },
+    {
+      "ID": "HeimdallOathblade",
+      "Name": "Heimdall's Watch Oathspear",
+      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "SpearSplitner",
+          "SpearSplitner_Nature",
+          "SpearSplitner_Lightning",
+          "SpearSplitner_Blood"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyBlockStaminaUse"
+        },
+        {
+          "Type": "ModifyPhysicalDamage"
+        },
+        {
+          "Type": "AddFrostDamage"
+        },
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "AddSpearsSkill"
+        }
+      ]
+    },
+    {
+      "ID": "HeimdallHelmet",
+      "Name": "Heimdall's Watch Helmet",
+      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetFlametal"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "ModifyArmorLowHealth"
+        },
+        {
+          "Type": "ModifyHealthRegenLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "HeimdallChest",
+      "Name": "Heimdall's Watch Chestguard",
+      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorFlametalChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "AvoidDamageTaken"
+        }
+      ]
+    },
+    {
+      "ID": "HeimdallLegs",
+      "Name": "Heimdall's Watch Greaves",
+      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorFlametalLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyMovementSpeedLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "HeimdallCape",
+      "Name": "Heimdall's Watch Cape",
+      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeAsh"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        }
+      ]
+    },
+    {
+      "ID": "HeimdallWatchSigil",
+      "Name": "Heimdall's Watch Watch Sigil",
+      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        }
+      ]
+    },
+    {
+      "ID": "RagnarBattleAxe",
+      "Name": "Ragnar's Fury Twin Axes",
+      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "AxeBerzerkrBlood"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyPhysicalDamage"
+        },
+        {
+          "Type": "Bloodlust"
+        },
+        {
+          "Type": "LifeSteal",
+          "Values": {
+            "MinValue": 10,
+            "MaxValue": 10,
+            "Increment": 0.5
+          }
+        },
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "LifeStealLowHealth"
+        },
+        {
+          "Type": "ModifyAttackHealthUse",
+          "Values": {
+            "MinValue": 50,
+            "MaxValue": 50,
+            "Increment": 1
+          }
+        }
+      ]
+    },
+    {
+      "ID": "RagnarHelmet",
+      "Name": "Ragnar's Fury War Helm",
+      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetBerserkerHood"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "RagnarChest",
+      "Name": "Ragnar's Fury War Harness",
+      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorBerserkerChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "AvoidDamageTakenLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "RagnarLegs",
+      "Name": "Ragnar's Fury War Strides",
+      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorBerserkerLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "ModifyMovementSpeedLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "RagnarCape",
+      "Name": "Ragnar's Fury War Cloak",
+      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeerHide"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        }
+      ]
+    },
+    {
+      "ID": "RagnarFuryTotem",
+      "Name": "Ragnar's Fury Fury Totem",
+      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "AddHealthRegen"
+        }
+      ]
+    },
+    {
+      "ID": "HraesvelgrLongbow",
+      "Name": "Hraesvelgr's Hunt Longbow",
+      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BowAshlandsRoot",
+          "BowAshlandsBlood",
+          "BowAshlandsStorm"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyFireRate"
+        }
+      ]
+    },
+    {
+      "ID": "HraesvelgrHood",
+      "Name": "Hraesvelgr's Hunt Hood",
+      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetLox"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "HeadHunter"
+        }
+      ]
+    },
+    {
+      "ID": "HraesvelgrHarness",
+      "Name": "Hraesvelgr's Hunt Harness",
+      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        }
+      ]
+    },
+    {
+      "ID": "HraesvelgrStride",
+      "Name": "Hraesvelgr's Hunt Stride",
+      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        }
+      ]
+    },
+    {
+      "ID": "HraesvelgrMantle",
+      "Name": "Hraesvelgr's Hunt Mantle",
+      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeerHide"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyFireRate"
+        }
+      ]
+    },
+    {
+      "ID": "HraesvelgrWindGauge",
+      "Name": "Hraesvelgr's Hunt Wind Gauge",
+      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "SolomonKaneWitchfinderArbalest",
+      "Name": "Blackpowder Judgment Witchfinder Arbalest",
+      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CrossbowRipper",
+          "CrossbowRipperBlood",
+          "CrossbowRipperLightning",
+          "CrossbowRipperNature"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyDamage"
+        },
+        {
+          "Type": "ExplosiveArrows"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "TripleBowShot"
+        },
+        {
+          "Type": "AddCrossbowsSkill"
+        }
+      ]
+    },
+    {
+      "ID": "SolomonKaneWidebrim",
+      "Name": "Blackpowder Judgment Widebrim",
+      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetLox"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "ModifyDiscoveryRadius"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "SolomonKaneLongcoat",
+      "Name": "Blackpowder Judgment Longcoat",
+      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddCarryWeight"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Weightless"
+        }
+      ]
+    },
+    {
+      "ID": "SolomonKaneBoots",
+      "Name": "Blackpowder Judgment Boots",
+      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "DoubleJump"
+        }
+      ]
+    },
+    {
+      "ID": "SolomonKaneMantle",
+      "Name": "Blackpowder Judgment Mantle",
+      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeerHide"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Weightless"
+        },
+        {
+          "Type": "Indestructible"
+        },
+        {
+          "Type": "AddCarryWeight"
+        }
+      ]
+    },
+    {
+      "ID": "SolomonKanePowderHorn",
+      "Name": "Blackpowder Judgment Powder Horn",
+      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddCarryWeight"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "AddMovementSkills"
+        }
+      ]
+    },
+    {
+      "ID": "NottNightblade",
+      "Name": "Nott's Silence Nightblade",
+      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "KnifeGold_BloodLightning",
+          "KnifeGold_FrostFire"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "Duelist"
+        },
+        {
+          "Type": "ModifyStaggerDamage"
+        },
+        {
+          "Type": "Opportunist"
+        },
+        {
+          "Type": "ModifyStaggerDuration"
+        },
+        {
+          "Type": "ModifyPhysicalDamage"
+        }
+      ]
+    },
+    {
+      "ID": "NottVeil",
+      "Name": "Nott's Silence Veil",
+      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetFenring"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "ModifyDiscoveryRadius"
+        },
+        {
+          "Type": "AddKnivesSkill"
+        }
+      ]
+    },
+    {
+      "ID": "NottLeathers",
+      "Name": "Nott's Silence Leathers",
+      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorFenringChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "StaggerOnDamageTaken"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AvoidDamageTakenLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "NottTreads",
+      "Name": "Nott's Silence Treads",
+      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorFenringLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyNoise"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "NottCloak",
+      "Name": "Nott's Silence Cloak",
+      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeerHide"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        }
+      ]
+    },
+    {
+      "ID": "NottSmokeVial",
+      "Name": "Nott's Silence Smoke Vial",
+      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyNoise"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "AddKnivesSkill"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "OffSetAttack"
+        }
+      ]
+    },
+    {
+      "ID": "SeidrStaff",
+      "Name": "Seidr Starfall Star Staff",
+      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "StaffLightning",
+          "StaffGreenRoots",
+          "StaffRedTroll",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffClusterbomb",
+          "StaffOrbofAhri",
+          "StaffThunderBlood"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "ModifyMagicFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyElementalDamage"
+        },
+        {
+          "Type": "AddElementalMagicSkill"
+        }
+      ]
+    },
+    {
+      "ID": "SeidrCrown",
+      "Name": "Seidr Starfall Crown",
+      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetMage"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "DartingThoughts"
+        },
+        {
+          "Type": "AddElementalMagicSkill"
+        }
+      ]
+    },
+    {
+      "ID": "SeidrRobe",
+      "Name": "Seidr Starfall Robe",
+      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorMageChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        }
+      ]
+    },
+    {
+      "ID": "SeidrTreads",
+      "Name": "Seidr Starfall Treads",
+      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorMageLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "SeidrMantle",
+      "Name": "Seidr Starfall Mantle",
+      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeFeather"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Weightless"
+        }
+      ]
+    },
+    {
+      "ID": "SeidrEitrFocus",
+      "Name": "Seidr Starfall Eitr Focus",
+      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "HelveigBloodstaff",
+      "Name": "Helveig Covenant Blood Staff",
+      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "StaffSkeleton",
+          "StaffShield",
+          "StaffSpiritCaller",
+          "StaffRedTroll",
+          "StaffFrostOrbs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "AddBloodMagicSkill"
+        },
+        {
+          "Type": "ModifyAttackHealthUse",
+          "Values": {
+            "MinValue": 50,
+            "MaxValue": 50,
+            "Increment": 1
+          }
+        },
+        {
+          "Type": "ModifySummonHealth"
+        },
+        {
+          "Type": "ModifySummonDamage"
+        }
+      ]
+    },
+    {
+      "ID": "HelveigBoneCrown",
+      "Name": "Helveig Covenant Bone Crown",
+      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetMage"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "ModifyEitrRegenLowHealth"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "DartingThoughts"
+        }
+      ]
+    },
+    {
+      "ID": "HelveigMarrowRobe",
+      "Name": "Helveig Covenant Marrow Robe",
+      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorMageChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        }
+      ]
+    },
+    {
+      "ID": "HelveigGraveTreads",
+      "Name": "Helveig Covenant Grave Treads",
+      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorMageLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "HelveigBloodMantle",
+      "Name": "Helveig Covenant Blood Mantle",
+      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeFeather"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegenLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "HelveigBoneCharm",
+      "Name": "Helveig Covenant Bone Charm",
+      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        }
+      ]
+    },
+    {
+      "ID": "MoonveinMoonbow",
+      "Name": "Moonvein Arcana Moonbow",
+      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BowAshlandsRoot",
+          "BowAshlandsBlood",
+          "BowAshlandsStorm"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "SpellSword"
+        },
+        {
+          "Type": "EitrLeech"
+        },
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "AmmoConservation",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MoonveinCowl",
+      "Name": "Moonvein Arcana Cowl",
+      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetLox"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyDiscoveryRadius"
+        },
+        {
+          "Type": "HeadHunter"
+        }
+      ]
+    },
+    {
+      "ID": "MoonveinHauberk",
+      "Name": "Moonvein Arcana Hauberk",
+      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddMovementSkills"
+        }
+      ]
+    },
+    {
+      "ID": "MoonveinStriders",
+      "Name": "Moonvein Arcana Striders",
+      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        }
+      ]
+    },
+    {
+      "ID": "MoonveinMantle",
+      "Name": "Moonvein Arcana Mantle",
+      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeerHide"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "IncreaseStamina"
+        }
+      ]
+    },
+    {
+      "ID": "MoonveinMoonLens",
+      "Name": "Moonvein Arcana Moon Lens",
+      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddBowsSkill"
+        }
+      ]
+    },
+    {
+      "ID": "FrostbrandRuneblade",
+      "Name": "Frostbrand Covenant Runeblade",
+      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "THSwordSlayer",
+          "THSwordSlayerNature",
+          "THSwordSlayerLightning",
+          "THSwordSlayerBlood"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "SpellSword"
+        },
+        {
+          "Type": "AddFrostDamage"
+        },
+        {
+          "Type": "ModifyElementalDamage"
+        },
+        {
+          "Type": "EitrLeech"
+        },
+        {
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
+        }
+      ]
+    },
+    {
+      "ID": "FrostbrandCrown",
+      "Name": "Frostbrand Covenant Crown",
+      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetFlametal"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "Glowing"
+        }
+      ]
+    },
+    {
+      "ID": "FrostbrandCuirass",
+      "Name": "Frostbrand Covenant Cuirass",
+      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorFlametalChest"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseStamina"
+        }
+      ]
+    },
+    {
+      "ID": "FrostbrandGreaves",
+      "Name": "Frostbrand Covenant Greaves",
+      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorFlametalLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "IncreaseStamina"
+        }
+      ]
+    },
+    {
+      "ID": "FrostbrandCloak",
+      "Name": "Frostbrand Covenant Cloak",
+      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeerHide"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        }
+      ]
+    },
+    {
+      "ID": "FrostbrandFrostFocus",
+      "Name": "Frostbrand Covenant Frost Focus",
+      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "HraesvelgrLeatherQuiver",
+      "Name": "Hraesvelgr's Hunt Leather Quiver",
+      "Description": "A set quiver piece for a pure archer line that supports bow skill, stamina flow and field mobility.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "LeatherQuiver"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "MoonveinLeatherQuiver",
+      "Name": "Moonvein Arcana Leather Quiver",
+      "Description": "A set quiver piece for a magic archer line that supports bow skill, eitr reserves and sustained spellbow combat.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "LeatherQuiver"
+        ]
+      },
+      "GuaranteedEffectCount": 5,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddBowsSkill"
+        }
+      ]
+    }
+  ],
+  "LegendarySets": [
+    {
+      "ID": "Heimdall",
+      "Name": "Heimdall's Watch",
+      "LegendaryIDs": [
+        "HeimdallTowerShield",
+        "HeimdallOathblade",
+        "HeimdallHelmet",
+        "HeimdallChest",
+        "HeimdallLegs",
+        "HeimdallCape",
+        "HeimdallWatchSigil"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "ModifyBlockPower",
+            "Values": {
+              "MinValue": 22,
+              "MaxValue": 22,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyBlockStaminaUse",
+            "Values": {
+              "MinValue": 19,
+              "MaxValue": 19,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyBlockForce",
+            "Values": {
+              "MinValue": 19,
+              "MaxValue": 19,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "IncreaseHealth",
+            "Values": {
+              "MinValue": 19,
+              "MaxValue": 19,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "Bulwark",
+            "Values": {
+              "MinValue": 5,
+              "MaxValue": 5,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "ReflectDamage",
+            "Values": {
+              "MinValue": 9,
+              "MaxValue": 9,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "Ragnar",
+      "Name": "Ragnar's Fury",
+      "LegendaryIDs": [
+        "RagnarBattleAxe",
+        "RagnarHelmet",
+        "RagnarChest",
+        "RagnarLegs",
+        "RagnarCape",
+        "RagnarFuryTotem"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddAxesSkill",
+            "Values": {
+              "MinValue": 15,
+              "MaxValue": 15,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyPhysicalDamage",
+            "Values": {
+              "MinValue": 13,
+              "MaxValue": 13,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "LifeStealLowHealth",
+            "Values": {
+              "MinValue": 4,
+              "MaxValue": 4,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "Berserker"
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "LifeSteal",
+            "Values": {
+              "MinValue": 8,
+              "MaxValue": 8,
+              "Increment": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "Hraesvelgr",
+      "Name": "Hraesvelgr's Hunt",
+      "LegendaryIDs": [
+        "HraesvelgrLongbow",
+        "HraesvelgrHood",
+        "HraesvelgrHarness",
+        "HraesvelgrStride",
+        "HraesvelgrMantle",
+        "HraesvelgrWindGauge",
+        "HraesvelgrLeatherQuiver"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddBowsSkill",
+            "Values": {
+              "MinValue": 20,
+              "MaxValue": 20,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "QuickDraw",
+            "Values": {
+              "MinValue": 20,
+              "MaxValue": 20,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyDrawStaminaUse",
+            "Values": {
+              "MinValue": 20,
+              "MaxValue": 20,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifyProjectileSpeed",
+            "Values": {
+              "MinValue": 20,
+              "MaxValue": 20,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "ModifyFireRate",
+            "Values": {
+              "MinValue": 20,
+              "MaxValue": 20,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "HeadHunter",
+            "Values": {
+              "MinValue": 10,
+              "MaxValue": 10,
+              "Increment": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "SolomonKane",
+      "Name": "Blackpowder Judgment",
+      "LegendaryIDs": [
+        "SolomonKaneWitchfinderArbalest",
+        "SolomonKaneWidebrim",
+        "SolomonKaneLongcoat",
+        "SolomonKaneBoots",
+        "SolomonKaneMantle",
+        "SolomonKanePowderHorn"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddCrossbowsSkill",
+            "Values": {
+              "MinValue": 15,
+              "MaxValue": 15,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ExplosiveArrows",
+            "Values": {
+              "MinValue": 32,
+              "MaxValue": 32,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "TripleBowShot"
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifyDamage",
+            "Values": {
+              "MinValue": 6.6,
+              "MaxValue": 6.6,
+              "Increment": 0.1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "QuickDraw",
+            "Values": {
+              "MinValue": 32,
+              "MaxValue": 32,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "Nott",
+      "Name": "Nott's Silence",
+      "LegendaryIDs": [
+        "NottNightblade",
+        "NottVeil",
+        "NottLeathers",
+        "NottTreads",
+        "NottCloak",
+        "NottSmokeVial"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "ModifyNoise",
+            "Values": {
+              "MinValue": 90,
+              "MaxValue": 90,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "Duelist",
+            "Values": {
+              "MinValue": 37,
+              "MaxValue": 37,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyStaggerDamage",
+            "Values": {
+              "MinValue": 13,
+              "MaxValue": 13,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "Opportunist",
+            "Values": {
+              "MinValue": 21,
+              "MaxValue": 21,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "ModifyStaggerDuration",
+            "Values": {
+              "MinValue": 10,
+              "MaxValue": 10,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "Seidr",
+      "Name": "Seidr Starfall",
+      "LegendaryIDs": [
+        "SeidrStaff",
+        "SeidrCrown",
+        "SeidrRobe",
+        "SeidrTreads",
+        "SeidrMantle",
+        "SeidrEitrFocus"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "IncreaseEitr",
+            "Values": {
+              "MinValue": 25,
+              "MaxValue": 25,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 18,
+              "MaxValue": 18,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyEitrRegen",
+            "Values": {
+              "MinValue": 22,
+              "MaxValue": 22,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifyMagicFireRate",
+            "Values": {
+              "MinValue": 37,
+              "MaxValue": 37,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "DoubleMagicShot"
+          }
+        }
+      ]
+    },
+    {
+      "ID": "Helveig",
+      "Name": "Helveig Covenant",
+      "LegendaryIDs": [
+        "HelveigBloodstaff",
+        "HelveigBoneCrown",
+        "HelveigMarrowRobe",
+        "HelveigGraveTreads",
+        "HelveigBloodMantle",
+        "HelveigBoneCharm"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddBloodMagicSkill",
+            "Values": {
+              "MinValue": 15,
+              "MaxValue": 15,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 18,
+              "MaxValue": 18,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "IncreaseHealth",
+            "Values": {
+              "MinValue": 19,
+              "MaxValue": 19,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifySummonDamage",
+            "Values": {
+              "MinValue": 18,
+              "MaxValue": 18,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "ModifySummonHealth",
+            "Values": {
+              "MinValue": 18,
+              "MaxValue": 18,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "Moonvein",
+      "Name": "Moonvein Arcana",
+      "LegendaryIDs": [
+        "MoonveinMoonbow",
+        "MoonveinCowl",
+        "MoonveinHauberk",
+        "MoonveinStriders",
+        "MoonveinMantle",
+        "MoonveinMoonLens",
+        "MoonveinLeatherQuiver"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "SpellSword",
+            "Values": {
+              "MinValue": 32.5,
+              "MaxValue": 32.5,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 18,
+              "MaxValue": 18,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "EitrLeech",
+            "Values": {
+              "MinValue": 8,
+              "MaxValue": 8,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "AddBowsSkill",
+            "Values": {
+              "MinValue": 15,
+              "MaxValue": 15,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "IncreaseEitr",
+            "Values": {
+              "MinValue": 25,
+              "MaxValue": 25,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "ModifyElementalDamage",
+            "Values": {
+              "MinValue": 8.5,
+              "MaxValue": 8.5,
+              "Increment": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "Frostbrand",
+      "Name": "Frostbrand Covenant",
+      "LegendaryIDs": [
+        "FrostbrandRuneblade",
+        "FrostbrandCrown",
+        "FrostbrandCuirass",
+        "FrostbrandGreaves",
+        "FrostbrandCloak",
+        "FrostbrandFrostFocus"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "SpellSword",
+            "Values": {
+              "MinValue": 32.5,
+              "MaxValue": 32.5,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "IncreaseEitr",
+            "Values": {
+              "MinValue": 25,
+              "MaxValue": 25,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 18,
+              "MaxValue": 18,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "EitrLeech",
+            "Values": {
+              "MinValue": 8,
+              "MaxValue": 8,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "AddSwordsSkill",
+            "Values": {
+              "MinValue": 15,
+              "MaxValue": 15,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "MythicItems": [
+    {
+      "ID": "MythicHeimdallTowerShield",
+      "Name": "Gjallarhorn Guard Tower Shield",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ShieldGoldTower"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyBlockPower"
+        },
+        {
+          "Type": "ModifyBlockStaminaUse"
+        },
+        {
+          "Type": "ModifyBlockForce"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "AvoidDamageTaken"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHeimdallOathblade",
+      "Name": "Gjallarhorn Guard Oathspear",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "SpearGold_FrostFire"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyBlockStaminaUse"
+        },
+        {
+          "Type": "ModifyPhysicalDamage"
+        },
+        {
+          "Type": "AddFrostDamage"
+        },
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "AddSpearsSkill"
+        },
+        {
+          "Type": "Indestructible"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHeimdallHelmet",
+      "Name": "Gjallarhorn Guard Helmet",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetDNHeavy"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "ModifyArmorLowHealth"
+        },
+        {
+          "Type": "ModifyHealthRegenLowHealth"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHeimdallChest",
+      "Name": "Gjallarhorn Guard Chestguard",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthHeavyChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "AvoidDamageTaken"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHeimdallLegs",
+      "Name": "Gjallarhorn Guard Greaves",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthHeavylegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyMovementSpeedLowHealth"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHeimdallCape",
+      "Name": "Gjallarhorn Guard Cape",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeAsh"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        },
+        {
+          "Type": "Indestructible"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHeimdallWatchSigil",
+      "Name": "Gjallarhorn Guard Watch Sigil",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHeimdallWardingWisp",
+      "Name": "Gjallarhorn Guard Warding Wisp",
+      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddPhysicalResistancePercentage"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnarBattleAxe",
+      "Name": "Ragnarok Bloodwake Twin Axes",
+      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "AxeBerzerkrBlood"
+        ]
+      },
+      "GuaranteedEffectCount": 7,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyPhysicalDamage"
+        },
+        {
+          "Type": "Bloodlust"
+        },
+        {
+          "Type": "LifeSteal",
+          "Values": {
+            "MinValue": 12,
+            "MaxValue": 12,
+            "Increment": 0.5
+          }
+        },
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "LifeStealLowHealth"
+        },
+        {
+          "Type": "AddAxesSkill"
+        },
+        {
+          "Type": "ModifyAttackHealthUse",
+          "Values": {
+            "MinValue": 50,
+            "MaxValue": 50,
+            "Increment": 1
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnarHelmet",
+      "Name": "Ragnarok Bloodwake War Helm",
+      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetBerserkerUndead"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "ModifyArmorLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnarChest",
+      "Name": "Ragnarok Bloodwake War Harness",
+      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorBerserkerUndeadChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "AvoidDamageTakenLowHealth"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnarLegs",
+      "Name": "Ragnarok Bloodwake War Strides",
+      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorBerserkerUndeadLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "ModifyMovementSpeedLowHealth"
+        },
+        {
+          "Type": "AddMovementSkills"
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnarCape",
+      "Name": "Ragnarok Bloodwake War Cloak",
+      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorth"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        },
+        {
+          "Type": "Warmth"
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnarFuryTotem",
+      "Name": "Ragnarok Bloodwake Fury Totem",
+      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnarFrostWisp",
+      "Name": "Ragnarok Bloodwake Frost Wisp",
+      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrLongbow",
+      "Name": "Stormfeather Pursuit Longbow",
+      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BowGold_BloodLightning",
+          "BowGold_FrostFire"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyPhysicalDamage"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrHood",
+      "Name": "Stormfeather Pursuit Hood",
+      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetLox"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrHarness",
+      "Name": "Stormfeather Pursuit Harness",
+      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "HeadHunter"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrStride",
+      "Name": "Stormfeather Pursuit Stride",
+      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyMovementSpeed"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrMantle",
+      "Name": "Stormfeather Pursuit Mantle",
+      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorth"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrWindGauge",
+      "Name": "Stormfeather Pursuit Wind Gauge",
+      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrWispFeather",
+      "Name": "Stormfeather Pursuit Wisp Feather",
+      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKaneWitchfinderArbalest",
+      "Name": "Witchfinder Verdict Witchfinder Arbalest",
+      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CrossbowGold_BloodLightning",
+          "CrossbowGold_FrostFire"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyDamage"
+        },
+        {
+          "Type": "ExplosiveArrows"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "TripleBowShot"
+        },
+        {
+          "Type": "AddCrossbowsSkill"
+        },
+        {
+          "Type": "ModifyFireRate"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKaneWidebrim",
+      "Name": "Witchfinder Verdict Widebrim",
+      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetBerserkerUndead"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "ModifyDiscoveryRadius"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "ModifyArmor"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKaneLongcoat",
+      "Name": "Witchfinder Verdict Longcoat",
+      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorBerserkerUndeadChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddCarryWeight"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Weightless"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKaneBoots",
+      "Name": "Witchfinder Verdict Boots",
+      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorBerserkerUndeadLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "DoubleJump"
+        },
+        {
+          "Type": "FeatherFall"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKaneMantle",
+      "Name": "Witchfinder Verdict Mantle",
+      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorth"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Weightless"
+        },
+        {
+          "Type": "Indestructible"
+        },
+        {
+          "Type": "AddCarryWeight"
+        },
+        {
+          "Type": "Waterproof"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKanePowderHorn",
+      "Name": "Witchfinder Verdict Powder Horn",
+      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddCarryWeight"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "Glowing"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKaneWitchlamp",
+      "Name": "Witchfinder Verdict Witchlamp",
+      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddCrossbowsSkill"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicNottNightblade",
+      "Name": "Night-Court Execution Nightblade",
+      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "KnifeGold_BloodLightning",
+          "KnifeGold_FrostFire"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "Duelist"
+        },
+        {
+          "Type": "ModifyStaggerDamage"
+        },
+        {
+          "Type": "Opportunist"
+        },
+        {
+          "Type": "ModifyStaggerDuration"
+        },
+        {
+          "Type": "ModifyPhysicalDamage"
+        },
+        {
+          "Type": "OffSetAttack"
+        }
+      ]
+    },
+    {
+      "ID": "MythicNottVeil",
+      "Name": "Night-Court Execution Veil",
+      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetAshlandsMediumHood"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "ModifyDiscoveryRadius"
+        },
+        {
+          "Type": "AddKnivesSkill"
+        },
+        {
+          "Type": "OffSetAttack"
+        }
+      ]
+    },
+    {
+      "ID": "MythicNottLeathers",
+      "Name": "Night-Court Execution Leathers",
+      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorAshlandsMediumChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "StaggerOnDamageTaken"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AvoidDamageTakenLowHealth"
+        },
+        {
+          "Type": "ModifyArmorLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "MythicNottTreads",
+      "Name": "Night-Court Execution Treads",
+      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorAshlandsMediumlegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyNoise"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "DoubleJump"
+        }
+      ]
+    },
+    {
+      "ID": "MythicNottCloak",
+      "Name": "Night-Court Execution Cloak",
+      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorth"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        },
+        {
+          "Type": "Waterproof"
+        }
+      ]
+    },
+    {
+      "ID": "MythicNottSmokeVial",
+      "Name": "Night-Court Execution Smoke Vial",
+      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyNoise"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "AddKnivesSkill"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        }
+      ]
+    },
+    {
+      "ID": "MythicNottShadowWisp",
+      "Name": "Night-Court Execution Shadow Wisp",
+      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "ModifyNoise"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "OffSetAttack"
+        },
+        {
+          "Type": "AddKnivesSkill"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidrStaff",
+      "Name": "World-Root Arcanum Star Staff",
+      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "StaffLightning",
+          "StaffGreenRoots",
+          "StaffRedTroll",
+          "StaffFireball",
+          "StaffIceShards",
+          "StaffClusterbomb",
+          "StaffOrbofAhri",
+          "StaffThunderBlood"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "ModifyMagicFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyElementalDamage"
+        },
+        {
+          "Type": "AddElementalMagicSkill"
+        },
+        {
+          "Type": "DoubleMagicShot"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidrCrown",
+      "Name": "World-Root Arcanum Crown",
+      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetDNMage"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "DartingThoughts"
+        },
+        {
+          "Type": "AddElementalMagicSkill"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidrRobe",
+      "Name": "World-Root Arcanum Robe",
+      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthMageChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Weightless"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidrTreads",
+      "Name": "World-Root Arcanum Treads",
+      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthMagelegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "DoubleJump"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidrMantle",
+      "Name": "World-Root Arcanum Mantle",
+      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorthMage"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Weightless"
+        },
+        {
+          "Type": "Waterproof"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidrEitrFocus",
+      "Name": "World-Root Arcanum Eitr Focus",
+      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "Glowing"
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidrMistWisp",
+      "Name": "World-Root Arcanum Mist Wisp",
+      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "AddElementalMagicSkill"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveigBloodstaff",
+      "Name": "Blood-Moon Conclave Blood Staff",
+      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "StaffSkeleton",
+          "StaffShield",
+          "StaffSpiritCaller",
+          "StaffRedTroll",
+          "StaffFrostOrbs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "AddBloodMagicSkill"
+        },
+        {
+          "Type": "ModifyAttackHealthUse",
+          "Values": {
+            "MinValue": 50,
+            "MaxValue": 50,
+            "Increment": 1
+          }
+        },
+        {
+          "Type": "ModifySummonHealth"
+        },
+        {
+          "Type": "ModifySummonDamage"
+        },
+        {
+          "Type": "IncreaseEitr"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveigBoneCrown",
+      "Name": "Blood-Moon Conclave Bone Crown",
+      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetDNMage"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "ModifyEitrRegenLowHealth"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "DartingThoughts"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveigMarrowRobe",
+      "Name": "Blood-Moon Conclave Marrow Robe",
+      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthMageChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyEitrRegenLowHealth"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveigGraveTreads",
+      "Name": "Blood-Moon Conclave Grave Treads",
+      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthMagelegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveigBloodMantle",
+      "Name": "Blood-Moon Conclave Blood Mantle",
+      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorthMage"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegenLowHealth"
+        },
+        {
+          "Type": "Waterproof"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveigBoneCharm",
+      "Name": "Blood-Moon Conclave Bone Charm",
+      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveigGraveWisp",
+      "Name": "Blood-Moon Conclave Grave Wisp",
+      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "IncreaseHealth"
+        },
+        {
+          "Type": "AddHealthRegen"
+        },
+        {
+          "Type": "ModifyHealthRegen"
+        },
+        {
+          "Type": "ModifyEitrRegenLowHealth"
+        },
+        {
+          "Type": "IncreaseEitr"
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinMoonbow",
+      "Name": "Lunar Spellshot Moonbow",
+      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BowGold_BloodLightning",
+          "BowGold_FrostFire"
+        ]
+      },
+      "GuaranteedEffectCount": 7,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "SpellSword"
+        },
+        {
+          "Type": "EitrLeech"
+        },
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "AmmoConservation",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinCowl",
+      "Name": "Lunar Spellshot Cowl",
+      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetLox"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyDiscoveryRadius"
+        },
+        {
+          "Type": "HeadHunter"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinHauberk",
+      "Name": "Lunar Spellshot Hauberk",
+      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinStriders",
+      "Name": "Lunar Spellshot Striders",
+      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorLoxLegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinMantle",
+      "Name": "Lunar Spellshot Mantle",
+      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorth"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddMovementSkills"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinMoonLens",
+      "Name": "Lunar Spellshot Moon Lens",
+      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinMoonWisp",
+      "Name": "Lunar Spellshot Moon Wisp",
+      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrandRuneblade",
+      "Name": "Glacierbrand Oath Runeblade",
+      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "THSwordGold_FrostFire",
+          "THSwordGold_BloodLightning"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "SpellSword"
+        },
+        {
+          "Type": "AddFrostDamage"
+        },
+        {
+          "Type": "ModifyElementalDamage"
+        },
+        {
+          "Type": "EitrLeech"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrandCrown",
+      "Name": "Glacierbrand Oath Crown",
+      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "HelmetDNMediumHood"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "Glowing"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrandCuirass",
+      "Name": "Glacierbrand Oath Cuirass",
+      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthMediumChest"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyAttackEitrUse"
+        },
+        {
+          "Type": "ModifyArmor"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrandGreaves",
+      "Name": "Glacierbrand Oath Greaves",
+      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "ArmorDeepNorthMediumlegs"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyMovementSpeed"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifySprintStaminaUse"
+        },
+        {
+          "Type": "ModifyDodgeStaminaUse"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddMovementSkills"
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrandCloak",
+      "Name": "Glacierbrand Oath Cloak",
+      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "CapeDeepNorth"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "RemoveSpeedPenalty"
+        },
+        {
+          "Type": "Warmth"
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrandFrostFocus",
+      "Name": "Glacierbrand Oath Frost Focus",
+      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "BeltStrength",
+          "$item_megingjord"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "Luck"
+        },
+        {
+          "Type": "Glowing"
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrandFrostWisp",
+      "Name": "Glacierbrand Oath Frost Wisp",
+      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "Demister",
+          "$item_demister"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "ModifyWispRange"
+        },
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "AddFrostResistancePercentage"
+        },
+        {
+          "Type": "AddSwordsSkill"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgrLeatherQuiver",
+      "Name": "Stormfeather Pursuit Leather Quiver",
+      "Description": "A set quiver piece for a pure archer line that supports bow skill, stamina flow and field mobility.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "LeatherQuiver"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "ModifyFireRate"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        },
+        {
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonveinLeatherQuiver",
+      "Name": "Lunar Spellshot Leather Quiver",
+      "Description": "A set quiver piece for a magic archer line that supports bow skill, eitr reserves and sustained spellbow combat.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "LeatherQuiver"
+        ]
+      },
+      "GuaranteedEffectCount": 6,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "IncreaseEitr"
+        },
+        {
+          "Type": "ModifyEitrRegen"
+        },
+        {
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
+        },
+        {
+          "Type": "AddBowsSkill"
+        },
+        {
+          "Type": "Luck"
+        }
+      ]
+    }
+  ],
+  "MythicSets": [
+    {
+      "ID": "MythicHeimdall",
+      "Name": "Gjallarhorn Guard",
+      "LegendaryIDs": [
+        "MythicHeimdallTowerShield",
+        "MythicHeimdallOathblade",
+        "MythicHeimdallHelmet",
+        "MythicHeimdallChest",
+        "MythicHeimdallLegs",
+        "MythicHeimdallCape",
+        "MythicHeimdallWatchSigil",
+        "MythicHeimdallWardingWisp"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "ModifyBlockPower",
+            "Values": {
+              "MinValue": 27,
+              "MaxValue": 27,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyBlockStaminaUse",
+            "Values": {
+              "MinValue": 25,
+              "MaxValue": 25,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyBlockForce",
+            "Values": {
+              "MinValue": 24,
+              "MaxValue": 24,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "IncreaseHealth",
+            "Values": {
+              "MinValue": 24,
+              "MaxValue": 24,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "Bulwark",
+            "Values": {
+              "MinValue": 6,
+              "MaxValue": 6,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "ReflectDamage",
+            "Values": {
+              "MinValue": 11,
+              "MaxValue": 11,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 8,
+          "Effect": {
+            "Type": "Undying"
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicRagnar",
+      "Name": "Ragnarok Bloodwake",
+      "LegendaryIDs": [
+        "MythicRagnarBattleAxe",
+        "MythicRagnarHelmet",
+        "MythicRagnarChest",
+        "MythicRagnarLegs",
+        "MythicRagnarCape",
+        "MythicRagnarFuryTotem",
+        "MythicRagnarFrostWisp"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddAxesSkill",
+            "Values": {
+              "MinValue": 21,
+              "MaxValue": 21,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyPhysicalDamage",
+            "Values": {
+              "MinValue": 17,
+              "MaxValue": 17,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "LifeStealLowHealth",
+            "Values": {
+              "MinValue": 5,
+              "MaxValue": 5,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "Berserker"
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "LifeSteal",
+            "Values": {
+              "MinValue": 10,
+              "MaxValue": 10,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "FrostDamageAOE",
+            "Values": {
+              "MinValue": 50,
+              "MaxValue": 50,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicHraesvelgr",
+      "Name": "Stormfeather Pursuit",
+      "LegendaryIDs": [
+        "MythicHraesvelgrLongbow",
+        "MythicHraesvelgrHood",
+        "MythicHraesvelgrHarness",
+        "MythicHraesvelgrStride",
+        "MythicHraesvelgrMantle",
+        "MythicHraesvelgrWindGauge",
+        "MythicHraesvelgrWispFeather",
+        "MythicHraesvelgrLeatherQuiver"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddBowsSkill",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "QuickDraw",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyDrawStaminaUse",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifyProjectileSpeed",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "ModifyFireRate",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "HeadHunter",
+            "Values": {
+              "MinValue": 13,
+              "MaxValue": 13,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 8,
+          "Effect": {
+            "Type": "TripleBowShot"
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicSolomonKane",
+      "Name": "Witchfinder Verdict",
+      "LegendaryIDs": [
+        "MythicSolomonKaneWitchfinderArbalest",
+        "MythicSolomonKaneWidebrim",
+        "MythicSolomonKaneLongcoat",
+        "MythicSolomonKaneBoots",
+        "MythicSolomonKaneMantle",
+        "MythicSolomonKanePowderHorn",
+        "MythicSolomonKaneWitchlamp"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddCrossbowsSkill",
+            "Values": {
+              "MinValue": 21,
+              "MaxValue": 21,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ExplosiveArrows",
+            "Values": {
+              "MinValue": 43,
+              "MaxValue": 43,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "TripleBowShot"
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifyDamage",
+            "Values": {
+              "MinValue": 8.7,
+              "MaxValue": 8.7,
+              "Increment": 0.1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "QuickDraw",
+            "Values": {
+              "MinValue": 43,
+              "MaxValue": 43,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "ModifyFireRate",
+            "Values": {
+              "MinValue": 28,
+              "MaxValue": 28,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicNott",
+      "Name": "Night-Court Execution",
+      "LegendaryIDs": [
+        "MythicNottNightblade",
+        "MythicNottVeil",
+        "MythicNottLeathers",
+        "MythicNottTreads",
+        "MythicNottCloak",
+        "MythicNottSmokeVial",
+        "MythicNottShadowWisp"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "ModifyNoise",
+            "Values": {
+              "MinValue": 95,
+              "MaxValue": 95,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "Duelist",
+            "Values": {
+              "MinValue": 43,
+              "MaxValue": 43,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyStaggerDamage",
+            "Values": {
+              "MinValue": 17,
+              "MaxValue": 17,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "Opportunist",
+            "Values": {
+              "MinValue": 28,
+              "MaxValue": 28,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "ModifyStaggerDuration",
+            "Values": {
+              "MinValue": 14,
+              "MaxValue": 14,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "OffSetAttack",
+            "Values": {
+              "MinValue": 39,
+              "MaxValue": 39,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicSeidr",
+      "Name": "World-Root Arcanum",
+      "LegendaryIDs": [
+        "MythicSeidrStaff",
+        "MythicSeidrCrown",
+        "MythicSeidrRobe",
+        "MythicSeidrTreads",
+        "MythicSeidrMantle",
+        "MythicSeidrEitrFocus",
+        "MythicSeidrMistWisp"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "IncreaseEitr",
+            "Values": {
+              "MinValue": 33,
+              "MaxValue": 33,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyEitrRegen",
+            "Values": {
+              "MinValue": 31,
+              "MaxValue": 31,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifyMagicFireRate",
+            "Values": {
+              "MinValue": 56,
+              "MaxValue": 56,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "DoubleMagicShot"
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "AddElementalMagicSkill",
+            "Values": {
+              "MinValue": 21,
+              "MaxValue": 21,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicHelveig",
+      "Name": "Blood-Moon Conclave",
+      "LegendaryIDs": [
+        "MythicHelveigBloodstaff",
+        "MythicHelveigBoneCrown",
+        "MythicHelveigMarrowRobe",
+        "MythicHelveigGraveTreads",
+        "MythicHelveigBloodMantle",
+        "MythicHelveigBoneCharm",
+        "MythicHelveigGraveWisp"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "AddBloodMagicSkill",
+            "Values": {
+              "MinValue": 21,
+              "MaxValue": 21,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "IncreaseHealth",
+            "Values": {
+              "MinValue": 24,
+              "MaxValue": 24,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "ModifySummonDamage",
+            "Values": {
+              "MinValue": 23,
+              "MaxValue": 23,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "ModifySummonHealth",
+            "Values": {
+              "MinValue": 23,
+              "MaxValue": 23,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "ModifyHealthRegen",
+            "Values": {
+              "MinValue": 22,
+              "MaxValue": 22,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicMoonvein",
+      "Name": "Lunar Spellshot",
+      "LegendaryIDs": [
+        "MythicMoonveinMoonbow",
+        "MythicMoonveinCowl",
+        "MythicMoonveinHauberk",
+        "MythicMoonveinStriders",
+        "MythicMoonveinMantle",
+        "MythicMoonveinMoonLens",
+        "MythicMoonveinMoonWisp",
+        "MythicMoonveinLeatherQuiver"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "SpellSword",
+            "Values": {
+              "MinValue": 51,
+              "MaxValue": 51,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "EitrLeech",
+            "Values": {
+              "MinValue": 10,
+              "MaxValue": 10,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "AddBowsSkill",
+            "Values": {
+              "MinValue": 21,
+              "MaxValue": 21,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "IncreaseEitr",
+            "Values": {
+              "MinValue": 33,
+              "MaxValue": 33,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "TripleBowShot"
+          }
+        },
+        {
+          "Count": 8,
+          "Effect": {
+            "Type": "ModifyElementalDamage",
+            "Values": {
+              "MinValue": 10.5,
+              "MaxValue": 10.5,
+              "Increment": 0.5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "ID": "MythicFrostbrand",
+      "Name": "Glacierbrand Oath",
+      "LegendaryIDs": [
+        "MythicFrostbrandRuneblade",
+        "MythicFrostbrandCrown",
+        "MythicFrostbrandCuirass",
+        "MythicFrostbrandGreaves",
+        "MythicFrostbrandCloak",
+        "MythicFrostbrandFrostFocus",
+        "MythicFrostbrandFrostWisp"
+      ],
+      "SetBonuses": [
+        {
+          "Count": 2,
+          "Effect": {
+            "Type": "SpellSword",
+            "Values": {
+              "MinValue": 51,
+              "MaxValue": 51,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "IncreaseEitr",
+            "Values": {
+              "MinValue": 33,
+              "MaxValue": 33,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 4,
+          "Effect": {
+            "Type": "ModifyAttackEitrUse",
+            "Values": {
+              "MinValue": 26,
+              "MaxValue": 26,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 5,
+          "Effect": {
+            "Type": "EitrLeech",
+            "Values": {
+              "MinValue": 10,
+              "MaxValue": 10,
+              "Increment": 0.5
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "AddSwordsSkill",
+            "Values": {
+              "MinValue": 21,
+              "MaxValue": 21,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "ModifyElementalDamage",
+            "Values": {
+              "MinValue": 17,
+              "MaxValue": 17,
+              "Increment": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
