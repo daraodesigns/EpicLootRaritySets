@@ -1,0 +1,2 @@
+# EpicLootRaritySets
+EpicLootRaritySets mod valheim
