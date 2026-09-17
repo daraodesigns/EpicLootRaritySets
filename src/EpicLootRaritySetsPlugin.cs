@@ -218,11 +218,20 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> NottPoisonBaseDamage;
         internal static ConfigEntry<float> NottPoisonDamagePerKnivesLevel;
         internal static ConfigEntry<KeyboardShortcut> RagnarDecayAuraHotkey;
+        internal static ConfigEntry<KeyboardShortcut> RagnarBloodFrenzyHotkey;
+        internal static ConfigEntry<KeyboardShortcut> RagnarCrushHotkey;
         internal static ConfigEntry<float> RagnarDecayAuraRadius;
         internal static ConfigEntry<float> RagnarDecayAuraStaminaPerSecond;
         internal static ConfigEntry<float> RagnarDecayAuraBaseDamage;
         internal static ConfigEntry<float> RagnarDecayAuraDamagePerAxesLevel;
         internal static ConfigEntry<float> RagnarDecayAuraTickInterval;
+        internal static ConfigEntry<float> RagnarBloodFrenzyDuration;
+        internal static ConfigEntry<float> RagnarBloodFrenzyCooldown;
+        internal static ConfigEntry<float> RagnarBloodFrenzyHealthCost;
+        internal static ConfigEntry<float> RagnarBloodFrenzyAttackSpeedBonus;
+        internal static ConfigEntry<float> RagnarBloodFrenzyMoveSpeedBonus;
+        internal static ConfigEntry<float> RagnarCrushCooldown;
+        internal static ConfigEntry<float> RagnarCrushStaminaUse;
         internal static ConfigEntry<float> RagnarFuryAttackSpeedPerStack;
         internal static ConfigEntry<float> RagnarFuryLifeStealPerStack;
         internal static ConfigEntry<float> RagnarFuryDuration;
@@ -573,11 +582,20 @@ namespace Fran.EpicLootRaritySets
 
             EnableRagnarAbilities = Config.Bind("Ragnar Abilities", "Enable Ragnar Abilities", true, "Enable the complete-set abilities for the Ragnar berserker set.");
             RagnarDecayAuraHotkey = Config.Bind("Ragnar Abilities", "Decay Aura Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Ragnar Decay Aura toggle.");
+            RagnarBloodFrenzyHotkey = Config.Bind("Ragnar Abilities", "Blood Frenzy Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Ragnar Blood Frenzy.");
+            RagnarCrushHotkey = Config.Bind("Ragnar Abilities", "Crush Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Ragnar Crush. Jump first; on the ground the same key can still activate Blood Frenzy.");
             RagnarDecayAuraRadius = Config.Bind("Ragnar Abilities", "Decay Aura Radius", 6f, new ConfigDescription("Radius in meters for Ragnar Decay Aura.", new AcceptableValueRange<float>(1f, 40f)));
             RagnarDecayAuraStaminaPerSecond = Config.Bind("Ragnar Abilities", "Decay Aura Stamina Per Second", 8f, new ConfigDescription("Stamina consumed per second while Ragnar Decay Aura is active.", new AcceptableValueRange<float>(0f, 100f)));
             RagnarDecayAuraBaseDamage = Config.Bind("Ragnar Abilities", "Decay Aura Base Damage", 8f, new ConfigDescription("Base poison/spirit damage per Decay Aura tick before Ragnar scaling.", new AcceptableValueRange<float>(0f, 1000f)));
             RagnarDecayAuraDamagePerAxesLevel = Config.Bind("Ragnar Abilities", "Decay Aura Damage Per Ragnar Level", 0.35f, new ConfigDescription("Extra poison/spirit damage per Ragnar level for Ragnar Decay Aura.", new AcceptableValueRange<float>(0f, 20f)));
             RagnarDecayAuraTickInterval = Config.Bind("Ragnar Abilities", "Decay Aura Tick Interval", 1f, new ConfigDescription("Seconds between Ragnar Decay Aura damage ticks.", new AcceptableValueRange<float>(0.1f, 10f)));
+            RagnarBloodFrenzyDuration = Config.Bind("Ragnar Abilities", "Blood Frenzy Duration", 10f, new ConfigDescription("Duration in seconds for Ragnar Blood Frenzy.", new AcceptableValueRange<float>(0.1f, 120f)));
+            RagnarBloodFrenzyCooldown = Config.Bind("Ragnar Abilities", "Blood Frenzy Cooldown", 30f, new ConfigDescription("Cooldown in seconds for Ragnar Blood Frenzy.", new AcceptableValueRange<float>(0f, 300f)));
+            RagnarBloodFrenzyHealthCost = Config.Bind("Ragnar Abilities", "Blood Frenzy Health Cost Fraction", 0.3f, new ConfigDescription("Fraction of max health paid when activating Blood Frenzy.", new AcceptableValueRange<float>(0f, 0.95f)));
+            RagnarBloodFrenzyAttackSpeedBonus = Config.Bind("Ragnar Abilities", "Blood Frenzy Attack Speed Bonus", 0.5f, new ConfigDescription("Attack speed bonus while Blood Frenzy is active.", new AcceptableValueRange<float>(0f, 3f)));
+            RagnarBloodFrenzyMoveSpeedBonus = Config.Bind("Ragnar Abilities", "Blood Frenzy Move Speed Bonus", 0.3f, new ConfigDescription("Movement speed bonus while Blood Frenzy is active.", new AcceptableValueRange<float>(0f, 3f)));
+            RagnarCrushCooldown = Config.Bind("Ragnar Abilities", "Crush Cooldown", 14f, new ConfigDescription("Cooldown in seconds for Ragnar Crush.", new AcceptableValueRange<float>(0f, 300f)));
+            RagnarCrushStaminaUse = Config.Bind("Ragnar Abilities", "Crush Stamina Use", 45f, new ConfigDescription("Stamina consumed by Ragnar Crush.", new AcceptableValueRange<float>(0f, 300f)));
             RagnarFuryAttackSpeedPerStack = Config.Bind("Ragnar Abilities", "Fury Attack Speed Per Stack", 0.03f, new ConfigDescription("Attack speed bonus gained per Ragnar Fury stack. 0.03 means +3%.", new AcceptableValueRange<float>(0f, 2f)));
             RagnarFuryLifeStealPerStack = Config.Bind("Ragnar Abilities", "Fury Life Steal Per Stack", 0.005f, new ConfigDescription("Life steal gained per Ragnar Fury stack. 0.005 means 0.5% of outgoing hit damage.", new AcceptableValueRange<float>(0f, 1f)));
             RagnarFuryDuration = Config.Bind("Ragnar Abilities", "Fury Stack Duration", 6f, new ConfigDescription("Duration in seconds for Ragnar Fury stacks after each melee hit.", new AcceptableValueRange<float>(0.1f, 60f)));
@@ -23524,17 +23542,44 @@ namespace Fran.EpicLootRaritySets
         private const string DecayBuffCategory = "FranRagnarDecayAura";
         private const string FuryBuffName = "FranRagnarFury";
         private const string FuryBuffCategory = "FranRagnarFury";
+        private const string BloodFrenzyBuffName = "FranRagnarBloodFrenzy";
+        private const string BloodFrenzyBuffCategory = "FranRagnarBloodFrenzy";
 
         private static readonly MethodInfo BaseAIIsEnemyMethod = AccessTools.Method(typeof(BaseAI), "IsEnemy", new[] { typeof(Character), typeof(Character) });
         private static readonly MethodInfo GetStaminaMethod = AccessTools.Method(typeof(Player), "GetStamina", Type.EmptyTypes) ?? AccessTools.Method(typeof(Character), "GetStamina", Type.EmptyTypes);
         private static readonly MethodInfo UseStaminaMethod = AccessTools.Method(typeof(Player), "UseStamina", new[] { typeof(float) }) ?? AccessTools.Method(typeof(Character), "UseStamina", new[] { typeof(float) });
+        private static readonly MethodInfo PlayerIsOnGroundMethod = AccessTools.Method(typeof(Character), "IsOnGround", Type.EmptyTypes) ?? AccessTools.Method(typeof(Player), "IsOnGround", Type.EmptyTypes);
+        private static readonly MethodInfo PlayerStartAttackMethod = AccessTools
+            .GetDeclaredMethods(typeof(Player))
+            .Concat(AccessTools.GetDeclaredMethods(typeof(Humanoid)))
+            .FirstOrDefault(method => method.Name == "StartAttack" && method.GetParameters().Any(parameter => parameter.ParameterType == typeof(bool)));
+        private static readonly MethodInfo PlayerInAttackMethod =
+            AccessTools.Method(typeof(Player), "InAttack", Type.EmptyTypes) ??
+            AccessTools.Method(typeof(Humanoid), "InAttack", Type.EmptyTypes) ??
+            AccessTools.Method(typeof(Character), "InAttack", Type.EmptyTypes);
         private static readonly FieldInfo AttackCharacterField = AccessTools.Field(typeof(Attack), "m_character");
+        private static readonly FieldInfo SpeedModifierField = AccessTools.Field(typeof(SE_Stats), "m_speedModifier");
+        private static readonly FieldInfo MaxAirAltitudeField = AccessTools.Field(typeof(Character), "m_maxAirAltitude");
 
         private static StatusEffect _decayBuff;
         private static StatusEffect _furyBuff;
+        private static StatusEffect _bloodFrenzyBuff;
         private static GameObject _decayAuraVisual;
+        private static GameObject _crushFlameVisual;
         private static bool _decayAuraActive;
+        private static bool _crushArmed;
+        private static bool _crushLeftGround;
+        private static bool _crushForcesLoaded;
         private static float _decayTickTimer;
+        private static float _bloodFrenzyRemaining;
+        private static float _bloodFrenzyCooldown;
+        private static float _crushCooldown;
+        private static float _crushAirTimer;
+        private static float _crushTimer;
+        private static float _crushQueuedTimer;
+        private static float _crushForceForward = 5f;
+        private static float _crushForceUpwards = 7f;
+        private static string _crushQueuedFailureReason;
         private static float _furyTimer;
         private static int _furyStacks;
         private static int _furyHitCounter;
@@ -23554,6 +23599,9 @@ namespace Fran.EpicLootRaritySets
 
             UpdateDecayAura(player, dt);
             UpdateFuryBuff(player, dt);
+            UpdateBloodFrenzy(player, dt);
+            UpdateCrush(player, dt);
+            UpdateCooldowns(dt);
 
             if (!CanReadInput(player))
             {
@@ -23564,18 +23612,47 @@ namespace Fran.EpicLootRaritySets
             {
                 ToggleDecayAura(player);
             }
+
+            bool crushPressed = IsShortcutDown(EpicLootRaritySetsPlugin.RagnarCrushHotkey);
+            if (crushPressed && HasJumpedForCrush(player))
+            {
+                TryStartCrush(player, true);
+                return;
+            }
+
+            if (crushPressed && ShouldQueueCrush(player))
+            {
+                QueueCrush(player);
+                return;
+            }
+
+            if (IsShortcutDown(EpicLootRaritySetsPlugin.RagnarBloodFrenzyHotkey))
+            {
+                TryActivateBloodFrenzy(player);
+            }
         }
 
         internal static void Clear(Player player)
         {
             _decayAuraActive = false;
+            _crushArmed = false;
+            _crushLeftGround = false;
             _decayTickTimer = 0f;
+            _bloodFrenzyRemaining = 0f;
+            _bloodFrenzyCooldown = 0f;
+            _crushCooldown = 0f;
+            _crushAirTimer = 0f;
+            _crushTimer = 0f;
+            _crushQueuedTimer = 0f;
+            _crushQueuedFailureReason = null;
             _furyTimer = 0f;
             _furyStacks = 0;
             _furyHitCounter = 0;
             RemoveDecayBuff(player);
             RemoveFuryBuff(player);
+            RemoveBloodFrenzyBuff(player);
             DestroyVisual(ref _decayAuraVisual);
+            DestroyVisual(ref _crushFlameVisual);
         }
 
         internal static bool TryGetBloodSurgeStacks(out int stacks, out int maxStacks)
@@ -23587,7 +23664,7 @@ namespace Fran.EpicLootRaritySets
 
         internal static float GetAttackSpeedMultiplier(Attack attack)
         {
-            if (_furyStacks <= 0 || !IsEnabledAndActive())
+            if (!IsEnabledAndActive())
             {
                 return 1f;
             }
@@ -23598,7 +23675,29 @@ namespace Fran.EpicLootRaritySets
                 return 1f;
             }
 
-            return 1f + Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarFuryAttackSpeedPerStack.Value) * _furyStacks;
+            float multiplier = 1f;
+            if (_furyStacks > 0)
+            {
+                multiplier *= 1f + Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarFuryAttackSpeedPerStack.Value) * _furyStacks;
+            }
+
+            if (_bloodFrenzyRemaining > 0f)
+            {
+                multiplier *= 1f + Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarBloodFrenzyAttackSpeedBonus.Value);
+            }
+
+            return multiplier;
+        }
+
+        internal static void ModifyIncomingDamage(Player player, HitData hit)
+        {
+            if (player == null || player != Player.m_localPlayer || hit == null || _bloodFrenzyRemaining <= 0f || !IsEnabledAndActive())
+            {
+                return;
+            }
+
+            hit.m_pushForce = 0f;
+            hit.m_staggerMultiplier = 0f;
         }
 
         internal static void OnPlayerHit(Character target, HitData hit)
@@ -23805,6 +23904,537 @@ namespace Fran.EpicLootRaritySets
             RemoveFuryBuff(player);
         }
 
+        private static void UpdateBloodFrenzy(Player player, float dt)
+        {
+            if (_bloodFrenzyRemaining <= 0f)
+            {
+                return;
+            }
+
+            _bloodFrenzyRemaining -= dt;
+            if (_bloodFrenzyRemaining > 0f && IsEnabledAndActive())
+            {
+                RefreshBloodFrenzyBuff(player);
+                return;
+            }
+
+            _bloodFrenzyRemaining = 0f;
+            RemoveBloodFrenzyBuff(player);
+            StartBloodFrenzyCooldown(player);
+        }
+
+        private static void UpdateCrush(Player player, float dt)
+        {
+            UpdateQueuedCrush(player, dt);
+
+            if (!_crushArmed)
+            {
+                return;
+            }
+
+            _crushTimer += Mathf.Max(0f, dt);
+            if (player == null || player.IsDead() || player.IsSwimming())
+            {
+                StopCrush();
+                return;
+            }
+
+            float verticalVelocity = GetVerticalVelocity(player);
+            if (!_crushLeftGround)
+            {
+                if (_crushTimer > 0.12f || verticalVelocity > 0.35f || GetGroundDistance(player) > 0.35f)
+                {
+                    _crushLeftGround = true;
+                    _crushAirTimer = 0f;
+                }
+
+                return;
+            }
+
+            _crushAirTimer += Mathf.Max(0f, dt);
+            if ((_crushAirTimer >= 0.2f && IsOnGround(player)) || _crushAirTimer >= 3f)
+            {
+                TriggerCrushImpact(player);
+                StopCrush();
+            }
+        }
+
+        private static void UpdateQueuedCrush(Player player, float dt)
+        {
+            if (_crushQueuedTimer <= 0f)
+            {
+                return;
+            }
+
+            _crushQueuedTimer = Mathf.Max(0f, _crushQueuedTimer - Mathf.Max(0f, dt));
+            if (TryStartCrush(player, false))
+            {
+                _crushQueuedTimer = 0f;
+                _crushQueuedFailureReason = null;
+                return;
+            }
+
+            if (_crushQueuedTimer <= 0f && !string.IsNullOrEmpty(_crushQueuedFailureReason))
+            {
+                ShowMessage(player, _crushQueuedFailureReason);
+                _crushQueuedFailureReason = null;
+            }
+        }
+
+        private static void StopCrush()
+        {
+            _crushArmed = false;
+            _crushLeftGround = false;
+            _crushTimer = 0f;
+            _crushAirTimer = 0f;
+            DestroyVisual(ref _crushFlameVisual);
+        }
+
+        private static void UpdateCooldowns(float dt)
+        {
+            if (_bloodFrenzyCooldown > 0f)
+            {
+                _bloodFrenzyCooldown = Mathf.Max(0f, _bloodFrenzyCooldown - dt);
+            }
+
+            if (_crushCooldown > 0f)
+            {
+                _crushCooldown = Mathf.Max(0f, _crushCooldown - dt);
+            }
+        }
+
+        private static void TryActivateBloodFrenzy(Player player)
+        {
+            if (_bloodFrenzyRemaining > 0f)
+            {
+                ShowMessage(player, LocalizedText.Select("Blood Frenzy ya esta activo.", "Blood Frenzy is already active."));
+                return;
+            }
+
+            if (_bloodFrenzyCooldown > 0f)
+            {
+                ShowMessage(player, "Blood Frenzy: " + _bloodFrenzyCooldown.ToString("0") + "s cooldown.");
+                return;
+            }
+
+            float cost = Mathf.Max(0f, player.GetMaxHealth() * Mathf.Clamp01(EpicLootRaritySetsPlugin.RagnarBloodFrenzyHealthCost.Value));
+            float health = player.GetHealth();
+            if (health <= cost + 1f)
+            {
+                ShowMessage(player, LocalizedText.Select("Blood Frenzy: salud insuficiente.", "Blood Frenzy: not enough health."));
+                return;
+            }
+
+            if (cost > 0f)
+            {
+                player.SetHealth(Mathf.Max(1f, health - cost));
+            }
+
+            _bloodFrenzyRemaining = Mathf.Max(0.1f, EpicLootRaritySetsPlugin.RagnarBloodFrenzyDuration.Value);
+            RefreshBloodFrenzyBuff(player);
+            NorseVisualEffectBridge.SpawnAttached(player, Vector3.up * 1.1f, Quaternion.identity, 1.2f, "vfx_perfectblock", "fx_DvergerMage_Fire_hit", "vfx_Burning");
+            ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
+            ShowMessage(player, LocalizedText.AbilityName("Blood Frenzy") + ".");
+        }
+
+        private static void StartBloodFrenzyCooldown(Player player)
+        {
+            _bloodFrenzyCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarBloodFrenzyCooldown.Value);
+            if (_bloodFrenzyCooldown > 0f)
+            {
+                AbilityCooldownBuffController.Start(player, "RagnarBloodFrenzy", "Blood Frenzy", _bloodFrenzyCooldown, StatusEffectIconHelper.GetIcon(player, RequiredSet));
+            }
+        }
+
+        private static bool TryStartCrush(Player player, bool showMessage)
+        {
+            if (_crushArmed)
+            {
+                return false;
+            }
+
+            if (player == null || !IsEnabledAndActive())
+            {
+                return false;
+            }
+
+            if (!HasJumpedForCrush(player))
+            {
+                return FailCrush(player, showMessage, "Crush: salta primero.");
+            }
+
+            if (!CanStartCrush(player))
+            {
+                return FailCrush(player, showMessage, "Crush: ocupado.");
+            }
+
+            if (_crushCooldown > 0f)
+            {
+                return FailCrush(player, showMessage, "Ragnar Crush: " + _crushCooldown.ToString("0") + "s cooldown.");
+            }
+
+            float stamina = Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarCrushStaminaUse.Value);
+            if (!SpendStamina(player, stamina))
+            {
+                if (Hud.instance != null)
+                {
+                    Hud.instance.StaminaBarEmptyFlash();
+                }
+
+                return FailCrush(player, showMessage, LocalizedText.Select("Ragnar Crush: sin vigor.", "Ragnar Crush: not enough stamina."));
+            }
+
+            TriggerCrushAnimation(player);
+            RemoveSlowFallEffects(player);
+            StartSurtImpulse(player);
+            DestroyVisual(ref _crushFlameVisual);
+            _crushFlameVisual = NorseVisualEffectBridge.SpawnAttached(player, Vector3.up * 0.9f, Quaternion.identity, 3f, "FxFlameWithSoundOnline", "FxFlame", "Flame", "Fire");
+            _crushArmed = true;
+            _crushLeftGround = false;
+            _crushTimer = 0f;
+            _crushAirTimer = 0f;
+            _crushCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarCrushCooldown.Value);
+            AbilityCooldownBuffController.Start(player, "RagnarCrush", "Ragnar Crush", _crushCooldown, StatusEffectIconHelper.GetIcon(player, RequiredSet));
+            ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
+            ShowMessage(player, LocalizedText.AbilityName("Ragnar Crush") + ".");
+            return Physics.Raycast(player.transform.position + Vector3.up * 0.25f, Vector3.down, 0.65f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+        }
+
+        private static void TriggerCrushImpact(Player player)
+        {
+            float skill = ClassSkillManager.GetSkillLevel(player, RequiredSet);
+            float amount = Mathf.Max(0f, EpicLootRaritySetsPlugin.FrostbrandCrushBaseDamage.Value + skill * EpicLootRaritySetsPlugin.FrostbrandCrushDamagePerElementalMagicLevel.Value);
+            HitData.DamageTypes damages = new HitData.DamageTypes { m_blunt = amount, m_fire = amount };
+            Vector3 center = player != null ? player.transform.position : Vector3.zero;
+            TryProjectGround(center, out center);
+            DamageArea(player, center, EpicLootRaritySetsPlugin.FrostbrandCrushRadius.Value, damages, ClassSkillManager.Ragnar);
+            NorseVisualEffectBridge.Spawn(center, Quaternion.identity, "FxFireExplosion2", "FxFireExpansion", "Crush", "Surt", "FxFire", "Fire");
+
+            string reason;
+            if (!NorseSurtAbilityBridge.TryBurningGround(player, out reason) && EpicLootRaritySetsPlugin.Log != null)
+            {
+                EpicLootRaritySetsPlugin.Log.LogWarning("Could not trigger Surt Burning Ground after Ragnar Crush. " + (reason ?? string.Empty));
+            }
+        }
+
+        private static bool FailCrush(Player player, bool showMessage, string reason)
+        {
+            _crushQueuedFailureReason = reason;
+            if (showMessage)
+            {
+                ShowMessage(player, reason);
+            }
+
+            return false;
+        }
+
+        private static void QueueCrush(Player player)
+        {
+            _crushQueuedTimer = 0.45f;
+            _crushQueuedFailureReason = null;
+            TryStartCrush(player, false);
+        }
+
+        private static bool ShouldQueueCrush(Player player)
+        {
+            if (player == null || IsOnGround(player))
+            {
+                return false;
+            }
+
+            return GetGroundDistance(player) > 0.2f || GetVerticalVelocity(player) > 0.1f || GetMaxAirAltitude(player) > 0.2f;
+        }
+
+        private static bool CanStartCrush(Player player)
+        {
+            if (player == null || player.IsDead() || player.IsTeleporting() || player.IsSitting() || player.IsSwimming())
+            {
+                return false;
+            }
+
+            if (PlayerInAttackMethod != null)
+            {
+                try
+                {
+                    object value = PlayerInAttackMethod.Invoke(player, null);
+                    if (value is bool)
+                    {
+                        return !(bool)value;
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            return true;
+        }
+
+        private static bool HasJumpedForCrush(Player player)
+        {
+            if (player == null || IsOnGround(player))
+            {
+                return false;
+            }
+
+            return GetMaxAirAltitude(player) >= 2f || GetGroundDistance(player) >= 0.75f || GetVerticalVelocity(player) > 0.35f;
+        }
+
+        private static float GetMaxAirAltitude(Player player)
+        {
+            try
+            {
+                object value = MaxAirAltitudeField != null ? MaxAirAltitudeField.GetValue(player) : null;
+                if (value is float)
+                {
+                    return (float)value;
+                }
+            }
+            catch
+            {
+            }
+
+            return 0f;
+        }
+
+        private static float GetGroundDistance(Player player)
+        {
+            if (player == null)
+            {
+                return float.MaxValue;
+            }
+
+            RaycastHit hit;
+            Vector3 origin = player.transform.position + Vector3.up * 0.5f;
+            if (Physics.Raycast(origin, Vector3.down, out hit, 8f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+            {
+                return Mathf.Max(0f, hit.distance - 0.5f);
+            }
+
+            return float.MaxValue;
+        }
+
+        private static float GetVerticalVelocity(Player player)
+        {
+            if (player == null)
+            {
+                return 0f;
+            }
+
+            try
+            {
+                return player.GetVelocity().y;
+            }
+            catch
+            {
+            }
+
+            Rigidbody body = player.GetComponent<Rigidbody>();
+            return body != null ? body.velocity.y : 0f;
+        }
+
+        private static void TriggerCrushAnimation(Player player)
+        {
+            TriggerSecondaryAttackIfNeeded(player, "knife_secondary", 0f);
+        }
+
+        private static void TriggerSecondaryAttackIfNeeded(Player player, string animationOverride, float staminaOverride)
+        {
+            if (player == null || PlayerStartAttackMethod == null)
+            {
+                return;
+            }
+
+            ItemDrop.ItemData weapon = player.GetCurrentWeapon();
+            ItemDrop.ItemData.SharedData shared = weapon != null ? weapon.m_shared : null;
+            Attack secondaryAttack = shared != null ? shared.m_secondaryAttack : null;
+            string originalAnimation = null;
+            float originalStamina = 0f;
+            bool overrideShared = secondaryAttack != null && !string.IsNullOrEmpty(animationOverride);
+
+            try
+            {
+                if (overrideShared)
+                {
+                    originalAnimation = secondaryAttack.m_attackAnimation;
+                    originalStamina = secondaryAttack.m_attackStamina;
+                    secondaryAttack.m_attackAnimation = animationOverride;
+                    secondaryAttack.m_attackStamina = staminaOverride;
+                }
+
+                ParameterInfo[] parameters = PlayerStartAttackMethod.GetParameters();
+                object[] args = new object[parameters.Length];
+                for (int i = 0; i < parameters.Length; i++)
+                {
+                    Type type = parameters[i].ParameterType;
+                    if (type == typeof(bool))
+                    {
+                        args[i] = true;
+                    }
+                    else if (typeof(Character).IsAssignableFrom(type))
+                    {
+                        args[i] = null;
+                    }
+                    else
+                    {
+                        args[i] = type.IsValueType ? Activator.CreateInstance(type) : null;
+                    }
+                }
+
+                PlayerStartAttackMethod.Invoke(player, args);
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (overrideShared)
+                {
+                    secondaryAttack.m_attackAnimation = originalAnimation;
+                    secondaryAttack.m_attackStamina = originalStamina;
+                }
+            }
+        }
+
+        private static void StartSurtImpulse(Player player)
+        {
+            if (player == null)
+            {
+                return;
+            }
+
+            LoadCrushForces();
+            Rigidbody body = player.GetComponent<Rigidbody>();
+            if (body == null)
+            {
+                return;
+            }
+
+            Vector3 velocity = body.velocity;
+            velocity += player.transform.forward * _crushForceForward + Vector3.up * _crushForceUpwards + Vector3.up * (0f - velocity.y);
+            body.velocity = velocity;
+            body.WakeUp();
+        }
+
+        private static void LoadCrushForces()
+        {
+            if (_crushForcesLoaded)
+            {
+                return;
+            }
+
+            _crushForcesLoaded = true;
+            _crushForceForward = ReadNorseCrushFloat("Force Forward", 5f);
+            _crushForceUpwards = ReadNorseCrushFloat("Force Upwards", 7f);
+        }
+
+        private static float ReadNorseCrushFloat(string key, float fallback)
+        {
+            try
+            {
+                string path = Path.Combine(Paths.ConfigPath, "NorseDemigods.cfg");
+                if (!File.Exists(path))
+                {
+                    return fallback;
+                }
+
+                bool inSection = false;
+                foreach (string rawLine in File.ReadAllLines(path))
+                {
+                    string line = rawLine.Trim();
+                    if (line.Length == 0 || line.StartsWith("#"))
+                    {
+                        continue;
+                    }
+
+                    if (line.StartsWith("[") && line.EndsWith("]"))
+                    {
+                        inSection = string.Equals(line, "[Ability Crush]", StringComparison.OrdinalIgnoreCase);
+                        continue;
+                    }
+
+                    if (!inSection || !line.StartsWith(key + " =", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    string value = line.Substring(line.IndexOf('=') + 1).Trim();
+                    float result;
+                    if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out result) ||
+                        float.TryParse(value, NumberStyles.Float, CultureInfo.CurrentCulture, out result) ||
+                        float.TryParse(value.Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out result))
+                    {
+                        return result;
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+            return fallback;
+        }
+
+        private static void RemoveSlowFallEffects(Player player)
+        {
+            RemoveNorseStatus(player, "s_statusEffectSlowFall");
+            RemoveNorseStatus(player, "s_statusEffectJCGliding");
+            RemoveNorseStatus(player, "s_statusEffectDarkWings");
+        }
+
+        private static void RemoveNorseStatus(Player player, string fieldName)
+        {
+            if (player == null)
+            {
+                return;
+            }
+
+            try
+            {
+                Type cacheType = AccessTools.TypeByName("NorseDemigods.Cache");
+                FieldInfo field = AccessTools.Field(cacheType, fieldName);
+                if (field == null)
+                {
+                    return;
+                }
+
+                object rawValue = field.GetValue(null);
+                if (!(rawValue is int))
+                {
+                    return;
+                }
+
+                int statusHash = (int)rawValue;
+                SEMan seMan = player.GetSEMan();
+                if (seMan != null && seMan.HaveStatusEffect(statusHash))
+                {
+                    seMan.RemoveStatusEffect(statusHash, false);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private static bool TryProjectGround(Vector3 probe, out Vector3 point)
+        {
+            RaycastHit[] hits = Physics.RaycastAll(probe + Vector3.up * 8f, Vector3.down, 20f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            Array.Sort(hits, (left, right) => left.distance.CompareTo(right.distance));
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.collider == null || hit.collider.GetComponentInParent<Character>() != null)
+                {
+                    continue;
+                }
+
+                point = hit.point + Vector3.up * 0.05f;
+                return true;
+            }
+
+            point = probe;
+            return false;
+        }
+
         private static void AddFuryStack(Player player)
         {
             int maxStacks = Mathf.Max(1, EpicLootRaritySetsPlugin.RagnarFuryMaxStacks.Value);
@@ -23884,11 +24514,65 @@ namespace Fran.EpicLootRaritySets
             return _furyBuff;
         }
 
+        private static void RefreshBloodFrenzyBuff(Player player)
+        {
+            if (player == null || _bloodFrenzyRemaining <= 0f)
+            {
+                return;
+            }
+
+            StatusEffect buff = GetOrCreateBloodFrenzyBuff();
+            float attack = Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarBloodFrenzyAttackSpeedBonus.Value) * 100f;
+            float speed = Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarBloodFrenzyMoveSpeedBonus.Value) * 100f;
+            buff.m_name = LocalizedText.AbilityName("Blood Frenzy");
+            buff.m_ttl = Mathf.Max(0.1f, _bloodFrenzyRemaining + 0.1f);
+            StatusEffectIconHelper.Apply(buff, player, RequiredSet);
+            buff.m_tooltip = string.Format(
+                LocalizedText.Select(
+                    "Frenesi de sangre de Ragnar.\n\nVelocidad de ataque: +{0:0.#}%.\nVelocidad de movimiento: +{1:0.#}%.\nInmovible: ignora empuje y stagger recibidos.\nTiempo restante: {2:0.#}s.",
+                    "Ragnar Blood Frenzy.\n\nAttack speed: +{0:0.#}%.\nMovement speed: +{1:0.#}%.\nImmovable: ignores incoming push and stagger.\nTime remaining: {2:0.#}s."),
+                attack,
+                speed,
+                Mathf.Max(0f, _bloodFrenzyRemaining));
+
+            if (SpeedModifierField != null)
+            {
+                SpeedModifierField.SetValue(buff, Mathf.Max(0f, EpicLootRaritySetsPlugin.RagnarBloodFrenzyMoveSpeedBonus.Value));
+            }
+
+            SEMan seMan = player.GetSEMan();
+            seMan.RemoveStatusEffect(buff.NameHash(), true);
+            seMan.AddStatusEffect(buff, true, 0, 0f, 0);
+        }
+
+        private static StatusEffect GetOrCreateBloodFrenzyBuff()
+        {
+            if (_bloodFrenzyBuff == null)
+            {
+                _bloodFrenzyBuff = ScriptableObject.CreateInstance<SE_Stats>();
+                _bloodFrenzyBuff.name = BloodFrenzyBuffName;
+                _bloodFrenzyBuff.m_category = BloodFrenzyBuffCategory;
+                _bloodFrenzyBuff.m_flashIcon = false;
+                _bloodFrenzyBuff.m_cooldownIcon = true;
+                _bloodFrenzyBuff.m_hidden = false;
+            }
+
+            return _bloodFrenzyBuff;
+        }
+
         private static void RemoveFuryBuff(Player player)
         {
             if (player != null && _furyBuff != null)
             {
                 player.GetSEMan().RemoveStatusEffect(_furyBuff.NameHash(), true);
+            }
+        }
+
+        private static void RemoveBloodFrenzyBuff(Player player)
+        {
+            if (player != null && _bloodFrenzyBuff != null)
+            {
+                player.GetSEMan().RemoveStatusEffect(_bloodFrenzyBuff.NameHash(), true);
             }
         }
 
@@ -23992,6 +24676,31 @@ namespace Fran.EpicLootRaritySets
         private static bool CanReadInput(Player player)
         {
             return !player.IsDead() && !player.IsTeleporting() && !IsAnyMenuOpen();
+        }
+
+        private static bool IsOnGround(Player player)
+        {
+            if (player == null)
+            {
+                return false;
+            }
+
+            if (PlayerIsOnGroundMethod != null)
+            {
+                try
+                {
+                    object value = PlayerIsOnGroundMethod.Invoke(player, null);
+                    if (value is bool)
+                    {
+                        return (bool)value;
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            return true;
         }
 
         private static bool IsShortcutDown(ConfigEntry<KeyboardShortcut> entry)
@@ -27769,6 +28478,7 @@ namespace Fran.EpicLootRaritySets
                 SeidrAbilityController.ModifyIncomingDamage(defender, hit);
                 LastHopeController.TryTriggerFromIncomingHit(defender, hit);
                 HeimdallAbilityController.TrackIncomingBlockCandidate(defender, hit);
+                RagnarAbilityController.ModifyIncomingDamage(defender, hit);
             }
 
             FrostbrandAbilityController.ModifyOutgoingDamage(hit);
