@@ -5478,6 +5478,7 @@ namespace Fran.EpicLootRaritySets
         private static Type _hotfixConfigType;
         private static string _lastHeaderText;
         private static string _layoutSignature;
+        private static bool _loggedCellRecovery;
         private static readonly Dictionary<string, ConfigEntry<KeyboardShortcut>> ShortcutEntryCache = new Dictionary<string, ConfigEntry<KeyboardShortcut>>(StringComparer.Ordinal);
 
         internal static void Update(Player player, float dt)
@@ -5523,7 +5524,14 @@ namespace Fran.EpicLootRaritySets
                 float elapsed = _cellRefreshElapsed;
                 _cellRefreshTimer = CellRefreshInterval;
                 _cellRefreshElapsed = 0f;
-                UpdateCells(elapsed);
+                try
+                {
+                    UpdateCells(elapsed);
+                }
+                catch (Exception ex)
+                {
+                    ResetCellsAfterFailure(ex);
+                }
             }
         }
 
@@ -5749,17 +5757,25 @@ namespace Fran.EpicLootRaritySets
                 bool active = IsEntryActive(cell.Entry);
                 if (cell.LastCooling != cooling)
                 {
-                    cell.Overlay.gameObject.SetActive(cooling);
-                    cell.CooldownText.gameObject.SetActive(cooling);
+                    if (!TrySetActive(cell.Overlay, cooling) || !TrySetActive(cell.CooldownText, cooling))
+                    {
+                        Cells.Clear();
+                        _layoutSignature = null;
+                        return;
+                    }
+
                     cell.LastCooling = cooling;
                 }
 
                 if (cell.LastActive != active)
                 {
-                    if (cell.ActiveFrame != null)
+                    if (cell.ActiveFrame != null && !TrySetActive(cell.ActiveFrame, active))
                     {
-                        cell.ActiveFrame.gameObject.SetActive(active);
+                        Cells.Clear();
+                        _layoutSignature = null;
+                        return;
                     }
+
                     cell.LastActive = active;
                 }
 
@@ -5808,11 +5824,69 @@ namespace Fran.EpicLootRaritySets
         {
             return cell != null &&
                    cell.Entry != null &&
-                   cell.Icon != null &&
-                   cell.Overlay != null &&
-                   cell.CooldownText != null &&
-                   cell.NameText != null &&
-                   cell.KeyText != null;
+                   HasGameObject(cell.ActiveFrame) &&
+                   HasGameObject(cell.Icon) &&
+                   HasGameObject(cell.Overlay) &&
+                   HasGameObject(cell.CooldownText) &&
+                   HasGameObject(cell.NameText) &&
+                   HasGameObject(cell.KeyText);
+        }
+
+        private static bool HasGameObject(Component component)
+        {
+            if (component == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                return component.gameObject != null;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static bool TrySetActive(Component component, bool active)
+        {
+            if (component == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                GameObject gameObject = component.gameObject;
+                if (gameObject == null)
+                {
+                    return false;
+                }
+
+                if (gameObject.activeSelf != active)
+                {
+                    gameObject.SetActive(active);
+                }
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static void ResetCellsAfterFailure(Exception ex)
+        {
+            Cells.Clear();
+            _layoutSignature = null;
+            _cellRefreshTimer = CellRefreshInterval;
+            if (ex != null && !_loggedCellRecovery)
+            {
+                _loggedCellRecovery = true;
+                EpicLootRaritySetsPlugin.Log.LogWarning("Ability panel recovered from an invalid UI reference. " + ex.GetBaseException().Message);
+            }
         }
 
         private static void UpdateHeaderText()
@@ -8578,12 +8652,15 @@ namespace Fran.EpicLootRaritySets
                         _bridgeUpdateDepth--;
                     }
 
+                    ForceSpherePositions(active);
                     List<Vector3> livePositions = GetSpherePositions(active.Ability).ToList();
-                    if (livePositions.Count > 0)
+                    if (livePositions.Count == 0)
                     {
-                        active.SetPositions(livePositions);
+                        livePositions.Add(active.TargetPosition);
                     }
 
+                    active.SetPositions(livePositions);
+                    active.UpdateFallbackVisuals();
                     ApplyGravityPull(active.Owner, active.LastPositions, dt);
                     if (active.Elapsed >= Mathf.Max(1f, EpicLootRaritySetsPlugin.FrostbrandWaterSphereMaxDuration.Value) ||
                         (!active.HasPositions && active.Elapsed > 0.75f))
@@ -8603,7 +8680,7 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
-        internal static bool TryWaterSphere(Player player, out string reason)
+        internal static bool TryWaterSphere(Player player, Vector3 targetPoint, out string reason)
         {
             reason = null;
             if (player == null)
@@ -8622,11 +8699,20 @@ namespace Fran.EpicLootRaritySets
                 object ability = CreateAbility(player);
                 SetupConfigs(ability);
                 NeutralizeNorseCosts(ability);
-                ActiveWaterSphere active = new ActiveWaterSphere(player, ability);
+                ActiveWaterSphere active = new ActiveWaterSphere(player, ability, targetPoint);
                 ActiveWaterSpheres.Add(active);
                 try
                 {
                     InvokeBridgeExecute(ability);
+                    ForceSpherePositions(active);
+                    List<Vector3> livePositions = GetSpherePositions(ability).ToList();
+                    if (livePositions.Count == 0)
+                    {
+                        livePositions.Add(targetPoint);
+                    }
+
+                    active.SetPositions(livePositions);
+                    active.UpdateFallbackVisuals();
                 }
                 catch
                 {
@@ -8926,6 +9012,34 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
+        private static void ForceSpherePositions(ActiveWaterSphere active)
+        {
+            if (active == null || active.Ability == null || _waterSphereListField == null || _sphereFxField == null)
+            {
+                return;
+            }
+
+            IEnumerable spheres = _waterSphereListField.GetValue(active.Ability) as IEnumerable;
+            if (spheres == null)
+            {
+                return;
+            }
+
+            foreach (object sphere in spheres)
+            {
+                if (sphere == null)
+                {
+                    continue;
+                }
+
+                GameObject fx = _sphereFxField.GetValue(sphere) as GameObject;
+                if (fx != null)
+                {
+                    fx.transform.position = active.TargetPosition;
+                }
+            }
+        }
+
         private static void ApplyGravityPull(Player owner, IEnumerable<Vector3> spherePositions, float dt)
         {
             if (owner == null || spherePositions == null)
@@ -9133,14 +9247,16 @@ namespace Fran.EpicLootRaritySets
         {
             internal readonly Player Owner;
             internal readonly object Ability;
+            internal readonly Vector3 TargetPosition;
             internal readonly List<Vector3> LastPositions = new List<Vector3>();
             private readonly List<GameObject> _fallbackVisuals = new List<GameObject>();
             internal float Elapsed;
 
-            internal ActiveWaterSphere(Player owner, object ability)
+            internal ActiveWaterSphere(Player owner, object ability, Vector3 targetPosition)
             {
                 Owner = owner;
                 Ability = ability;
+                TargetPosition = targetPosition;
                 Elapsed = 0f;
             }
 
@@ -9160,6 +9276,7 @@ namespace Fran.EpicLootRaritySets
 
             internal void UpdateFallbackVisuals()
             {
+                EnsureFallbackVisuals();
                 for (int i = 0; i < _fallbackVisuals.Count; i++)
                 {
                     GameObject visual = _fallbackVisuals[i];
@@ -11775,8 +11892,16 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
+            Vector3 targetPoint;
+            float range = Mathf.Max(30f, EpicLootRaritySetsPlugin.FrostbrandWaterSpherePullRadius.Value * 4f);
+            if (!TryFindAimPoint(player, range, out targetPoint))
+            {
+                ShowMessage(player, "Water Sphere: sin punto.");
+                return;
+            }
+
             string failureReason;
-            if (!NorseWaterSphereBridge.TryWaterSphere(player, out failureReason))
+            if (!NorseWaterSphereBridge.TryWaterSphere(player, targetPoint, out failureReason))
             {
                 ShowMessage(player, failureReason);
                 return;
