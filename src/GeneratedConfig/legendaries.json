@@ -475,7 +475,7 @@
     {
       "ID": "HeimdallTowerShield",
       "Name": "Heimdall's Watch Tower Shield",
-      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A legendary set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -504,7 +504,7 @@
     {
       "ID": "HeimdallOathblade",
       "Name": "Heimdall's Watch Oathspear",
-      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A legendary set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -536,7 +536,7 @@
     {
       "ID": "HeimdallHelmet",
       "Name": "Heimdall's Watch Helmet",
-      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A legendary set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -565,7 +565,7 @@
     {
       "ID": "HeimdallChest",
       "Name": "Heimdall's Watch Chestguard",
-      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A legendary set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -594,7 +594,7 @@
     {
       "ID": "HeimdallLegs",
       "Name": "Heimdall's Watch Greaves",
-      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A legendary set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -623,7 +623,7 @@
     {
       "ID": "HeimdallCape",
       "Name": "Heimdall's Watch Cape",
-      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A legendary set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -652,7 +652,7 @@
     {
       "ID": "HeimdallWatchSigil",
       "Name": "Heimdall's Watch Watch Sigil",
-      "Description": "A legendary set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A legendary set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -682,7 +682,7 @@
     {
       "ID": "RagnarBattleAxe",
       "Name": "Ragnar's Fury Twin Axes",
-      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A legendary set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -700,8 +700,8 @@
         {
           "Type": "LifeSteal",
           "Values": {
-            "MinValue": 10,
-            "MaxValue": 10,
+            "MinValue": 10.0,
+            "MaxValue": 10.0,
             "Increment": 0.5
           }
         },
@@ -714,9 +714,9 @@
         {
           "Type": "ModifyAttackHealthUse",
           "Values": {
-            "MinValue": 50,
-            "MaxValue": 50,
-            "Increment": 1
+            "MinValue": 50.0,
+            "MaxValue": 50.0,
+            "Increment": 1.0
           }
         }
       ]
@@ -724,7 +724,7 @@
     {
       "ID": "RagnarHelmet",
       "Name": "Ragnar's Fury War Helm",
-      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A legendary set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -753,7 +753,7 @@
     {
       "ID": "RagnarChest",
       "Name": "Ragnar's Fury War Harness",
-      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A legendary set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -782,7 +782,7 @@
     {
       "ID": "RagnarLegs",
       "Name": "Ragnar's Fury War Strides",
-      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A legendary set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -811,7 +811,7 @@
     {
       "ID": "RagnarCape",
       "Name": "Ragnar's Fury War Cloak",
-      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A legendary set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -840,7 +840,7 @@
     {
       "ID": "RagnarFuryTotem",
       "Name": "Ragnar's Fury Fury Totem",
-      "Description": "A legendary set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A legendary set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -870,7 +870,7 @@
     {
       "ID": "HraesvelgrLongbow",
       "Name": "Hraesvelgr's Hunt Longbow",
-      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A legendary set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -882,7 +882,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -901,7 +901,7 @@
     {
       "ID": "HraesvelgrHood",
       "Name": "Hraesvelgr's Hunt Hood",
-      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A legendary set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -911,7 +911,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -930,7 +930,7 @@
     {
       "ID": "HraesvelgrHarness",
       "Name": "Hraesvelgr's Hunt Harness",
-      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A legendary set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -940,7 +940,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -959,7 +959,7 @@
     {
       "ID": "HraesvelgrStride",
       "Name": "Hraesvelgr's Hunt Stride",
-      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A legendary set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -969,7 +969,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -988,7 +988,7 @@
     {
       "ID": "HraesvelgrMantle",
       "Name": "Hraesvelgr's Hunt Mantle",
-      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A legendary set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -998,7 +998,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -1017,7 +1017,7 @@
     {
       "ID": "HraesvelgrWindGauge",
       "Name": "Hraesvelgr's Hunt Wind Gauge",
-      "Description": "A legendary set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A legendary set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1028,7 +1028,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -1045,9 +1045,9 @@
       ]
     },
     {
-      "ID": "SolomonKaneWitchfinderArbalest",
+      "ID": "HellsyngWitchfinderArbalest",
       "Name": "Blackpowder Judgment Witchfinder Arbalest",
-      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A legendary set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1072,14 +1072,14 @@
           "Type": "TripleBowShot"
         },
         {
-          "Type": "AddCrossbowsSkill"
+          "Type": "AddHellsyngSkill"
         }
       ]
     },
     {
-      "ID": "SolomonKaneWidebrim",
+      "ID": "HellsyngWidebrim",
       "Name": "Blackpowder Judgment Widebrim",
-      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A legendary set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1106,9 +1106,9 @@
       ]
     },
     {
-      "ID": "SolomonKaneLongcoat",
+      "ID": "HellsyngLongcoat",
       "Name": "Blackpowder Judgment Longcoat",
-      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A legendary set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1135,9 +1135,9 @@
       ]
     },
     {
-      "ID": "SolomonKaneBoots",
+      "ID": "HellsyngBoots",
       "Name": "Blackpowder Judgment Boots",
-      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A legendary set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1164,9 +1164,9 @@
       ]
     },
     {
-      "ID": "SolomonKaneMantle",
+      "ID": "HellsyngMantle",
       "Name": "Blackpowder Judgment Mantle",
-      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A legendary set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1193,9 +1193,9 @@
       ]
     },
     {
-      "ID": "SolomonKanePowderHorn",
+      "ID": "HellsyngPowderHorn",
       "Name": "Blackpowder Judgment Powder Horn",
-      "Description": "A legendary set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A legendary set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1225,7 +1225,7 @@
     {
       "ID": "NottNightblade",
       "Name": "Nott's Silence Nightblade",
-      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A legendary set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1255,7 +1255,7 @@
     {
       "ID": "NottVeil",
       "Name": "Nott's Silence Veil",
-      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A legendary set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1277,14 +1277,14 @@
           "Type": "ModifyDiscoveryRadius"
         },
         {
-          "Type": "AddKnivesSkill"
+          "Type": "AddNottSkill"
         }
       ]
     },
     {
       "ID": "NottLeathers",
       "Name": "Nott's Silence Leathers",
-      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A legendary set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1313,7 +1313,7 @@
     {
       "ID": "NottTreads",
       "Name": "Nott's Silence Treads",
-      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A legendary set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1342,7 +1342,7 @@
     {
       "ID": "NottCloak",
       "Name": "Nott's Silence Cloak",
-      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A legendary set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1371,7 +1371,7 @@
     {
       "ID": "NottSmokeVial",
       "Name": "Nott's Silence Smoke Vial",
-      "Description": "A legendary set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A legendary set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1388,7 +1388,7 @@
           "Type": "AddMovementSkills"
         },
         {
-          "Type": "AddKnivesSkill"
+          "Type": "AddNottSkill"
         },
         {
           "Type": "IncreaseStamina"
@@ -1401,7 +1401,7 @@
     {
       "ID": "SeidrStaff",
       "Name": "Seidr Starfall Star Staff",
-      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A legendary set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1430,14 +1430,14 @@
           "Type": "ModifyElementalDamage"
         },
         {
-          "Type": "AddElementalMagicSkill"
+          "Type": "AddSeidrSkill"
         }
       ]
     },
     {
       "ID": "SeidrCrown",
       "Name": "Seidr Starfall Crown",
-      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A legendary set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1459,14 +1459,14 @@
           "Type": "DartingThoughts"
         },
         {
-          "Type": "AddElementalMagicSkill"
+          "Type": "AddSeidrSkill"
         }
       ]
     },
     {
       "ID": "SeidrRobe",
       "Name": "Seidr Starfall Robe",
-      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A legendary set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1495,7 +1495,7 @@
     {
       "ID": "SeidrTreads",
       "Name": "Seidr Starfall Treads",
-      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A legendary set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1524,7 +1524,7 @@
     {
       "ID": "SeidrMantle",
       "Name": "Seidr Starfall Mantle",
-      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A legendary set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1553,7 +1553,7 @@
     {
       "ID": "SeidrEitrFocus",
       "Name": "Seidr Starfall Eitr Focus",
-      "Description": "A legendary set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A legendary set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1583,7 +1583,7 @@
     {
       "ID": "HelveigBloodstaff",
       "Name": "Helveig Covenant Blood Staff",
-      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A legendary set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1600,14 +1600,14 @@
           "Type": "ModifyAttackEitrUse"
         },
         {
-          "Type": "AddBloodMagicSkill"
+          "Type": "AddHelveigSkill"
         },
         {
           "Type": "ModifyAttackHealthUse",
           "Values": {
-            "MinValue": 50,
-            "MaxValue": 50,
-            "Increment": 1
+            "MinValue": 50.0,
+            "MaxValue": 50.0,
+            "Increment": 1.0
           }
         },
         {
@@ -1621,7 +1621,7 @@
     {
       "ID": "HelveigBoneCrown",
       "Name": "Helveig Covenant Bone Crown",
-      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A legendary set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1650,7 +1650,7 @@
     {
       "ID": "HelveigMarrowRobe",
       "Name": "Helveig Covenant Marrow Robe",
-      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A legendary set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1679,7 +1679,7 @@
     {
       "ID": "HelveigGraveTreads",
       "Name": "Helveig Covenant Grave Treads",
-      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A legendary set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1708,7 +1708,7 @@
     {
       "ID": "HelveigBloodMantle",
       "Name": "Helveig Covenant Blood Mantle",
-      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A legendary set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1737,7 +1737,7 @@
     {
       "ID": "HelveigBoneCharm",
       "Name": "Helveig Covenant Bone Charm",
-      "Description": "A legendary set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A legendary set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1767,7 +1767,7 @@
     {
       "ID": "MoonveinMoonbow",
       "Name": "Moonvein Arcana Moonbow",
-      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A legendary set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1785,7 +1785,7 @@
           "Type": "EitrLeech"
         },
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddMoonveinSkill"
         },
         {
           "Type": "ModifyDrawStaminaUse"
@@ -1796,9 +1796,9 @@
         {
           "Type": "AmmoConservation",
           "Values": {
-            "MinValue": 100,
-            "MaxValue": 100,
-            "Increment": 1
+            "MinValue": 100.0,
+            "MaxValue": 100.0,
+            "Increment": 1.0
           }
         }
       ]
@@ -1806,7 +1806,7 @@
     {
       "ID": "MoonveinCowl",
       "Name": "Moonvein Arcana Cowl",
-      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A legendary set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1816,7 +1816,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddMoonveinSkill"
         },
         {
           "Type": "IncreaseEitr"
@@ -1835,7 +1835,7 @@
     {
       "ID": "MoonveinHauberk",
       "Name": "Moonvein Arcana Hauberk",
-      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A legendary set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1864,7 +1864,7 @@
     {
       "ID": "MoonveinStriders",
       "Name": "Moonvein Arcana Striders",
-      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A legendary set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1893,7 +1893,7 @@
     {
       "ID": "MoonveinMantle",
       "Name": "Moonvein Arcana Mantle",
-      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A legendary set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1922,7 +1922,7 @@
     {
       "ID": "MoonveinMoonLens",
       "Name": "Moonvein Arcana Moon Lens",
-      "Description": "A legendary set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A legendary set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1945,14 +1945,14 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddMoonveinSkill"
         }
       ]
     },
     {
       "ID": "FrostbrandRuneblade",
       "Name": "Frostbrand Covenant Runeblade",
-      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A legendary set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -1979,9 +1979,9 @@
         {
           "Type": "IncreaseEitr",
           "Values": {
-            "MinValue": 100,
-            "MaxValue": 100,
-            "Increment": 1
+            "MinValue": 100.0,
+            "MaxValue": 100.0,
+            "Increment": 1.0
           }
         }
       ]
@@ -1989,7 +1989,7 @@
     {
       "ID": "FrostbrandCrown",
       "Name": "Frostbrand Covenant Crown",
-      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A legendary set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2018,7 +2018,7 @@
     {
       "ID": "FrostbrandCuirass",
       "Name": "Frostbrand Covenant Cuirass",
-      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A legendary set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2047,7 +2047,7 @@
     {
       "ID": "FrostbrandGreaves",
       "Name": "Frostbrand Covenant Greaves",
-      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A legendary set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2076,7 +2076,7 @@
     {
       "ID": "FrostbrandCloak",
       "Name": "Frostbrand Covenant Cloak",
-      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A legendary set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2105,7 +2105,7 @@
     {
       "ID": "FrostbrandFrostFocus",
       "Name": "Frostbrand Covenant Frost Focus",
-      "Description": "A legendary set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A legendary set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2131,64 +2131,6 @@
           "Type": "Luck"
         }
       ]
-    },
-    {
-      "ID": "HraesvelgrLeatherQuiver",
-      "Name": "Hraesvelgr's Hunt Leather Quiver",
-      "Description": "A set quiver piece for a pure archer line that supports bow skill, stamina flow and field mobility.",
-      "IsSetItem": true,
-      "Requirements": {
-        "AllowedItemNames": [
-          "LeatherQuiver"
-        ]
-      },
-      "GuaranteedEffectCount": 5,
-      "GuaranteedMagicEffects": [
-        {
-          "Type": "AddBowsSkill"
-        },
-        {
-          "Type": "QuickDraw"
-        },
-        {
-          "Type": "ModifyFireRate"
-        },
-        {
-          "Type": "ModifyProjectileSpeed"
-        },
-        {
-          "Type": "ModifyDrawStaminaUse"
-        }
-      ]
-    },
-    {
-      "ID": "MoonveinLeatherQuiver",
-      "Name": "Moonvein Arcana Leather Quiver",
-      "Description": "A set quiver piece for a magic archer line that supports bow skill, eitr reserves and sustained spellbow combat.",
-      "IsSetItem": true,
-      "Requirements": {
-        "AllowedItemNames": [
-          "LeatherQuiver"
-        ]
-      },
-      "GuaranteedEffectCount": 5,
-      "GuaranteedMagicEffects": [
-        {
-          "Type": "IncreaseEitr"
-        },
-        {
-          "Type": "ModifyEitrRegen"
-        },
-        {
-          "Type": "IncreaseStamina"
-        },
-        {
-          "Type": "ModifyStaminaRegen"
-        },
-        {
-          "Type": "AddBowsSkill"
-        }
-      ]
     }
   ],
   "LegendarySets": [
@@ -2210,8 +2152,8 @@
           "Effect": {
             "Type": "ModifyBlockPower",
             "Values": {
-              "MinValue": 22,
-              "MaxValue": 22,
+              "MinValue": 22.0,
+              "MaxValue": 22.0,
               "Increment": 1
             }
           }
@@ -2221,8 +2163,8 @@
           "Effect": {
             "Type": "ModifyBlockStaminaUse",
             "Values": {
-              "MinValue": 19,
-              "MaxValue": 19,
+              "MinValue": 19.0,
+              "MaxValue": 19.0,
               "Increment": 1
             }
           }
@@ -2232,8 +2174,8 @@
           "Effect": {
             "Type": "ModifyBlockForce",
             "Values": {
-              "MinValue": 19,
-              "MaxValue": 19,
+              "MinValue": 19.0,
+              "MaxValue": 19.0,
               "Increment": 1
             }
           }
@@ -2243,8 +2185,8 @@
           "Effect": {
             "Type": "IncreaseHealth",
             "Values": {
-              "MinValue": 19,
-              "MaxValue": 19,
+              "MinValue": 19.0,
+              "MaxValue": 19.0,
               "Increment": 1
             }
           }
@@ -2254,19 +2196,19 @@
           "Effect": {
             "Type": "Bulwark",
             "Values": {
-              "MinValue": 5,
-              "MaxValue": 5,
+              "MinValue": 5.0,
+              "MaxValue": 5.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "ReflectDamage",
             "Values": {
-              "MinValue": 9,
-              "MaxValue": 9,
+              "MinValue": 9.0,
+              "MaxValue": 9.0,
               "Increment": 1
             }
           }
@@ -2288,10 +2230,10 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddAxesSkill",
+            "Type": "AddRagnarSkill",
             "Values": {
-              "MinValue": 15,
-              "MaxValue": 15,
+              "MinValue": 15.0,
+              "MaxValue": 15.0,
               "Increment": 1
             }
           }
@@ -2301,8 +2243,8 @@
           "Effect": {
             "Type": "ModifyPhysicalDamage",
             "Values": {
-              "MinValue": 13,
-              "MaxValue": 13,
+              "MinValue": 13.0,
+              "MaxValue": 13.0,
               "Increment": 1
             }
           }
@@ -2312,8 +2254,8 @@
           "Effect": {
             "Type": "LifeStealLowHealth",
             "Values": {
-              "MinValue": 4,
-              "MaxValue": 4,
+              "MinValue": 4.0,
+              "MaxValue": 4.0,
               "Increment": 0.5
             }
           }
@@ -2325,12 +2267,12 @@
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
             "Type": "LifeSteal",
             "Values": {
-              "MinValue": 8,
-              "MaxValue": 8,
+              "MinValue": 8.0,
+              "MaxValue": 8.0,
               "Increment": 0.5
             }
           }
@@ -2346,17 +2288,16 @@
         "HraesvelgrHarness",
         "HraesvelgrStride",
         "HraesvelgrMantle",
-        "HraesvelgrWindGauge",
-        "HraesvelgrLeatherQuiver"
+        "HraesvelgrWindGauge"
       ],
       "SetBonuses": [
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddBowsSkill",
+            "Type": "AddHraesvelgrSkill",
             "Values": {
-              "MinValue": 20,
-              "MaxValue": 20,
+              "MinValue": 15.0,
+              "MaxValue": 15.0,
               "Increment": 1
             }
           }
@@ -2366,8 +2307,8 @@
           "Effect": {
             "Type": "QuickDraw",
             "Values": {
-              "MinValue": 20,
-              "MaxValue": 20,
+              "MinValue": 32.0,
+              "MaxValue": 32.0,
               "Increment": 1
             }
           }
@@ -2377,8 +2318,8 @@
           "Effect": {
             "Type": "ModifyDrawStaminaUse",
             "Values": {
-              "MinValue": 20,
-              "MaxValue": 20,
+              "MinValue": 10.0,
+              "MaxValue": 10.0,
               "Increment": 1
             }
           }
@@ -2388,55 +2329,44 @@
           "Effect": {
             "Type": "ModifyProjectileSpeed",
             "Values": {
-              "MinValue": 20,
-              "MaxValue": 20,
+              "MinValue": 34.0,
+              "MaxValue": 34.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
             "Type": "ModifyFireRate",
             "Values": {
-              "MinValue": 20,
-              "MaxValue": 20,
+              "MinValue": 19.0,
+              "MaxValue": 19.0,
               "Increment": 1
-            }
-          }
-        },
-        {
-          "Count": 7,
-          "Effect": {
-            "Type": "HeadHunter",
-            "Values": {
-              "MinValue": 10,
-              "MaxValue": 10,
-              "Increment": 0.5
             }
           }
         }
       ]
     },
     {
-      "ID": "SolomonKane",
+      "ID": "Hellsyng",
       "Name": "Blackpowder Judgment",
       "LegendaryIDs": [
-        "SolomonKaneWitchfinderArbalest",
-        "SolomonKaneWidebrim",
-        "SolomonKaneLongcoat",
-        "SolomonKaneBoots",
-        "SolomonKaneMantle",
-        "SolomonKanePowderHorn"
+        "HellsyngWitchfinderArbalest",
+        "HellsyngWidebrim",
+        "HellsyngLongcoat",
+        "HellsyngBoots",
+        "HellsyngMantle",
+        "HellsyngPowderHorn"
       ],
       "SetBonuses": [
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddCrossbowsSkill",
+            "Type": "AddHellsyngSkill",
             "Values": {
-              "MinValue": 15,
-              "MaxValue": 15,
+              "MinValue": 15.0,
+              "MaxValue": 15.0,
               "Increment": 1
             }
           }
@@ -2446,8 +2376,8 @@
           "Effect": {
             "Type": "ExplosiveArrows",
             "Values": {
-              "MinValue": 32,
-              "MaxValue": 32,
+              "MinValue": 32.0,
+              "MaxValue": 32.0,
               "Increment": 1
             }
           }
@@ -2470,12 +2400,12 @@
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
             "Type": "QuickDraw",
             "Values": {
-              "MinValue": 32,
-              "MaxValue": 32,
+              "MinValue": 32.0,
+              "MaxValue": 32.0,
               "Increment": 1
             }
           }
@@ -2499,9 +2429,9 @@
           "Effect": {
             "Type": "ModifyNoise",
             "Values": {
-              "MinValue": 90,
-              "MaxValue": 90,
-              "Increment": 1
+              "MinValue": 90.0,
+              "MaxValue": 90.0,
+              "Increment": 1.0
             }
           }
         },
@@ -2510,8 +2440,8 @@
           "Effect": {
             "Type": "Duelist",
             "Values": {
-              "MinValue": 37,
-              "MaxValue": 37,
+              "MinValue": 37.0,
+              "MaxValue": 37.0,
               "Increment": 1
             }
           }
@@ -2521,8 +2451,8 @@
           "Effect": {
             "Type": "ModifyStaggerDamage",
             "Values": {
-              "MinValue": 13,
-              "MaxValue": 13,
+              "MinValue": 13.0,
+              "MaxValue": 13.0,
               "Increment": 1
             }
           }
@@ -2532,19 +2462,19 @@
           "Effect": {
             "Type": "Opportunist",
             "Values": {
-              "MinValue": 21,
-              "MaxValue": 21,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
             "Type": "ModifyStaggerDuration",
             "Values": {
-              "MinValue": 10,
-              "MaxValue": 10,
+              "MinValue": 10.0,
+              "MaxValue": 10.0,
               "Increment": 1
             }
           }
@@ -2568,8 +2498,8 @@
           "Effect": {
             "Type": "IncreaseEitr",
             "Values": {
-              "MinValue": 25,
-              "MaxValue": 25,
+              "MinValue": 25.0,
+              "MaxValue": 25.0,
               "Increment": 1
             }
           }
@@ -2579,8 +2509,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 18,
-              "MaxValue": 18,
+              "MinValue": 18.0,
+              "MaxValue": 18.0,
               "Increment": 1
             }
           }
@@ -2590,8 +2520,8 @@
           "Effect": {
             "Type": "ModifyEitrRegen",
             "Values": {
-              "MinValue": 22,
-              "MaxValue": 22,
+              "MinValue": 22.0,
+              "MaxValue": 22.0,
               "Increment": 1
             }
           }
@@ -2601,14 +2531,14 @@
           "Effect": {
             "Type": "ModifyMagicFireRate",
             "Values": {
-              "MinValue": 37,
-              "MaxValue": 37,
+              "MinValue": 37.0,
+              "MaxValue": 37.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
             "Type": "DoubleMagicShot"
           }
@@ -2630,10 +2560,10 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddBloodMagicSkill",
+            "Type": "AddHelveigSkill",
             "Values": {
-              "MinValue": 15,
-              "MaxValue": 15,
+              "MinValue": 15.0,
+              "MaxValue": 15.0,
               "Increment": 1
             }
           }
@@ -2643,8 +2573,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 18,
-              "MaxValue": 18,
+              "MinValue": 18.0,
+              "MaxValue": 18.0,
               "Increment": 1
             }
           }
@@ -2654,8 +2584,8 @@
           "Effect": {
             "Type": "IncreaseHealth",
             "Values": {
-              "MinValue": 19,
-              "MaxValue": 19,
+              "MinValue": 19.0,
+              "MaxValue": 19.0,
               "Increment": 1
             }
           }
@@ -2665,19 +2595,19 @@
           "Effect": {
             "Type": "ModifySummonDamage",
             "Values": {
-              "MinValue": 18,
-              "MaxValue": 18,
+              "MinValue": 18.0,
+              "MaxValue": 18.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
             "Type": "ModifySummonHealth",
             "Values": {
-              "MinValue": 18,
-              "MaxValue": 18,
+              "MinValue": 18.0,
+              "MaxValue": 18.0,
               "Increment": 1
             }
           }
@@ -2693,8 +2623,7 @@
         "MoonveinHauberk",
         "MoonveinStriders",
         "MoonveinMantle",
-        "MoonveinMoonLens",
-        "MoonveinLeatherQuiver"
+        "MoonveinMoonLens"
       ],
       "SetBonuses": [
         {
@@ -2713,8 +2642,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 18,
-              "MaxValue": 18,
+              "MinValue": 18.0,
+              "MaxValue": 18.0,
               "Increment": 1
             }
           }
@@ -2724,8 +2653,8 @@
           "Effect": {
             "Type": "EitrLeech",
             "Values": {
-              "MinValue": 8,
-              "MaxValue": 8,
+              "MinValue": 8.0,
+              "MaxValue": 8.0,
               "Increment": 0.5
             }
           }
@@ -2733,33 +2662,22 @@
         {
           "Count": 5,
           "Effect": {
-            "Type": "AddBowsSkill",
+            "Type": "AddMoonveinSkill",
             "Values": {
-              "MinValue": 15,
-              "MaxValue": 15,
+              "MinValue": 15.0,
+              "MaxValue": 15.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
             "Type": "IncreaseEitr",
             "Values": {
-              "MinValue": 25,
-              "MaxValue": 25,
+              "MinValue": 25.0,
+              "MaxValue": 25.0,
               "Increment": 1
-            }
-          }
-        },
-        {
-          "Count": 7,
-          "Effect": {
-            "Type": "ModifyElementalDamage",
-            "Values": {
-              "MinValue": 8.5,
-              "MaxValue": 8.5,
-              "Increment": 0.5
             }
           }
         }
@@ -2793,8 +2711,8 @@
           "Effect": {
             "Type": "IncreaseEitr",
             "Values": {
-              "MinValue": 25,
-              "MaxValue": 25,
+              "MinValue": 25.0,
+              "MaxValue": 25.0,
               "Increment": 1
             }
           }
@@ -2804,8 +2722,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 18,
-              "MaxValue": 18,
+              "MinValue": 18.0,
+              "MaxValue": 18.0,
               "Increment": 1
             }
           }
@@ -2815,19 +2733,19 @@
           "Effect": {
             "Type": "EitrLeech",
             "Values": {
-              "MinValue": 8,
-              "MaxValue": 8,
+              "MinValue": 8.0,
+              "MaxValue": 8.0,
               "Increment": 0.5
             }
           }
         },
         {
-          "Count": 6,
+          "Count": 5,
           "Effect": {
-            "Type": "AddSwordsSkill",
+            "Type": "AddFrostbrandSkill",
             "Values": {
-              "MinValue": 15,
-              "MaxValue": 15,
+              "MinValue": 15.0,
+              "MaxValue": 15.0,
               "Increment": 1
             }
           }
@@ -2839,7 +2757,7 @@
     {
       "ID": "MythicHeimdallTowerShield",
       "Name": "Gjallarhorn Guard Tower Shield",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2871,7 +2789,7 @@
     {
       "ID": "MythicHeimdallOathblade",
       "Name": "Gjallarhorn Guard Oathspear",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2903,7 +2821,7 @@
     {
       "ID": "MythicHeimdallHelmet",
       "Name": "Gjallarhorn Guard Helmet",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2935,7 +2853,7 @@
     {
       "ID": "MythicHeimdallChest",
       "Name": "Gjallarhorn Guard Chestguard",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2967,7 +2885,7 @@
     {
       "ID": "MythicHeimdallLegs",
       "Name": "Gjallarhorn Guard Greaves",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -2999,7 +2917,7 @@
     {
       "ID": "MythicHeimdallCape",
       "Name": "Gjallarhorn Guard Cape",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3031,7 +2949,7 @@
     {
       "ID": "MythicHeimdallWatchSigil",
       "Name": "Gjallarhorn Guard Watch Sigil",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3064,7 +2982,7 @@
     {
       "ID": "MythicHeimdallWardingWisp",
       "Name": "Gjallarhorn Guard Warding Wisp",
-      "Description": "A mythic set piece for a shield tank built around block power, health and staying planted.",
+      "Description": "A mythic set piece for the Heimdall class line for shield tanking, threat control and Heimdall skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3097,7 +3015,7 @@
     {
       "ID": "MythicRagnarBattleAxe",
       "Name": "Ragnarok Bloodwake Twin Axes",
-      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A mythic set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3115,8 +3033,8 @@
         {
           "Type": "LifeSteal",
           "Values": {
-            "MinValue": 12,
-            "MaxValue": 12,
+            "MinValue": 12.0,
+            "MaxValue": 12.0,
             "Increment": 0.5
           }
         },
@@ -3127,14 +3045,14 @@
           "Type": "LifeStealLowHealth"
         },
         {
-          "Type": "AddAxesSkill"
+          "Type": "AddRagnarSkill"
         },
         {
           "Type": "ModifyAttackHealthUse",
           "Values": {
-            "MinValue": 50,
-            "MaxValue": 50,
-            "Increment": 1
+            "MinValue": 50.0,
+            "MaxValue": 50.0,
+            "Increment": 1.0
           }
         }
       ]
@@ -3142,7 +3060,7 @@
     {
       "ID": "MythicRagnarHelmet",
       "Name": "Ragnarok Bloodwake War Helm",
-      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A mythic set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3174,7 +3092,7 @@
     {
       "ID": "MythicRagnarChest",
       "Name": "Ragnarok Bloodwake War Harness",
-      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A mythic set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3206,7 +3124,7 @@
     {
       "ID": "MythicRagnarLegs",
       "Name": "Ragnarok Bloodwake War Strides",
-      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A mythic set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3238,7 +3156,7 @@
     {
       "ID": "MythicRagnarCape",
       "Name": "Ragnarok Bloodwake War Cloak",
-      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A mythic set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3270,7 +3188,7 @@
     {
       "ID": "MythicRagnarFuryTotem",
       "Name": "Ragnarok Bloodwake Fury Totem",
-      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A mythic set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3303,7 +3221,7 @@
     {
       "ID": "MythicRagnarFrostWisp",
       "Name": "Ragnarok Bloodwake Frost Wisp",
-      "Description": "A mythic set piece for a berserker axe path that trades caution for health sustain and frost pressure.",
+      "Description": "A mythic set piece for the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3336,7 +3254,7 @@
     {
       "ID": "MythicHraesvelgrLongbow",
       "Name": "Stormfeather Pursuit Longbow",
-      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A mythic set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3347,7 +3265,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -3369,7 +3287,7 @@
     {
       "ID": "MythicHraesvelgrHood",
       "Name": "Stormfeather Pursuit Hood",
-      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A mythic set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3379,7 +3297,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -3401,7 +3319,7 @@
     {
       "ID": "MythicHraesvelgrHarness",
       "Name": "Stormfeather Pursuit Harness",
-      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A mythic set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3411,7 +3329,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -3433,7 +3351,7 @@
     {
       "ID": "MythicHraesvelgrStride",
       "Name": "Stormfeather Pursuit Stride",
-      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A mythic set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3443,7 +3361,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -3465,7 +3383,7 @@
     {
       "ID": "MythicHraesvelgrMantle",
       "Name": "Stormfeather Pursuit Mantle",
-      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A mythic set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3475,7 +3393,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -3497,7 +3415,7 @@
     {
       "ID": "MythicHraesvelgrWindGauge",
       "Name": "Stormfeather Pursuit Wind Gauge",
-      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A mythic set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3508,7 +3426,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -3530,7 +3448,7 @@
     {
       "ID": "MythicHraesvelgrWispFeather",
       "Name": "Stormfeather Pursuit Wisp Feather",
-      "Description": "A mythic set piece for a pure archer line for range, draw stamina and projectile control.",
+      "Description": "A mythic set piece for the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3541,7 +3459,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddHraesvelgrSkill"
         },
         {
           "Type": "QuickDraw"
@@ -3561,9 +3479,9 @@
       ]
     },
     {
-      "ID": "MythicSolomonKaneWitchfinderArbalest",
+      "ID": "MythicHellsyngWitchfinderArbalest",
       "Name": "Witchfinder Verdict Witchfinder Arbalest",
-      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A mythic set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3586,7 +3504,7 @@
           "Type": "TripleBowShot"
         },
         {
-          "Type": "AddCrossbowsSkill"
+          "Type": "AddHellsyngSkill"
         },
         {
           "Type": "ModifyFireRate"
@@ -3594,9 +3512,9 @@
       ]
     },
     {
-      "ID": "MythicSolomonKaneWidebrim",
+      "ID": "MythicHellsyngWidebrim",
       "Name": "Witchfinder Verdict Widebrim",
-      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A mythic set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3626,9 +3544,9 @@
       ]
     },
     {
-      "ID": "MythicSolomonKaneLongcoat",
+      "ID": "MythicHellsyngLongcoat",
       "Name": "Witchfinder Verdict Longcoat",
-      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A mythic set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3658,9 +3576,9 @@
       ]
     },
     {
-      "ID": "MythicSolomonKaneBoots",
+      "ID": "MythicHellsyngBoots",
       "Name": "Witchfinder Verdict Boots",
-      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A mythic set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3690,9 +3608,9 @@
       ]
     },
     {
-      "ID": "MythicSolomonKaneMantle",
+      "ID": "MythicHellsyngMantle",
       "Name": "Witchfinder Verdict Mantle",
-      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A mythic set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3722,9 +3640,9 @@
       ]
     },
     {
-      "ID": "MythicSolomonKanePowderHorn",
+      "ID": "MythicHellsyngPowderHorn",
       "Name": "Witchfinder Verdict Powder Horn",
-      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A mythic set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3755,9 +3673,9 @@
       ]
     },
     {
-      "ID": "MythicSolomonKaneWitchlamp",
+      "ID": "MythicHellsyngWitchlamp",
       "Name": "Witchfinder Verdict Witchlamp",
-      "Description": "A mythic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
+      "Description": "A mythic set piece for the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3777,7 +3695,7 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "AddCrossbowsSkill"
+          "Type": "AddHellsyngSkill"
         },
         {
           "Type": "ModifyProjectileSpeed"
@@ -3790,7 +3708,7 @@
     {
       "ID": "MythicNottNightblade",
       "Name": "Night-Court Execution Nightblade",
-      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A mythic set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3823,7 +3741,7 @@
     {
       "ID": "MythicNottVeil",
       "Name": "Night-Court Execution Veil",
-      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A mythic set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3845,7 +3763,7 @@
           "Type": "ModifyDiscoveryRadius"
         },
         {
-          "Type": "AddKnivesSkill"
+          "Type": "AddNottSkill"
         },
         {
           "Type": "OffSetAttack"
@@ -3855,7 +3773,7 @@
     {
       "ID": "MythicNottLeathers",
       "Name": "Night-Court Execution Leathers",
-      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A mythic set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3887,7 +3805,7 @@
     {
       "ID": "MythicNottTreads",
       "Name": "Night-Court Execution Treads",
-      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A mythic set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3919,7 +3837,7 @@
     {
       "ID": "MythicNottCloak",
       "Name": "Night-Court Execution Cloak",
-      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A mythic set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3951,7 +3869,7 @@
     {
       "ID": "MythicNottSmokeVial",
       "Name": "Night-Court Execution Smoke Vial",
-      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A mythic set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -3968,7 +3886,7 @@
           "Type": "AddMovementSkills"
         },
         {
-          "Type": "AddKnivesSkill"
+          "Type": "AddNottSkill"
         },
         {
           "Type": "IncreaseStamina"
@@ -3984,7 +3902,7 @@
     {
       "ID": "MythicNottShadowWisp",
       "Name": "Night-Court Execution Shadow Wisp",
-      "Description": "A mythic set piece for a knife duelist path for stealth, stagger pressure and punishing staggered targets.",
+      "Description": "A mythic set piece for the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4010,14 +3928,14 @@
           "Type": "OffSetAttack"
         },
         {
-          "Type": "AddKnivesSkill"
+          "Type": "AddNottSkill"
         }
       ]
     },
     {
       "ID": "MythicSeidrStaff",
       "Name": "World-Root Arcanum Star Staff",
-      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A mythic set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4046,7 +3964,7 @@
           "Type": "ModifyElementalDamage"
         },
         {
-          "Type": "AddElementalMagicSkill"
+          "Type": "AddSeidrSkill"
         },
         {
           "Type": "DoubleMagicShot"
@@ -4056,7 +3974,7 @@
     {
       "ID": "MythicSeidrCrown",
       "Name": "World-Root Arcanum Crown",
-      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A mythic set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4078,7 +3996,7 @@
           "Type": "DartingThoughts"
         },
         {
-          "Type": "AddElementalMagicSkill"
+          "Type": "AddSeidrSkill"
         },
         {
           "Type": "Luck"
@@ -4088,7 +4006,7 @@
     {
       "ID": "MythicSeidrRobe",
       "Name": "World-Root Arcanum Robe",
-      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A mythic set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4120,7 +4038,7 @@
     {
       "ID": "MythicSeidrTreads",
       "Name": "World-Root Arcanum Treads",
-      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A mythic set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4152,7 +4070,7 @@
     {
       "ID": "MythicSeidrMantle",
       "Name": "World-Root Arcanum Mantle",
-      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A mythic set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4184,7 +4102,7 @@
     {
       "ID": "MythicSeidrEitrFocus",
       "Name": "World-Root Arcanum Eitr Focus",
-      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A mythic set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4217,7 +4135,7 @@
     {
       "ID": "MythicSeidrMistWisp",
       "Name": "World-Root Arcanum Mist Wisp",
-      "Description": "A mythic set piece for a mage line for eitr capacity, eitr recovery and staff casting tempo.",
+      "Description": "A mythic set piece for the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4240,7 +4158,7 @@
           "Type": "ModifyAttackEitrUse"
         },
         {
-          "Type": "AddElementalMagicSkill"
+          "Type": "AddSeidrSkill"
         },
         {
           "Type": "Luck"
@@ -4250,7 +4168,7 @@
     {
       "ID": "MythicHelveigBloodstaff",
       "Name": "Blood-Moon Conclave Blood Staff",
-      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A mythic set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4267,14 +4185,14 @@
           "Type": "ModifyAttackEitrUse"
         },
         {
-          "Type": "AddBloodMagicSkill"
+          "Type": "AddHelveigSkill"
         },
         {
           "Type": "ModifyAttackHealthUse",
           "Values": {
-            "MinValue": 50,
-            "MaxValue": 50,
-            "Increment": 1
+            "MinValue": 50.0,
+            "MaxValue": 50.0,
+            "Increment": 1.0
           }
         },
         {
@@ -4291,7 +4209,7 @@
     {
       "ID": "MythicHelveigBoneCrown",
       "Name": "Blood-Moon Conclave Bone Crown",
-      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A mythic set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4323,7 +4241,7 @@
     {
       "ID": "MythicHelveigMarrowRobe",
       "Name": "Blood-Moon Conclave Marrow Robe",
-      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A mythic set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4355,7 +4273,7 @@
     {
       "ID": "MythicHelveigGraveTreads",
       "Name": "Blood-Moon Conclave Grave Treads",
-      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A mythic set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4387,7 +4305,7 @@
     {
       "ID": "MythicHelveigBloodMantle",
       "Name": "Blood-Moon Conclave Blood Mantle",
-      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A mythic set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4419,7 +4337,7 @@
     {
       "ID": "MythicHelveigBoneCharm",
       "Name": "Blood-Moon Conclave Bone Charm",
-      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A mythic set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4452,7 +4370,7 @@
     {
       "ID": "MythicHelveigGraveWisp",
       "Name": "Blood-Moon Conclave Grave Wisp",
-      "Description": "A mythic set piece for a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites.",
+      "Description": "A mythic set piece for the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4485,7 +4403,7 @@
     {
       "ID": "MythicMoonveinMoonbow",
       "Name": "Lunar Spellshot Moonbow",
-      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A mythic set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4502,7 +4420,7 @@
           "Type": "EitrLeech"
         },
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddMoonveinSkill"
         },
         {
           "Type": "ModifyDrawStaminaUse"
@@ -4516,9 +4434,9 @@
         {
           "Type": "AmmoConservation",
           "Values": {
-            "MinValue": 100,
-            "MaxValue": 100,
-            "Increment": 1
+            "MinValue": 100.0,
+            "MaxValue": 100.0,
+            "Increment": 1.0
           }
         }
       ]
@@ -4526,7 +4444,7 @@
     {
       "ID": "MythicMoonveinCowl",
       "Name": "Lunar Spellshot Cowl",
-      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A mythic set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4536,7 +4454,7 @@
       "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddMoonveinSkill"
         },
         {
           "Type": "IncreaseEitr"
@@ -4558,7 +4476,7 @@
     {
       "ID": "MythicMoonveinHauberk",
       "Name": "Lunar Spellshot Hauberk",
-      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A mythic set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4590,7 +4508,7 @@
     {
       "ID": "MythicMoonveinStriders",
       "Name": "Lunar Spellshot Striders",
-      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A mythic set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4622,7 +4540,7 @@
     {
       "ID": "MythicMoonveinMantle",
       "Name": "Lunar Spellshot Mantle",
-      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A mythic set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4654,7 +4572,7 @@
     {
       "ID": "MythicMoonveinMoonLens",
       "Name": "Lunar Spellshot Moon Lens",
-      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A mythic set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4677,7 +4595,7 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddMoonveinSkill"
         },
         {
           "Type": "Luck"
@@ -4687,7 +4605,7 @@
     {
       "ID": "MythicMoonveinMoonWisp",
       "Name": "Lunar Spellshot Moon Wisp",
-      "Description": "A mythic set piece for a magic archer line that blends bow skill with SpellSword and EitrLeech.",
+      "Description": "A mythic set piece for the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4707,7 +4625,7 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "AddBowsSkill"
+          "Type": "AddMoonveinSkill"
         },
         {
           "Type": "IncreaseStamina"
@@ -4720,7 +4638,7 @@
     {
       "ID": "MythicFrostbrandRuneblade",
       "Name": "Glacierbrand Oath Runeblade",
-      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A mythic set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4748,9 +4666,9 @@
         {
           "Type": "IncreaseEitr",
           "Values": {
-            "MinValue": 100,
-            "MaxValue": 100,
-            "Increment": 1
+            "MinValue": 100.0,
+            "MaxValue": 100.0,
+            "Increment": 1.0
           }
         }
       ]
@@ -4758,7 +4676,7 @@
     {
       "ID": "MythicFrostbrandCrown",
       "Name": "Glacierbrand Oath Crown",
-      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A mythic set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4790,7 +4708,7 @@
     {
       "ID": "MythicFrostbrandCuirass",
       "Name": "Glacierbrand Oath Cuirass",
-      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A mythic set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4822,7 +4740,7 @@
     {
       "ID": "MythicFrostbrandGreaves",
       "Name": "Glacierbrand Oath Greaves",
-      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A mythic set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4854,7 +4772,7 @@
     {
       "ID": "MythicFrostbrandCloak",
       "Name": "Glacierbrand Oath Cloak",
-      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A mythic set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4886,7 +4804,7 @@
     {
       "ID": "MythicFrostbrandFrostFocus",
       "Name": "Glacierbrand Oath Frost Focus",
-      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A mythic set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4919,7 +4837,7 @@
     {
       "ID": "MythicFrostbrandFrostWisp",
       "Name": "Glacierbrand Oath Frost Wisp",
-      "Description": "A mythic set piece for a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts.",
+      "Description": "A mythic set piece for the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling.",
       "IsSetItem": true,
       "Requirements": {
         "AllowedItemNames": [
@@ -4942,71 +4860,7 @@
           "Type": "AddFrostResistancePercentage"
         },
         {
-          "Type": "AddSwordsSkill"
-        },
-        {
-          "Type": "Luck"
-        }
-      ]
-    },
-    {
-      "ID": "MythicHraesvelgrLeatherQuiver",
-      "Name": "Stormfeather Pursuit Leather Quiver",
-      "Description": "A set quiver piece for a pure archer line that supports bow skill, stamina flow and field mobility.",
-      "IsSetItem": true,
-      "Requirements": {
-        "AllowedItemNames": [
-          "LeatherQuiver"
-        ]
-      },
-      "GuaranteedEffectCount": 6,
-      "GuaranteedMagicEffects": [
-        {
-          "Type": "AddBowsSkill"
-        },
-        {
-          "Type": "QuickDraw"
-        },
-        {
-          "Type": "ModifyFireRate"
-        },
-        {
-          "Type": "ModifyProjectileSpeed"
-        },
-        {
-          "Type": "ModifyDrawStaminaUse"
-        },
-        {
-          "Type": "Luck"
-        }
-      ]
-    },
-    {
-      "ID": "MythicMoonveinLeatherQuiver",
-      "Name": "Lunar Spellshot Leather Quiver",
-      "Description": "A set quiver piece for a magic archer line that supports bow skill, eitr reserves and sustained spellbow combat.",
-      "IsSetItem": true,
-      "Requirements": {
-        "AllowedItemNames": [
-          "LeatherQuiver"
-        ]
-      },
-      "GuaranteedEffectCount": 6,
-      "GuaranteedMagicEffects": [
-        {
-          "Type": "IncreaseEitr"
-        },
-        {
-          "Type": "ModifyEitrRegen"
-        },
-        {
-          "Type": "IncreaseStamina"
-        },
-        {
-          "Type": "ModifyStaminaRegen"
-        },
-        {
-          "Type": "AddBowsSkill"
+          "Type": "AddFrostbrandSkill"
         },
         {
           "Type": "Luck"
@@ -5034,8 +4888,8 @@
           "Effect": {
             "Type": "ModifyBlockPower",
             "Values": {
-              "MinValue": 27,
-              "MaxValue": 27,
+              "MinValue": 27.0,
+              "MaxValue": 27.0,
               "Increment": 1
             }
           }
@@ -5045,8 +4899,8 @@
           "Effect": {
             "Type": "ModifyBlockStaminaUse",
             "Values": {
-              "MinValue": 25,
-              "MaxValue": 25,
+              "MinValue": 25.0,
+              "MaxValue": 25.0,
               "Increment": 1
             }
           }
@@ -5056,8 +4910,8 @@
           "Effect": {
             "Type": "ModifyBlockForce",
             "Values": {
-              "MinValue": 24,
-              "MaxValue": 24,
+              "MinValue": 24.0,
+              "MaxValue": 24.0,
               "Increment": 1
             }
           }
@@ -5067,8 +4921,8 @@
           "Effect": {
             "Type": "IncreaseHealth",
             "Values": {
-              "MinValue": 24,
-              "MaxValue": 24,
+              "MinValue": 24.0,
+              "MaxValue": 24.0,
               "Increment": 1
             }
           }
@@ -5078,8 +4932,8 @@
           "Effect": {
             "Type": "Bulwark",
             "Values": {
-              "MinValue": 6,
-              "MaxValue": 6,
+              "MinValue": 6.0,
+              "MaxValue": 6.0,
               "Increment": 1
             }
           }
@@ -5089,14 +4943,14 @@
           "Effect": {
             "Type": "ReflectDamage",
             "Values": {
-              "MinValue": 11,
-              "MaxValue": 11,
+              "MinValue": 11.0,
+              "MaxValue": 11.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 8,
+          "Count": 7,
           "Effect": {
             "Type": "Undying"
           }
@@ -5119,10 +4973,10 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddAxesSkill",
+            "Type": "AddRagnarSkill",
             "Values": {
-              "MinValue": 21,
-              "MaxValue": 21,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
@@ -5132,8 +4986,8 @@
           "Effect": {
             "Type": "ModifyPhysicalDamage",
             "Values": {
-              "MinValue": 17,
-              "MaxValue": 17,
+              "MinValue": 17.0,
+              "MaxValue": 17.0,
               "Increment": 1
             }
           }
@@ -5143,8 +4997,8 @@
           "Effect": {
             "Type": "LifeStealLowHealth",
             "Values": {
-              "MinValue": 5,
-              "MaxValue": 5,
+              "MinValue": 5.0,
+              "MaxValue": 5.0,
               "Increment": 0.5
             }
           }
@@ -5160,19 +5014,30 @@
           "Effect": {
             "Type": "LifeSteal",
             "Values": {
-              "MinValue": 10,
-              "MaxValue": 10,
+              "MinValue": 10.0,
+              "MaxValue": 10.0,
               "Increment": 0.5
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "FrostDamageAOE",
             "Values": {
-              "MinValue": 50,
-              "MaxValue": 50,
+              "MinValue": 50.0,
+              "MaxValue": 50.0,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 6,
+          "Effect": {
+            "Type": "AddFrostDamage",
+            "Values": {
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
@@ -5189,17 +5054,16 @@
         "MythicHraesvelgrStride",
         "MythicHraesvelgrMantle",
         "MythicHraesvelgrWindGauge",
-        "MythicHraesvelgrWispFeather",
-        "MythicHraesvelgrLeatherQuiver"
+        "MythicHraesvelgrWispFeather"
       ],
       "SetBonuses": [
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddBowsSkill",
+            "Type": "AddHraesvelgrSkill",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
@@ -5209,8 +5073,8 @@
           "Effect": {
             "Type": "QuickDraw",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 43.0,
+              "MaxValue": 43.0,
               "Increment": 1
             }
           }
@@ -5220,8 +5084,8 @@
           "Effect": {
             "Type": "ModifyDrawStaminaUse",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 14.0,
+              "MaxValue": 14.0,
               "Increment": 1
             }
           }
@@ -5231,8 +5095,8 @@
           "Effect": {
             "Type": "ModifyProjectileSpeed",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 45.0,
+              "MaxValue": 45.0,
               "Increment": 1
             }
           }
@@ -5242,51 +5106,45 @@
           "Effect": {
             "Type": "ModifyFireRate",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 28.0,
+              "MaxValue": 28.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "HeadHunter",
             "Values": {
-              "MinValue": 13,
-              "MaxValue": 13,
+              "MinValue": 13.5,
+              "MaxValue": 13.5,
               "Increment": 0.5
             }
-          }
-        },
-        {
-          "Count": 8,
-          "Effect": {
-            "Type": "TripleBowShot"
           }
         }
       ]
     },
     {
-      "ID": "MythicSolomonKane",
+      "ID": "MythicHellsyng",
       "Name": "Witchfinder Verdict",
       "LegendaryIDs": [
-        "MythicSolomonKaneWitchfinderArbalest",
-        "MythicSolomonKaneWidebrim",
-        "MythicSolomonKaneLongcoat",
-        "MythicSolomonKaneBoots",
-        "MythicSolomonKaneMantle",
-        "MythicSolomonKanePowderHorn",
-        "MythicSolomonKaneWitchlamp"
+        "MythicHellsyngWitchfinderArbalest",
+        "MythicHellsyngWidebrim",
+        "MythicHellsyngLongcoat",
+        "MythicHellsyngBoots",
+        "MythicHellsyngMantle",
+        "MythicHellsyngPowderHorn",
+        "MythicHellsyngWitchlamp"
       ],
       "SetBonuses": [
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddCrossbowsSkill",
+            "Type": "AddHellsyngSkill",
             "Values": {
-              "MinValue": 21,
-              "MaxValue": 21,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
@@ -5296,8 +5154,8 @@
           "Effect": {
             "Type": "ExplosiveArrows",
             "Values": {
-              "MinValue": 43,
-              "MaxValue": 43,
+              "MinValue": 43.0,
+              "MaxValue": 43.0,
               "Increment": 1
             }
           }
@@ -5324,19 +5182,19 @@
           "Effect": {
             "Type": "QuickDraw",
             "Values": {
-              "MinValue": 43,
-              "MaxValue": 43,
+              "MinValue": 43.0,
+              "MaxValue": 43.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "ModifyFireRate",
             "Values": {
-              "MinValue": 28,
-              "MaxValue": 28,
+              "MinValue": 28.0,
+              "MaxValue": 28.0,
               "Increment": 1
             }
           }
@@ -5361,9 +5219,9 @@
           "Effect": {
             "Type": "ModifyNoise",
             "Values": {
-              "MinValue": 95,
-              "MaxValue": 95,
-              "Increment": 1
+              "MinValue": 95.0,
+              "MaxValue": 95.0,
+              "Increment": 1.0
             }
           }
         },
@@ -5372,8 +5230,8 @@
           "Effect": {
             "Type": "Duelist",
             "Values": {
-              "MinValue": 43,
-              "MaxValue": 43,
+              "MinValue": 43.0,
+              "MaxValue": 43.0,
               "Increment": 1
             }
           }
@@ -5383,8 +5241,8 @@
           "Effect": {
             "Type": "ModifyStaggerDamage",
             "Values": {
-              "MinValue": 17,
-              "MaxValue": 17,
+              "MinValue": 17.0,
+              "MaxValue": 17.0,
               "Increment": 1
             }
           }
@@ -5394,8 +5252,8 @@
           "Effect": {
             "Type": "Opportunist",
             "Values": {
-              "MinValue": 28,
-              "MaxValue": 28,
+              "MinValue": 28.0,
+              "MaxValue": 28.0,
               "Increment": 1
             }
           }
@@ -5405,19 +5263,19 @@
           "Effect": {
             "Type": "ModifyStaggerDuration",
             "Values": {
-              "MinValue": 14,
-              "MaxValue": 14,
+              "MinValue": 14.0,
+              "MaxValue": 14.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "OffSetAttack",
             "Values": {
-              "MinValue": 39,
-              "MaxValue": 39,
+              "MinValue": 39.0,
+              "MaxValue": 39.0,
               "Increment": 1
             }
           }
@@ -5442,8 +5300,8 @@
           "Effect": {
             "Type": "IncreaseEitr",
             "Values": {
-              "MinValue": 33,
-              "MaxValue": 33,
+              "MinValue": 33.0,
+              "MaxValue": 33.0,
               "Increment": 1
             }
           }
@@ -5453,8 +5311,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 26.0,
+              "MaxValue": 26.0,
               "Increment": 1
             }
           }
@@ -5464,8 +5322,8 @@
           "Effect": {
             "Type": "ModifyEitrRegen",
             "Values": {
-              "MinValue": 31,
-              "MaxValue": 31,
+              "MinValue": 31.0,
+              "MaxValue": 31.0,
               "Increment": 1
             }
           }
@@ -5475,8 +5333,8 @@
           "Effect": {
             "Type": "ModifyMagicFireRate",
             "Values": {
-              "MinValue": 56,
-              "MaxValue": 56,
+              "MinValue": 56.0,
+              "MaxValue": 56.0,
               "Increment": 1
             }
           }
@@ -5488,12 +5346,12 @@
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
-            "Type": "AddElementalMagicSkill",
+            "Type": "AddSeidrSkill",
             "Values": {
-              "MinValue": 21,
-              "MaxValue": 21,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
@@ -5516,10 +5374,10 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddBloodMagicSkill",
+            "Type": "AddHelveigSkill",
             "Values": {
-              "MinValue": 21,
-              "MaxValue": 21,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
@@ -5529,8 +5387,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 26.0,
+              "MaxValue": 26.0,
               "Increment": 1
             }
           }
@@ -5540,8 +5398,8 @@
           "Effect": {
             "Type": "IncreaseHealth",
             "Values": {
-              "MinValue": 24,
-              "MaxValue": 24,
+              "MinValue": 24.0,
+              "MaxValue": 24.0,
               "Increment": 1
             }
           }
@@ -5551,8 +5409,8 @@
           "Effect": {
             "Type": "ModifySummonDamage",
             "Values": {
-              "MinValue": 23,
-              "MaxValue": 23,
+              "MinValue": 23.0,
+              "MaxValue": 23.0,
               "Increment": 1
             }
           }
@@ -5562,19 +5420,19 @@
           "Effect": {
             "Type": "ModifySummonHealth",
             "Values": {
-              "MinValue": 23,
-              "MaxValue": 23,
+              "MinValue": 23.0,
+              "MaxValue": 23.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "ModifyHealthRegen",
             "Values": {
-              "MinValue": 22,
-              "MaxValue": 22,
+              "MinValue": 22.0,
+              "MaxValue": 22.0,
               "Increment": 1
             }
           }
@@ -5591,8 +5449,7 @@
         "MythicMoonveinStriders",
         "MythicMoonveinMantle",
         "MythicMoonveinMoonLens",
-        "MythicMoonveinMoonWisp",
-        "MythicMoonveinLeatherQuiver"
+        "MythicMoonveinMoonWisp"
       ],
       "SetBonuses": [
         {
@@ -5600,8 +5457,8 @@
           "Effect": {
             "Type": "SpellSword",
             "Values": {
-              "MinValue": 51,
-              "MaxValue": 51,
+              "MinValue": 51.0,
+              "MaxValue": 51.0,
               "Increment": 0.5
             }
           }
@@ -5611,8 +5468,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 26.0,
+              "MaxValue": 26.0,
               "Increment": 1
             }
           }
@@ -5622,8 +5479,8 @@
           "Effect": {
             "Type": "EitrLeech",
             "Values": {
-              "MinValue": 10,
-              "MaxValue": 10,
+              "MinValue": 10.0,
+              "MaxValue": 10.0,
               "Increment": 0.5
             }
           }
@@ -5631,10 +5488,10 @@
         {
           "Count": 5,
           "Effect": {
-            "Type": "AddBowsSkill",
+            "Type": "AddMoonveinSkill",
             "Values": {
-              "MinValue": 21,
-              "MaxValue": 21,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
@@ -5644,27 +5501,16 @@
           "Effect": {
             "Type": "IncreaseEitr",
             "Values": {
-              "MinValue": 33,
-              "MaxValue": 33,
+              "MinValue": 33.0,
+              "MaxValue": 33.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "TripleBowShot"
-          }
-        },
-        {
-          "Count": 8,
-          "Effect": {
-            "Type": "ModifyElementalDamage",
-            "Values": {
-              "MinValue": 10.5,
-              "MaxValue": 10.5,
-              "Increment": 0.5
-            }
           }
         }
       ]
@@ -5687,8 +5533,8 @@
           "Effect": {
             "Type": "SpellSword",
             "Values": {
-              "MinValue": 51,
-              "MaxValue": 51,
+              "MinValue": 51.0,
+              "MaxValue": 51.0,
               "Increment": 0.5
             }
           }
@@ -5698,8 +5544,8 @@
           "Effect": {
             "Type": "IncreaseEitr",
             "Values": {
-              "MinValue": 33,
-              "MaxValue": 33,
+              "MinValue": 33.0,
+              "MaxValue": 33.0,
               "Increment": 1
             }
           }
@@ -5709,8 +5555,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 26,
-              "MaxValue": 26,
+              "MinValue": 26.0,
+              "MaxValue": 26.0,
               "Increment": 1
             }
           }
@@ -5720,8 +5566,8 @@
           "Effect": {
             "Type": "EitrLeech",
             "Values": {
-              "MinValue": 10,
-              "MaxValue": 10,
+              "MinValue": 10.0,
+              "MaxValue": 10.0,
               "Increment": 0.5
             }
           }
@@ -5729,21 +5575,21 @@
         {
           "Count": 6,
           "Effect": {
-            "Type": "AddSwordsSkill",
+            "Type": "AddFrostbrandSkill",
             "Values": {
-              "MinValue": 21,
-              "MaxValue": 21,
+              "MinValue": 21.0,
+              "MaxValue": 21.0,
               "Increment": 1
             }
           }
         },
         {
-          "Count": 7,
+          "Count": 6,
           "Effect": {
             "Type": "ModifyElementalDamage",
             "Values": {
-              "MinValue": 17,
-              "MaxValue": 17,
+              "MinValue": 17.0,
+              "MaxValue": 17.0,
               "Increment": 1
             }
           }

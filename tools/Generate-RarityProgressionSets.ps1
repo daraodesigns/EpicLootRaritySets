@@ -104,6 +104,7 @@ if ($effectByType.ContainsKey("SpellSword")) {
 }
 
 if ($effectByType.ContainsKey("Duelist")) {
+    Add-UniqueRequirementValues $effectByType["Duelist"] "AllowedItemTypes" @("TwoHandedWeapon", "TwoHandedWeaponLeft")
     Remove-RequirementValues $effectByType["Duelist"] "ExclusiveEffectTypes" @("SpellSword", "EitrWeave")
 }
 
@@ -117,6 +118,89 @@ function Obj($values) {
     }
 
     return [pscustomobject] $values
+}
+
+function Set-ObjectProperty($target, [string] $property, $value) {
+    if ($target.PSObject.Properties[$property]) {
+        $target.$property = $value
+    }
+    else {
+        $target | Add-Member -NotePropertyName $property -NotePropertyValue $value
+    }
+}
+
+function Ensure-ClassSkillEffect([string] $className) {
+    $effectType = "Add$($className)Skill"
+    if ($effectByType.ContainsKey($effectType)) {
+        return
+    }
+
+    $reference = if ($effectByType.ContainsKey("AddBowsSkill")) { $effectByType["AddBowsSkill"].ValuesPerRarity } else { $null }
+    $token = "`$mod_epicloot_me_$($effectType.ToLowerInvariant())"
+    $effect = Obj ([ordered] @{
+            Type = $effectType
+            DisplayText = "$($token)_display"
+            Description = "$($token)_desc"
+            ValuesPerRarity = $reference
+            SelectionWeight = 0
+            CanBeAugmented = $false
+            CanBeDisenchanted = $false
+            CanBeRunified = $false
+            Prefixes = @("$($token)_prefix1")
+            Suffixes = @("$($token)_suffix1")
+        })
+
+    $magicEffectsConfig.MagicItemEffects = @(@($magicEffectsConfig.MagicItemEffects) + $effect)
+    $effectByType[$effectType] = $effect
+}
+
+foreach ($className in @("Heimdall", "Ragnar", "Hraesvelgr", "Hellsyng", "Nott", "Seidr", "Helveig", "Moonvein", "Frostbrand")) {
+    Ensure-ClassSkillEffect $className
+}
+
+function Ensure-LastHopeEffect() {
+    $effectType = "LastHope"
+    $token = '$mod_epicloot_me_lasthope'
+    if ($effectByType.ContainsKey($effectType)) {
+        $effect = $effectByType[$effectType]
+        Set-ObjectProperty $effect "DisplayText" "$($token)_display"
+        Set-ObjectProperty $effect "Description" "$($token)_desc"
+        Set-ObjectProperty $effect "SelectionWeight" 2
+        Set-ObjectProperty $effect "Prefixes" @("$($token)_prefix1")
+        Set-ObjectProperty $effect "Suffixes" @("$($token)_suffix1")
+        Set-ObjectProperty $effect "Ability" "LastHope"
+        Add-UniqueRequirementValues $effect "AllowedItemTypes" @("Utility", "Trinket")
+        Add-UniqueRequirementValues $effect "AllowedRarities" @("Magic", "Rare", "Epic", "Legendary", "Mythic", "Ancient")
+        Add-UniqueRequirementValues $effect "ExclusiveEffectTypes" @("Undying")
+        return
+    }
+
+    $effect = Obj ([ordered] @{
+            Type = $effectType
+            DisplayText = "$($token)_display"
+            Description = "$($token)_desc"
+            Requirements = Obj ([ordered] @{
+                    AllowedItemTypes = @("Utility", "Trinket")
+                    AllowedRarities = @("Magic", "Rare", "Epic", "Legendary", "Mythic", "Ancient")
+                    ExclusiveEffectTypes = @("Undying")
+                })
+            SelectionWeight = 2
+            Prefixes = @("$($token)_prefix1")
+            Suffixes = @("$($token)_suffix1")
+            Ability = "LastHope"
+        })
+
+    $magicEffectsConfig.MagicItemEffects = @(@($magicEffectsConfig.MagicItemEffects) + $effect)
+    $effectByType[$effectType] = $effect
+}
+
+Ensure-LastHopeEffect
+
+if ($effectByType.ContainsKey("FrostDamageAOE")) {
+    $frostAoeEffect = $effectByType["FrostDamageAOE"]
+    if ($frostAoeEffect.PSObject.Properties["Ability"]) {
+        $frostAoeEffect.PSObject.Properties.Remove("Ability")
+    }
 }
 
 function ValueFor([string] $effectType, [string] $rarity) {
@@ -239,7 +323,7 @@ $utilityItemNames = @("BeltStrength", '$item_megingjord')
 $demisterItemNames = @("Demister", '$item_demister')
 
 $families = @()
-$families += Family "Heimdall" $true "a shield tank built around block power, health and staying planted" @(
+$families += Family "Heimdall" $true "the Heimdall class line for shield tanking, threat control and Heimdall skill scaling" @(
         (Piece "Shield" "TowerShield" "Tower Shield" "Shield" @("ModifyBlockPower", "ModifyBlockStaminaUse", "ModifyBlockForce", "IncreaseStamina", "IncreaseHealth", "AvoidDamageTaken", "ReflectDamage")),
         (Piece "Weapon" "Oathblade" "Oathspear" "OneHandedWeapon" @("ModifyBlockStaminaUse", "ModifyPhysicalDamage", "AddFrostDamage", "OffSetAttack", "AddSpearsSkill", "Indestructible", "Weightless") @("Spears")),
         (Piece "Helmet" "Helmet" "Helmet" "Helmet" @("ModifyArmor", "IncreaseHealth", "ModifyStaminaRegen", "ModifyArmorLowHealth", "ModifyHealthRegenLowHealth", "AddPhysicalResistancePercentage", "Glowing")),
@@ -257,8 +341,8 @@ $families += Family "Heimdall" $true "a shield tank built around block power, he
         Mythic = "Gjallarhorn Guard"
         Ancient = "Bifrost Bastion"
     }
-$families += Family "Ragnar" $false "a berserker axe path that trades caution for health sustain and frost pressure" @(
-        (Piece "Weapon" "BattleAxe" "Twin Axes" "TwoHandedWeaponLeft" @("ModifyPhysicalDamage", "Bloodlust", "LifeSteal", "OffSetAttack", "LifeStealLowHealth", "AddAxesSkill", "AddFrostDamage", "IncreaseHealth") @("Axes")),
+$families += Family "Ragnar" $false "the Ragnar class path for health sustain, frost pressure and Ragnar skill scaling" @(
+        (Piece "Weapon" "BattleAxe" "Twin Axes" "TwoHandedWeaponLeft" @("ModifyPhysicalDamage", "Bloodlust", "LifeSteal", "OffSetAttack", "LifeStealLowHealth", "AddRagnarSkill", "AddFrostDamage", "IncreaseHealth") @("Axes")),
         (Piece "Helmet" "Helmet" "War Helm" "Helmet" @("IncreaseHealth", "ModifyStaminaRegen", "ModifyArmor", "HeadHunter", "Luck", "ModifyArmorLowHealth", "Glowing")),
         (Piece "Chest" "Chest" "War Harness" "Chest" @("ModifyArmor", "AddHealthRegen", "ModifyHealthRegen", "IncreaseHealth", "AvoidDamageTakenLowHealth", "AddFrostResistancePercentage", "ReflectDamage")),
         (Piece "Legs" "Legs" "War Strides" "Legs" @("ModifyMovementSpeed", "ModifySprintStaminaUse", "IncreaseStamina", "ModifyDodgeStaminaUse", "ModifyMovementSpeedLowHealth", "AddMovementSkills", "DoubleJump")),
@@ -266,7 +350,7 @@ $families += Family "Ragnar" $false "a berserker axe path that trades caution fo
         (Piece "Utility" "FuryTotem" "Fury Totem" "Utility" @("IncreaseHealth", "IncreaseStamina", "ModifyStaminaRegen", "Luck", "AddHealthRegen", "ModifyHealthRegen", "Glowing") @() $utilityItemNames),
         (Piece "Demister" "FrostWisp" "Frost Wisp" "Utility" @("ModifyWispRange", "IncreaseHealth", "IncreaseStamina", "AddFrostResistancePercentage", "ModifyStaminaRegen", "Luck", "Glowing") @() $demisterItemNames),
         (Piece "Trinket" "BloodOath" "Blood Oath" "Trinket" @("IncreaseHealth", "IncreaseStamina", "ModifyStaminaRegen", "Luck", "AddHealthRegen", "ModifyHealthRegen", "AddPhysicalResistancePercentage"))
-    ) @("AddAxesSkill", "ModifyPhysicalDamage", "LifeStealLowHealth", "Berserker", "LifeSteal", "FrostDamageAOE", "Undying") @{
+    ) @("AddRagnarSkill", "ModifyPhysicalDamage", "LifeStealLowHealth", "Berserker", "LifeSteal", "FrostDamageAOE", "Undying") @{
         Magic = "Ember-Axe Reavers"
         Rare = "Storm-Bitten Raiders"
         Epic = "Frostfang Fury"
@@ -274,16 +358,16 @@ $families += Family "Ragnar" $false "a berserker axe path that trades caution fo
         Mythic = "Ragnarok Bloodwake"
         Ancient = "World-End Berserkers"
     }
-$families += Family "Hraesvelgr" $false "a pure archer line for range, draw stamina and projectile control" @(
-        (Piece "Weapon" "Longbow" "Longbow" "Bow" @("AddBowsSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "ModifyPhysicalDamage", "TripleBowShot", "Indestructible")),
-        (Piece "Helmet" "Hood" "Hood" "Helmet" @("AddBowsSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "HeadHunter", "Luck", "ModifyPhysicalDamage")),
-        (Piece "Chest" "Harness" "Harness" "Chest" @("AddBowsSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyFireRate", "ModifyProjectileSpeed", "HeadHunter", "ModifyPhysicalDamage")),
-        (Piece "Legs" "Stride" "Stride" "Legs" @("AddBowsSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyMovementSpeed", "DoubleJump")),
-        (Piece "Shoulder" "Mantle" "Mantle" "Shoulder" @("AddBowsSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "RemoveSpeedPenalty", "Indestructible")),
-        (Piece "Utility" "WindGauge" "Wind Gauge" "Utility" @("AddBowsSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyDrawStaminaUse", "Luck", "HeadHunter") @() $utilityItemNames),
-        (Piece "Demister" "WispFeather" "Wisp Feather" "Utility" @("AddBowsSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyDrawStaminaUse", "Luck", "HeadHunter") @() $demisterItemNames),
-        (Piece "Trinket" "SkyToken" "Sky Token" "Trinket" @("AddBowsSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyDrawStaminaUse", "Luck", "HeadHunter"))
-    ) @("AddBowsSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "HeadHunter", "TripleBowShot", "ModifyPhysicalDamage") @{
+$families += Family "Hraesvelgr" $false "the Hraesvelgr class line for range, draw stamina, projectile control and Hraesvelgr skill scaling" @(
+        (Piece "Weapon" "Longbow" "Longbow" "Bow" @("AddHraesvelgrSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "ModifyPhysicalDamage", "TripleBowShot", "Indestructible")),
+        (Piece "Helmet" "Hood" "Hood" "Helmet" @("AddHraesvelgrSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "HeadHunter", "Luck", "ModifyPhysicalDamage")),
+        (Piece "Chest" "Harness" "Harness" "Chest" @("AddHraesvelgrSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyFireRate", "ModifyProjectileSpeed", "HeadHunter", "ModifyPhysicalDamage")),
+        (Piece "Legs" "Stride" "Stride" "Legs" @("AddHraesvelgrSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyMovementSpeed", "DoubleJump")),
+        (Piece "Shoulder" "Mantle" "Mantle" "Shoulder" @("AddHraesvelgrSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "RemoveSpeedPenalty", "Indestructible")),
+        (Piece "Utility" "WindGauge" "Wind Gauge" "Utility" @("AddHraesvelgrSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyDrawStaminaUse", "Luck", "HeadHunter") @() $utilityItemNames),
+        (Piece "Demister" "WispFeather" "Wisp Feather" "Utility" @("AddHraesvelgrSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyDrawStaminaUse", "Luck", "HeadHunter") @() $demisterItemNames),
+        (Piece "Trinket" "SkyToken" "Sky Token" "Trinket" @("AddHraesvelgrSkill", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed", "ModifyDrawStaminaUse", "Luck", "HeadHunter"))
+    ) @("AddHraesvelgrSkill", "QuickDraw", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "HeadHunter", "TripleBowShot", "ModifyPhysicalDamage") @{
         Magic = "Pinewind Fletchers"
         Rare = "Skyline Hunters"
         Epic = "Gale-Eye Stalkers"
@@ -291,32 +375,32 @@ $families += Family "Hraesvelgr" $false "a pure archer line for range, draw stam
         Mythic = "Stormfeather Pursuit"
         Ancient = "Eagle-Wind Sovereigns"
     }
-$families += Family "SolomonKane" $false "a crossbow marksman line for single heavy shots, explosive bolts and fast reloads" @(
-        (Piece "Weapon" "WitchfinderArbalest" "Witchfinder Arbalest" "Bows" @("ModifyDamage", "ExplosiveArrows", "QuickDraw", "TripleBowShot", "AddCrossbowsSkill", "ModifyFireRate", "ModifyProjectileSpeed") @("Crossbows")),
+$families += Family "Hellsyng" $false "the Hellsyng class line for single heavy shots, explosive bolts, fast reloads and Hellsyng skill scaling" @(
+        (Piece "Weapon" "WitchfinderArbalest" "Witchfinder Arbalest" "Bows" @("ModifyDamage", "ExplosiveArrows", "QuickDraw", "TripleBowShot", "AddHellsyngSkill", "ModifyFireRate", "ModifyProjectileSpeed") @("Crossbows")),
         (Piece "Helmet" "Widebrim" "Widebrim" "Helmet" @("HeadHunter", "ModifyDiscoveryRadius", "IncreaseStamina", "ModifyStaminaRegen", "Luck", "ModifyArmor", "Glowing")),
         (Piece "Chest" "Longcoat" "Longcoat" "Chest" @("ModifyArmor", "IncreaseStamina", "AddCarryWeight", "ModifyStaminaRegen", "Weightless", "Luck", "Glowing")),
         (Piece "Legs" "Boots" "Boots" "Legs" @("ModifyMovementSpeed", "ModifySprintStaminaUse", "ModifyDodgeStaminaUse", "IncreaseStamina", "DoubleJump", "FeatherFall", "ModifyJumpStaminaUse")),
         (Piece "Shoulder" "Mantle" "Mantle" "Shoulder" @("IncreaseStamina", "ModifyStaminaRegen", "Weightless", "Indestructible", "AddCarryWeight", "Waterproof", "Glowing")),
         (Piece "Utility" "PowderHorn" "Powder Horn" "Utility" @("AddCarryWeight", "IncreaseStamina", "ModifyStaminaRegen", "Luck", "AddMovementSkills", "Glowing", "ModifyArmor") @() $utilityItemNames),
-        (Piece "Demister" "Witchlamp" "Witchlamp" "Utility" @("ModifyWispRange", "IncreaseStamina", "ModifyStaminaRegen", "AddCrossbowsSkill", "ModifyProjectileSpeed", "Luck", "Glowing") @() $demisterItemNames),
+        (Piece "Demister" "Witchlamp" "Witchlamp" "Utility" @("ModifyWispRange", "IncreaseStamina", "ModifyStaminaRegen", "AddHellsyngSkill", "ModifyProjectileSpeed", "Luck", "Glowing") @() $demisterItemNames),
         (Piece "Trinket" "SilverBolt" "Silver Bolt" "Trinket" @("AddCarryWeight", "IncreaseStamina", "ModifyStaminaRegen", "Luck", "AddMovementSkills", "Glowing", "ModifyArmor"))
-    ) @("AddCrossbowsSkill", "ExplosiveArrows", "TripleBowShot", "ModifyDamage", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed") @{
+    ) @("AddHellsyngSkill", "ExplosiveArrows", "TripleBowShot", "ModifyDamage", "QuickDraw", "ModifyFireRate", "ModifyProjectileSpeed") @{
         Magic = "Powder-Spark Watch"
         Rare = "Iron Bolt Vigil"
-        Epic = "Solomon Kane"
+        Epic = "Hellsyng"
         Legendary = "Blackpowder Judgment"
         Mythic = "Witchfinder Verdict"
         Ancient = "Last-Rite Arbalests"
     }
-$families += Family "Nott" $false "a knife duelist path for stealth, stagger pressure and punishing staggered targets" @(
-        (Piece "Weapon" "Nightblade" "Nightblade" "OneHandedWeapon" @("Duelist", "ModifyStaggerDamage", "Opportunist", "ModifyStaggerDuration", "ModifyPhysicalDamage", "OffSetAttack", "AddKnivesSkill", "Executioner", "LifeStealLowHealth") @("Knives")),
-        (Piece "Helmet" "Veil" "Veil" "Helmet" @("ModifyStaminaRegen", "IncreaseStamina", "HeadHunter", "ModifyDiscoveryRadius", "AddKnivesSkill", "OffSetAttack", "Glowing")),
+$families += Family "Nott" $false "the Nott class path for stealth, stagger pressure, punishing finishers and Nott skill scaling" @(
+        (Piece "Weapon" "Nightblade" "Nightblade" "OneHandedWeapon" @("Duelist", "ModifyStaggerDamage", "Opportunist", "ModifyStaggerDuration", "ModifyPhysicalDamage", "OffSetAttack", "AddNottSkill", "Executioner", "LifeStealLowHealth") @("Knives")),
+        (Piece "Helmet" "Veil" "Veil" "Helmet" @("ModifyStaminaRegen", "IncreaseStamina", "HeadHunter", "ModifyDiscoveryRadius", "AddNottSkill", "OffSetAttack", "Glowing")),
         (Piece "Chest" "Leathers" "Leathers" "Chest" @("StaggerOnDamageTaken", "AddMovementSkills", "ModifyStaminaRegen", "IncreaseStamina", "AvoidDamageTakenLowHealth", "ModifyArmorLowHealth", "Glowing")),
         (Piece "Legs" "Treads" "Treads" "Legs" @("ModifyNoise", "ModifySprintStaminaUse", "ModifyMovementSpeed", "AddMovementSkills", "ModifyDodgeStaminaUse", "DoubleJump", "FeatherFall")),
         (Piece "Shoulder" "Cloak" "Cloak" "Shoulder" @("OffSetAttack", "AddMovementSkills", "ModifyStaminaRegen", "IncreaseStamina", "RemoveSpeedPenalty", "Waterproof", "Indestructible")),
-        (Piece "Utility" "SmokeVial" "Smoke Vial" "Utility" @("ModifyNoise", "AddMovementSkills", "AddKnivesSkill", "IncreaseStamina", "OffSetAttack", "ModifyStaminaRegen", "Glowing") @() $utilityItemNames),
-        (Piece "Demister" "ShadowWisp" "Shadow Wisp" "Utility" @("ModifyWispRange", "ModifyNoise", "AddMovementSkills", "IncreaseStamina", "OffSetAttack", "AddKnivesSkill", "Glowing") @() $demisterItemNames),
-        (Piece "Trinket" "SilentCoin" "Silent Coin" "Trinket" @("ModifyNoise", "AddMovementSkills", "AddKnivesSkill", "IncreaseStamina", "OffSetAttack", "ModifyStaminaRegen", "Glowing"))
+        (Piece "Utility" "SmokeVial" "Smoke Vial" "Utility" @("ModifyNoise", "AddMovementSkills", "AddNottSkill", "IncreaseStamina", "OffSetAttack", "ModifyStaminaRegen", "Glowing") @() $utilityItemNames),
+        (Piece "Demister" "ShadowWisp" "Shadow Wisp" "Utility" @("ModifyWispRange", "ModifyNoise", "AddMovementSkills", "IncreaseStamina", "OffSetAttack", "AddNottSkill", "Glowing") @() $demisterItemNames),
+        (Piece "Trinket" "SilentCoin" "Silent Coin" "Trinket" @("ModifyNoise", "AddMovementSkills", "AddNottSkill", "IncreaseStamina", "OffSetAttack", "ModifyStaminaRegen", "Glowing"))
     ) @("ModifyNoise", "Duelist", "ModifyStaggerDamage", "Opportunist", "ModifyStaggerDuration", "OffSetAttack", "ModifyPhysicalDamage") @{
         Magic = "Duskstep Veil"
         Rare = "Blackglass Silence"
@@ -325,16 +409,16 @@ $families += Family "Nott" $false "a knife duelist path for stealth, stagger pre
         Mythic = "Night-Court Execution"
         Ancient = "Starless Covenant"
     }
-$families += Family "Seidr" $false "a mage line for eitr capacity, eitr recovery and staff casting tempo" @(
-        (Piece "Weapon" "Staff" "Star Staff" "Staff" @("ModifyAttackEitrUse", "ModifyMagicFireRate", "ModifyProjectileSpeed", "ModifyElementalDamage", "AddElementalMagicSkill", "DoubleMagicShot", "Indestructible") @("ElementalMagic")),
-        (Piece "Helmet" "Crown" "Crown" "Helmet" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "DartingThoughts", "AddElementalMagicSkill", "Luck", "Glowing")),
+$families += Family "Seidr" $false "the Seidr class line for eitr capacity, recovery, staff casting tempo and Seidr skill scaling" @(
+        (Piece "Weapon" "Staff" "Star Staff" "Staff" @("ModifyAttackEitrUse", "ModifyMagicFireRate", "ModifyProjectileSpeed", "ModifyElementalDamage", "AddSeidrSkill", "DoubleMagicShot", "Indestructible") @("ElementalMagic")),
+        (Piece "Helmet" "Crown" "Crown" "Helmet" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "DartingThoughts", "AddSeidrSkill", "Luck", "Glowing")),
         (Piece "Chest" "Robe" "Robe" "Chest" @("ModifyEitrRegen", "IncreaseEitr", "IncreaseStamina", "ModifyAttackEitrUse", "ModifyStaminaRegen", "Weightless", "Glowing")),
         (Piece "Legs" "Treads" "Treads" "Legs" @("ModifyMovementSpeed", "ModifyEitrRegen", "IncreaseEitr", "ModifySprintStaminaUse", "ModifyDodgeStaminaUse", "DoubleJump", "FeatherFall")),
         (Piece "Shoulder" "Mantle" "Mantle" "Shoulder" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "ModifyStaminaRegen", "Weightless", "Waterproof", "Indestructible")),
         (Piece "Utility" "EitrFocus" "Eitr Focus" "Utility" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "ModifyStaminaRegen", "Luck", "Glowing", "ModifyArmor") @() $utilityItemNames),
-        (Piece "Demister" "MistWisp" "Mist Wisp" "Utility" @("ModifyWispRange", "IncreaseEitr", "ModifyEitrRegen", "ModifyAttackEitrUse", "AddElementalMagicSkill", "Luck", "Glowing") @() $demisterItemNames),
+        (Piece "Demister" "MistWisp" "Mist Wisp" "Utility" @("ModifyWispRange", "IncreaseEitr", "ModifyEitrRegen", "ModifyAttackEitrUse", "AddSeidrSkill", "Luck", "Glowing") @() $demisterItemNames),
         (Piece "Trinket" "RuneBead" "Rune Bead" "Trinket" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "ModifyStaminaRegen", "Luck", "Glowing", "ModifyArmor"))
-    ) @("IncreaseEitr", "ModifyAttackEitrUse", "ModifyEitrRegen", "ModifyMagicFireRate", "DoubleMagicShot", "AddElementalMagicSkill", "ModifyElementalDamage") @{
+    ) @("IncreaseEitr", "ModifyAttackEitrUse", "ModifyEitrRegen", "ModifyMagicFireRate", "DoubleMagicShot", "AddSeidrSkill", "ModifyElementalDamage") @{
         Magic = "Rune-Spark Weave"
         Rare = "Mist-Eitr Regalia"
         Epic = "Starfall Vestments"
@@ -342,8 +426,8 @@ $families += Family "Seidr" $false "a mage line for eitr capacity, eitr recovery
         Mythic = "World-Root Arcanum"
         Ancient = "Ninefold Seidr"
     }
-$families += Family "Helveig" $false "a blood mage line that strengthens summons, health recovery, eitr reserves and blood magic rites" @(
-        (Piece "Weapon" "Bloodstaff" "Blood Staff" "Staff" @("ModifyAttackEitrUse", "AddBloodMagicSkill", "ModifyAttackHealthUse", "ModifySummonHealth", "ModifySummonDamage", "IncreaseEitr", "ModifyEitrRegen") @("BloodMagic")),
+$families += Family "Helveig" $false "the Helveig class line for summons, healing, eitr reserves and Helveig skill scaling" @(
+        (Piece "Weapon" "Bloodstaff" "Blood Staff" "Staff" @("ModifyAttackEitrUse", "AddHelveigSkill", "ModifyAttackHealthUse", "ModifySummonHealth", "ModifySummonDamage", "IncreaseEitr", "ModifyEitrRegen") @("BloodMagic")),
         (Piece "Helmet" "BoneCrown" "Bone Crown" "Helmet" @("IncreaseHealth", "ModifyHealthRegen", "ModifyEitrRegenLowHealth", "IncreaseEitr", "DartingThoughts", "Luck", "Glowing")),
         (Piece "Chest" "MarrowRobe" "Marrow Robe" "Chest" @("IncreaseHealth", "ModifyAttackEitrUse", "AddHealthRegen", "ModifyHealthRegen", "ModifyEitrRegen", "ModifyEitrRegenLowHealth", "Glowing")),
         (Piece "Legs" "GraveTreads" "Grave Treads" "Legs" @("ModifyMovementSpeed", "IncreaseHealth", "ModifyHealthRegen", "ModifyEitrRegen", "ModifySprintStaminaUse", "ModifyDodgeStaminaUse", "FeatherFall")),
@@ -351,7 +435,7 @@ $families += Family "Helveig" $false "a blood mage line that strengthens summons
         (Piece "Utility" "BoneCharm" "Bone Charm" "Utility" @("IncreaseHealth", "AddHealthRegen", "ModifyHealthRegen", "IncreaseEitr", "ModifyEitrRegen", "Luck", "DartingThoughts") @() $utilityItemNames),
         (Piece "Demister" "GraveWisp" "Grave Wisp" "Utility" @("ModifyWispRange", "IncreaseHealth", "AddHealthRegen", "ModifyHealthRegen", "ModifyEitrRegenLowHealth", "IncreaseEitr", "Glowing") @() $demisterItemNames),
         (Piece "Trinket" "MarrowSeal" "Marrow Seal" "Trinket" @("IncreaseHealth", "AddHealthRegen", "ModifyHealthRegen", "IncreaseEitr", "ModifyEitrRegen", "Luck", "Glowing"))
-    ) @("AddBloodMagicSkill", "ModifyAttackEitrUse", "IncreaseHealth", "ModifySummonDamage", "ModifySummonHealth", "ModifyHealthRegen", "ModifyAttackHealthUse") @{
+    ) @("AddHelveigSkill", "ModifyAttackEitrUse", "IncreaseHealth", "ModifySummonDamage", "ModifySummonHealth", "ModifyHealthRegen", "ModifyAttackHealthUse") @{
         Magic = "Bone-Spark Pact"
         Rare = "Marrowcaller Rite"
         Epic = "Draugr Choir"
@@ -359,16 +443,16 @@ $families += Family "Helveig" $false "a blood mage line that strengthens summons
         Mythic = "Blood-Moon Conclave"
         Ancient = "Helheim Dominion"
     }
-$families += Family "Moonvein" $false "a magic archer line that blends bow skill with SpellSword and EitrLeech" @(
-        (Piece "Weapon" "Moonbow" "Moonbow" "Bow" @("SpellSword", "EitrLeech", "AddBowsSkill", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "TripleBowShot")),
-        (Piece "Helmet" "Cowl" "Cowl" "Helmet" @("AddBowsSkill", "IncreaseEitr", "ModifyEitrRegen", "ModifyDiscoveryRadius", "HeadHunter", "Luck", "Glowing")),
+$families += Family "Moonvein" $false "the Moonvein class line for spellbow combat, eitr flow and Moonvein skill scaling" @(
+        (Piece "Weapon" "Moonbow" "Moonbow" "Bow" @("SpellSword", "EitrLeech", "AddMoonveinSkill", "ModifyDrawStaminaUse", "ModifyProjectileSpeed", "ModifyFireRate", "TripleBowShot")),
+        (Piece "Helmet" "Cowl" "Cowl" "Helmet" @("AddMoonveinSkill", "IncreaseEitr", "ModifyEitrRegen", "ModifyDiscoveryRadius", "HeadHunter", "Luck", "Glowing")),
         (Piece "Chest" "Hauberk" "Hauberk" "Chest" @("ModifyEitrRegen", "ModifyDrawStaminaUse", "IncreaseEitr", "ModifyStaminaRegen", "AddMovementSkills", "ModifyAttackEitrUse", "Glowing")),
         (Piece "Legs" "Striders" "Striders" "Legs" @("ModifyMovementSpeed", "ModifySprintStaminaUse", "AddMovementSkills", "ModifyEitrRegen", "IncreaseStamina", "ModifyDodgeStaminaUse", "DoubleJump")),
         (Piece "Shoulder" "Mantle" "Mantle" "Shoulder" @("IncreaseEitr", "ModifyEitrRegen", "ModifyStaminaRegen", "AddMovementSkills", "IncreaseStamina", "RemoveSpeedPenalty", "Indestructible")),
-        (Piece "Utility" "MoonLens" "Moon Lens" "Utility" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "ModifyStaminaRegen", "AddBowsSkill", "Luck", "Glowing") @() $utilityItemNames),
-        (Piece "Demister" "MoonWisp" "Moon Wisp" "Utility" @("ModifyWispRange", "IncreaseEitr", "ModifyEitrRegen", "AddBowsSkill", "IncreaseStamina", "Luck", "Glowing") @() $demisterItemNames),
-        (Piece "Trinket" "EitrNock" "Eitr Nock" "Trinket" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "ModifyStaminaRegen", "AddBowsSkill", "Luck", "Glowing"))
-    ) @("SpellSword", "ModifyAttackEitrUse", "EitrLeech", "AddBowsSkill", "IncreaseEitr", "TripleBowShot", "ModifyFireRate") @{
+        (Piece "Utility" "MoonLens" "Moon Lens" "Utility" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "ModifyStaminaRegen", "AddMoonveinSkill", "Luck", "Glowing") @() $utilityItemNames),
+        (Piece "Demister" "MoonWisp" "Moon Wisp" "Utility" @("ModifyWispRange", "IncreaseEitr", "ModifyEitrRegen", "AddMoonveinSkill", "IncreaseStamina", "Luck", "Glowing") @() $demisterItemNames),
+        (Piece "Trinket" "EitrNock" "Eitr Nock" "Trinket" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "ModifyStaminaRegen", "AddMoonveinSkill", "Luck", "Glowing"))
+    ) @("SpellSword", "ModifyAttackEitrUse", "EitrLeech", "AddMoonveinSkill", "IncreaseEitr", "TripleBowShot", "ModifyFireRate") @{
         Magic = "Moonlit Nock"
         Rare = "Eitrstring Path"
         Epic = "Spellbow Meridian"
@@ -376,16 +460,16 @@ $families += Family "Moonvein" $false "a magic archer line that blends bow skill
         Mythic = "Lunar Spellshot"
         Ancient = "Celestial Bow-Rite"
     }
-$families += Family "Frostbrand" $false "a two-handed spellblade line for SpellSword, EitrLeech, attack tempo, elemental damage and frost bursts" @(
-        (Piece "Weapon" "Runeblade" "Runeblade" "TwoHandedWeapon" @("SpellSword", "ModifyAttackSpeed", "AddFrostDamage", "ModifyElementalDamage", "EitrLeech", "ModifyAttackEitrUse", "EitrWeave", "AddSwordsSkill", "ModifyPhysicalDamage") @("Swords")),
+$families += Family "Frostbrand" $false "the Frostbrand class line for two-handed spellblade combat, elemental bursts and Frostbrand skill scaling" @(
+        (Piece "Weapon" "Runeblade" "Runeblade" "TwoHandedWeapon" @("SpellSword", "ModifyAttackSpeed", "AddFrostDamage", "ModifyElementalDamage", "EitrLeech", "ModifyAttackEitrUse", "EitrWeave", "AddFrostbrandSkill", "ModifyPhysicalDamage") @("Swords")),
         (Piece "Helmet" "Crown" "Crown" "Helmet" @("IncreaseEitr", "ModifyEitrRegen", "ModifyArmor", "AddFrostResistancePercentage", "Glowing", "Luck")),
         (Piece "Chest" "Cuirass" "Cuirass" "Chest" @("ModifyEitrRegen", "IncreaseEitr", "ModifyAttackEitrUse", "ModifyArmor", "IncreaseStamina", "AddFrostResistancePercentage", "Weightless")),
         (Piece "Legs" "Greaves" "Greaves" "Legs" @("ModifyMovementSpeed", "IncreaseEitr", "ModifySprintStaminaUse", "ModifyDodgeStaminaUse", "IncreaseStamina", "AddMovementSkills", "AddFrostResistancePercentage")),
         (Piece "Shoulder" "Cloak" "Cloak" "Shoulder" @("AddFrostResistancePercentage", "IncreaseEitr", "ModifyEitrRegen", "ModifyStaminaRegen", "RemoveSpeedPenalty", "Warmth", "Indestructible")),
         (Piece "Utility" "FrostFocus" "Frost Focus" "Utility" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "AddFrostResistancePercentage", "Luck", "Glowing", "ModifyArmor") @() $utilityItemNames),
-        (Piece "Demister" "FrostWisp" "Frost Wisp" "Utility" @("ModifyWispRange", "IncreaseEitr", "ModifyEitrRegen", "AddFrostResistancePercentage", "AddSwordsSkill", "Luck", "Glowing") @() $demisterItemNames),
+        (Piece "Demister" "FrostWisp" "Frost Wisp" "Utility" @("ModifyWispRange", "IncreaseEitr", "ModifyEitrRegen", "AddFrostResistancePercentage", "AddFrostbrandSkill", "Luck", "Glowing") @() $demisterItemNames),
         (Piece "Trinket" "FrozenSeal" "Frozen Seal" "Trinket" @("IncreaseEitr", "ModifyEitrRegen", "IncreaseStamina", "AddFrostResistancePercentage", "Luck", "Glowing", "ModifyArmor"))
-    ) @("SpellSword", "IncreaseEitr", "ModifyAttackEitrUse", "EitrLeech", "AddSwordsSkill", "ModifyElementalDamage", "FrostDamageAOE") @{
+    ) @("SpellSword", "IncreaseEitr", "ModifyAttackEitrUse", "EitrLeech", "AddFrostbrandSkill", "ModifyElementalDamage", "FrostDamageAOE") @{
         Magic = "Frost-Touched Blades"
         Rare = "Runeblade Accord"
         Epic = "Cold Star Blades"
@@ -429,9 +513,10 @@ function NewSetItem([object] $family, [object] $rarity, [object] $piece) {
 
 function NewSetInfo([object] $family, [object] $rarity, [object[]] $pieces) {
     $pieceCount = $pieces.Count
+    $fullSetActivationCount = [Math]::Max(2, $pieceCount - 1)
     $bonuses = @()
     for ($i = 0; $i -lt ($pieceCount - 1); $i++) {
-        $bonuses += Bonus ($i + 2) $family.BonusTypes[$i] $rarity.Key
+        $bonuses += Bonus ([Math]::Min($i + 2, $fullSetActivationCount)) $family.BonusTypes[$i] $rarity.Key
     }
 
     return Obj ([ordered] @{
@@ -507,6 +592,15 @@ function AddFixedGuaranteedEffect([object] $item, [string] $effectType, [double]
 function RemoveGuaranteedEffect([object] $item, [string] $effectType) {
     $item.GuaranteedMagicEffects = @($item.GuaranteedMagicEffects | Where-Object { $_.Type -ne $effectType })
     $item.GuaranteedEffectCount = @($item.GuaranteedMagicEffects).Count
+}
+
+function AddSetBonusIfMissing([object] $set, [int] $count, [string] $effectType, [string] $rarity) {
+    $existing = @($set.SetBonuses | Where-Object { $_.Count -eq $count -and $_.Effect.Type -eq $effectType } | Select-Object -First 1)
+    if ($existing.Count -gt 0) {
+        return
+    }
+
+    $set.SetBonuses = @(@($set.SetBonuses) + (Bonus $count $effectType $rarity))
 }
 
 $forcedPrefabRequirements = @()
@@ -662,7 +756,7 @@ ForcedPrefabs "Magic" "Heimdall" "Chest" @("ArmorIronChest")
 ForcedPrefabs "Magic" "Ragnar" "BattleAxe" @("FistFenrirClaw")
 ForcedPrefabs "Magic" "Ragnar" "Helmet" $trollArmor.Helmet
 ForcedPrefabs "Magic" "Ragnar" "Chest" $trollArmor.Chest
-ForcedPrefabs "Magic" "Hraesvelgr" "Longbow" @("BowFineWood")
+ForcedPrefabs "Magic" "Hraesvelgr" "Longbow" @("BowHuntsman")
 ForcedPrefabs "Magic" "Hraesvelgr" "Hood" $rootArmor.Helmet
 ForcedPrefabs "Magic" "Hraesvelgr" "Harness" $rootArmor.Chest
 ForcedPrefabs "Magic" "Nott" "Nightblade" @("KnifeChitin")
@@ -671,7 +765,7 @@ ForcedPrefabs "Magic" "Nott" "Leathers" $trollArmor.Chest
 ForcedPrefabs "Magic" "Helveig" "Bloodstaff" @("StaffSkeleton", "StaffShield")
 ForcedPrefabs "Magic" "Helveig" "BoneCrown" $emblaArmor.Helmet
 ForcedPrefabs "Magic" "Helveig" "MarrowRobe" $emblaArmor.Chest
-ForcedPrefabs "Magic" "Moonvein" "Moonbow" @("BowFineWood")
+ForcedPrefabs "Magic" "Moonvein" "Moonbow" @("BowHuntsman")
 ForcedPrefabs "Magic" "Moonvein" "Cowl" $rootArmor.Helmet
 ForcedPrefabs "Magic" "Moonvein" "Hauberk" $rootArmor.Chest
 ForcedPrefabs "Magic" "Frostbrand" "Runeblade" @("Battleaxe")
@@ -685,15 +779,15 @@ ForcedPrefabs "Rare" "Ragnar" "BattleAxe" @("FistBjornUndeadClaw")
 ForceArmorPrefabs "Rare" "Ragnar" $bjornArmor "Helmet" "Chest" "Legs"
 ForcedPrefabs "Rare" "Hraesvelgr" "Longbow" @("BowDraugrFang")
 ForceArmorPrefabs "Rare" "Hraesvelgr" $rootArmor "Hood" "Harness" "Stride"
-ForcedPrefabs "Rare" "SolomonKane" "WitchfinderArbalest" @("CrossbowArbalest")
-ForceArmorPrefabs "Rare" "SolomonKane" $trollArmor "Widebrim" "Longcoat" "Boots"
+ForcedPrefabs "Rare" "Hellsyng" "WitchfinderArbalest" @("CrossbowArbalest")
+ForceArmorPrefabs "Rare" "Hellsyng" $trollArmor "Widebrim" "Longcoat" "Boots"
 ForcedPrefabs "Rare" "Nott" "Nightblade" @("KnifeSilver")
 ForceArmorPrefabs "Rare" "Nott" $trollArmor "Veil" "Leathers" "Treads"
 ForcedPrefabs "Rare" "Seidr" "Staff" @("StaffFireball", "StaffIceShards")
 ForceArmorPrefabs "Rare" "Seidr" $emblaArmor "Crown" "Robe" "Treads"
 ForcedPrefabs "Rare" "Helveig" "Bloodstaff" @("StaffSkeleton", "StaffShield")
 ForceArmorPrefabs "Rare" "Helveig" $emblaArmor "BoneCrown" "MarrowRobe" "GraveTreads"
-ForcedPrefabs "Rare" "Moonvein" "Moonbow" @("BowHuntsman")
+ForcedPrefabs "Rare" "Moonvein" "Moonbow" @("BowDraugrFang")
 ForceArmorPrefabs "Rare" "Moonvein" $rootArmor "Cowl" "Hauberk" "Striders"
 ForcedPrefabs "Rare" "Frostbrand" "Runeblade" @("SwordMistwalker")
 ForceArmorPrefabs "Rare" "Frostbrand" $paddedArmor "Crown" "Cuirass" "Greaves"
@@ -708,9 +802,9 @@ ForcedPrefabs "Epic" "Ragnar" "Cape" @("CapeAsksvin")
 ForcedPrefabs "Epic" "Hraesvelgr" "Longbow" @("BowSpineSnap")
 ForceArmorPrefabs "Epic" "Hraesvelgr" $loxArmor "Hood" "Harness" "Stride"
 ForcedPrefabs "Epic" "Hraesvelgr" "Mantle" @("CapeAsksvin")
-ForcedPrefabs "Epic" "SolomonKane" "WitchfinderArbalest" @("CrossbowArbalest")
-ForceArmorPrefabs "Epic" "SolomonKane" $loxArmor "Widebrim" "Longcoat" "Boots"
-ForcedPrefabs "Epic" "SolomonKane" "Mantle" @("CapeAsksvin")
+ForcedPrefabs "Epic" "Hellsyng" "WitchfinderArbalest" @("CrossbowArbalest")
+ForceArmorPrefabs "Epic" "Hellsyng" $loxArmor "Widebrim" "Longcoat" "Boots"
+ForcedPrefabs "Epic" "Hellsyng" "Mantle" @("CapeAsksvin")
 ForcedPrefabs "Epic" "Nott" "Nightblade" @("KnifeBlackMetal")
 ForceArmorPrefabs "Epic" "Nott" $fenringArmor "Veil" "Leathers" "Treads"
 ForcedPrefabs "Epic" "Nott" "Cloak" @("CapeAsksvin")
@@ -740,10 +834,10 @@ ForcedPrefabs "Legendary" "Hraesvelgr" "Longbow" $ashlandsBows
 ForceArmorPrefabs "Legendary" "Hraesvelgr" $loxArmor "Hood" "Harness" "Stride"
 ForcedPrefabs "Legendary" "Hraesvelgr" "Mantle" @("CapeDeerHide")
 ForcedPrefabs "Legendary" "Hraesvelgr" "WindGauge" $beltStrengthPrefabNames
-ForcedPrefabs "Legendary" "SolomonKane" "WitchfinderArbalest" $ashlandsCrossbows
-ForceArmorPrefabs "Legendary" "SolomonKane" $loxArmor "Widebrim" "Longcoat" "Boots"
-ForcedPrefabs "Legendary" "SolomonKane" "Mantle" @("CapeDeerHide")
-ForcedPrefabs "Legendary" "SolomonKane" "PowderHorn" $beltStrengthPrefabNames
+ForcedPrefabs "Legendary" "Hellsyng" "WitchfinderArbalest" $ashlandsCrossbows
+ForceArmorPrefabs "Legendary" "Hellsyng" $loxArmor "Widebrim" "Longcoat" "Boots"
+ForcedPrefabs "Legendary" "Hellsyng" "Mantle" @("CapeDeerHide")
+ForcedPrefabs "Legendary" "Hellsyng" "PowderHorn" $beltStrengthPrefabNames
 ForcedPrefabs "Legendary" "Nott" "Nightblade" $goldKnives
 ForceArmorPrefabs "Legendary" "Nott" $fenringArmor "Veil" "Leathers" "Treads"
 ForcedPrefabs "Legendary" "Nott" "Cloak" @("CapeDeerHide")
@@ -781,11 +875,11 @@ ForceArmorPrefabs "Mythic" "Hraesvelgr" $loxArmor "Hood" "Harness" "Stride"
 ForcedPrefabs "Mythic" "Hraesvelgr" "Mantle" @("CapeDeepNorth")
 ForcedPrefabs "Mythic" "Hraesvelgr" "WindGauge" $beltStrengthPrefabNames
 ForcedPrefabs "Mythic" "Hraesvelgr" "WispFeather" $demisterPrefabNames
-ForcedPrefabs "Mythic" "SolomonKane" "WitchfinderArbalest" $goldCrossbows
-ForceArmorPrefabs "Mythic" "SolomonKane" $vileBoneArmor "Widebrim" "Longcoat" "Boots"
-ForcedPrefabs "Mythic" "SolomonKane" "Mantle" @("CapeDeepNorth")
-ForcedPrefabs "Mythic" "SolomonKane" "PowderHorn" $beltStrengthPrefabNames
-ForcedPrefabs "Mythic" "SolomonKane" "Witchlamp" $demisterPrefabNames
+ForcedPrefabs "Mythic" "Hellsyng" "WitchfinderArbalest" $goldCrossbows
+ForceArmorPrefabs "Mythic" "Hellsyng" $vileBoneArmor "Widebrim" "Longcoat" "Boots"
+ForcedPrefabs "Mythic" "Hellsyng" "Mantle" @("CapeDeepNorth")
+ForcedPrefabs "Mythic" "Hellsyng" "PowderHorn" $beltStrengthPrefabNames
+ForcedPrefabs "Mythic" "Hellsyng" "Witchlamp" $demisterPrefabNames
 ForcedPrefabs "Mythic" "Nott" "Nightblade" $goldKnives
 ForceArmorPrefabs "Mythic" "Nott" $askArmor "Veil" "Leathers" "Treads"
 ForcedPrefabs "Mythic" "Nott" "Cloak" @("CapeDeepNorth")
@@ -831,12 +925,12 @@ ForcedPrefabs "Ancient" "Hraesvelgr" "Mantle" @("CapeDeepNorth")
 ForcedPrefabs "Ancient" "Hraesvelgr" "WindGauge" $beltStrengthPrefabNames
 ForcedPrefabs "Ancient" "Hraesvelgr" "WispFeather" $demisterPrefabNames
 ForcedPrefabs "Ancient" "Hraesvelgr" "SkyToken" @("TrinketBloodGoldStamina")
-ForcedPrefabs "Ancient" "SolomonKane" "WitchfinderArbalest" $goldCrossbows
-ForceArmorPrefabs "Ancient" "SolomonKane" $vileBoneArmor "Widebrim" "Longcoat" "Boots"
-ForcedPrefabs "Ancient" "SolomonKane" "Mantle" @("CapeDeepNorth")
-ForcedPrefabs "Ancient" "SolomonKane" "PowderHorn" $beltStrengthPrefabNames
-ForcedPrefabs "Ancient" "SolomonKane" "Witchlamp" $demisterPrefabNames
-ForcedPrefabs "Ancient" "SolomonKane" "SilverBolt" @("TrinketBloodGoldStamina")
+ForcedPrefabs "Ancient" "Hellsyng" "WitchfinderArbalest" $goldCrossbows
+ForceArmorPrefabs "Ancient" "Hellsyng" $vileBoneArmor "Widebrim" "Longcoat" "Boots"
+ForcedPrefabs "Ancient" "Hellsyng" "Mantle" @("CapeDeepNorth")
+ForcedPrefabs "Ancient" "Hellsyng" "PowderHorn" $beltStrengthPrefabNames
+ForcedPrefabs "Ancient" "Hellsyng" "Witchlamp" $demisterPrefabNames
+ForcedPrefabs "Ancient" "Hellsyng" "SilverBolt" @("TrinketBloodGoldStamina")
 ForcedPrefabs "Ancient" "Nott" "Nightblade" $goldKnives
 ForceArmorPrefabs "Ancient" "Nott" $askArmor "Veil" "Leathers" "Treads"
 ForcedPrefabs "Ancient" "Nott" "Cloak" @("CapeDeepNorth")
@@ -955,6 +1049,26 @@ function ApplyHelveigBloodstaffHealthUseOverrides() {
     }
 }
 
+function ApplyFrostDamageAoePairing() {
+    $setBuckets = [ordered] @{
+        MagicSets     = "Magic"
+        RareSets      = "Rare"
+        EpicSets      = "Epic"
+        LegendarySets = "Legendary"
+        MythicSets    = "Mythic"
+        AncientSets   = "Ancient"
+    }
+
+    foreach ($bucket in @($setBuckets.Keys)) {
+        $rarity = $setBuckets[$bucket]
+        foreach ($set in @($generated[$bucket] | Where-Object { $_.ID -match "^(Magic|Rare|Epic|Mythic|Ancient)?(Ragnar|Frostbrand)$" })) {
+            foreach ($frostAoeBonus in @($set.SetBonuses | Where-Object { $_.Effect.Type -eq "FrostDamageAOE" })) {
+                AddSetBonusIfMissing $set $frostAoeBonus.Count "AddFrostDamage" $rarity
+            }
+        }
+    }
+}
+
 $generated = @{
     MagicItems = @()
     MagicSets = @()
@@ -972,7 +1086,7 @@ $generated = @{
 
 foreach ($rarity in $rarities) {
     foreach ($family in $families) {
-        if ($rarity.Key -eq "Magic" -and $family.ID -in @("SolomonKane", "Seidr")) {
+        if ($rarity.Key -eq "Magic" -and $family.ID -in @("Hellsyng", "Seidr")) {
             continue
         }
 
@@ -993,6 +1107,7 @@ ApplyMagicRagnarSurvivalOverride
 ApplyRagnarLifeStealOverrides
 ApplyRagnarAttackHealthUseOverrides
 ApplyHelveigBloodstaffHealthUseOverrides
+ApplyFrostDamageAoePairing
 
 $thorPieces = @(
     (Piece "Weapon" "ReturningAxe" "Returning Axe" "OneHandedWeapon" @("Throwable", "RecallWeapon", "AddLightningDamage", "ChainLightning") @("Axes") @("AxeJotunBane", "AxeBlackMetal", "AxeIron")),
@@ -1037,7 +1152,7 @@ $raritySetsConfig = Obj ([ordered] @{
 })
 
 $legendaryConfig = Get-Content $legendaryPath -Raw | ConvertFrom-Json
-$familyPattern = "^(Mythic)?(Heimdall|Ragnar|Hraesvelgr|SolomonKane|Nott|Seidr|Helveig|Moonvein|Frostbrand)"
+$familyPattern = "^(Mythic)?(Heimdall|Ragnar|Hraesvelgr|Hellsyng|Nott|Seidr|Helveig|Moonvein|Frostbrand)"
 $legendarySetIds = @($families | ForEach-Object { $_.ID })
 $mythicSetIds = @($families | ForEach-Object { "Mythic$($_.ID)" })
 

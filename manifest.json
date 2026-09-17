@@ -1,8 +1,8 @@
 {
   "name": "EpicLootRaritySets",
-  "version_number": "0.1.39",
+  "version_number": "1.0.0",
   "website_url": "",
-  "description": "EpicLoot set progression with rarity tiers, class builds, boss drops and complete-set abilities.",
+  "description": "Stable EpicLoot class-set progression with rarity tiers, boss drops, movable ability/passive panels and localized compendium.",
   "dependencies": [
     "RandyKnapp-EpicLoot-0.14.5",
     "Alpus-NorseDemigods-1.7.1",

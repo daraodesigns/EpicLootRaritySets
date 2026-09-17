@@ -1477,15 +1477,15 @@
           "MinValue": 40,
           "MaxValue": 50,
           "Increment": 1
-        },
-        "SelectionWeight": 10,
-        "Prefixes": [
-          "$mod_epicloot_me_ammoconservation_prefix1"
-        ],
-        "Suffixes": [
-          "$mod_epicloot_me_ammoconservation_suffix1"
-        ]
-      }
+        }
+      },
+      "SelectionWeight": 10,
+      "Prefixes": [
+        "$mod_epicloot_me_ammoconservation_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_ammoconservation_suffix1"
+      ]
     },
     {
       "Type": "InstantMead",
@@ -1505,15 +1505,13 @@
           "Ancient"
         ]
       },
-      "ValuesPerRarity": {
-        "SelectionWeight": 10,
-        "Prefixes": [
-          "$mod_epicloot_me_instantmead_prefix1"
-        ],
-        "Suffixes": [
-          "$mod_epicloot_me_instantmead_suffix1"
-        ]
-      }
+      "SelectionWeight": 10,
+      "Prefixes": [
+        "$mod_epicloot_me_instantmead_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_instantmead_suffix1"
+      ]
     },
     {
       "Type": "AutoMead",
@@ -1532,15 +1530,13 @@
           "Ancient"
         ]
       },
-      "ValuesPerRarity": {
-        "SelectionWeight": 10,
-        "Prefixes": [
-          "$mod_epicloot_me_automead_prefix1"
-        ],
-        "Suffixes": [
-          "$mod_epicloot_me_automead_suffix1"
-        ]
-      }
+      "SelectionWeight": 10,
+      "Prefixes": [
+        "$mod_epicloot_me_automead_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_automead_suffix1"
+      ]
     },
     {
       "Type": "ModifyNoise",
@@ -2789,6 +2785,11 @@
         ]
       },
       "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 1,
+          "Increment": 1
+        },
         "Rare": {
           "MinValue": 1,
           "MaxValue": 2,
@@ -3028,6 +3029,11 @@
         ]
       },
       "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 1,
+          "Increment": 1
+        },
         "Rare": {
           "MinValue": 1,
           "MaxValue": 2,
@@ -4059,6 +4065,11 @@
         ]
       },
       "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 0.1,
+          "MaxValue": 1,
+          "Increment": 0.1
+        },
         "Rare": {
           "MinValue": 0.5,
           "MaxValue": 2,
@@ -6284,6 +6295,11 @@
         "ItemUsesStaminaOnAttack": true
       },
       "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 0.5,
+          "MaxValue": 1.5,
+          "Increment": 0.5
+        },
         "Rare": {
           "MinValue": 1,
           "MaxValue": 2.5,
@@ -6461,6 +6477,7 @@
           "Knives"
         ],
         "AllowedRarities": [
+          "Magic",
           "Rare",
           "Epic",
           "Legendary",
@@ -6469,6 +6486,11 @@
         ]
       },
       "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 4,
+          "MaxValue": 8,
+          "Increment": 1
+        },
         "Rare": {
           "MinValue": 6,
           "MaxValue": 10,
@@ -6509,7 +6531,9 @@
       "Description": "$mod_epicloot_me_duelist_desc",
       "Requirements": {
         "AllowedItemTypes": [
-          "OneHandedWeapon"
+          "OneHandedWeapon",
+          "TwoHandedWeapon",
+          "TwoHandedWeaponLeft"
         ],
         "ItemUsesStaminaOnAttack": true,
         "ExclusiveEffectTypes": [
@@ -7158,6 +7182,21 @@
         "NoRoll": true
       },
       "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 3,
+          "MaxValue": 3,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 4,
+          "MaxValue": 4,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 5,
+          "MaxValue": 5,
+          "Increment": 1
+        },
         "Legendary": {
           "MinValue": 5,
           "MaxValue": 5,
@@ -7191,6 +7230,21 @@
         "NoRoll": true
       },
       "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 10,
+          "MaxValue": 10,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 20,
+          "MaxValue": 20,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 30,
+          "MaxValue": 30,
+          "Increment": 1
+        },
         "Legendary": {
           "MinValue": 40,
           "MaxValue": 40,
@@ -7215,6 +7269,459 @@
         "NoRoll": true
       },
       "Ability": "Berserker"
+    },
+    {
+      "Type": "AddHeimdallSkill",
+      "DisplayText": "$mod_epicloot_me_addheimdallskill_display",
+      "Description": "$mod_epicloot_me_addheimdallskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addheimdallskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addheimdallskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddRagnarSkill",
+      "DisplayText": "$mod_epicloot_me_addragnarskill_display",
+      "Description": "$mod_epicloot_me_addragnarskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addragnarskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addragnarskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddHraesvelgrSkill",
+      "DisplayText": "$mod_epicloot_me_addhraesvelgrskill_display",
+      "Description": "$mod_epicloot_me_addhraesvelgrskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addhraesvelgrskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addhraesvelgrskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddHellsyngSkill",
+      "DisplayText": "$mod_epicloot_me_addhellsyngskill_display",
+      "Description": "$mod_epicloot_me_addhellsyngskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addhellsyngskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addhellsyngskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddNottSkill",
+      "DisplayText": "$mod_epicloot_me_addnottskill_display",
+      "Description": "$mod_epicloot_me_addnottskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addnottskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addnottskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddSeidrSkill",
+      "DisplayText": "$mod_epicloot_me_addseidrskill_display",
+      "Description": "$mod_epicloot_me_addseidrskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addseidrskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addseidrskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddHelveigSkill",
+      "DisplayText": "$mod_epicloot_me_addhelveigskill_display",
+      "Description": "$mod_epicloot_me_addhelveigskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addhelveigskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addhelveigskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddMoonveinSkill",
+      "DisplayText": "$mod_epicloot_me_addmoonveinskill_display",
+      "Description": "$mod_epicloot_me_addmoonveinskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addmoonveinskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addmoonveinskill_suffix1"
+      ]
+    },
+    {
+      "Type": "AddFrostbrandSkill",
+      "DisplayText": "$mod_epicloot_me_addfrostbrandskill_display",
+      "Description": "$mod_epicloot_me_addfrostbrandskill_desc",
+      "ValuesPerRarity": {
+        "Magic": {
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
+        },
+        "Rare": {
+          "MinValue": 2,
+          "MaxValue": 9,
+          "Increment": 1
+        },
+        "Epic": {
+          "MinValue": 4,
+          "MaxValue": 12,
+          "Increment": 1
+        },
+        "Legendary": {
+          "MinValue": 6,
+          "MaxValue": 18,
+          "Increment": 1
+        },
+        "Mythic": {
+          "MinValue": 9,
+          "MaxValue": 25,
+          "Increment": 1
+        },
+        "Ancient": {
+          "MinValue": 12,
+          "MaxValue": 32,
+          "Increment": 1
+        }
+      },
+      "SelectionWeight": 0,
+      "CanBeAugmented": false,
+      "CanBeDisenchanted": false,
+      "CanBeRunified": false,
+      "Prefixes": [
+        "$mod_epicloot_me_addfrostbrandskill_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_addfrostbrandskill_suffix1"
+      ]
+    },
+    {
+      "Type": "LastHope",
+      "DisplayText": "$mod_epicloot_me_lasthope_display",
+      "Description": "$mod_epicloot_me_lasthope_desc",
+      "Requirements": {
+        "AllowedItemTypes": [
+          "Utility",
+          "Trinket"
+        ],
+        "AllowedRarities": [
+          "Magic",
+          "Rare",
+          "Epic",
+          "Legendary",
+          "Mythic",
+          "Ancient"
+        ],
+        "ExclusiveEffectTypes": [
+          "Undying"
+        ]
+      },
+      "SelectionWeight": 2,
+      "Prefixes": [
+        "$mod_epicloot_me_lasthope_prefix1"
+      ],
+      "Suffixes": [
+        "$mod_epicloot_me_lasthope_suffix1"
+      ],
+      "Ability": "LastHope"
     }
   ]
 }

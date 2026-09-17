@@ -60,8 +60,8 @@ $allConfigText = @(
     Get-Content -LiteralPath $adventureDataPath -Raw
 ) -join "`n"
 
-if ($allConfigText -match 'MagicSolomonKane|MagicSeidr') {
-    throw 'Found stale MagicSolomonKane/MagicSeidr entries.'
+if ($allConfigText -match 'MagicHellsyng|MagicSeidr') {
+    throw 'Found stale MagicHellsyng/MagicSeidr entries.'
 }
 
 $moonveinBows = @(
@@ -87,9 +87,15 @@ $shopCounts = [pscustomobject]@{
 }
 
 $source = Get-Content -LiteralPath $sourcePath -Raw
-foreach ($needle in @('PluginVersion = "0.1.39"', 'radamanto.Bestiary', 'GeneratedConfigSynchronizer', 'MoonveinBowEitrUse', 'NottAbilityController', 'SolomonKaneAbilityController', 'Bat Form', 'vampireformIV', 'TrySafeWarp', 'NorseNjordTornadoBridge', 'NorseWaterSphereBridge', 'HelveigAbilityController', 'HraesvelgrRapidVolleyEquipmentEffectValuesForPatch', 'WhirlwindMinDuration', 'MaterialManPropertyContainerUpdateBlockPatch', 'itemDrop.m_itemData.m_dropPrefab = template.gameObject')) {
+foreach ($needle in @('PluginVersion = "0.1.44"', 'radamanto.Bestiary', 'GeneratedConfigSynchronizer', 'MoonveinBowEitrUse', 'NottAbilityController', 'SolomonKaneAbilityController', 'Werewolf Form', 'RDB_Werewolf', 'TrySafeWarp', 'NorseNjordTornadoBridge', 'NorseWaterSphereBridge', 'NorseThorAbilityBridge', 'TryStartTripleLightningStrike', 'Lightning Strike', 'HelveigAbilityController', 'HraesvelgrRapidVolleyEquipmentEffectValuesForPatch', 'WhirlwindMinDuration', 'MaterialManPropertyContainerUpdateBlockPatch', 'itemDrop.m_itemData.m_dropPrefab = template.gameObject')) {
     if ($source -notlike "*$needle*") {
         throw "Source check failed: $needle"
+    }
+}
+
+foreach ($forbiddenNeedle in @('AssetBundle.LoadFromFile', 'shaw_v.assetbundle', 'vampireformIV', 'shwsmDarkGiftIV')) {
+    if ($source -like "*$forbiddenNeedle*") {
+        throw "Forbidden Shawesome asset reference still present: $forbiddenNeedle"
     }
 }
 

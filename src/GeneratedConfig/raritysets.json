@@ -36,7 +36,7 @@
           "Type": "ModifyBlockStaminaUse"
         },
         {
-          "Type": "ModifyPhysicalDamage"
+          "Type": "IncreaseHealth"
         }
       ]
     },
@@ -93,7 +93,7 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyPhysicalDamage"
+          "Type": "OffSetAttack"
         },
         {
           "Type": "Bloodlust"
@@ -107,12 +107,7 @@
           }
         },
         {
-          "Type": "LifeSteal",
-          "Values": {
-            "MinValue": 5,
-            "MaxValue": 5,
-            "Increment": 0.5
-          }
+          "Type": "LifeSteal"
         },
         {
           "Type": "ModifyAttackHealthUse",
@@ -140,7 +135,7 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "LifeSteal"
         }
       ]
     },
@@ -157,10 +152,10 @@
       "GuaranteedEffectCount": 2,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyArmor"
+          "Type": "IncreaseHealth"
         },
         {
-          "Type": "AddHealthRegen"
+          "Type": "LifeSteal"
         }
       ]
     },
@@ -240,7 +235,7 @@
           "Type": "Duelist"
         },
         {
-          "Type": "ModifyStaggerDamage"
+          "Type": "Slow"
         }
       ]
     },
@@ -257,10 +252,10 @@
       "GuaranteedEffectCount": 2,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "ModifyStaggerDamage"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "Opportunist"
         }
       ]
     },
@@ -277,10 +272,10 @@
       "GuaranteedEffectCount": 2,
       "GuaranteedMagicEffects": [
         {
-          "Type": "StaggerOnDamageTaken"
+          "Type": "ModifyStaggerDuration"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "ModifyStaggerDamage"
         }
       ]
     },
@@ -298,10 +293,15 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyAttackEitrUse"
+          "Type": "IncreaseHealth"
         },
         {
-          "Type": "AddBloodMagicSkill"
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         },
         {
           "Type": "ModifyAttackHealthUse",
@@ -329,7 +329,7 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "ModifyHealthRegen"
+          "Type": "IncreaseEitr"
         }
       ]
     },
@@ -349,7 +349,7 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "ModifyAttackEitrUse"
+          "Type": "IncreaseEitr"
         }
       ]
     },
@@ -369,7 +369,12 @@
           "Type": "SpellSword"
         },
         {
-          "Type": "EitrLeech"
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         },
         {
           "Type": "AmmoConservation",
@@ -394,7 +399,7 @@
       "GuaranteedEffectCount": 2,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "EitrLeech"
         },
         {
           "Type": "IncreaseEitr"
@@ -414,10 +419,10 @@
       "GuaranteedEffectCount": 2,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "EitrLeech"
         },
         {
-          "Type": "ModifyDrawStaminaUse"
+          "Type": "IncreaseEitr"
         }
       ]
     },
@@ -431,7 +436,7 @@
           "Battleaxe"
         ]
       },
-      "GuaranteedEffectCount": 2,
+      "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
           "Type": "SpellSword"
@@ -443,6 +448,9 @@
             "MaxValue": 100,
             "Increment": 1
           }
+        },
+        {
+          "Type": "EitrLeech"
         }
       ]
     },
@@ -462,7 +470,7 @@
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "EitrLeech"
         }
       ]
     },
@@ -479,7 +487,7 @@
       "GuaranteedEffectCount": 2,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "EitrLeech"
         },
         {
           "Type": "IncreaseEitr"
@@ -523,7 +531,7 @@
         {
           "Count": 4,
           "Effect": {
-            "Type": "ModifyBlockForce",
+            "Type": "LastHope",
             "Values": {
               "MinValue": 6,
               "MaxValue": 6,
@@ -545,7 +553,7 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddAxesSkill",
+            "Type": "ModifyAttackSpeed",
             "Values": {
               "MinValue": 4,
               "MaxValue": 4,
@@ -556,7 +564,7 @@
         {
           "Count": 3,
           "Effect": {
-            "Type": "ModifyPhysicalDamage",
+            "Type": "Lifesteal",
             "Values": {
               "MinValue": 3,
               "MaxValue": 3,
@@ -578,7 +586,7 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddBowsSkill",
+            "Type": "ModifyProjectileSpeed",
             "Values": {
               "MinValue": 4,
               "MaxValue": 4,
@@ -611,7 +619,7 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "ModifyNoise",
+            "Type": "Opportunist",
             "Values": {
               "MinValue": 60,
               "MaxValue": 60,
@@ -657,8 +665,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 4,
-              "MaxValue": 4,
+              "MinValue": 10,
+              "MaxValue": 10,
               "Increment": 1
             }
           }
@@ -679,8 +687,8 @@
           "Effect": {
             "Type": "SpellSword",
             "Values": {
-              "MinValue": 5,
-              "MaxValue": 5,
+              "MinValue": 10,
+              "MaxValue": 10,
               "Increment": 0.5
             }
           }
@@ -690,8 +698,8 @@
           "Effect": {
             "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 4,
-              "MaxValue": 4,
+              "MinValue": 10,
+              "MaxValue": 10,
               "Increment": 1
             }
           }
@@ -710,10 +718,10 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "SpellSword",
+            "Type": "Duelist",
             "Values": {
-              "MinValue": 5,
-              "MaxValue": 5,
+              "MinValue": 10,
+              "MaxValue": 10,
               "Increment": 0.5
             }
           }
@@ -721,10 +729,21 @@
         {
           "Count": 3,
           "Effect": {
-            "Type": "IncreaseEitr",
+            "Type": "FrostDamageAOE",
             "Values": {
-              "MinValue": 7,
-              "MaxValue": 7,
+              "MinValue": 10,
+              "MaxValue": 10,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "AddFrostDamage",
+            "Values": {
+              "MinValue": 4,
+              "MaxValue": 4,
               "Increment": 1
             }
           }
@@ -749,10 +768,10 @@
           "Type": "ModifyBlockPower"
         },
         {
-          "Type": "ModifyBlockStaminaUse"
+          "Type": "AddElementalResistancePercentage"
         },
         {
-          "Type": "ModifyBlockForce"
+          "Type": "AddPhysicalResistancePercentage"
         }
       ]
     },
@@ -769,13 +788,13 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyBlockStaminaUse"
+          "Type": "ModifyBlockPower"
         },
         {
-          "Type": "ModifyPhysicalDamage"
+          "Type": "ModifyArmor"
         },
         {
-          "Type": "AddFrostDamage"
+          "Type": "AddPhysicalResistancePercentage"
         }
       ]
     },
@@ -798,7 +817,7 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "AddPhysicalResistancePercentage"
         }
       ]
     },
@@ -821,7 +840,7 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "AddPhysicalResistancePercentage"
         }
       ]
     },
@@ -841,10 +860,10 @@
           "Type": "ModifyArmor"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "AddElementalResistancePercentage"
         },
         {
-          "Type": "ModifyDodgeStaminaUse"
+          "Type": "AddPhysicalResistancePercentage"
         }
       ]
     },
@@ -861,18 +880,13 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyPhysicalDamage"
+          "Type": "OffSetAttack"
         },
         {
           "Type": "Bloodlust"
         },
         {
-          "Type": "LifeSteal",
-          "Values": {
-            "MinValue": 6,
-            "MaxValue": 6,
-            "Increment": 0.5
-          }
+          "Type": "LifeSteal"
         },
         {
           "Type": "ModifyAttackHealthUse",
@@ -900,10 +914,10 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "OffSetAttack"
         },
         {
-          "Type": "ModifyArmor"
+          "Type": "ModifyAttackSpeed"
         }
       ]
     },
@@ -920,13 +934,13 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyArmor"
+          "Type": "OffSetAttack"
         },
         {
           "Type": "AddHealthRegen"
         },
         {
-          "Type": "ModifyHealthRegen"
+          "Type": "ModifyAttackSpeed"
         }
       ]
     },
@@ -946,10 +960,10 @@
           "Type": "ModifyMovementSpeed"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "OffSetAttack"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "IncreaseHealth"
         }
       ]
     },
@@ -995,7 +1009,7 @@
           "Type": "QuickDraw"
         },
         {
-          "Type": "ModifyFireRate"
+          "Type": "ModifyDrawStaminaUse"
         }
       ]
     },
@@ -1046,7 +1060,7 @@
       ]
     },
     {
-      "ID": "RareSolomonKaneWitchfinderArbalest",
+      "ID": "RareHellsyngWitchfinderArbalest",
       "Name": "Iron Bolt Vigil Witchfinder Arbalest",
       "Description": "A rare set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -1061,15 +1075,15 @@
           "Type": "ModifyDamage"
         },
         {
-          "Type": "ExplosiveArrows"
+          "Type": "QuickDraw"
         },
         {
-          "Type": "QuickDraw"
+          "Type": "AddCrossbowsSkill"
         }
       ]
     },
     {
-      "ID": "RareSolomonKaneWidebrim",
+      "ID": "RareHellsyngWidebrim",
       "Name": "Iron Bolt Vigil Widebrim",
       "Description": "A rare set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -1081,18 +1095,18 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "HeadHunter"
+          "Type": "QuickDraw"
         },
         {
-          "Type": "ModifyDiscoveryRadius"
+          "Type": "AddCrossbowsSkill"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "ModifyProjectileSpeed"
         }
       ]
     },
     {
-      "ID": "RareSolomonKaneLongcoat",
+      "ID": "RareHellsyngLongcoat",
       "Name": "Iron Bolt Vigil Longcoat",
       "Description": "A rare set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -1104,18 +1118,18 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyArmor"
+          "Type": "QuickDraw"
         },
         {
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "AddCarryWeight"
+          "Type": "ModifyProjectileSpeed"
         }
       ]
     },
     {
-      "ID": "RareSolomonKaneBoots",
+      "ID": "RareHellsyngBoots",
       "Name": "Iron Bolt Vigil Boots",
       "Description": "A rare set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -1130,10 +1144,10 @@
           "Type": "ModifyMovementSpeed"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyDodgeStaminaUse"
+          "Type": "ModifyStaminaRegen"
         }
       ]
     },
@@ -1179,7 +1193,7 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "HeadHunter"
+          "Type": "Opportunist"
         }
       ]
     },
@@ -1196,13 +1210,13 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "StaggerOnDamageTaken"
+          "Type": "ModifyStaggerDamage"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "Duelist"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "Opportunist"
         }
       ]
     },
@@ -1219,7 +1233,7 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyNoise"
+          "Type": "AddKnivesSkill"
         },
         {
           "Type": "ModifySprintStaminaUse"
@@ -1249,7 +1263,15 @@
           "Type": "ModifyMagicFireRate"
         },
         {
-          "Type": "ModifyProjectileSpeed"
+          "Type": "ModifyElementalDamage"
+        },
+        {
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         }
       ]
     },
@@ -1272,7 +1294,7 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "ModifyAttackEitrUse"
         }
       ]
     },
@@ -1295,7 +1317,7 @@
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "ModifyAttackEitrUse"
         }
       ]
     },
@@ -1312,7 +1334,7 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "ModifyAttackEitrUse"
         },
         {
           "Type": "ModifyEitrRegen"
@@ -1348,6 +1370,14 @@
             "MaxValue": 50,
             "Increment": 1
           }
+        },
+        {
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         }
       ]
     },
@@ -1370,7 +1400,7 @@
           "Type": "ModifyHealthRegen"
         },
         {
-          "Type": "ModifyEitrRegenLowHealth"
+          "Type": "IncreaseEitr"
         }
       ]
     },
@@ -1393,7 +1423,7 @@
           "Type": "ModifyAttackEitrUse"
         },
         {
-          "Type": "AddHealthRegen"
+          "Type": "IncreaseEitr"
         }
       ]
     },
@@ -1410,13 +1440,13 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "IncreaseEitr"
         },
         {
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "ModifyHealthRegen"
+          "Type": "AddHealthRegen"
         }
       ]
     },
@@ -1448,6 +1478,14 @@
             "MaxValue": 100,
             "Increment": 1
           }
+        },
+        {
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         }
       ]
     },
@@ -1464,13 +1502,13 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddBowsSkill"
+          "Type": "SpellSword"
         },
         {
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "QuickDraw"
         }
       ]
     },
@@ -1487,7 +1525,7 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "QuickDraw"
         },
         {
           "Type": "ModifyDrawStaminaUse"
@@ -1510,13 +1548,13 @@
       "GuaranteedEffectCount": 3,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "QuickDraw"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "ModifyProjectileSpeed"
         }
       ]
     },
@@ -1537,6 +1575,9 @@
         },
         {
           "Type": "AddFrostDamage"
+        },
+        {
+          "Type": "EitrLeech"
         },
         {
           "Type": "IncreaseEitr",
@@ -1567,7 +1608,7 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "ModifyArmor"
+          "Type": "EitrLeech"
         }
       ]
     },
@@ -1613,7 +1654,7 @@
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "SpellSword"
         }
       ]
     }
@@ -1655,7 +1696,7 @@
         {
           "Count": 4,
           "Effect": {
-            "Type": "ModifyBlockForce",
+            "Type": "LastHope",
             "Values": {
               "MinValue": 9,
               "MaxValue": 9,
@@ -1666,7 +1707,7 @@
         {
           "Count": 5,
           "Effect": {
-            "Type": "IncreaseHealth",
+            "Type": "Bulwark",
             "Values": {
               "MinValue": 10,
               "MaxValue": 10,
@@ -1711,10 +1752,10 @@
         {
           "Count": 4,
           "Effect": {
-            "Type": "LifeStealLowHealth",
+            "Type": "LifeSteal",
             "Values": {
-              "MinValue": 2,
-              "MaxValue": 2,
+              "MinValue": 4,
+              "MaxValue": 4,
               "Increment": 0.5
             }
           }
@@ -1767,13 +1808,13 @@
       ]
     },
     {
-      "ID": "RareSolomonKane",
+      "ID": "RareHellsyng",
       "Name": "Iron Bolt Vigil",
       "LegendaryIDs": [
-        "RareSolomonKaneWitchfinderArbalest",
-        "RareSolomonKaneWidebrim",
-        "RareSolomonKaneLongcoat",
-        "RareSolomonKaneBoots"
+        "RareHellsyngWitchfinderArbalest",
+        "RareHellsyngWidebrim",
+        "RareHellsyngLongcoat",
+        "RareHellsyngBoots"
       ],
       "SetBonuses": [
         {
@@ -1783,17 +1824,6 @@
             "Values": {
               "MinValue": 6,
               "MaxValue": 6,
-              "Increment": 1
-            }
-          }
-        },
-        {
-          "Count": 3,
-          "Effect": {
-            "Type": "ExplosiveArrows",
-            "Values": {
-              "MinValue": 13,
-              "MaxValue": 13,
               "Increment": 1
             }
           }
@@ -1978,8 +2008,8 @@
           "Effect": {
             "Type": "EitrLeech",
             "Values": {
-              "MinValue": 2.5,
-              "MaxValue": 2.5,
+              "MinValue": 5,
+              "MaxValue": 5,
               "Increment": 0.5
             }
           }
@@ -2010,10 +2040,10 @@
         {
           "Count": 3,
           "Effect": {
-            "Type": "IncreaseEitr",
+            "Type": "ModifyAttackEitrUse",
             "Values": {
-              "MinValue": 11,
-              "MaxValue": 11,
+              "MinValue": 6,
+              "MaxValue": 6,
               "Increment": 1
             }
           }
@@ -2202,18 +2232,13 @@
       "GuaranteedEffectCount": 5,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyPhysicalDamage"
+          "Type": "ModifyAttackSpeed"
         },
         {
           "Type": "Bloodlust"
         },
         {
-          "Type": "LifeSteal",
-          "Values": {
-            "MinValue": 8,
-            "MaxValue": 8,
-            "Increment": 0.5
-          }
+          "Type": "LifeSteal"
         },
         {
           "Type": "OffSetAttack"
@@ -2247,10 +2272,10 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "ModifyArmor"
+          "Type": "ModifyAttackSpeed"
         },
         {
-          "Type": "HeadHunter"
+          "Type": "OffSetAttack"
         }
       ]
     },
@@ -2267,7 +2292,7 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyArmor"
+          "Type": "ModifyAttackSpeed"
         },
         {
           "Type": "AddHealthRegen"
@@ -2302,7 +2327,7 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyDodgeStaminaUse"
+          "Type": "ModifyAttackSpeed"
         }
       ]
     },
@@ -2328,7 +2353,7 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "AddFrostResistancePercentage"
+          "Type": "ModifyAttackSpeed"
         }
       ]
     },
@@ -2377,7 +2402,7 @@
           "Type": "QuickDraw"
         },
         {
-          "Type": "ModifyFireRate"
+          "Type": "ModifyDrawStaminaUse"
         },
         {
           "Type": "ModifyProjectileSpeed"
@@ -2406,7 +2431,7 @@
           "Type": "ModifyDrawStaminaUse"
         },
         {
-          "Type": "ModifyFireRate"
+          "Type": "ModifyProjectileSpeed"
         }
       ]
     },
@@ -2432,7 +2457,7 @@
           "Type": "ModifyDrawStaminaUse"
         },
         {
-          "Type": "ModifyFireRate"
+          "Type": "ModifyProjectileSpeed"
         }
       ]
     },
@@ -2463,8 +2488,8 @@
       ]
     },
     {
-      "ID": "EpicSolomonKaneWitchfinderArbalest",
-      "Name": "Solomon Kane Witchfinder Arbalest",
+      "ID": "EpicHellsyngWitchfinderArbalest",
+      "Name": "Hellsyng Witchfinder Arbalest",
       "Description": "An epic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
       "Requirements": {
@@ -2475,22 +2500,22 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyDamage"
-        },
-        {
-          "Type": "ExplosiveArrows"
+          "Type": "AddCrossbowsSkill"
         },
         {
           "Type": "QuickDraw"
         },
         {
-          "Type": "TripleBowShot"
+          "Type": "IncreaseStamina"
+        },
+        {
+          "Type": "ModifyStaminaRegen"
         }
       ]
     },
     {
-      "ID": "EpicSolomonKaneWidebrim",
-      "Name": "Solomon Kane Widebrim",
+      "ID": "EpicHellsyngWidebrim",
+      "Name": "Hellsyng Widebrim",
       "Description": "An epic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
       "Requirements": {
@@ -2501,10 +2526,10 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "HeadHunter"
+          "Type": "AddCrossbowsSkill"
         },
         {
-          "Type": "ModifyDiscoveryRadius"
+          "Type": "QuickDraw"
         },
         {
           "Type": "IncreaseStamina"
@@ -2515,8 +2540,8 @@
       ]
     },
     {
-      "ID": "EpicSolomonKaneLongcoat",
-      "Name": "Solomon Kane Longcoat",
+      "ID": "EpicHellsyngLongcoat",
+      "Name": "Hellsyng Longcoat",
       "Description": "An epic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
       "Requirements": {
@@ -2527,13 +2552,13 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyArmor"
+          "Type": "AddCrossbowsSkill"
         },
         {
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "AddCarryWeight"
+          "Type": "QuickDraw"
         },
         {
           "Type": "ModifyStaminaRegen"
@@ -2541,8 +2566,8 @@
       ]
     },
     {
-      "ID": "EpicSolomonKaneBoots",
-      "Name": "Solomon Kane Boots",
+      "ID": "EpicHellsyngBoots",
+      "Name": "Hellsyng Boots",
       "Description": "An epic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
       "Requirements": {
@@ -2559,7 +2584,7 @@
           "Type": "ModifySprintStaminaUse"
         },
         {
-          "Type": "ModifyDodgeStaminaUse"
+          "Type": "QuickDraw"
         },
         {
           "Type": "IncreaseStamina"
@@ -2567,8 +2592,8 @@
       ]
     },
     {
-      "ID": "EpicSolomonKaneMantle",
-      "Name": "Solomon Kane Mantle",
+      "ID": "EpicHellsyngMantle",
+      "Name": "Hellsyng Mantle",
       "Description": "An epic set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
       "Requirements": {
@@ -2585,10 +2610,10 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "Weightless"
+          "Type": "QuickDraw"
         },
         {
-          "Type": "Indestructible"
+          "Type": "AddCrossbowsSkill"
         }
       ]
     },
@@ -2637,10 +2662,10 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "HeadHunter"
+          "Type": "ModifyStaggerDuration"
         },
         {
-          "Type": "ModifyDiscoveryRadius"
+          "Type": "ModifyStaggerDamage"
         }
       ]
     },
@@ -2660,7 +2685,7 @@
           "Type": "StaggerOnDamageTaken"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "Opportunist"
         },
         {
           "Type": "ModifyStaminaRegen"
@@ -2683,7 +2708,7 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyNoise"
+          "Type": "Opportunist"
         },
         {
           "Type": "ModifySprintStaminaUse"
@@ -2692,7 +2717,7 @@
           "Type": "ModifyMovementSpeed"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "Duelist"
         }
       ]
     },
@@ -2712,10 +2737,10 @@
           "Type": "OffSetAttack"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "Opportunist"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "Executioner"
         },
         {
           "Type": "IncreaseStamina"
@@ -2743,7 +2768,12 @@
           "Type": "ModifyMagicFireRate"
         },
         {
-          "Type": "ModifyProjectileSpeed"
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         },
         {
           "Type": "ModifyElementalDamage"
@@ -2769,10 +2799,10 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "ModifyAttackEitrUse"
         },
         {
-          "Type": "DartingThoughts"
+          "Type": "ModifyElementalDamage"
         }
       ]
     },
@@ -2795,7 +2825,7 @@
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "ModifyMagicFireRate"
         },
         {
           "Type": "ModifyAttackEitrUse"
@@ -2815,7 +2845,7 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "ModifyElementalDamage"
         },
         {
           "Type": "ModifyEitrRegen"
@@ -2824,7 +2854,7 @@
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "ModifyMagicFireRate"
         }
       ]
     },
@@ -2868,7 +2898,12 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyAttackEitrUse"
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         },
         {
           "Type": "AddBloodMagicSkill"
@@ -2905,7 +2940,7 @@
           "Type": "ModifyHealthRegen"
         },
         {
-          "Type": "ModifyEitrRegenLowHealth"
+          "Type": "ModifyEitrRegen"
         },
         {
           "Type": "IncreaseEitr"
@@ -2934,7 +2969,7 @@
           "Type": "AddHealthRegen"
         },
         {
-          "Type": "ModifyHealthRegen"
+          "Type": "IncreaseEitr"
         }
       ]
     },
@@ -2951,7 +2986,7 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "IncreaseEitr"
         },
         {
           "Type": "IncreaseHealth"
@@ -3009,10 +3044,15 @@
           "Type": "EitrLeech"
         },
         {
-          "Type": "AddBowsSkill"
+          "Type": "IncreaseEitr",
+          "Values": {
+            "MinValue": 100,
+            "MaxValue": 100,
+            "Increment": 1
+          }
         },
         {
-          "Type": "ModifyDrawStaminaUse"
+          "Type": "QuickDraw"
         },
         {
           "Type": "AmmoConservation",
@@ -3043,10 +3083,10 @@
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "EitrLeech"
         },
         {
-          "Type": "ModifyDiscoveryRadius"
+          "Type": "QuickDraw"
         }
       ]
     },
@@ -3063,16 +3103,16 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "EitrLeech"
         },
         {
-          "Type": "ModifyDrawStaminaUse"
+          "Type": "QuickDraw"
         },
         {
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "SpellSword"
         }
       ]
     },
@@ -3089,13 +3129,13 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "SpellSword"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "QuickDraw"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "IncreaseEitr"
         },
         {
           "Type": "ModifyEitrRegen"
@@ -3121,10 +3161,10 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "EitrLeech"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "QuickDraw"
         }
       ]
     },
@@ -3147,7 +3187,10 @@
           "Type": "AddFrostDamage"
         },
         {
-          "Type": "ModifyElementalDamage"
+          "Type": "AddLightningDamage"
+        },
+        {
+          "Type": "EitrLeech"
         },
         {
           "Type": "IncreaseEitr",
@@ -3178,10 +3221,10 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "ModifyArmor"
+          "Type": "SpellSword"
         },
         {
-          "Type": "AddFrostResistancePercentage"
+          "Type": "EitrLeech"
         }
       ]
     },
@@ -3198,7 +3241,7 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyEitrRegen"
+          "Type": "EitrLeech"
         },
         {
           "Type": "IncreaseEitr"
@@ -3207,7 +3250,7 @@
           "Type": "ModifyAttackEitrUse"
         },
         {
-          "Type": "ModifyArmor"
+          "Type": "SpellSword"
         }
       ]
     },
@@ -3224,16 +3267,16 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "ModifyAttackStaminaUse"
         },
         {
           "Type": "IncreaseEitr"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "Duelist"
         },
         {
-          "Type": "ModifyDodgeStaminaUse"
+          "Type": "EitrLeech"
         }
       ]
     },
@@ -3250,7 +3293,7 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "AddFrostResistancePercentage"
+          "Type": "SpellSword"
         },
         {
           "Type": "IncreaseEitr"
@@ -3259,7 +3302,7 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "ModifyAttackStaminaUse"
         }
       ]
     },
@@ -3447,7 +3490,7 @@
           "Type": "Indestructible"
         },
         {
-          "Type": "Weightless"
+          "Type": "AddCarryWeight"
         }
       ]
     },
@@ -3500,13 +3543,13 @@
       "GuaranteedEffectCount": 4,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyMovementSpeed"
+          "Type": "ModifyBuildDistance"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "ModifyJumpStaminaUse"
+          "Type": "AddCarryWeight"
         },
         {
           "Type": "IncreaseStamina"
@@ -3537,10 +3580,10 @@
           "Type": "AddCrafterSkills"
         },
         {
-          "Type": "Weightless"
+          "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "Indestructible"
+          "Type": "ModifyBuildDistance"
         }
       ]
     },
@@ -3593,7 +3636,33 @@
           "Type": "QuickDraw"
         },
         {
-          "Type": "ModifyFireRate"
+          "Type": "ModifyDrawStaminaUse"
+        },
+        {
+          "Type": "ModifyProjectileSpeed"
+        }
+      ]
+    },
+    {
+      "ID": "EpicHellsyngLeatherQuiver",
+      "Name": "Demonslayer Leather Quiver",
+      "Description": "A set quiver piece for a pure archer line that supports bow skill, stamina flow and field mobility.",
+      "IsSetItem": true,
+      "Requirements": {
+        "AllowedItemNames": [
+          "LeatherQuiver"
+        ]
+      },
+      "GuaranteedEffectCount": 4,
+      "GuaranteedMagicEffects": [
+        {
+          "Type": "AddCrossbowsSkill"
+        },
+        {
+          "Type": "QuickDraw"
+        },
+        {
+          "Type": "IncreaseStamina"
         },
         {
           "Type": "ModifyProjectileSpeed"
@@ -3619,10 +3688,10 @@
           "Type": "ModifyEitrRegen"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "QuickDraw"
         },
         {
-          "Type": "AddBowsSkill"
+          "Type": "SpellSword"
         }
       ]
     }
@@ -3706,7 +3775,7 @@
         {
           "Count": 2,
           "Effect": {
-            "Type": "AddAxesSkill",
+            "Type": "ModifyAttackSpeed",
             "Values": {
               "MinValue": 9,
               "MaxValue": 9,
@@ -3728,10 +3797,10 @@
         {
           "Count": 4,
           "Effect": {
-            "Type": "LifeStealLowHealth",
+            "Type": "LifeSteal",
             "Values": {
-              "MinValue": 3,
-              "MaxValue": 3,
+              "MinValue": 5,
+              "MaxValue": 5,
               "Increment": 0.5
             }
           }
@@ -3814,14 +3883,14 @@
       ]
     },
     {
-      "ID": "EpicSolomonKane",
-      "Name": "Solomon Kane",
+      "ID": "EpicHellsyng",
+      "Name": "Hellsyng",
       "LegendaryIDs": [
-        "EpicSolomonKaneWitchfinderArbalest",
-        "EpicSolomonKaneWidebrim",
-        "EpicSolomonKaneLongcoat",
-        "EpicSolomonKaneBoots",
-        "EpicSolomonKaneMantle"
+        "EpicHellsyngWitchfinderArbalest",
+        "EpicHellsyngWidebrim",
+        "EpicHellsyngLongcoat",
+        "EpicHellsyngBoots",
+        "EpicHellsyngMantle"
       ],
       "SetBonuses": [
         {
@@ -3831,17 +3900,6 @@
             "Values": {
               "MinValue": 9,
               "MaxValue": 9,
-              "Increment": 1
-            }
-          }
-        },
-        {
-          "Count": 3,
-          "Effect": {
-            "Type": "ExplosiveArrows",
-            "Values": {
-              "MinValue": 23,
-              "MaxValue": 23,
               "Increment": 1
             }
           }
@@ -4292,10 +4350,10 @@
           "Type": "ModifyBlockStaminaUse"
         },
         {
-          "Type": "ModifyBlockForce"
+          "Type": "AddElementalResistancePercentage"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "OffSetAttack"
         },
         {
           "Type": "IncreaseHealth"
@@ -4324,22 +4382,22 @@
           "Type": "ModifyBlockStaminaUse"
         },
         {
-          "Type": "ModifyPhysicalDamage"
+          "Type": "ModifyBlockPower"
         },
         {
-          "Type": "AddFrostDamage"
+          "Type": "ModifyBlockForce"
         },
         {
           "Type": "OffSetAttack"
         },
         {
-          "Type": "AddSpearsSkill"
+          "Type": "ModifyArmor"
         },
         {
-          "Type": "Indestructible"
+          "Type": "Apportation"
         },
         {
-          "Type": "Weightless"
+          "Type": "ReflectDamage"
         }
       ]
     },
@@ -4362,19 +4420,19 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "ReflectDamage"
         },
         {
-          "Type": "ModifyArmorLowHealth"
+          "Type": "ModifyArmor"
         },
         {
-          "Type": "ModifyHealthRegenLowHealth"
+          "Type": "AddElementalResistancePercentage"
         },
         {
           "Type": "AddPhysicalResistancePercentage"
         },
         {
-          "Type": "Glowing"
+          "Type": "ModifyBlockPower"
         }
       ]
     },
@@ -4397,10 +4455,10 @@
           "Type": "IncreaseHealth"
         },
         {
-          "Type": "IncreaseStamina"
+          "Type": "ModifyBlockPower"
         },
         {
-          "Type": "ModifyHealthRegen"
+          "Type": "AddElementalResistancePercentage"
         },
         {
           "Type": "AvoidDamageTaken"
@@ -4432,19 +4490,19 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyDodgeStaminaUse"
+          "Type": "ModifyBlockPower"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "AddElementalResistancePercentage"
         },
         {
-          "Type": "ModifyMovementSpeedLowHealth"
+          "Type": "OffSetAttack"
         },
         {
           "Type": "AddPhysicalResistancePercentage"
         },
         {
-          "Type": "ModifyStaminaRegenLowHealth"
+          "Type": "InstantMead"
         }
       ]
     },
@@ -4470,13 +4528,13 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "AddElementalResistancePercentage"
         },
         {
           "Type": "AddPhysicalResistancePercentage"
         },
         {
-          "Type": "Indestructible"
+          "Type": "ModifyBlockPower"
         },
         {
           "Type": "Warmth"
@@ -4506,16 +4564,16 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "AddElementalResistancePercentage"
         },
         {
           "Type": "AddPhysicalResistancePercentage"
         },
         {
-          "Type": "Luck"
+          "Type": "ModifyBlockPower"
         },
         {
-          "Type": "Glowing"
+          "Type": "ModifyBlockStaminaUse"
         }
       ]
     },
@@ -4533,7 +4591,7 @@
       "GuaranteedEffectCount": 7,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyWispRange"
+          "Type": "ModifyArmor"
         },
         {
           "Type": "IncreaseHealth"
@@ -4542,16 +4600,16 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "AddElementalResistancePercentage"
         },
         {
           "Type": "AddPhysicalResistancePercentage"
         },
         {
-          "Type": "Luck"
+          "Type": "ModifyBlockStaminaUse"
         },
         {
-          "Type": "Glowing"
+          "Type": "ModifyBlockPower"
         }
       ]
     },
@@ -4577,16 +4635,16 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyStaminaRegen"
+          "Type": "AddElementalResistancePercentage"
         },
         {
           "Type": "AddPhysicalResistancePercentage"
         },
         {
-          "Type": "Luck"
+          "Type": "ModifyBlockStaminaUse"
         },
         {
-          "Type": "Glowing"
+          "Type": "ModifyBlockPower"
         }
       ]
     },
@@ -4609,24 +4667,19 @@
           "Type": "Bloodlust"
         },
         {
-          "Type": "LifeSteal",
-          "Values": {
-            "MinValue": 14,
-            "MaxValue": 14,
-            "Increment": 0.5
-          }
+          "Type": "LifeSteal"
         },
         {
           "Type": "OffSetAttack"
         },
         {
-          "Type": "LifeStealLowHealth"
+          "Type": "ModifyAttackSpeed"
         },
         {
           "Type": "AddAxesSkill"
         },
         {
-          "Type": "AddFrostDamage"
+          "Type": "IncreaseHealth"
         },
         {
           "Type": "ModifyAttackHealthUse",
@@ -4657,19 +4710,19 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "ModifyArmor"
+          "Type": "ModifyAttackSpeed"
         },
         {
-          "Type": "HeadHunter"
+          "Type": "OffSetAttack"
         },
         {
-          "Type": "Luck"
+          "Type": "AvoidDamageTaken"
         },
         {
-          "Type": "ModifyArmorLowHealth"
+          "Type": "ModifyPhysicalDamage"
         },
         {
-          "Type": "Glowing"
+          "Type": "LifeStealLowHealth"
         }
       ]
     },
@@ -4686,13 +4739,13 @@
       "GuaranteedEffectCount": 7,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyArmor"
+          "Type": "InstantMead"
         },
         {
-          "Type": "AddHealthRegen"
+          "Type": "OffSetAttack"
         },
         {
-          "Type": "ModifyHealthRegen"
+          "Type": "ModifyDamageLowHealth"
         },
         {
           "Type": "IncreaseHealth"
@@ -4701,10 +4754,10 @@
           "Type": "AvoidDamageTakenLowHealth"
         },
         {
-          "Type": "AddFrostResistancePercentage"
+          "Type": "ModifyAttackSpeed"
         },
         {
-          "Type": "ReflectDamage"
+          "Type": "AvoidDamageTaken"
         }
       ]
     },
@@ -4724,19 +4777,19 @@
           "Type": "ModifyMovementSpeed"
         },
         {
-          "Type": "ModifySprintStaminaUse"
+          "Type": "IncreaseHealth"
         },
         {
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "ModifyDodgeStaminaUse"
+          "Type": "AvoidDamageTaken"
         },
         {
-          "Type": "ModifyMovementSpeedLowHealth"
+          "Type": "OffSetAttack"
         },
         {
-          "Type": "AddMovementSkills"
+          "Type": "ModifyDamageLowHealth"
         },
         {
           "Type": "DoubleJump"
@@ -4765,16 +4818,16 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "AddFrostResistancePercentage"
+          "Type": "ModifyAttackSpeed"
         },
         {
-          "Type": "RemoveSpeedPenalty"
+          "Type": "OffSetAttack"
         },
         {
           "Type": "Warmth"
         },
         {
-          "Type": "Indestructible"
+          "Type": "AvoidDamageTaken"
         }
       ]
     },
@@ -4801,16 +4854,16 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "Luck"
+          "Type": "OffSetAttack"
         },
         {
-          "Type": "AddHealthRegen"
+          "Type": "LifeStealLowHealth"
         },
         {
           "Type": "ModifyHealthRegen"
         },
         {
-          "Type": "Glowing"
+          "Type": "ModifyAttackSpeed"
         }
       ]
     },
@@ -4828,7 +4881,7 @@
       "GuaranteedEffectCount": 7,
       "GuaranteedMagicEffects": [
         {
-          "Type": "ModifyWispRange"
+          "Type": "ModifyLowHealth"
         },
         {
           "Type": "IncreaseHealth"
@@ -4837,16 +4890,16 @@
           "Type": "IncreaseStamina"
         },
         {
-          "Type": "AddFrostResistancePercentage"
+          "Type": "AddAxesSkill"
         },
         {
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "Luck"
+          "Type": "ModifyAttackSpeed"
         },
         {
-          "Type": "Glowing"
+          "Type": "OffSetAttack"
         }
       ]
     },
@@ -4872,7 +4925,7 @@
           "Type": "ModifyStaminaRegen"
         },
         {
-          "Type": "Luck"
+          "Type": "ModifyLowHealth"
         },
         {
           "Type": "AddHealthRegen"
@@ -4881,7 +4934,7 @@
           "Type": "ModifyHealthRegen"
         },
         {
-          "Type": "AddPhysicalResistancePercentage"
+          "Type": "ModifyAttackSpeedLowHealth"
         }
       ]
     },
@@ -5169,7 +5222,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKaneWitchfinderArbalest",
+      "ID": "AncientHellsyngWitchfinderArbalest",
       "Name": "Last-Rite Arbalests Witchfinder Arbalest",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -5179,13 +5232,10 @@
           "CrossbowGold_FrostFire"
         ]
       },
-      "GuaranteedEffectCount": 7,
+      "GuaranteedEffectCount": 6,
       "GuaranteedMagicEffects": [
         {
           "Type": "ModifyDamage"
-        },
-        {
-          "Type": "ExplosiveArrows"
         },
         {
           "Type": "QuickDraw"
@@ -5205,7 +5255,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKaneWidebrim",
+      "ID": "AncientHellsyngWidebrim",
       "Name": "Last-Rite Arbalests Widebrim",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -5240,7 +5290,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKaneLongcoat",
+      "ID": "AncientHellsyngLongcoat",
       "Name": "Last-Rite Arbalests Longcoat",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -5275,7 +5325,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKaneBoots",
+      "ID": "AncientHellsyngBoots",
       "Name": "Last-Rite Arbalests Boots",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -5310,7 +5360,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKaneMantle",
+      "ID": "AncientHellsyngMantle",
       "Name": "Last-Rite Arbalests Mantle",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -5345,7 +5395,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKanePowderHorn",
+      "ID": "AncientHellsyngPowderHorn",
       "Name": "Last-Rite Arbalests Powder Horn",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -5381,7 +5431,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKaneWitchlamp",
+      "ID": "AncientHellsyngWitchlamp",
       "Name": "Last-Rite Arbalests Witchlamp",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -5417,7 +5467,7 @@
       ]
     },
     {
-      "ID": "AncientSolomonKaneSilverBolt",
+      "ID": "AncientHellsyngSilverBolt",
       "Name": "Last-Rite Arbalests Silver Bolt",
       "Description": "An ancient set piece for a crossbow marksman line for single heavy shots, explosive bolts and fast reloads.",
       "IsSetItem": true,
@@ -7002,12 +7052,7 @@
         {
           "Count": 4,
           "Effect": {
-            "Type": "ModifyBlockForce",
-            "Values": {
-              "MinValue": 29,
-              "MaxValue": 29,
-              "Increment": 1
-            }
+            "Type": "LastHope"
           }
         },
         {
@@ -7098,8 +7143,8 @@
           "Effect": {
             "Type": "LifeStealLowHealth",
             "Values": {
-              "MinValue": 6.5,
-              "MaxValue": 6.5,
+              "MinValue": 8,
+              "MaxValue": 8,
               "Increment": 0.5
             }
           }
@@ -7128,6 +7173,17 @@
             "Values": {
               "MinValue": 60,
               "MaxValue": 60,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 7,
+          "Effect": {
+            "Type": "AddFrostDamage",
+            "Values": {
+              "MinValue": 30,
+              "MaxValue": 30,
               "Increment": 1
             }
           }
@@ -7241,17 +7297,17 @@
       ]
     },
     {
-      "ID": "AncientSolomonKane",
+      "ID": "AncientHellsyng",
       "Name": "Last-Rite Arbalests",
       "LegendaryIDs": [
-        "AncientSolomonKaneWitchfinderArbalest",
-        "AncientSolomonKaneWidebrim",
-        "AncientSolomonKaneLongcoat",
-        "AncientSolomonKaneBoots",
-        "AncientSolomonKaneMantle",
-        "AncientSolomonKanePowderHorn",
-        "AncientSolomonKaneWitchlamp",
-        "AncientSolomonKaneSilverBolt"
+        "AncientHellsyngWitchfinderArbalest",
+        "AncientHellsyngWidebrim",
+        "AncientHellsyngLongcoat",
+        "AncientHellsyngBoots",
+        "AncientHellsyngMantle",
+        "AncientHellsyngPowderHorn",
+        "AncientHellsyngWitchlamp",
+        "AncientHellsyngSilverBolt"
       ],
       "SetBonuses": [
         {
@@ -7261,17 +7317,6 @@
             "Values": {
               "MinValue": 30,
               "MaxValue": 30,
-              "Increment": 1
-            }
-          }
-        },
-        {
-          "Count": 3,
-          "Effect": {
-            "Type": "ExplosiveArrows",
-            "Values": {
-              "MinValue": 56,
-              "MaxValue": 56,
               "Increment": 1
             }
           }
@@ -7730,10 +7775,21 @@
         {
           "Count": 3,
           "Effect": {
-            "Type": "IncreaseEitr",
+            "Type": "FrostDamageAOE",
             "Values": {
-              "MinValue": 44,
-              "MaxValue": 44,
+              "MinValue": 60,
+              "MaxValue": 60,
+              "Increment": 1
+            }
+          }
+        },
+        {
+          "Count": 3,
+          "Effect": {
+            "Type": "AddFrostDamage",
+            "Values": {
+              "MinValue": 30,
+              "MaxValue": 30,
               "Increment": 1
             }
           }
@@ -7785,10 +7841,10 @@
         {
           "Count": 8,
           "Effect": {
-            "Type": "FrostDamageAOE",
+            "Type": "Duelist",
             "Values": {
-              "MinValue": 60,
-              "MaxValue": 60,
+              "MinValue": 49,
+              "MaxValue": 49,
               "Increment": 1
             }
           }

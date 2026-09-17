@@ -8,6 +8,9 @@ $source = Join-Path $pluginRoot 'src\EpicLootRaritySetsPlugin.cs'
 $output = Join-Path $pluginRoot 'EpicLootRaritySets.dll'
 $buildOutput = Join-Path $pluginRoot 'build\EpicLootRaritySets.dll'
 $generatedConfigRoot = Join-Path $pluginRoot 'src\GeneratedConfig'
+$skillIconRoot = Join-Path $generatedConfigRoot 'SkillIcons'
+$abilityIconRoot = Join-Path $generatedConfigRoot 'AbilityIcons'
+$abilityPanelIconRoot = Join-Path $generatedConfigRoot 'AbilityPanelIcons'
 $cecilPath = Join-Path $bepInExRoot 'core\Mono.Cecil.dll'
 
 $references = @(
@@ -20,15 +23,22 @@ $references = @(
     (Join-Path $bepInExRoot 'plugins\ValheimModding-JsonDotNET\Newtonsoft.Json.dll')
     (Join-Path $valheimManagedRoot 'netstandard.dll')
     (Join-Path $valheimManagedRoot 'assembly_utils.dll')
+    (Join-Path $valheimManagedRoot 'assembly_guiutils.dll')
     (Join-Path $valheimManagedRoot 'assembly_valheim.dll')
     (Join-Path $valheimManagedRoot 'SoftReferenceableAssets.dll')
     (Join-Path $valheimManagedRoot 'UnityEngine.dll')
     (Join-Path $valheimManagedRoot 'UnityEngine.CoreModule.dll')
+    (Join-Path $valheimManagedRoot 'UnityEngine.AnimationModule.dll')
+    (Join-Path $valheimManagedRoot 'UnityEngine.ImageConversionModule.dll')
     (Join-Path $valheimManagedRoot 'UnityEngine.InputLegacyModule.dll')
     (Join-Path $valheimManagedRoot 'UnityEngine.PhysicsModule.dll')
+    (Join-Path $valheimManagedRoot 'UnityEngine.TextRenderingModule.dll')
+    (Join-Path $valheimManagedRoot 'UnityEngine.UIModule.dll')
+    (Join-Path $valheimManagedRoot 'UnityEngine.UI.dll')
 )
 
 $resources = @(
+    'abilities.json'
     'raritysets.json'
     'legendaries.json'
     'loottables.json'
@@ -37,6 +47,22 @@ $resources = @(
     'adventuredata.json'
     'bosssetdrops.json'
     'NorseDemigods.cfg'
+)
+
+$skillIconResources = @(
+    'Frostbrand_spellblade.png'
+    'Heimdall_tank.png'
+    'Helveig_blood_mage.png'
+    'Hraesvelgr_archer.png'
+    'Moonvein_magic_archer.png'
+    'Nott_assassin.png'
+    'Ragnar_berserker.png'
+    'Seidr_elemental_mage.png'
+    'Hellsyng_crossbow.png'
+)
+
+$abilityIconResources = @(
+    'LastHopeIcon.png'
 )
 
 foreach ($path in @($compiler, $source, $cecilPath) + $references) {
@@ -53,6 +79,35 @@ foreach ($resource in $resources) {
     }
 
     $resourceArgs += "/resource:$path,Fran.EpicLootRaritySets.GeneratedConfig.$resource"
+}
+
+foreach ($resource in $skillIconResources) {
+    $path = Join-Path $skillIconRoot $resource
+    if (-not (Test-Path -LiteralPath $path)) {
+        throw "Missing skill icon resource: $path"
+    }
+
+    $resourceArgs += "/resource:$path,Fran.EpicLootRaritySets.SkillIcons.$resource"
+}
+
+foreach ($resource in $abilityIconResources) {
+    $path = Join-Path $abilityIconRoot $resource
+    if (-not (Test-Path -LiteralPath $path)) {
+        throw "Missing ability icon resource: $path"
+    }
+
+    $resourceArgs += "/resource:$path,Fran.EpicLootRaritySets.AbilityIcons.$resource"
+}
+
+foreach ($folder in @('Abilities', 'Buffs', 'ClassBuffs')) {
+    $folderPath = Join-Path $abilityPanelIconRoot $folder
+    if (-not (Test-Path -LiteralPath $folderPath)) {
+        throw "Missing ability panel icon folder: $folderPath"
+    }
+
+    foreach ($resource in Get-ChildItem -LiteralPath $folderPath -Filter '*.png' -File | Sort-Object Name) {
+        $resourceArgs += "/resource:$($resource.FullName),Fran.EpicLootRaritySets.AbilityPanelIcons.$folder.$($resource.Name)"
+    }
 }
 
 $referenceArgs = @($references | ForEach-Object { "/reference:$_" })

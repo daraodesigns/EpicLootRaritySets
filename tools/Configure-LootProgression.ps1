@@ -209,10 +209,10 @@ function Get-GeneratedSetItems {
         $bucketName = "$($Rarity)Items"
         $items = @($LegendaryConfig.$bucketName)
         $familyPattern = if ($Rarity -eq 'Mythic') {
-            '^(Mythic)(Heimdall|Ragnar|Hraesvelgr|SolomonKane|Nott|Seidr|Helveig|Moonvein|Frostbrand)'
+            '^(Mythic)(Heimdall|Ragnar|Hraesvelgr|Hellsyng|Nott|Seidr|Helveig|Moonvein|Frostbrand)'
         }
         else {
-            '^(Heimdall|Ragnar|Hraesvelgr|SolomonKane|Nott|Seidr|Helveig|Moonvein|Frostbrand)'
+            '^(Heimdall|Ragnar|Hraesvelgr|Hellsyng|Nott|Seidr|Helveig|Moonvein|Frostbrand)'
         }
 
         return @($items | Where-Object { $_.IsSetItem -eq $true -and $_.ID -match $familyPattern })
@@ -903,7 +903,7 @@ function Set-HaldorRaritySetStock {
         }
     }
 
-    $managedSetItemPattern = '^(Magic|Rare|Epic)(Heimdall|Ragnar|Hraesvelgr|SolomonKane|Nott|Seidr|Helveig|Moonvein|Frostbrand|Thor|Floki)'
+    $managedSetItemPattern = '^(Magic|Rare|Epic)(Heimdall|Ragnar|Hraesvelgr|Hellsyng|Nott|Seidr|Helveig|Moonvein|Frostbrand|Thor|Floki)'
     $preservedOtherItems = @(
         $Config.SecretStash.OtherItems |
             Where-Object { -not $setItemIds.Contains($_.Item) -and $_.Item -notmatch $managedSetItemPattern }

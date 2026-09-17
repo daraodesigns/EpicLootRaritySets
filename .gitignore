@@ -3,6 +3,10 @@ EpicLootRaritySets.dll
 EpicLootRaritySets.zip
 build/*.dll
 build/*.exe
+build/tools/
+build/FranEpicLootRaritySetsHotfix/
+extracted/
+src/GeneratedConfig/AbilityPanelIcons/contact_sheets/
 *.pdb
 
 # Generated documents and temporary office locks

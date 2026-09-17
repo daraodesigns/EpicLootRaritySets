@@ -1,0 +1,578 @@
+[
+  {
+    "category": "ClassBuffs",
+    "id": "heimdall_class_buff",
+    "label": "Heimdall Class Buff",
+    "class": "heimdall",
+    "kind": "class_heimdall",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\heimdall_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "ragnar_class_buff",
+    "label": "Ragnar Class Buff",
+    "class": "ragnar",
+    "kind": "class_ragnar",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\ragnar_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "hraesvelgr_class_buff",
+    "label": "Hraesvelgr Class Buff",
+    "class": "hraesvelgr",
+    "kind": "class_hraesvelgr",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\hraesvelgr_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "hellsyng_class_buff",
+    "label": "Hellsyng Class Buff",
+    "class": "hellsyng",
+    "kind": "class_hellsyng",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\hellsyng_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "nott_class_buff",
+    "label": "Nott Class Buff",
+    "class": "nott",
+    "kind": "class_nott",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\nott_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "seidr_class_buff",
+    "label": "Seidr Class Buff",
+    "class": "seidr",
+    "kind": "class_seidr",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\seidr_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "helveig_class_buff",
+    "label": "Helveig Class Buff",
+    "class": "helveig",
+    "kind": "class_helveig",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\helveig_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "moonvein_class_buff",
+    "label": "Moonvein Class Buff",
+    "class": "moonvein",
+    "kind": "class_moonvein",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\moonvein_class_buff.png"
+  },
+  {
+    "category": "ClassBuffs",
+    "id": "frostbrand_class_buff",
+    "label": "Frostbrand Class Buff",
+    "class": "frostbrand",
+    "kind": "class_frostbrand",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\ClassBuffs\\frostbrand_class_buff.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "heimdall_lightning_storm",
+    "label": "Lightning Storm",
+    "class": "heimdall",
+    "kind": "lightning_storm",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\heimdall_lightning_storm.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "heimdall_stone_shield",
+    "label": "Stone Shield",
+    "class": "heimdall",
+    "kind": "stone_shield",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\heimdall_stone_shield.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "heimdall_abyssal_harpoon",
+    "label": "Abyssal Harpoon",
+    "class": "heimdall",
+    "kind": "harpoon",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\heimdall_abyssal_harpoon.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "heimdall_guard",
+    "label": "Heimdall Guard",
+    "class": "heimdall",
+    "kind": "guard_stacks",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\heimdall_guard.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "ragnar_decay_aura",
+    "label": "Decay Aura",
+    "class": "ragnar",
+    "kind": "decay_aura",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\ragnar_decay_aura.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "ragnar_blood_frenzy",
+    "label": "Blood Frenzy",
+    "class": "ragnar",
+    "kind": "blood_frenzy",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\ragnar_blood_frenzy.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "ragnar_crush",
+    "label": "Ragnar Crush",
+    "class": "ragnar",
+    "kind": "crush",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\ragnar_crush.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "ragnar_fury",
+    "label": "Ragnar Fury",
+    "class": "ragnar",
+    "kind": "fury",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\ragnar_fury.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "ragnar_blood_surge",
+    "label": "Blood Surge",
+    "class": "ragnar",
+    "kind": "blood_surge",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\ragnar_blood_surge.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "ragnar_burning_ground",
+    "label": "Burning Ground",
+    "class": "ragnar",
+    "kind": "burning_ground",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\ragnar_burning_ground.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hraesvelgr_summon_beasts",
+    "label": "Summon Beasts",
+    "class": "hraesvelgr",
+    "kind": "summon_beasts",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hraesvelgr_summon_beasts.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hraesvelgr_armed_trap",
+    "label": "Armed Trap",
+    "class": "hraesvelgr",
+    "kind": "trap",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hraesvelgr_armed_trap.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hraesvelgr_rapid_volley",
+    "label": "Rapid Volley",
+    "class": "hraesvelgr",
+    "kind": "rapid_volley",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hraesvelgr_rapid_volley.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hraesvelgr_freyja_dash",
+    "label": "Freyja Dash",
+    "class": "hraesvelgr",
+    "kind": "dash",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hraesvelgr_freyja_dash.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hraesvelgr_sneaky",
+    "label": "Sneaky",
+    "class": "hraesvelgr",
+    "kind": "sneaky",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hraesvelgr_sneaky.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hraesvelgr_headshot",
+    "label": "Headshot",
+    "class": "hraesvelgr",
+    "kind": "headshot",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hraesvelgr_headshot.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hraesvelgr_trap_charge",
+    "label": "Trap Charges",
+    "class": "hraesvelgr",
+    "kind": "trap_charge",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hraesvelgr_trap_charge.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hraesvelgr_trap_damage",
+    "label": "Trap Damage",
+    "class": "hraesvelgr",
+    "kind": "trap_damage",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hraesvelgr_trap_damage.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_pets",
+    "label": "Hellsyng Pets",
+    "class": "hellsyng",
+    "kind": "hell_pets",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_pets.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_werewolf_form",
+    "label": "Werewolf Form",
+    "class": "hellsyng",
+    "kind": "werewolf",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_werewolf_form.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_bat_form",
+    "label": "Bat Form",
+    "class": "hellsyng",
+    "kind": "bat_form",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_bat_form.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_bat_horde",
+    "label": "Bat Horde",
+    "class": "hellsyng",
+    "kind": "bat_horde",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_bat_horde.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_rapid_fire",
+    "label": "Rapid Fire",
+    "class": "hellsyng",
+    "kind": "rapid_fire",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_rapid_fire.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_bat_regeneration",
+    "label": "Bat Regeneration",
+    "class": "hellsyng",
+    "kind": "bat_regen",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_bat_regeneration.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_bite",
+    "label": "Bite",
+    "class": "hellsyng",
+    "kind": "bite",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_bite.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "hellsyng_claw",
+    "label": "Claw",
+    "class": "hellsyng",
+    "kind": "claw",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\hellsyng_claw.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hellsyng_tnt",
+    "label": "T.N.T.",
+    "class": "hellsyng",
+    "kind": "tnt",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hellsyng_tnt.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hellsyng_silver_bullets",
+    "label": "Silver Bullets",
+    "class": "hellsyng",
+    "kind": "silver_bullets",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hellsyng_silver_bullets.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hellsyng_witchmark",
+    "label": "Witchmark",
+    "class": "hellsyng",
+    "kind": "witchmark",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hellsyng_witchmark.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hellsyng_silver_verdict",
+    "label": "Silver Verdict",
+    "class": "hellsyng",
+    "kind": "silver_verdict",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hellsyng_silver_verdict.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "hellsyng_hunt",
+    "label": "Hunt",
+    "class": "hellsyng",
+    "kind": "hunt",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\hellsyng_hunt.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "nott_warp",
+    "label": "Warp",
+    "class": "nott",
+    "kind": "warp",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\nott_warp.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "nott_shadow_mark",
+    "label": "Shadow Mark",
+    "class": "nott",
+    "kind": "shadow_mark",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\nott_shadow_mark.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "nott_sneaky",
+    "label": "Sneaky",
+    "class": "nott",
+    "kind": "sneaky",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_sneaky.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "nott_poison_edge",
+    "label": "Poison Edge",
+    "class": "nott",
+    "kind": "poison_edge",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_poison_edge.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "nott_shadow_momentum",
+    "label": "Shadow Momentum",
+    "class": "nott",
+    "kind": "shadow_momentum",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_shadow_momentum.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "nott_warp_strike",
+    "label": "Warp Strike",
+    "class": "nott",
+    "kind": "warp_strike",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_warp_strike.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "seidr_nanocube",
+    "label": "Nanocube",
+    "class": "seidr",
+    "kind": "nanocube",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\seidr_nanocube.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "seidr_elemental_shield",
+    "label": "Elemental Shield",
+    "class": "seidr",
+    "kind": "elemental_shield",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\seidr_elemental_shield.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "seidr_stone_golem",
+    "label": "Stone Golem",
+    "class": "seidr",
+    "kind": "stone_golem",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\seidr_stone_golem.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "seidr_frost_nova",
+    "label": "Frost Nova",
+    "class": "seidr",
+    "kind": "frost_nova",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\seidr_frost_nova.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "seidr_nanocube_power",
+    "label": "Nanocube Power",
+    "class": "seidr",
+    "kind": "nanocube_power",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\seidr_nanocube_power.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "seidr_frost_nova_slow",
+    "label": "Frost Nova Slow",
+    "class": "seidr",
+    "kind": "frost_slow",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\seidr_frost_nova_slow.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "helveig_holy_heal",
+    "label": "Holy Heal",
+    "class": "helveig",
+    "kind": "holy_heal",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\helveig_holy_heal.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "helveig_blood_rite",
+    "label": "Blood Rite",
+    "class": "helveig",
+    "kind": "blood_rite",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\helveig_blood_rite.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "helveig_holy_strike",
+    "label": "Holy Strike",
+    "class": "helveig",
+    "kind": "holy_strike",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\helveig_holy_strike.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "helveig_summon_monster",
+    "label": "Summon Monster",
+    "class": "helveig",
+    "kind": "summon_monster",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\helveig_summon_monster.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "helveig_undead_bodyguard",
+    "label": "Undead Bodyguard",
+    "class": "helveig",
+    "kind": "undead_bodyguard",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\helveig_undead_bodyguard.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "helveig_bodyguard_respawn",
+    "label": "Bodyguard Respawn",
+    "class": "helveig",
+    "kind": "bodyguard_respawn",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\helveig_bodyguard_respawn.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "moonvein_meteor",
+    "label": "Meteor",
+    "class": "moonvein",
+    "kind": "meteor",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\moonvein_meteor.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "moonvein_tornado_shot",
+    "label": "Tornado Shot",
+    "class": "moonvein",
+    "kind": "tornado_shot",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\moonvein_tornado_shot.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "moonvein_charged_shots",
+    "label": "Charged Shots",
+    "class": "moonvein",
+    "kind": "charged_shots",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\moonvein_charged_shots.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "moonvein_tornado_slow",
+    "label": "Tornado Slow",
+    "class": "moonvein",
+    "kind": "tornado_slow",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\moonvein_tornado_slow.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "frostbrand_water_sphere",
+    "label": "Water Sphere",
+    "class": "frostbrand",
+    "kind": "water_sphere",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\frostbrand_water_sphere.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "frostbrand_slash",
+    "label": "Slash",
+    "class": "frostbrand",
+    "kind": "slash",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\frostbrand_slash.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "frostbrand_elemental_shield",
+    "label": "Elemental Shield",
+    "class": "frostbrand",
+    "kind": "elemental_shield",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\frostbrand_elemental_shield.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "frostbrand_lightning_strike",
+    "label": "Lightning Strike",
+    "class": "frostbrand",
+    "kind": "lightning_strike",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\frostbrand_lightning_strike.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "frostbrand_fire_ball",
+    "label": "Fire Ball",
+    "class": "frostbrand",
+    "kind": "fire_ball",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\frostbrand_fire_ball.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "frostbrand_recharge",
+    "label": "Recharge",
+    "class": "frostbrand",
+    "kind": "recharge",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\frostbrand_recharge.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "frostbrand_burning_ground",
+    "label": "Burning Ground",
+    "class": "frostbrand",
+    "kind": "burning_ground",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\frostbrand_burning_ground.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "pet_attack",
+    "label": "Pet Attack",
+    "class": "pets",
+    "kind": "pet_attack",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\pet_attack.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "pet_follow",
+    "label": "Pet Follow",
+    "class": "pets",
+    "kind": "pet_follow",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\pet_follow.png"
+  },
+  {
+    "category": "Abilities",
+    "id": "pet_free",
+    "label": "Pet Free",
+    "class": "pets",
+    "kind": "pet_free",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\pet_free.png"
+  }
+]
