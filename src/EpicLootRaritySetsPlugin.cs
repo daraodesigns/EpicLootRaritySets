@@ -38,6 +38,8 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<bool> EnableSetActivationBuffs;
         internal static ConfigEntry<bool> EnableAbilityPanel;
         internal static ConfigEntry<bool> EnablePassiveStackPanel;
+        internal static ConfigEntry<bool> EnableMissingPrefabHashCleanup;
+        internal static ConfigEntry<string> MissingPrefabHashesToCleanup;
         internal static ConfigEntry<float> AbilityPanelPositionX;
         internal static ConfigEntry<float> AbilityPanelPositionY;
         internal static ConfigEntry<float> AbilityPanelScale;
@@ -366,6 +368,8 @@ namespace Fran.EpicLootRaritySets
 
             EnableNaturalDrops = Config.Bind("General", "Enable Natural Drops", true, "Allow configured non-legendary rarity sets to appear from normal EpicLoot rolls.");
             EnableSetActivationBuffs = Config.Bind("General", "Enable Set Activation Buffs", true, "Show a short status effect named after the active set base name, without rarity prefix. Example: MagicRagnar activates Ragnar.");
+            EnableMissingPrefabHashCleanup = Config.Bind("Diagnostics", "Enable Missing Prefab Hash Cleanup", true, "Suppress and remove known orphan world ZDOs whose prefab hash is no longer registered, preventing Missing prefab hash log spam.");
+            MissingPrefabHashesToCleanup = Config.Bind("Diagnostics", "Missing Prefab Hashes To Cleanup", "-1834625687", "Comma, semicolon or space separated prefab hashes to suppress and remove when Valheim tries to instantiate them.");
             EnableAbilityPanel = Config.Bind("Ability Panel", "Enable Ability Panel", true, "Show a movable class ability panel when an EpicLootRaritySets class buff is active.");
             AbilityPanelPositionX = Config.Bind("Ability Panel", "Position X", 360f, new ConfigDescription("Ability panel anchored X position. Open the inventory with Tab and drag the panel to change it.", new AcceptableValueRange<float>(-2500f, 2500f)));
             AbilityPanelPositionY = Config.Bind("Ability Panel", "Position Y", -115f, new ConfigDescription("Ability panel anchored Y position. Open the inventory with Tab and drag the panel to change it.", new AcceptableValueRange<float>(-1600f, 1600f)));
@@ -5729,6 +5733,16 @@ namespace Fran.EpicLootRaritySets
             UpdateHeaderText();
             foreach (AbilityPanelCell cell in Cells)
             {
+                if (!IsCellValid(cell))
+                {
+                    Cells.Clear();
+                    _layoutSignature = null;
+                    return;
+                }
+            }
+
+            foreach (AbilityPanelCell cell in Cells)
+            {
                 float remaining = 0f;
                 float duration = 0f;
                 bool cooling = cell.Entry.CooldownKeys != null && AbilityCooldownBuffController.TryGetCooldown(cell.Entry.CooldownKeys, out remaining, out duration);
@@ -5788,6 +5802,17 @@ namespace Fran.EpicLootRaritySets
                     cell.KeyRefreshTimer = KeyRefreshInterval;
                 }
             }
+        }
+
+        private static bool IsCellValid(AbilityPanelCell cell)
+        {
+            return cell != null &&
+                   cell.Entry != null &&
+                   cell.Icon != null &&
+                   cell.Overlay != null &&
+                   cell.CooldownText != null &&
+                   cell.NameText != null &&
+                   cell.KeyText != null;
         }
 
         private static void UpdateHeaderText()
@@ -29810,6 +29835,101 @@ namespace Fran.EpicLootRaritySets
             }
 
             return __exception;
+        }
+    }
+
+    internal static class MissingPrefabHashCleanup
+    {
+        private static string _cachedHashText;
+        private static HashSet<int> _cachedHashes;
+        private static readonly HashSet<int> LoggedHashes = new HashSet<int>();
+
+        internal static bool TrySuppressAndRemove(ZDO zdo)
+        {
+            if (zdo == null ||
+                (EpicLootRaritySetsPlugin.EnableMissingPrefabHashCleanup != null &&
+                 !EpicLootRaritySetsPlugin.EnableMissingPrefabHashCleanup.Value))
+            {
+                return false;
+            }
+
+            int prefabHash = zdo.GetPrefab();
+            if (!GetCleanupHashes().Contains(prefabHash))
+            {
+                return false;
+            }
+
+            if (LoggedHashes.Add(prefabHash))
+            {
+                Vector3 position = zdo.GetPosition();
+                EpicLootRaritySetsPlugin.Log.LogWarning(string.Format(
+                    "Suppressing orphan missing prefab hash {0} at {1}. The ZDO will be removed when possible.",
+                    prefabHash,
+                    position));
+            }
+
+            try
+            {
+                if (ZDOMan.instance != null)
+                {
+                    ZDOMan.instance.DestroyZDO(zdo);
+                }
+            }
+            catch (Exception ex)
+            {
+                EpicLootRaritySetsPlugin.Log.LogWarning("Could not remove orphan missing prefab ZDO. " + ex.GetBaseException().Message);
+            }
+
+            return true;
+        }
+
+        private static HashSet<int> GetCleanupHashes()
+        {
+            string hashText = EpicLootRaritySetsPlugin.MissingPrefabHashesToCleanup != null
+                ? EpicLootRaritySetsPlugin.MissingPrefabHashesToCleanup.Value
+                : "-1834625687";
+
+            if (_cachedHashes != null && string.Equals(_cachedHashText, hashText, StringComparison.Ordinal))
+            {
+                return _cachedHashes;
+            }
+
+            _cachedHashText = hashText;
+            _cachedHashes = new HashSet<int>();
+            if (!string.IsNullOrEmpty(hashText))
+            {
+                string[] parts = hashText.Split(new[] { ',', ';', ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string part in parts)
+                {
+                    int hash;
+                    if (int.TryParse(part, NumberStyles.Integer, CultureInfo.InvariantCulture, out hash))
+                    {
+                        _cachedHashes.Add(hash);
+                    }
+                }
+            }
+
+            if (_cachedHashes.Count == 0)
+            {
+                _cachedHashes.Add(-1834625687);
+            }
+
+            return _cachedHashes;
+        }
+    }
+
+    [HarmonyPatch(typeof(ZNetScene), "CreateObject", new Type[] { typeof(ZDO) })]
+    internal static class ZNetSceneCreateObjectMissingPrefabPatch
+    {
+        private static bool Prefix(ZDO zdo, ref GameObject __result)
+        {
+            if (!MissingPrefabHashCleanup.TrySuppressAndRemove(zdo))
+            {
+                return true;
+            }
+
+            __result = null;
+            return false;
         }
     }
 
