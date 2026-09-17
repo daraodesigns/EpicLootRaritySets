@@ -6,6 +6,8 @@ Este mod anade sets personalizados por rareza, drops por etapa de boss, piezas e
 
 Si te gusta EpicLoot pero quieres objetivos claros de farmeo, builds reconocibles y habilidades nuevas al cerrar un set completo, este mod es para eso.
 
+Dejo mi patrón por si te animas a dejarme una propina que me ayude a crecer. Muchas gracias y un abrazo por el apoyo a todos: https://ko-fi.com/daraodesigns
+
 ## Que aporta
 
 - Sets por rareza: `Magic`, `Rare`, `Epic`, `Legendary`, `Mythic` y `Ancient`.
@@ -88,7 +90,7 @@ Las tiradas magicas normales de EpicLoot pueden convertirse en piezas de set:
 
 Legendary y Mythic se gestionan desde las secciones generadas de EpicLoot y sus pools propios.
 
-`bosssetdrops.json` fuerza `GuaranteedSetDrops = 1`: cada boss convierte una tirada valida en una pieza de set aleatoria de la rareza de su etapa.
+`bosssetdrops.json` fija la rareza de cada boss y convierte las tiradas validas de equipo en piezas aleatorias de set de esa etapa: Eikthyr `Magic`, Anciano `Rare`, Bonemass `Epic`, Moder `Legendary`, Yagluth/Reina `Mythic` y Fader/FrozenKing `Ancient`.
 
 ## Configs gestionadas
 

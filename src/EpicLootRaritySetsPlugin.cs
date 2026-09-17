@@ -1458,6 +1458,62 @@ namespace Fran.EpicLootRaritySets
             return magicItem != null;
         }
 
+        internal static bool TryRollSetItemFromIds(ItemRarity rarity, List<string> itemIds, ItemDrop.ItemData baseItem, MagicItem originalMagicItem, float powerLevelMod, out MagicItem rolledMagicItem)
+        {
+            rolledMagicItem = null;
+
+            if (itemIds == null || itemIds.Count == 0)
+            {
+                return TryRollSetItem(rarity, baseItem, originalMagicItem, powerLevelMod, out rolledMagicItem);
+            }
+
+            HashSet<string> allowedIds = new HashSet<string>(itemIds.Where(x => !string.IsNullOrEmpty(x)), StringComparer.OrdinalIgnoreCase);
+            if (allowedIds.Count == 0)
+            {
+                return false;
+            }
+
+            List<LegendaryInfo> available = new List<LegendaryInfo>();
+            foreach (string itemId in allowedIds)
+            {
+                LegendaryInfo info;
+                ItemRarity itemRarity;
+                if (!ItemById.TryGetValue(itemId, out info) ||
+                    !ItemRarityById.TryGetValue(itemId, out itemRarity) ||
+                    itemRarity != rarity ||
+                    info == null ||
+                    !info.IsSetItem)
+                {
+                    continue;
+                }
+
+                MagicItem probeMagicItem = new MagicItem();
+                probeMagicItem.Rarity = rarity;
+                if (info.Requirements != null &&
+                    !info.Requirements.CheckRequirements(baseItem, probeMagicItem, null, true, false, false, true) &&
+                    !IsLeatherQuiverCustomItem(itemId))
+                {
+                    continue;
+                }
+
+                available.Add(info);
+            }
+
+            if (available.Count == 0)
+            {
+                return false;
+            }
+
+            LegendaryInfo selected = RollWeighted(available);
+            if (selected == null)
+            {
+                return false;
+            }
+
+            rolledMagicItem = BuildMagicItem(rarity, baseItem, originalMagicItem, selected, powerLevelMod);
+            return rolledMagicItem != null;
+        }
+
         internal static bool TryCreateAdventureItemDrop(string itemId, out ItemDrop itemDrop)
         {
             itemDrop = null;
@@ -26920,6 +26976,10 @@ namespace Fran.EpicLootRaritySets
                     {
                         rule.ForceSetDropItems = new List<string>();
                     }
+                    if (rule.ForceSetItemIds == null)
+                    {
+                        rule.ForceSetItemIds = new List<string>();
+                    }
 
                     RulesByObject[rule.Object] = rule;
                 }
@@ -26998,7 +27058,16 @@ namespace Fran.EpicLootRaritySets
             }
 
             string lootDropItem = GetCurrentLootDropItem();
-            if (!string.IsNullOrEmpty(lootDropItem) && _context.Rule.ForceSetDropItems.Contains(lootDropItem))
+            if (_context.Rule.ForceSetDropItems.Count > 0)
+            {
+                if (string.IsNullOrEmpty(lootDropItem) || !_context.Rule.ForceSetDropItems.Contains(lootDropItem, StringComparer.OrdinalIgnoreCase))
+                {
+                    chance = 0f;
+                    return true;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(lootDropItem) && _context.Rule.ForceSetDropItems.Contains(lootDropItem, StringComparer.OrdinalIgnoreCase))
             {
                 chance = 1f;
                 return true;
@@ -27006,6 +27075,41 @@ namespace Fran.EpicLootRaritySets
 
             chance = _context.SetDropsMade < _context.Rule.GuaranteedSetDrops ? 1f : _context.Rule.ExtraSetDropChance;
             return true;
+        }
+
+        internal static bool TryRollBossSetItem(ItemDrop.ItemData baseItem, MagicItem originalMagicItem, ItemRarity rolledRarity, float powerLevelMod, out MagicItem magicItem)
+        {
+            magicItem = null;
+            if (!HasActiveBossRule())
+            {
+                return false;
+            }
+
+            ItemRarity targetRarity;
+            if (!TryGetRuleRarity(_context.Rule, out targetRarity))
+            {
+                targetRarity = rolledRarity;
+            }
+
+            return RaritySetRegistry.TryRollSetItemFromIds(targetRarity, _context.Rule.ForceSetItemIds, baseItem, originalMagicItem, powerLevelMod, out magicItem);
+        }
+
+        internal static bool IsAllowedBossSetDrop(MagicItem magicItem)
+        {
+            if (!HasActiveBossRule() || magicItem == null || string.IsNullOrEmpty(magicItem.SetID))
+            {
+                return false;
+            }
+
+            ItemRarity targetRarity;
+            if (TryGetRuleRarity(_context.Rule, out targetRarity) && magicItem.Rarity != targetRarity)
+            {
+                return false;
+            }
+
+            return _context.Rule.ForceSetItemIds.Count == 0 ||
+                   (!string.IsNullOrEmpty(magicItem.LegendaryID) &&
+                    _context.Rule.ForceSetItemIds.Contains(magicItem.LegendaryID, StringComparer.OrdinalIgnoreCase));
         }
 
         internal static void RecordSetDrop()
@@ -27024,6 +27128,14 @@ namespace Fran.EpicLootRaritySets
             }
 
             return _lootDropItems.Peek();
+        }
+
+        private static bool TryGetRuleRarity(BossSetDropRule rule, out ItemRarity rarity)
+        {
+            rarity = ItemRarity.Magic;
+            return rule != null &&
+                   !string.IsNullOrEmpty(rule.Rarity) &&
+                   Enum.TryParse(rule.Rarity, true, out rarity);
         }
 
         private class BossLootContext
@@ -27051,9 +27163,11 @@ namespace Fran.EpicLootRaritySets
         {
             public string Object;
             public bool Enabled = true;
+            public string Rarity;
             public int GuaranteedSetDrops = 1;
             public float ExtraSetDropChance = 0.4f;
             public List<string> ForceSetDropItems;
+            public List<string> ForceSetItemIds;
         }
         #pragma warning restore 0649
     }
@@ -28275,9 +28389,37 @@ namespace Fran.EpicLootRaritySets
             }
 
             bool bossRuleActive = BossSetDropController.HasActiveBossRule();
-            if (bossRuleActive && !string.IsNullOrEmpty(__result.SetID))
+            if (bossRuleActive)
             {
-                BossSetDropController.RecordSetDrop();
+                float bossChance;
+                if (!BossSetDropController.TryGetBossSetDropChance(out bossChance))
+                {
+                    return;
+                }
+
+                if (bossChance <= 0f || UnityEngine.Random.Range(0f, 1f) >= bossChance)
+                {
+                    if (BossSetDropController.IsAllowedBossSetDrop(__result))
+                    {
+                        BossSetDropController.RecordSetDrop();
+                    }
+
+                    return;
+                }
+
+                MagicItem bossSetItem;
+                if (BossSetDropController.TryRollBossSetItem(baseItem, __result, rarity, powerlevelMod, out bossSetItem))
+                {
+                    __result = bossSetItem;
+                    BossSetDropController.RecordSetDrop();
+                    return;
+                }
+
+                if (BossSetDropController.IsAllowedBossSetDrop(__result))
+                {
+                    BossSetDropController.RecordSetDrop();
+                }
+
                 return;
             }
 

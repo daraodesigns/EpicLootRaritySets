@@ -673,20 +673,53 @@ function Get-ForceSetDropItems {
     return @($items | Sort-Object)
 }
 
+function Get-ForceSetItemIds {
+    param(
+        [Parameter(Mandatory = $true)][string]$Rarity,
+        [Parameter(Mandatory = $true)]$RaritySetsConfig,
+        [Parameter(Mandatory = $true)]$LegendaryConfig
+    )
+
+    return @(
+        Get-GeneratedSetItems $Rarity $RaritySetsConfig $LegendaryConfig |
+            Where-Object { $_.IsSetItem -eq $true } |
+            ForEach-Object { $_.ID } |
+            Sort-Object -Unique
+    )
+}
+
 function Write-BossSetDropRules {
-    param([Parameter(Mandatory = $true)]$Config)
+    param(
+        [Parameter(Mandatory = $true)]$Config,
+        [Parameter(Mandatory = $true)]$RaritySetsConfig,
+        [Parameter(Mandatory = $true)]$LegendaryConfig
+    )
+
+    $bossRules = @(
+        [pscustomobject]@{ Object = 'Eikthyr'; Rarity = 'Magic'; Pool = 'FranMagicSetEquipment' }
+        [pscustomobject]@{ Object = 'gd_king'; Rarity = 'Rare'; Pool = 'FranRareSetEquipment' }
+        [pscustomobject]@{ Object = 'Bonemass'; Rarity = 'Epic'; Pool = 'FranEpicSetEquipment' }
+        [pscustomobject]@{ Object = 'Dragon'; Rarity = 'Legendary'; Pool = 'FranLegendarySetEquipment' }
+        [pscustomobject]@{ Object = 'GoblinKing'; Rarity = 'Mythic'; Pool = 'FranMythicSetEquipment' }
+        [pscustomobject]@{ Object = 'SeekerQueen'; Rarity = 'Mythic'; Pool = 'FranMythicSetEquipment' }
+        [pscustomobject]@{ Object = 'Fader'; Rarity = 'Ancient'; Pool = 'FranAncientSetEquipment' }
+        [pscustomobject]@{ Object = 'FrozenKing_p3'; Rarity = 'Ancient'; Pool = 'FranAncientSetEquipment' }
+    )
 
     $rules = [pscustomobject][ordered]@{
         Enabled = $true
         Bosses = @(
-            [pscustomobject][ordered]@{ Object = 'Eikthyr'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranMagicSetEquipment') }
-            [pscustomobject][ordered]@{ Object = 'gd_king'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranRareSetEquipment') }
-            [pscustomobject][ordered]@{ Object = 'Bonemass'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranEpicSetEquipment') }
-            [pscustomobject][ordered]@{ Object = 'Dragon'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranLegendarySetEquipment') }
-            [pscustomobject][ordered]@{ Object = 'GoblinKing'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranMythicSetEquipment') }
-            [pscustomobject][ordered]@{ Object = 'SeekerQueen'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranMythicSetEquipment') }
-            [pscustomobject][ordered]@{ Object = 'Fader'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranAncientSetEquipment') }
-            [pscustomobject][ordered]@{ Object = 'FrozenKing_p3'; Enabled = $true; GuaranteedSetDrops = 1; ExtraSetDropChance = 0.0; ForceSetDropItems = Get-ForceSetDropItems $Config @('FranAncientSetEquipment') }
+            foreach ($rule in $bossRules) {
+                [pscustomobject][ordered]@{
+                    Object = $rule.Object
+                    Enabled = $true
+                    Rarity = $rule.Rarity
+                    GuaranteedSetDrops = 1
+                    ExtraSetDropChance = 1.0
+                    ForceSetDropItems = Get-ForceSetDropItems $Config @($rule.Pool)
+                    ForceSetItemIds = Get-ForceSetItemIds $rule.Rarity $RaritySetsConfig $LegendaryConfig
+                }
+            }
         )
     }
 
@@ -1089,6 +1122,6 @@ if (Test-Path $pluginConfigPath) {
     [System.IO.File]::WriteAllText($pluginConfigPath, $cfg, [System.Text.UTF8Encoding]::new($false))
 }
 
-Write-BossSetDropRules $lootConfig
+Write-BossSetDropRules $lootConfig $raritySetsConfig $legendaryConfig
 
 Write-Output 'Loot progression configured.'
