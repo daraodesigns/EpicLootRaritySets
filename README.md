@@ -1,12 +1,12 @@
 # EpicLootRaritySets
 
-Convierte EpicLoot en una progresion estable de clases por equipo para Valheim. Desde la version `1.0.0`, el mod se considera version estable y preparada para publicarse en Thunderstore con ese numero en el manifest.
+Convierte EpicLoot en una progresion estable de clases por equipo para Valheim. Desde la version `1.0.0`, el mod se considera version estable y preparada para jugar disfrutando de la experiencia completa.
 
 Este mod anade sets personalizados por rareza, drops por etapa de boss, piezas especiales, bonus de set y habilidades activas al completar sets. La idea es que el jugador no solo encuentre objetos mejores: que pueda construir un personaje completo alrededor de una clase de equipo.
 
 Si te gusta EpicLoot pero quieres objetivos claros de farmeo, builds reconocibles y habilidades nuevas al cerrar un set completo, este mod es para eso.
 
-Dejo mi patrón por si te animas a dejarme una propina que me ayude a crecer. Muchas gracias y un abrazo por el apoyo a todos: https://ko-fi.com/daraodesigns
+Dejo mi ko-fi por si te animas a dejarme una propina que me ayude a crecer. Muchas gracias y un abrazo por el apoyo a todos: https://ko-fi.com/daraodesigns
 
 ## Que aporta
 
