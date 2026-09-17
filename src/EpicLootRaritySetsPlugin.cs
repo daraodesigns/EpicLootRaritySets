@@ -212,6 +212,13 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> NottShadowMarkDamageStored;
         internal static ConfigEntry<float> NottShadowMarkCooldownReductionRadius;
         internal static ConfigEntry<float> NottShadowMarkCooldownReductionOnNearbyDeath;
+        internal static ConfigEntry<KeyboardShortcut> NottKnifeStrikeHotkey;
+        internal static ConfigEntry<float> NottKnifeStrikeCooldown;
+        internal static ConfigEntry<float> NottKnifeStrikeRange;
+        internal static ConfigEntry<float> NottKnifeStrikeWeaponDamageMultiplier;
+        internal static ConfigEntry<float> NottKnifeStrikeDamagePerNottLevel;
+        internal static ConfigEntry<float> NottKnifeStrikeSlow;
+        internal static ConfigEntry<float> NottKnifeStrikeSlowDuration;
         internal static ConfigEntry<float> NottHitSpeedBonus;
         internal static ConfigEntry<float> NottHitSpeedDuration;
         internal static ConfigEntry<int> NottHitSpeedMaxStacks;
@@ -416,7 +423,7 @@ namespace Fran.EpicLootRaritySets
             FrostbrandWaterSphereMaxDuration = Config.Bind("Frostbrand Abilities", "Water Sphere Max Duration", 8f, new ConfigDescription("Maximum seconds this mod keeps updating the bridged Norse Water Sphere and gravity pull.", new AcceptableValueRange<float>(1f, 60f)));
             FrostbrandLightningStrikeAttackCount = Config.Bind("Frostbrand Abilities", "Lightning Strike Attack Count", 3, new ConfigDescription("Legacy key: number of Frostbrand weapon attacks or Slash uses required to trigger Fire Ball.", new AcceptableValueRange<int>(1, 20)));
             FrostbrandLightningStrikeRadius = Config.Bind("Frostbrand Abilities", "Lightning Strike Radius", 3.5f, new ConfigDescription("Legacy key: fallback radius in meters around the aimed point damaged by Frostbrand Fire Ball when no projectile prefab is available.", new AcceptableValueRange<float>(0.1f, 20f)));
-            FrostbrandLightningStrikeBaseDamage = Config.Bind("Frostbrand Abilities", "Lightning Strike Base Damage", 45f, new ConfigDescription("Legacy key: base fire damage for Frostbrand Fire Ball before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
+            FrostbrandLightningStrikeBaseDamage = Config.Bind("Frostbrand Abilities", "Lightning Strike Base Damage", 36f, new ConfigDescription("Legacy key: base fire damage for Frostbrand Fire Ball before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
             FrostbrandLightningStrikeDamagePerElementalMagicLevel = Config.Bind("Frostbrand Abilities", "Lightning Strike Damage Per Class Skill Level", 0.85f, new ConfigDescription("Legacy key: extra fire damage per class skill level for Frostbrand Fire Ball.", new AcceptableValueRange<float>(0f, 30f)));
             FrostbrandLightningStrikeImpactForce = Config.Bind("Frostbrand Abilities", "Lightning Strike Impact Force", 35f, new ConfigDescription("Legacy key: projectile speed/impact force used by Frostbrand Fire Ball.", new AcceptableValueRange<float>(0f, 500f)));
             FrostbrandSlashHotkey = Config.Bind("Frostbrand Abilities", "Slash Hotkey", new KeyboardShortcut(KeyCode.None), "Legacy fallback hotkey for Frostbrand Surt Slash. The primary input is the game's secondary attack.");
@@ -427,17 +434,17 @@ namespace Fran.EpicLootRaritySets
             FrostbrandSlashEitrUse = Config.Bind("Frostbrand Abilities", "Slash Eitr Use", 30f, new ConfigDescription("Eitr consumed by Frostbrand Surt Slash.", new AcceptableValueRange<float>(0f, 250f)));
             FrostbrandSlashRange = Config.Bind("Frostbrand Abilities", "Slash Range", 10f, new ConfigDescription("Range in meters for Frostbrand Surt Slash.", new AcceptableValueRange<float>(1f, 50f)));
             FrostbrandSlashRadius = Config.Bind("Frostbrand Abilities", "Slash Radius", 4f, new ConfigDescription("Half-width radius for Frostbrand Surt Slash cone.", new AcceptableValueRange<float>(0.5f, 20f)));
-            FrostbrandSlashBaseDamage = Config.Bind("Frostbrand Abilities", "Slash Base Damage", 30f, new ConfigDescription("Base fire/slash damage for Frostbrand Surt Slash before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
+            FrostbrandSlashBaseDamage = Config.Bind("Frostbrand Abilities", "Slash Base Damage", 24f, new ConfigDescription("Base fire/slash damage for Frostbrand Surt Slash before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
             FrostbrandSlashDamagePerElementalMagicLevel = Config.Bind("Frostbrand Abilities", "Slash Damage Per Class Skill Level", 0.9f, new ConfigDescription("Extra fire/slash damage per class skill level for Frostbrand Surt Slash.", new AcceptableValueRange<float>(0f, 30f)));
             FrostbrandCrushCooldown = Config.Bind("Frostbrand Abilities", "Crush Cooldown", 14f, new ConfigDescription("Cooldown in seconds for Frostbrand Surt Crush.", new AcceptableValueRange<float>(0f, 180f)));
             FrostbrandCrushEitrUse = Config.Bind("Frostbrand Abilities", "Crush Eitr Use", 45f, new ConfigDescription("Eitr consumed by Frostbrand Surt Crush.", new AcceptableValueRange<float>(0f, 250f)));
             FrostbrandCrushRange = Config.Bind("Frostbrand Abilities", "Crush Range", 16f, new ConfigDescription("Leap range in meters for Frostbrand Surt Crush.", new AcceptableValueRange<float>(1f, 60f)));
             FrostbrandCrushRadius = Config.Bind("Frostbrand Abilities", "Crush Radius", 5f, new ConfigDescription("Impact radius in meters for Frostbrand Surt Crush.", new AcceptableValueRange<float>(0.5f, 30f)));
-            FrostbrandCrushBaseDamage = Config.Bind("Frostbrand Abilities", "Crush Base Damage", 65f, new ConfigDescription("Base fire/blunt damage for Frostbrand Surt Crush before class-skill scaling.", new AcceptableValueRange<float>(0f, 3000f)));
+            FrostbrandCrushBaseDamage = Config.Bind("Frostbrand Abilities", "Crush Base Damage", 52f, new ConfigDescription("Base fire/blunt damage for Frostbrand Surt Crush before class-skill scaling.", new AcceptableValueRange<float>(0f, 3000f)));
             FrostbrandCrushDamagePerElementalMagicLevel = Config.Bind("Frostbrand Abilities", "Crush Damage Per Class Skill Level", 1.1f, new ConfigDescription("Extra fire/blunt damage per class skill level for Frostbrand Surt Crush.", new AcceptableValueRange<float>(0f, 40f)));
             FrostbrandBurningGroundDuration = Config.Bind("Frostbrand Abilities", "Burning Ground Duration", 10f, new ConfigDescription("Duration in seconds for Burning Ground left by Frostbrand Crush.", new AcceptableValueRange<float>(0.5f, 60f)));
             FrostbrandBurningGroundTickInterval = Config.Bind("Frostbrand Abilities", "Burning Ground Tick Interval", 1f, new ConfigDescription("Seconds between Burning Ground damage ticks.", new AcceptableValueRange<float>(0.1f, 10f)));
-            FrostbrandBurningGroundBaseDamage = Config.Bind("Frostbrand Abilities", "Burning Ground Base Damage", 16f, new ConfigDescription("Base fire damage per Burning Ground tick before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
+            FrostbrandBurningGroundBaseDamage = Config.Bind("Frostbrand Abilities", "Burning Ground Base Damage", 13f, new ConfigDescription("Base fire damage per Burning Ground tick before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
             FrostbrandBurningGroundDamagePerElementalMagicLevel = Config.Bind("Frostbrand Abilities", "Burning Ground Damage Per Class Skill Level", 0.32f, new ConfigDescription("Extra fire damage per class skill level for Burning Ground ticks.", new AcceptableValueRange<float>(0f, 20f)));
             FrostbrandElementalShieldCooldown = Config.Bind("Frostbrand Abilities", "Elemental Shield Cooldown", 24f, new ConfigDescription("Cooldown in seconds for Frostbrand Elemental Shield.", new AcceptableValueRange<float>(0f, 300f)));
             FrostbrandElementalShieldEitrUse = Config.Bind("Frostbrand Abilities", "Elemental Shield Eitr Use", 50f, new ConfigDescription("Eitr consumed by Frostbrand Elemental Shield.", new AcceptableValueRange<float>(0f, 250f)));
@@ -450,7 +457,7 @@ namespace Fran.EpicLootRaritySets
             FrostbrandLightningChannelRange = Config.Bind("Frostbrand Abilities", "Thor Lightning Strike Range", 80f, new ConfigDescription("Maximum aiming range for Frostbrand Thor Lightning Strike.", new AcceptableValueRange<float>(1f, 100f)));
             FrostbrandLightningChannelRadius = Config.Bind("Frostbrand Abilities", "Thor Lightning Strike Radius", 3f, new ConfigDescription("Fallback damage radius in meters around each Frostbrand Thor Lightning Strike.", new AcceptableValueRange<float>(0.1f, 30f)));
             FrostbrandLightningChannelTickInterval = Config.Bind("Frostbrand Abilities", "Thor Lightning Strike Delay", 0.25f, new ConfigDescription("Seconds between the three Frostbrand Thor Lightning Strike impacts.", new AcceptableValueRange<float>(0.05f, 5f)));
-            FrostbrandLightningChannelBaseDamagePerTick = Config.Bind("Frostbrand Abilities", "Thor Lightning Strike Base Damage", 10f, new ConfigDescription("Base lightning damage per Frostbrand Thor Lightning Strike before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
+            FrostbrandLightningChannelBaseDamagePerTick = Config.Bind("Frostbrand Abilities", "Thor Lightning Strike Base Damage", 8f, new ConfigDescription("Base lightning damage per Frostbrand Thor Lightning Strike before class-skill scaling.", new AcceptableValueRange<float>(0f, 2000f)));
             FrostbrandLightningChannelDamagePerElementalMagicLevel = Config.Bind("Frostbrand Abilities", "Thor Lightning Strike Damage Per Class Skill Level", 1.4f, new ConfigDescription("Extra lightning damage per class skill level for each Frostbrand Thor Lightning Strike.", new AcceptableValueRange<float>(0f, 30f)));
             UpgradeFloatConfig(FrostbrandWaterSphereCooldown, 10f, 20f);
             UpgradeFloatConfig(FrostbrandWaterSpherePullForce, 9f, 16f);
@@ -463,6 +470,11 @@ namespace Fran.EpicLootRaritySets
             UpgradeShortcutConfig(FrostbrandElementalShieldHotkey, KeyCode.T, KeyCode.Mouse4);
             UpgradeShortcutConfig(FrostbrandLightningChannelHotkey, KeyCode.Mouse3, KeyCode.Mouse4);
             UpgradeFloatConfig(FrostbrandSlashBaseDamage, 50f, 30f);
+            UpgradeFloatConfig(FrostbrandLightningStrikeBaseDamage, 45f, 36f);
+            UpgradeFloatConfig(FrostbrandSlashBaseDamage, 30f, 24f);
+            UpgradeFloatConfig(FrostbrandCrushBaseDamage, 65f, 52f);
+            UpgradeFloatConfig(FrostbrandBurningGroundBaseDamage, 16f, 13f);
+            UpgradeFloatConfig(FrostbrandLightningChannelBaseDamagePerTick, 10f, 8f);
             UpgradeFloatConfig(FrostbrandBurningGroundDuration, 6f, 10f);
 
             EnableHraesvelgrAbilities = Config.Bind("Hraesvelgr Abilities", "Enable Hraesvelgr Abilities", true, "Enable the complete-set abilities for the Hraesvelgr archer set.");
@@ -571,6 +583,13 @@ namespace Fran.EpicLootRaritySets
             NottShadowMarkDamageStored = Config.Bind("Nott Abilities", "Shadow Mark Damage Stored Fraction", 0.5f, new ConfigDescription("Fraction of real health damage stored by Shadow Mark and released as spirit damage.", new AcceptableValueRange<float>(0f, 5f)));
             NottShadowMarkCooldownReductionRadius = Config.Bind("Nott Abilities", "Shadow Mark Cooldown Reduction Radius", 20f, new ConfigDescription("Enemy death radius in meters that reduces Shadow Mark cooldown.", new AcceptableValueRange<float>(1f, 100f)));
             NottShadowMarkCooldownReductionOnNearbyDeath = Config.Bind("Nott Abilities", "Shadow Mark Cooldown Reduction On Nearby Death", 10f, new ConfigDescription("Seconds removed from Shadow Mark cooldown when an enemy dies near Nott.", new AcceptableValueRange<float>(0f, 300f)));
+            NottKnifeStrikeHotkey = Config.Bind("Nott Abilities", "Knife Strike Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Nott Knife Strike. Hold block with this hotkey so Shadow Mark remains on Mouse4.");
+            NottKnifeStrikeCooldown = Config.Bind("Nott Abilities", "Knife Strike Cooldown", 8f, new ConfigDescription("Cooldown in seconds for Nott Knife Strike.", new AcceptableValueRange<float>(0f, 300f)));
+            NottKnifeStrikeRange = Config.Bind("Nott Abilities", "Knife Strike Range", 5f, new ConfigDescription("Maximum range in meters for Nott Knife Strike.", new AcceptableValueRange<float>(0.5f, 30f)));
+            NottKnifeStrikeWeaponDamageMultiplier = Config.Bind("Nott Abilities", "Knife Strike Weapon Damage Multiplier", 0.5f, new ConfigDescription("Fraction of current knife weapon damage dealt by Knife Strike. 0.5 means 50%.", new AcceptableValueRange<float>(0f, 5f)));
+            NottKnifeStrikeDamagePerNottLevel = Config.Bind("Nott Abilities", "Knife Strike Damage Per Nott Level", 0.75f, new ConfigDescription("Extra slash damage added per Nott level by Knife Strike.", new AcceptableValueRange<float>(0f, 30f)));
+            NottKnifeStrikeSlow = Config.Bind("Nott Abilities", "Knife Strike Slow", 0.50f, new ConfigDescription("Movement slow applied by Knife Strike. 0.50 means 50% slow.", new AcceptableValueRange<float>(0f, 0.95f)));
+            NottKnifeStrikeSlowDuration = Config.Bind("Nott Abilities", "Knife Strike Slow Duration", 5f, new ConfigDescription("Duration in seconds for Knife Strike slow.", new AcceptableValueRange<float>(0.1f, 60f)));
             NottHitSpeedBonus = Config.Bind("Nott Abilities", "Hit Speed Bonus Per Stack", 0.30f, new ConfigDescription("Movement speed bonus gained when Nott hits an enemy. 0.30 means +30%. This no longer stacks.", new AcceptableValueRange<float>(0f, 2f)));
             NottHitSpeedDuration = Config.Bind("Nott Abilities", "Hit Speed Bonus Duration", 5f, new ConfigDescription("Duration in seconds for Nott Shadow Momentum.", new AcceptableValueRange<float>(0.1f, 60f)));
             NottHitSpeedMaxStacks = Config.Bind("Nott Abilities", "Hit Speed Bonus Max Stacks", 1, new ConfigDescription("Legacy stack cap for Nott Shadow Momentum. Current behavior is a single refreshed +30% buff.", new AcceptableValueRange<int>(1, 20)));
@@ -1532,6 +1551,84 @@ namespace Fran.EpicLootRaritySets
             return rolledMagicItem != null;
         }
 
+        internal static bool TrySelectSetBaseItemFromIds(ItemRarity rarity, List<string> itemIds, string preferredBaseItemName, out string baseItemName)
+        {
+            baseItemName = null;
+
+            if (itemIds == null || itemIds.Count == 0)
+            {
+                return TrySelectSetBaseItem(rarity, null, preferredBaseItemName, out baseItemName);
+            }
+
+            HashSet<string> allowedIds = new HashSet<string>(itemIds.Where(x => !string.IsNullOrEmpty(x)), StringComparer.OrdinalIgnoreCase);
+            if (allowedIds.Count == 0)
+            {
+                return false;
+            }
+
+            return TrySelectSetBaseItem(rarity, allowedIds, preferredBaseItemName, out baseItemName);
+        }
+
+        private static bool TrySelectSetBaseItem(ItemRarity rarity, HashSet<string> allowedIds, string preferredBaseItemName, out string baseItemName)
+        {
+            baseItemName = null;
+
+            List<LegendaryInfo> available;
+            if (!ItemsByRarity.TryGetValue(rarity, out available) || available == null || available.Count == 0)
+            {
+                return false;
+            }
+
+            List<LegendaryInfo> candidates = new List<LegendaryInfo>();
+            ItemDrop preferredBase = GetItemDropFromObjectDB(preferredBaseItemName);
+            foreach (LegendaryInfo info in available)
+            {
+                if (info == null || !info.IsSetItem || (allowedIds != null && !allowedIds.Contains(info.ID)))
+                {
+                    continue;
+                }
+
+                if (preferredBase != null && MatchesRequirements(preferredBase, info, rarity))
+                {
+                    candidates.Add(info);
+                }
+            }
+
+            if (candidates.Count == 0)
+            {
+                foreach (LegendaryInfo info in available)
+                {
+                    if (info == null || !info.IsSetItem || (allowedIds != null && !allowedIds.Contains(info.ID)))
+                    {
+                        continue;
+                    }
+
+                    ItemDrop fallbackBase = FindAdventureBaseItem(info.ID, info, rarity);
+                    if (fallbackBase != null)
+                    {
+                        candidates.Add(info);
+                    }
+                }
+            }
+
+            LegendaryInfo selected = candidates.Count > 0 ? RollWeighted(candidates) : null;
+            if (selected == null)
+            {
+                return false;
+            }
+
+            ItemDrop baseDrop = preferredBase != null && MatchesRequirements(preferredBase, selected, rarity)
+                ? preferredBase
+                : FindAdventureBaseItem(selected.ID, selected, rarity);
+            if (baseDrop == null || baseDrop.gameObject == null)
+            {
+                return false;
+            }
+
+            baseItemName = baseDrop.gameObject.name;
+            return !string.IsNullOrEmpty(baseItemName);
+        }
+
         internal static bool TryCreateAdventureItemDrop(string itemId, out ItemDrop itemDrop)
         {
             itemDrop = null;
@@ -1588,6 +1685,48 @@ namespace Fran.EpicLootRaritySets
 
             ItemDataExtensions.SaveMagicItem(itemDrop.m_itemData, magicItem);
             itemDrop.gameObject.SetActive(false);
+            return true;
+        }
+
+        internal static bool TrySpawnSetItemDropFromIds(ItemRarity rarity, List<string> itemIds, Vector3 dropPoint, bool initializeObject, out GameObject dropObject)
+        {
+            dropObject = null;
+
+            HashSet<string> allowedIds = null;
+            if (itemIds != null && itemIds.Count > 0)
+            {
+                allowedIds = new HashSet<string>(itemIds.Where(x => !string.IsNullOrEmpty(x)), StringComparer.OrdinalIgnoreCase);
+                if (allowedIds.Count == 0)
+                {
+                    return false;
+                }
+            }
+
+            LegendaryInfo selected;
+            ItemDrop template;
+            if (!TrySelectSetItemAndBase(rarity, allowedIds, null, out selected, out template))
+            {
+                return false;
+            }
+
+            GameObject spawned = LootRoller.SpawnLootForDrop(template.gameObject, dropPoint, initializeObject);
+            ItemDrop itemDrop = spawned != null ? spawned.GetComponent<ItemDrop>() : null;
+            if (itemDrop == null || itemDrop.m_itemData == null)
+            {
+                DestroySpawnedDrop(spawned);
+                return false;
+            }
+
+            itemDrop.m_itemData.m_dropPrefab = template.gameObject;
+            MagicItem magicItem = BuildMagicItem(rarity, itemDrop.m_itemData, null, selected, 1f);
+            if (magicItem == null)
+            {
+                DestroySpawnedDrop(spawned);
+                return false;
+            }
+
+            ItemDataExtensions.SaveMagicItem(itemDrop.m_itemData, magicItem);
+            dropObject = spawned;
             return true;
         }
 
@@ -2079,6 +2218,78 @@ namespace Fran.EpicLootRaritySets
                    AdventureBaseItemsByCustomId.ContainsKey(itemId);
         }
 
+        private static bool TrySelectSetItemAndBase(ItemRarity rarity, HashSet<string> allowedIds, string preferredBaseItemName, out LegendaryInfo selected, out ItemDrop baseDrop)
+        {
+            selected = null;
+            baseDrop = null;
+
+            List<LegendaryInfo> available;
+            if (!ItemsByRarity.TryGetValue(rarity, out available) || available == null || available.Count == 0)
+            {
+                return false;
+            }
+
+            List<LegendaryInfo> candidates = new List<LegendaryInfo>();
+            ItemDrop preferredBase = GetItemDropFromObjectDB(preferredBaseItemName);
+            foreach (LegendaryInfo info in available)
+            {
+                if (info == null || !info.IsSetItem || (allowedIds != null && !allowedIds.Contains(info.ID)))
+                {
+                    continue;
+                }
+
+                if (preferredBase != null && MatchesRequirements(preferredBase, info, rarity))
+                {
+                    candidates.Add(info);
+                }
+            }
+
+            if (candidates.Count == 0)
+            {
+                foreach (LegendaryInfo info in available)
+                {
+                    if (info == null || !info.IsSetItem || (allowedIds != null && !allowedIds.Contains(info.ID)))
+                    {
+                        continue;
+                    }
+
+                    ItemDrop fallbackBase = FindAdventureBaseItem(info.ID, info, rarity);
+                    if (fallbackBase != null)
+                    {
+                        candidates.Add(info);
+                    }
+                }
+            }
+
+            selected = candidates.Count > 0 ? RollWeighted(candidates) : null;
+            if (selected == null)
+            {
+                return false;
+            }
+
+            baseDrop = preferredBase != null && MatchesRequirements(preferredBase, selected, rarity)
+                ? preferredBase
+                : FindAdventureBaseItem(selected.ID, selected, rarity);
+            return baseDrop != null && baseDrop.gameObject != null;
+        }
+
+        private static void DestroySpawnedDrop(GameObject dropObject)
+        {
+            if (dropObject == null)
+            {
+                return;
+            }
+
+            if (ZNetScene.instance != null)
+            {
+                ZNetScene.instance.Destroy(dropObject);
+            }
+            else
+            {
+                UnityEngine.Object.Destroy(dropObject);
+            }
+        }
+
         private static bool MatchesRequirements(ItemDrop candidate, LegendaryInfo info, ItemRarity rarity)
         {
             if (candidate == null || candidate.m_itemData == null || candidate.m_itemData.m_shared == null)
@@ -2300,7 +2511,10 @@ namespace Fran.EpicLootRaritySets
             "Rapid Fire",
             "Shadow Mark",
             "Warp Strike",
+            "Knife Strike",
+            "Knife Strike Slow",
             "Poison Edge",
+            "Executor",
             "Last Hope",
             "Recharge",
             "Meteor",
@@ -2423,8 +2637,12 @@ namespace Fran.EpicLootRaritySets
                 case "warp": return Select("Warp", "Warp");
                 case "nott sneaky": return Select("Sigilo Nott", "Nott Sneaky");
                 case "warp strike": return Select("Golpe de Warp", "Warp Strike");
+                case "knife strike": return Select("Golpe de cuchillo", "Knife Strike");
+                case "knife strike slow": return Select("Ralentizacion de cuchillo", "Knife Strike Slow");
                 case "shadow momentum": return Select("Momentum sombrio", "Shadow Momentum");
                 case "poison edge": return Select("Filo venenoso", "Poison Edge");
+                case "executor": return Select("Ejecutor", "Executor");
+                case "ejecutor": return Select("Ejecutor", "Executor");
                 case "moonvein": return Select("Moonvein", "Moonvein");
                 case "meteor": return Select("Meteoro", "Meteor");
                 case "tornado shot": return Select("Disparo tornado", "Tornado Shot");
@@ -2574,7 +2792,7 @@ namespace Fran.EpicLootRaritySets
             new ClassSkillDefinition("Ragnar", "Ragnar", Ragnar, "Ragnar_berserker.png", "Habilidad de clase Ragnar. Escala Aura de decadencia y el dano propio de las habilidades del berserker.", "Ragnar class skill. Scales Decay Aura and the berserker's direct ability damage.", "AddRagnarSkill", "berserker", "hachas", "axes"),
             new ClassSkillDefinition("Hraesvelgr", "Hraesvelgr", Hraesvelgr, "Hraesvelgr_archer.png", "Habilidad de clase Hraesvelgr. Representa el dominio del arquero fisico, sus disparos especiales, trampas y bestias.", "Hraesvelgr class skill. Represents mastery of physical archery, special shots, traps and beasts.", "AddHraesvelgrSkill", "hraes", "arquero", "archer"),
             new ClassSkillDefinition("Hellsyng", "Hellsyng", SolomonKane, "Hellsyng_crossbow.png", "Habilidad de clase Hellsyng. Escala T.N.T., mordisco, zarpazo, drenaje, Horda de murcielagos y las mascotas del cazador.", "Hellsyng class skill. Scales T.N.T., bite, claw, drain, Bat Horde and hunter pets.", "AddHellsyngSkill", "solomon", "solomonkane", "witchfinder", "ballestero", "crossbow"),
-            new ClassSkillDefinition("Nott", "Nott", Nott, "Nott_assassin.png", "Habilidad de clase Nott. Escala Filo venenoso y representa Warp, sigilo e impulso de asesino.", "Nott class skill. Scales Poison Edge and represents Warp, stealth and assassin momentum.", "AddNottSkill", "assassin", "asesino", "duelist", "duelista"),
+            new ClassSkillDefinition("Nott", "Nott", Nott, "Nott_assassin.png", "Habilidad de clase Nott. Escala Filo venenoso, Golpe de cuchillo y representa Warp, sigilo e impulso de asesino.", "Nott class skill. Scales Poison Edge, Knife Strike and represents Warp, stealth and assassin momentum.", "AddNottSkill", "assassin", "asesino", "duelist", "duelista"),
             new ClassSkillDefinition("Seidr", "Seidr", Seidr, "Seidr_elemental_mage.png", "Habilidad de clase Seidr. Escala Nova de escarcha y las habilidades propias del mago elemental.", "Seidr class skill. Scales Frost Nova and the elemental mage class abilities.", "AddSeidrSkill", "seiðr", "elemental", "magoelemental"),
             new ClassSkillDefinition("Helveig", "Helveig", Helveig, "Helveig_blood_mage.png", "Habilidad de clase Helveig. Escala Curacion sagrada, Rito de sangre, Golpe sagrado, su guardaespaldas Charred Dyrnwyn y su invocacion monstruosa.", "Helveig class skill. Scales Holy Heal, Blood Rite, Holy Strike, the Charred Dyrnwyn bodyguard and monster summon.", "AddHelveigSkill", "blood", "sangre", "magodesangre"),
             new ClassSkillDefinition("Moonvein", "Moonvein", Moonvein, "Moonvein_magic_archer.png", "Habilidad de clase Moonvein. Escala los disparos cargados, Meteoro y Disparo tornado.", "Moonvein class skill. Scales charged shots, Meteor and Tornado Shot.", "AddMoonveinSkill", "moon", "spellbow", "arqueromagico"),
@@ -4100,8 +4318,9 @@ namespace Fran.EpicLootRaritySets
             {
                 float knives = ClassSkillManager.GetLocalSkillLevel("Nott");
                 float poison = ScaleSkillValue(EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value, EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value, knives);
+                float knifeStrike = Mathf.Max(0f, knives * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
                 return string.Format(
-                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.",
+                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\nEjecutor: tus golpes contra enemigos con 30% o menos de vida, o que los bajen a ese umbral, hacen 300% de dano total.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.\nGolpe de cuchillo: tecla {22}. Requiere cuchillo. CD {23:0.#}s. Rango {24:0.#}m. Hace {25:0.#}% del dano del arma + {26:0.##}/nivel Nott = {27:0.#} dano de tajo adicional. Ralentiza {28:0.#}% durante {29:0.#}s.",
                     EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f,
@@ -4123,7 +4342,15 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f,
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value,
-                    EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value);
+                    EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value,
+                    FormatBlockShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey),
+                    EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value,
+                    EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value,
+                    EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f,
+                    EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value,
+                    knifeStrike,
+                    EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f,
+                    EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value);
             }
 
             if (string.Equals(baseSetName, "Ragnar", StringComparison.OrdinalIgnoreCase))
@@ -4332,9 +4559,11 @@ namespace Fran.EpicLootRaritySets
             {
                 float knives = ClassSkillManager.GetLocalSkillLevel("Nott");
                 float poison = ScaleSkillValue(EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value, EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value, knives);
-                return "Nott full set active.\n\nCurrent scaling: Nott " + knives.ToString("0.#") + ".\n\nPassives:\nSneaky activates while crouching/stealthed. Uses Ullr's Sneaky visual, noise x" + EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value.ToString("0.##") + ", enemy detection x" + EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nShadow Momentum: hitting enemies grants +" + (EpicLootRaritySetsPlugin.NottHitSpeedBonus.Value * 100f).ToString("0.#") + "% speed for " + EpicLootRaritySetsPlugin.NottHitSpeedDuration.Value.ToString("0.#") + "s. Does not stack; refreshes.\nPoison Edge scales with Nott: " + EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value.ToString("0.##") + "/level = " + poison.ToString("0.#") + " poison added to each hit.\n\nAbilities:\n"
+                float knifeStrike = Mathf.Max(0f, knives * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
+                return "Nott full set active.\n\nCurrent scaling: Nott " + knives.ToString("0.#") + ".\n\nPassives:\nSneaky activates while crouching/stealthed. Uses Ullr's Sneaky visual, noise x" + EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value.ToString("0.##") + ", enemy detection x" + EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nShadow Momentum: hitting enemies grants +" + (EpicLootRaritySetsPlugin.NottHitSpeedBonus.Value * 100f).ToString("0.#") + "% speed for " + EpicLootRaritySetsPlugin.NottHitSpeedDuration.Value.ToString("0.#") + "s. Does not stack; refreshes.\nPoison Edge scales with Nott: " + EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value.ToString("0.##") + "/level = " + poison.ToString("0.#") + " poison added to each hit.\nExecutor: your hits against enemies at 30% health or lower, or hits that bring them to that threshold, deal 300% total damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.NottWarpHotkey) + ": Warp behind the aimed enemy or the nearest enemy. Cost " + EpicLootRaritySetsPlugin.NottWarpStaminaUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.NottWarpCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.NottWarpRange.Value.ToString("0.#") + "m.\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
+                    + FormatShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\n"
+                    + FormatBlockShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey) + ": Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
             }
 
             if (string.Equals(baseSetName, "Ragnar", StringComparison.OrdinalIgnoreCase))
@@ -4916,6 +5145,7 @@ namespace Fran.EpicLootRaritySets
             { "RagnarCrush", new IconRef("Abilities", "ragnar_crush.png") },
             { "NottWarp", new IconRef("Abilities", "nott_warp.png") },
             { "NottShadowMark", new IconRef("Abilities", "nott_shadow_mark.png") },
+            { "NottKnifeStrike", new IconRef("Abilities", "nott_knife_strike.png") },
             { "MoonveinMeteor", new IconRef("Abilities", "moonvein_meteor.png") },
             { "MoonveinTornadoShot", new IconRef("Abilities", "moonvein_tornado_shot.png") },
             { "HelveigHolyHeal", new IconRef("Abilities", "helveig_holy_heal.png") },
@@ -5018,10 +5248,12 @@ namespace Fran.EpicLootRaritySets
             if (setName == "nott")
             {
                 if (normalized.Contains("sneaky")) return GetIcon("Buffs", "nott_sneaky.png");
+                if (normalized.Contains("executor") || normalized.Contains("ejecutor")) return GetIcon("Buffs", "nott_executor.png");
                 if (normalized.Contains("poison") || normalized.Contains("venen")) return GetIcon("Buffs", "nott_poison_edge.png");
                 if (normalized.Contains("momentum") || normalized.Contains("hitspeed") || normalized.Contains("sombrio")) return GetIcon("Buffs", "nott_shadow_momentum.png");
                 if (normalized.Contains("warpstrike") || normalized.Contains("golpedewarp")) return GetIcon("Buffs", "nott_warp_strike.png");
                 if (normalized.Contains("shadowmark") || normalized.Contains("marcadesombra")) return GetIcon("Abilities", "nott_shadow_mark.png");
+                if (normalized.Contains("knifestrike") || normalized.Contains("golpedecuchillo") || normalized.Contains("cuchillo")) return GetIcon("Abilities", "nott_knife_strike.png");
             }
             if (setName == "seidr")
             {
@@ -5184,8 +5416,10 @@ namespace Fran.EpicLootRaritySets
 
             new AbilityPanelEntry("Nott", "Abilities", "nott_warp.png", "Warp", "shortcut:NottWarpHotkey", false, "NottWarp"),
             new AbilityPanelEntry("Nott", "Abilities", "nott_shadow_mark.png", "Shadow Mark", "shortcut:NottShadowMarkHotkey", false, "NottShadowMark"),
+            new AbilityPanelEntry("Nott", "Abilities", "nott_knife_strike.png", "Knife Strike", "blockShortcut:NottKnifeStrikeHotkey", false, "NottKnifeStrike"),
             new AbilityPanelEntry("Nott", "Buffs", "nott_sneaky.png", "Sneaky", "passive", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_poison_edge.png", "Poison Edge", "passive", true),
+            new AbilityPanelEntry("Nott", "Buffs", "nott_executor.png", "Executor", "passive", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_shadow_momentum.png", "Shadow Momentum", "buff", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_warp_strike.png", "Warp Strike", "buff", true),
 
@@ -10725,29 +10959,22 @@ namespace Fran.EpicLootRaritySets
 
         private static GameObject FindPrefab(params string[] nameParts)
         {
-            if (nameParts == null || nameParts.Length == 0)
+            if (nameParts == null || nameParts.Length == 0 || ZNetScene.instance == null)
             {
                 return null;
             }
 
             foreach (string namePart in nameParts)
             {
-                GameObject prefab = FindNorseStaticGameObject(namePart);
+                if (string.IsNullOrWhiteSpace(namePart))
+                {
+                    continue;
+                }
+
+                GameObject prefab = ZNetScene.instance.GetPrefab(namePart);
                 if (IsSafeVisualPrefab(prefab, namePart))
                 {
                     return prefab;
-                }
-            }
-
-            if (ZNetScene.instance != null)
-            {
-                foreach (string namePart in nameParts)
-                {
-                    GameObject prefab = ZNetScene.instance.GetPrefab(namePart);
-                    if (IsSafeVisualPrefab(prefab, namePart))
-                    {
-                        return prefab;
-                    }
                 }
             }
 
@@ -10812,7 +11039,13 @@ namespace Fran.EpicLootRaritySets
                 if (prefab.GetComponent<Character>() != null ||
                     prefab.GetComponentInChildren<Character>(true) != null ||
                     prefab.GetComponent<Humanoid>() != null ||
-                    prefab.GetComponentInChildren<Humanoid>(true) != null)
+                    prefab.GetComponentInChildren<Humanoid>(true) != null ||
+                    prefab.GetComponent<ZNetView>() != null ||
+                    prefab.GetComponentInChildren<ZNetView>(true) != null ||
+                    prefab.GetComponent<Piece>() != null ||
+                    prefab.GetComponentInChildren<Piece>(true) != null ||
+                    prefab.GetComponent<ItemDrop>() != null ||
+                    prefab.GetComponentInChildren<ItemDrop>(true) != null)
                 {
                     return false;
                 }
@@ -18587,6 +18820,10 @@ namespace Fran.EpicLootRaritySets
         private const string HitSpeedBuffCategory = "FranNottShadowMomentum";
         private const string PoisonPassiveBuffName = "FranNottPoisonEdge";
         private const string PoisonPassiveBuffCategory = "FranNottPoisonEdge";
+        private const string ExecutorPassiveBuffName = "FranNottExecutor";
+        private const string ExecutorPassiveBuffCategory = "FranNottExecutor";
+        private const string KnifeStrikeSlowBuffName = "FranNottKnifeStrikeSlow";
+        private const string KnifeStrikeSlowBuffCategory = "FranNottKnifeStrikeSlow";
         private const string ShadowMarkBuffName = "FranNottShadowMark";
         private const string ShadowMarkBuffCategory = "FranNottShadowMark";
         private const string ShadowMarkDebuffName = "FranNottShadowMarked";
@@ -18594,6 +18831,8 @@ namespace Fran.EpicLootRaritySets
         private const float SneakyRefreshInterval = 0.35f;
         private const float SneakyBuffTtl = 1f;
         private const float AggroSuppressInterval = 0.25f;
+        private const float ExecutorHealthThreshold = 0.30f;
+        private const float ExecutorDamageMultiplier = 3f;
 
         private static readonly FieldInfo NoiseModifierField = AccessTools.Field(typeof(SE_Stats), "m_noiseModifier");
         private static readonly FieldInfo StealthModifierField = AccessTools.Field(typeof(SE_Stats), "m_stealthModifier");
@@ -18630,6 +18869,8 @@ namespace Fran.EpicLootRaritySets
         private static StatusEffect _warpStrikeBuff;
         private static StatusEffect _hitSpeedBuff;
         private static StatusEffect _poisonPassiveBuff;
+        private static StatusEffect _executorPassiveBuff;
+        private static StatusEffect _knifeStrikeSlowBuff;
         private static StatusEffect _shadowMarkBuff;
         private static StatusEffect _shadowMarkDebuff;
         private static GameObject _shadowMarkVisual;
@@ -18639,6 +18880,7 @@ namespace Fran.EpicLootRaritySets
         private static float _aggroSuppressTimer;
         private static float _warpCooldown;
         private static float _shadowMarkCooldown;
+        private static float _knifeStrikeCooldown;
         private static float _shadowMarkRemaining;
         private static float _shadowMarkAccumulatedDamage;
         private static float _shadowMarkVisualTimer;
@@ -18659,6 +18901,7 @@ namespace Fran.EpicLootRaritySets
 
             _warpCooldown = Mathf.Max(0f, _warpCooldown - dt);
             _shadowMarkCooldown = Mathf.Max(0f, _shadowMarkCooldown - dt);
+            _knifeStrikeCooldown = Mathf.Max(0f, _knifeStrikeCooldown - dt);
             UpdateHitSpeedBuff(player, dt);
 
             if (!IsNottEnabledAndActive())
@@ -18672,11 +18915,18 @@ namespace Fran.EpicLootRaritySets
 
             _wasActive = true;
             RefreshPoisonPassiveBuff(player);
+            RefreshExecutorPassiveBuff(player);
             UpdatePassiveSneaky(player, dt);
             UpdateShadowMark(player, dt);
 
             if (!CanReadAbilityInput(player))
             {
+                return;
+            }
+
+            if (IsShortcutDown(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey) && SetAbilityInput.IsBlockHeld())
+            {
+                TryKnifeStrike(player);
                 return;
             }
 
@@ -18874,6 +19124,23 @@ namespace Fran.EpicLootRaritySets
             hit.m_damage.m_poison += Mathf.Max(0f, EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value + skill * EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value);
         }
 
+        internal static void ApplyExecutor(Character target, HitData hit)
+        {
+            if (target == null || hit == null || !IsNottEnabledAndActive())
+            {
+                return;
+            }
+
+            Player player;
+            if (!TryGetNottDamageOwner(target, hit, out player) || !ShouldApplyExecutor(target, hit))
+            {
+                return;
+            }
+
+            MultiplyDamage(ref hit.m_damage, ExecutorDamageMultiplier);
+            ClassSkillManager.RaiseSkill(player, RequiredSet, 0.5f);
+        }
+
         internal static void OnPlayerHit(Character target, HitData hit)
         {
             if (target == null || hit == null || !IsNottEnabledAndActive())
@@ -19028,6 +19295,214 @@ namespace Fran.EpicLootRaritySets
             SpawnShadowMarkPulseVisual(target);
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
             ShowMessage(player, "Shadow Mark: " + GetTargetName(target) + ".");
+        }
+
+        private static void TryKnifeStrike(Player player)
+        {
+            if (_knifeStrikeCooldown > 0f)
+            {
+                ShowMessage(player, string.Format("Golpe de cuchillo: {0:0}s cooldown.", _knifeStrikeCooldown));
+                return;
+            }
+
+            ItemDrop.ItemData weapon = player != null ? player.GetCurrentWeapon() : null;
+            if (!IsKnifeWeapon(weapon))
+            {
+                ShowMessage(player, "Golpe de cuchillo: equipa un cuchillo.");
+                return;
+            }
+
+            Character target = FindKnifeStrikeTarget(player);
+            if (target == null)
+            {
+                ShowMessage(player, string.Format("Golpe de cuchillo: ningun enemigo a {0:0.#}m.", EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value));
+                return;
+            }
+
+            HitData hit = CreateKnifeStrikeHit(player, weapon, target);
+            if (GetTotalDamage(hit.m_damage) <= 0.01f)
+            {
+                ShowMessage(player, "Golpe de cuchillo: sin dano.");
+                return;
+            }
+
+            target.Damage(hit);
+            ApplyKnifeStrikeSlow(target);
+            SpawnKnifeStrikeVisual(player, target);
+            _knifeStrikeCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value);
+            AbilityCooldownBuffController.Start(player, "NottKnifeStrike", "Knife Strike", _knifeStrikeCooldown, AbilityPanelIconCatalog.GetIcon("Abilities", "nott_knife_strike.png"));
+            ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
+            ShowMessage(player, "Golpe de cuchillo: " + GetTargetName(target) + ".");
+        }
+
+        private static HitData CreateKnifeStrikeHit(Player player, ItemDrop.ItemData weapon, Character target)
+        {
+            HitData.DamageTypes damages = CreateKnifeStrikeDamage(player, weapon);
+            Vector3 direction = target != null && player != null
+                ? target.GetCenterPoint() - player.GetCenterPoint()
+                : Vector3.forward;
+            if (direction.sqrMagnitude <= 0.001f && player != null)
+            {
+                direction = player.transform.forward;
+            }
+
+            HitData hit = new HitData
+            {
+                m_damage = damages,
+                m_skill = ClassSkillManager.Nott,
+                m_skillLevel = ClassSkillManager.GetSkillLevel(player, "Nott"),
+                m_ranged = false,
+                m_dodgeable = true,
+                m_blockable = true,
+                m_backstabBonus = 1f,
+                m_staggerMultiplier = 1f,
+                m_pushForce = 10f,
+                m_point = target != null ? target.GetCenterPoint() : (player != null ? player.GetCenterPoint() + player.transform.forward : Vector3.zero),
+                m_dir = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector3.forward
+            };
+
+            if (player != null)
+            {
+                hit.SetAttacker(player);
+            }
+
+            return hit;
+        }
+
+        private static HitData.DamageTypes CreateKnifeStrikeDamage(Player player, ItemDrop.ItemData weapon)
+        {
+            HitData.DamageTypes damages = GetCurrentWeaponDamage(weapon);
+            MultiplyDamage(ref damages, Mathf.Max(0f, EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value));
+            float skillDamage = Mathf.Max(0f, ClassSkillManager.GetSkillLevel(player, "Nott") * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
+            damages.m_slash += skillDamage;
+            return damages;
+        }
+
+        private static HitData.DamageTypes GetCurrentWeaponDamage(ItemDrop.ItemData weapon)
+        {
+            if (weapon == null || weapon.m_shared == null)
+            {
+                return new HitData.DamageTypes();
+            }
+
+            try
+            {
+                return ModifyDamage.GetDamageWithMagicEffects(weapon);
+            }
+            catch
+            {
+                return weapon.m_shared.m_damages;
+            }
+        }
+
+        private static Character FindKnifeStrikeTarget(Player player)
+        {
+            if (player == null)
+            {
+                return null;
+            }
+
+            float range = Mathf.Max(0.5f, EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value);
+            Transform originTransform = GameCamera.instance != null ? GameCamera.instance.transform : player.transform;
+            RaycastHit hit;
+            if (Physics.Raycast(originTransform.position, originTransform.forward, out hit, range, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+            {
+                Character aimedTarget = GetCharacterFromCollider(hit.collider);
+                if (IsEnemyTarget(player, aimedTarget) && !aimedTarget.IsDead())
+                {
+                    return aimedTarget;
+                }
+            }
+
+            Collider[] colliders = Physics.OverlapSphere(player.GetCenterPoint(), range, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            Character best = null;
+            float bestScore = float.MinValue;
+            HashSet<Character> seen = new HashSet<Character>();
+            foreach (Collider collider in colliders)
+            {
+                Character target = GetCharacterFromCollider(collider);
+                if (target == null || !seen.Add(target) || !IsEnemyTarget(player, target) || target.IsDead())
+                {
+                    continue;
+                }
+
+                Vector3 toTarget = target.GetCenterPoint() - originTransform.position;
+                float distance = Mathf.Max(0.1f, toTarget.magnitude);
+                float facing = Vector3.Dot(originTransform.forward, toTarget.normalized);
+                if (facing < 0.45f)
+                {
+                    continue;
+                }
+
+                float score = facing * 10f - distance;
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    best = target;
+                }
+            }
+
+            return best;
+        }
+
+        private static bool IsKnifeWeapon(ItemDrop.ItemData weapon)
+        {
+            if (weapon == null || weapon.m_shared == null)
+            {
+                return false;
+            }
+
+            string skillType = weapon.m_shared.m_skillType.ToString();
+            return skillType.IndexOf("Knife", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   skillType.IndexOf("Knives", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private static void ApplyKnifeStrikeSlow(Character target)
+        {
+            StatusEffect buff = GetOrCreateKnifeStrikeSlowBuff(AbilityPanelIconCatalog.GetIcon("Abilities", "nott_knife_strike.png"));
+            if (target == null || buff == null)
+            {
+                return;
+            }
+
+            SEMan seMan = target.GetSEMan();
+            seMan.RemoveStatusEffect(buff.NameHash(), true);
+            seMan.AddStatusEffect(buff, true, 1, 0f, 0);
+        }
+
+        private static StatusEffect GetOrCreateKnifeStrikeSlowBuff(Sprite icon)
+        {
+            if (_knifeStrikeSlowBuff == null)
+            {
+                _knifeStrikeSlowBuff = ScriptableObject.CreateInstance<SE_Stats>();
+                _knifeStrikeSlowBuff.name = KnifeStrikeSlowBuffName;
+                _knifeStrikeSlowBuff.m_name = LocalizedText.AbilityName("Knife Strike Slow");
+                _knifeStrikeSlowBuff.m_category = KnifeStrikeSlowBuffCategory;
+                _knifeStrikeSlowBuff.m_flashIcon = false;
+                _knifeStrikeSlowBuff.m_cooldownIcon = true;
+                _knifeStrikeSlowBuff.m_hidden = false;
+            }
+
+            float slow = Mathf.Clamp01(EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value);
+            _knifeStrikeSlowBuff.m_ttl = Mathf.Max(0.1f, EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value);
+            _knifeStrikeSlowBuff.m_tooltip = string.Format("Ralentizado por Golpe de cuchillo de Nott.\n\nVelocidad: -{0:0.#}%.\nDuracion: {1:0.#}s.", slow * 100f, _knifeStrikeSlowBuff.m_ttl);
+            SetFloatField(_knifeStrikeSlowBuff, SpeedModifierField, -slow);
+            StatusEffectIconHelper.Apply(_knifeStrikeSlowBuff, RequiredSet, icon);
+            return _knifeStrikeSlowBuff;
+        }
+
+        private static void SpawnKnifeStrikeVisual(Player player, Character target)
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            Vector3 direction = player != null ? target.GetCenterPoint() - player.GetCenterPoint() : target.transform.forward;
+            Quaternion rotation = direction.sqrMagnitude > 0.001f
+                ? Quaternion.LookRotation(direction.normalized, Vector3.up)
+                : target.transform.rotation;
+            NorseVisualEffectBridge.Spawn(target.GetCenterPoint(), rotation, 1.2f, "Slash", "Blood", "Hit", "Claw", "vfx_blobtar_hit", "fx_DvergerMage_Support_hit");
         }
 
         private static void UpdateShadowMark(Player player, float dt)
@@ -19227,7 +19702,7 @@ namespace Fran.EpicLootRaritySets
                 _poisonPassiveBuff.m_hidden = false;
             }
 
-            _poisonPassiveBuff.m_ttl = 1.5f;
+            _poisonPassiveBuff.m_ttl = 0f;
             _poisonPassiveBuff.m_tooltip = string.Format(
                 "Pasiva de Nott activa.\n\nCada golpe contra enemigos anade veneno = {0:0.#}+{1:0.##}/nivel de Nott.",
                 EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value,
@@ -19235,6 +19710,29 @@ namespace Fran.EpicLootRaritySets
             StatusEffectIconHelper.Apply(_poisonPassiveBuff, RequiredSet, icon);
 
             return _poisonPassiveBuff;
+        }
+
+        private static StatusEffect GetOrCreateExecutorPassiveBuff(Sprite icon)
+        {
+            if (_executorPassiveBuff == null)
+            {
+                _executorPassiveBuff = ScriptableObject.CreateInstance<SE_Stats>();
+                _executorPassiveBuff.name = ExecutorPassiveBuffName;
+                _executorPassiveBuff.m_name = LocalizedText.AbilityName("Executor");
+                _executorPassiveBuff.m_category = ExecutorPassiveBuffCategory;
+                _executorPassiveBuff.m_flashIcon = false;
+                _executorPassiveBuff.m_cooldownIcon = false;
+                _executorPassiveBuff.m_hidden = false;
+            }
+
+            _executorPassiveBuff.m_ttl = 0f;
+            _executorPassiveBuff.m_tooltip = string.Format(
+                "Pasiva de Nott activa.\n\nLos golpes contra enemigos con {0:0.#}% o menos de vida, o que los bajen a ese umbral, hacen {1:0.#}% de dano total.",
+                ExecutorHealthThreshold * 100f,
+                ExecutorDamageMultiplier * 100f);
+            StatusEffectIconHelper.Apply(_executorPassiveBuff, RequiredSet, icon);
+
+            return _executorPassiveBuff;
         }
 
         private static void RefreshPoisonPassiveBuff(Player player)
@@ -19245,8 +19743,18 @@ namespace Fran.EpicLootRaritySets
             }
 
             StatusEffect buff = GetOrCreatePoisonPassiveBuff(FindNottIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
-            player.GetSEMan().RemoveStatusEffect(buff.NameHash(), true);
-            player.GetSEMan().AddStatusEffect(buff, true, 0, 0f, 0);
+            AddOrUpdatePermanentBuff(player, buff);
+        }
+
+        private static void RefreshExecutorPassiveBuff(Player player)
+        {
+            if (player == null)
+            {
+                return;
+            }
+
+            StatusEffect buff = GetOrCreateExecutorPassiveBuff(AbilityPanelIconCatalog.GetIcon("Buffs", "nott_executor.png") ?? FindNottIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
+            AddOrUpdatePermanentBuff(player, buff);
         }
 
         private static void RefreshHitSpeedBuff(Player player)
@@ -19728,6 +20236,111 @@ namespace Fran.EpicLootRaritySets
             return true;
         }
 
+        private static bool TryGetNottDamageOwner(Character target, HitData hit, out Player player)
+        {
+            player = null;
+            if (target == null || hit == null)
+            {
+                return false;
+            }
+
+            Character attacker = null;
+            try
+            {
+                attacker = hit.GetAttacker();
+            }
+            catch
+            {
+            }
+
+            player = attacker as Player;
+            if (player == null && hit.m_skill == ClassSkillManager.Nott)
+            {
+                player = Player.m_localPlayer;
+            }
+
+            return player != null &&
+                   player == Player.m_localPlayer &&
+                   target != player &&
+                   IsEnemyTarget(player, target);
+        }
+
+        private static bool ShouldApplyExecutor(Character target, HitData hit)
+        {
+            if (target == null || target.IsDead())
+            {
+                return false;
+            }
+
+            try
+            {
+                float maxHealth = Mathf.Max(0f, target.GetMaxHealth());
+                if (maxHealth <= 0.01f)
+                {
+                    return false;
+                }
+
+                float currentHealth = Mathf.Max(0f, target.GetHealth());
+                if (Mathf.Clamp01(currentHealth / maxHealth) <= ExecutorHealthThreshold)
+                {
+                    return true;
+                }
+
+                float incomingDamage = GetTotalDamage(hit.m_damage);
+                if (incomingDamage <= 0.01f)
+                {
+                    return false;
+                }
+
+                return Mathf.Clamp01(Mathf.Max(0f, currentHealth - incomingDamage) / maxHealth) <= ExecutorHealthThreshold;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static float GetTotalDamage(HitData.DamageTypes damage)
+        {
+            return damage.m_damage +
+                   damage.m_blunt +
+                   damage.m_slash +
+                   damage.m_pierce +
+                   damage.m_chop +
+                   damage.m_pickaxe +
+                   damage.m_fire +
+                   damage.m_frost +
+                   damage.m_lightning +
+                   damage.m_poison +
+                   damage.m_spirit +
+                   damage.m_nonPlayer;
+        }
+
+        private static void AddOrUpdatePermanentBuff(Player player, StatusEffect buff)
+        {
+            if (player == null || buff == null)
+            {
+                return;
+            }
+
+            SEMan seMan = player.GetSEMan();
+            StatusEffect active = seMan.GetStatusEffect(buff.NameHash());
+            if (active == null)
+            {
+                seMan.AddStatusEffect(buff, true, 0, 0f, 0);
+                return;
+            }
+
+            active.m_name = buff.m_name;
+            active.m_tooltip = buff.m_tooltip;
+            active.m_icon = buff.m_icon;
+            active.m_ttl = 0f;
+            active.m_flashIcon = false;
+            active.m_cooldownIcon = false;
+            active.m_hidden = buff.m_hidden;
+            active.m_category = buff.m_category;
+        }
+
         private static void MultiplyDamage(ref HitData.DamageTypes damage, float multiplier)
         {
             damage.m_damage *= multiplier;
@@ -20065,6 +20678,7 @@ namespace Fran.EpicLootRaritySets
             RemoveWarpStrikeBuff(player);
             RemoveHitSpeedBuff(player);
             RemovePoisonPassiveBuff(player);
+            RemoveExecutorPassiveBuff(player);
             RemoveShadowMarkBuff(player);
         }
 
@@ -20097,6 +20711,14 @@ namespace Fran.EpicLootRaritySets
             if (player != null && _poisonPassiveBuff != null)
             {
                 player.GetSEMan().RemoveStatusEffect(_poisonPassiveBuff.NameHash(), true);
+            }
+        }
+
+        private static void RemoveExecutorPassiveBuff(Player player)
+        {
+            if (player != null && _executorPassiveBuff != null)
+            {
+                player.GetSEMan().RemoveStatusEffect(_executorPassiveBuff.NameHash(), true);
             }
         }
 
@@ -27649,6 +28271,9 @@ namespace Fran.EpicLootRaritySets
         [ThreadStatic]
         private static Stack<string> _lootDropItems;
 
+        [ThreadStatic]
+        private static Stack<string> _resolveLootDropItems;
+
         internal static void Load()
         {
             RulesByObject.Clear();
@@ -27752,12 +28377,65 @@ namespace Fran.EpicLootRaritySets
             _lootDropItems.Pop();
         }
 
+        internal static void PushResolveLootDrop(LootDrop lootDrop)
+        {
+            if (_resolveLootDropItems == null)
+            {
+                _resolveLootDropItems = new Stack<string>();
+            }
+
+            _resolveLootDropItems.Push(lootDrop != null ? lootDrop.Item : null);
+        }
+
+        internal static void PopResolveLootDrop()
+        {
+            if (_resolveLootDropItems == null || _resolveLootDropItems.Count == 0)
+            {
+                return;
+            }
+
+            _resolveLootDropItems.Pop();
+        }
+
         internal static bool HasActiveBossRule()
         {
             return _context != null && _context.Rule != null;
         }
 
-        internal static bool TryGetBossSetDropChance(out float chance)
+        internal static void ForceResolvedBossLootDrop(LootDrop lootDrop)
+        {
+            if (!HasActiveBossRule() || lootDrop == null || IsBossUtilityDrop(lootDrop))
+            {
+                return;
+            }
+
+            ItemRarity targetRarity;
+            if (!TryGetRuleRarity(_context.Rule, out targetRarity))
+            {
+                return;
+            }
+
+            string sourceItem = GetCurrentResolveLootDropItem();
+            string resolvedItem = lootDrop.Item;
+            bool hasRarityRoll = lootDrop.Rarity != null && lootDrop.Rarity.Length > 0;
+            bool shouldForce = hasRarityRoll || IsForcedSetDropItem(sourceItem) || IsForcedSetDropItem(resolvedItem);
+            if (!shouldForce)
+            {
+                return;
+            }
+
+            string baseItemName;
+            if (!RaritySetRegistry.TrySelectSetBaseItemFromIds(targetRarity, _context.Rule.ForceSetItemIds, resolvedItem, out baseItemName))
+            {
+                return;
+            }
+
+            lootDrop.Item = baseItemName;
+            lootDrop.Rarity = BuildForcedRarityArray(targetRarity);
+            lootDrop.RarityItems = null;
+        }
+
+        internal static bool TryGetBossSetDropChance(ItemDrop.ItemData baseItem, out float chance)
         {
             chance = 0f;
 
@@ -27767,16 +28445,17 @@ namespace Fran.EpicLootRaritySets
             }
 
             string lootDropItem = GetCurrentLootDropItem();
+            string baseItemName = GetBaseItemName(baseItem);
             if (_context.Rule.ForceSetDropItems.Count > 0)
             {
-                if (string.IsNullOrEmpty(lootDropItem) || !_context.Rule.ForceSetDropItems.Contains(lootDropItem, StringComparer.OrdinalIgnoreCase))
+                if (!IsForcedSetDropItem(lootDropItem) && !IsForcedSetDropItem(baseItemName))
                 {
                     chance = 0f;
                     return true;
                 }
             }
 
-            if (!string.IsNullOrEmpty(lootDropItem) && _context.Rule.ForceSetDropItems.Contains(lootDropItem, StringComparer.OrdinalIgnoreCase))
+            if (IsForcedSetDropItem(lootDropItem) || IsForcedSetDropItem(baseItemName))
             {
                 chance = 1f;
                 return true;
@@ -27829,6 +28508,167 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
+        internal static void EnsureGuaranteedSetDrops(ref List<GameObject> drops, Vector3 dropPoint, bool initializeObject)
+        {
+            if (!HasActiveBossRule() || _context.Depth != 1)
+            {
+                return;
+            }
+
+            ConvertExistingBossMagicDrops(drops, dropPoint, initializeObject);
+            int guaranteedDrops = Math.Max(0, _context.Rule.GuaranteedSetDrops);
+            int guard = 0;
+            while (_context.SetDropsMade < guaranteedDrops && guard < guaranteedDrops + 8)
+            {
+                guard++;
+
+                GameObject dropObject;
+                if (!TrySpawnBossSetDrop(dropPoint, initializeObject, out dropObject))
+                {
+                    EpicLootRaritySetsPlugin.Log.LogWarning(string.Format(
+                        "Could not create guaranteed boss set drop {0}/{1} for {2}.",
+                        _context.SetDropsMade + 1,
+                        guaranteedDrops,
+                        _context.ObjectName));
+                    break;
+                }
+
+                if (drops == null)
+                {
+                    drops = new List<GameObject>();
+                }
+
+                drops.Add(dropObject);
+                RecordSetDrop();
+            }
+        }
+
+        private static void ConvertExistingBossMagicDrops(List<GameObject> drops, Vector3 dropPoint, bool initializeObject)
+        {
+            if (drops == null || drops.Count == 0)
+            {
+                return;
+            }
+
+            ItemRarity targetRarity;
+            if (!TryGetRuleRarity(_context.Rule, out targetRarity))
+            {
+                return;
+            }
+
+            int allowedCount = CountAllowedBossSetDrops(drops);
+            if (allowedCount > _context.SetDropsMade)
+            {
+                _context.SetDropsMade = allowedCount;
+            }
+
+            for (int i = 0; i < drops.Count; i++)
+            {
+                GameObject dropObject = drops[i];
+                ItemDrop itemDrop = dropObject != null ? dropObject.GetComponent<ItemDrop>() : null;
+                if (itemDrop == null || itemDrop.m_itemData == null || IsBossUtilityDropItem(GetDropObjectName(dropObject, itemDrop)))
+                {
+                    continue;
+                }
+
+                MagicItem currentMagicItem = ItemDataExtensions.GetMagicItem(itemDrop.m_itemData);
+                if (currentMagicItem == null)
+                {
+                    continue;
+                }
+
+                if (IsAllowedBossSetDrop(currentMagicItem))
+                {
+                    continue;
+                }
+
+                MagicItem bossSetItem;
+                if (TryRollBossSetItem(itemDrop.m_itemData, currentMagicItem, targetRarity, 1f, out bossSetItem))
+                {
+                    ItemDataExtensions.SaveMagicItem(itemDrop.m_itemData, bossSetItem);
+                    RecordSetDrop();
+                    continue;
+                }
+
+                GameObject replacement;
+                Vector3 replacementPoint = dropObject != null ? dropObject.transform.position : dropPoint;
+                if (TrySpawnBossSetDrop(replacementPoint, initializeObject, out replacement))
+                {
+                    DestroyDropObject(dropObject);
+                    drops[i] = replacement;
+                    RecordSetDrop();
+                }
+            }
+        }
+
+        private static int CountAllowedBossSetDrops(List<GameObject> drops)
+        {
+            int count = 0;
+            if (drops == null)
+            {
+                return count;
+            }
+
+            foreach (GameObject dropObject in drops)
+            {
+                ItemDrop itemDrop = dropObject != null ? dropObject.GetComponent<ItemDrop>() : null;
+                MagicItem magicItem = itemDrop != null && itemDrop.m_itemData != null
+                    ? ItemDataExtensions.GetMagicItem(itemDrop.m_itemData)
+                    : null;
+                if (IsAllowedBossSetDrop(magicItem))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private static bool TrySpawnBossSetDrop(Vector3 dropPoint, bool initializeObject, out GameObject dropObject)
+        {
+            dropObject = null;
+
+            ItemRarity targetRarity;
+            if (!TryGetRuleRarity(_context.Rule, out targetRarity))
+            {
+                return false;
+            }
+
+            return RaritySetRegistry.TrySpawnSetItemDropFromIds(targetRarity, _context.Rule.ForceSetItemIds, dropPoint, initializeObject, out dropObject);
+        }
+
+        private static string GetDropObjectName(GameObject dropObject, ItemDrop itemDrop)
+        {
+            if (itemDrop != null && itemDrop.m_itemData != null && itemDrop.m_itemData.m_dropPrefab != null)
+            {
+                return itemDrop.m_itemData.m_dropPrefab.name;
+            }
+
+            if (dropObject != null)
+            {
+                return dropObject.name;
+            }
+
+            return null;
+        }
+
+        private static void DestroyDropObject(GameObject dropObject)
+        {
+            if (dropObject == null)
+            {
+                return;
+            }
+
+            if (ZNetScene.instance != null)
+            {
+                ZNetScene.instance.Destroy(dropObject);
+            }
+            else
+            {
+                UnityEngine.Object.Destroy(dropObject);
+            }
+        }
+
         private static string GetCurrentLootDropItem()
         {
             if (_lootDropItems == null || _lootDropItems.Count == 0)
@@ -27837,6 +28677,87 @@ namespace Fran.EpicLootRaritySets
             }
 
             return _lootDropItems.Peek();
+        }
+
+        private static string GetCurrentResolveLootDropItem()
+        {
+            if (_resolveLootDropItems == null || _resolveLootDropItems.Count == 0)
+            {
+                return null;
+            }
+
+            return _resolveLootDropItems.Peek();
+        }
+
+        private static string GetBaseItemName(ItemDrop.ItemData baseItem)
+        {
+            if (baseItem == null)
+            {
+                return null;
+            }
+
+            if (baseItem.m_dropPrefab != null)
+            {
+                return baseItem.m_dropPrefab.name;
+            }
+
+            return baseItem.m_shared != null ? baseItem.m_shared.m_name : null;
+        }
+
+        private static bool IsForcedSetDropItem(string item)
+        {
+            return HasActiveBossRule() &&
+                   !string.IsNullOrEmpty(item) &&
+                   _context.Rule.ForceSetDropItems != null &&
+                   _context.Rule.ForceSetDropItems.Contains(item, StringComparer.OrdinalIgnoreCase);
+        }
+
+        private static float[] BuildForcedRarityArray(ItemRarity rarity)
+        {
+            int size = Math.Max(Enum.GetValues(typeof(ItemRarity)).Length, (int)rarity + 1);
+            float[] values = new float[size];
+            int index = (int)rarity;
+            if (index >= 0 && index < values.Length)
+            {
+                values[index] = 100f;
+            }
+
+            return values;
+        }
+
+        private static bool IsBossUtilityDrop(LootDrop lootDrop)
+        {
+            if (lootDrop == null)
+            {
+                return false;
+            }
+
+            if (IsBossUtilityDropItem(lootDrop.Item))
+            {
+                return true;
+            }
+
+            if (lootDrop.RarityItems == null)
+            {
+                return false;
+            }
+
+            foreach (string item in lootDrop.RarityItems.Values)
+            {
+                if (IsBossUtilityDropItem(item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsBossUtilityDropItem(string item)
+        {
+            return !string.IsNullOrEmpty(item) &&
+                   (item.IndexOf("Runestone", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    item.IndexOf("ShardStone", StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private static bool TryGetRuleRarity(BossSetDropRule rule, out ItemRarity rarity)
@@ -27850,12 +28771,14 @@ namespace Fran.EpicLootRaritySets
         private class BossLootContext
         {
             public readonly BossSetDropRule Rule;
+            public readonly string ObjectName;
             public int Depth;
             public int SetDropsMade;
 
             public BossLootContext(BossSetDropRule rule, string objectName, int level)
             {
                 Rule = rule;
+                ObjectName = objectName;
                 Depth = 1;
                 SetDropsMade = 0;
             }
@@ -28489,6 +29412,7 @@ namespace Fran.EpicLootRaritySets
             HeimdallAbilityController.ModifyOutgoingDamage(hit);
             NottAbilityController.ApplyPoison(__instance, hit);
             NottAbilityController.TryConsumeWarpStrike(__instance, hit);
+            NottAbilityController.ApplyExecutor(__instance, hit);
         }
 
         private static void Postfix(Character __instance, HitData hit, float __state)
@@ -29035,6 +29959,11 @@ namespace Fran.EpicLootRaritySets
             BossSetDropController.EnterLootTable(objectName, level);
         }
 
+        private static void Postfix(ref List<GameObject> __result, Vector3 dropPoint, bool initializeObject)
+        {
+            BossSetDropController.EnsureGuaranteedSetDrops(ref __result, dropPoint, initializeObject);
+        }
+
         private static void Finalizer()
         {
             BossSetDropController.ExitLootTable();
@@ -29047,6 +29976,11 @@ namespace Fran.EpicLootRaritySets
         private static void Prefix(int level, string objectName)
         {
             BossSetDropController.EnterLootTable(objectName, level);
+        }
+
+        private static void Postfix(ref List<GameObject> __result, Vector3 dropPoint, bool initializeObject)
+        {
+            BossSetDropController.EnsureGuaranteedSetDrops(ref __result, dropPoint, initializeObject);
         }
 
         private static void Finalizer()
@@ -29066,6 +30000,25 @@ namespace Fran.EpicLootRaritySets
         private static void Finalizer()
         {
             BossSetDropController.PopLootDrop();
+        }
+    }
+
+    [HarmonyPatch(typeof(LootRoller), "ResolveLootDrop", new Type[] { typeof(LootDrop), typeof(float), typeof(bool) })]
+    internal static class BossSetResolveLootDropPatch
+    {
+        private static void Prefix(LootDrop lootDrop)
+        {
+            BossSetDropController.PushResolveLootDrop(lootDrop);
+        }
+
+        private static void Postfix(ref LootDrop __result)
+        {
+            BossSetDropController.ForceResolvedBossLootDrop(__result);
+        }
+
+        private static void Finalizer()
+        {
+            BossSetDropController.PopResolveLootDrop();
         }
     }
 
@@ -29102,7 +30055,7 @@ namespace Fran.EpicLootRaritySets
             if (bossRuleActive)
             {
                 float bossChance;
-                if (!BossSetDropController.TryGetBossSetDropChance(out bossChance))
+                if (!BossSetDropController.TryGetBossSetDropChance(baseItem, out bossChance))
                 {
                     return;
                 }
@@ -29144,7 +30097,7 @@ namespace Fran.EpicLootRaritySets
             }
 
             float chance;
-            if (!BossSetDropController.TryGetBossSetDropChance(out chance))
+            if (!BossSetDropController.TryGetBossSetDropChance(baseItem, out chance))
             {
                 chance = RaritySetRegistry.GetDropChance(rarity);
             }

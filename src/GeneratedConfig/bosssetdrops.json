@@ -5,7 +5,7 @@
       "Object": "Eikthyr",
       "Enabled": true,
       "Rarity": "Magic",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorIronChest",
@@ -55,7 +55,7 @@
       "Object": "gd_king",
       "Enabled": true,
       "Rarity": "Rare",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorBerserkerChest",
@@ -131,7 +131,7 @@
       "Object": "Bonemass",
       "Enabled": true,
       "Rarity": "Epic",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorBerserkerChest",
@@ -246,7 +246,7 @@
       "Object": "Dragon",
       "Enabled": true,
       "Rarity": "Legendary",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorBerserkerChest",
@@ -364,7 +364,7 @@
       "Object": "GoblinKing",
       "Enabled": true,
       "Rarity": "Mythic",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorAshlandsMediumChest",
@@ -487,7 +487,7 @@
       "Object": "SeekerQueen",
       "Enabled": true,
       "Rarity": "Mythic",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorAshlandsMediumChest",
@@ -610,7 +610,7 @@
       "Object": "Fader",
       "Enabled": true,
       "Rarity": "Ancient",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorAshlandsMediumChest",
@@ -740,7 +740,7 @@
       "Object": "FrozenKing_p3",
       "Enabled": true,
       "Rarity": "Ancient",
-      "GuaranteedSetDrops": 1,
+      "GuaranteedSetDrops": 3,
       "ExtraSetDropChance": 1.0,
       "ForceSetDropItems": [
         "ArmorAshlandsMediumChest",

@@ -8,6 +8,10 @@ Si te gusta EpicLoot pero quieres objetivos claros de farmeo, builds reconocible
 
 Dejo mi ko-fi por si te animas a dejarme una propina que me ayude a crecer. Muchas gracias y un abrazo por el apoyo a todos: https://ko-fi.com/daraodesigns
 
+## Agradecimientos
+
+Agradecimientos a Alpus, Radamanto y RandyKnapp por sus mods, de los cuales he partido o utilizo para mejorar la jugabilidad de valheim.
+
 ## Que aporta
 
 - Sets por rareza: `Magic`, `Rare`, `Epic`, `Legendary`, `Mythic` y `Ancient`.
@@ -238,8 +242,10 @@ Habilidades con set completo:
 - Pasiva `Sigilo`: al agacharte/en sigilo eres invisible para monstruos; ruido `x0.4`, deteccion `x0.2`, velocidad `+20%`.
 - Pasiva `Momentum sombrio`: golpear enemigos da `+30%` velocidad durante `5s`; no acumula cargas, se refresca.
 - Pasiva `Filo venenoso`: cada golpe contra enemigos anade veneno `8 + 0.35` por nivel de Nott.
+- Pasiva `Ejecutor`: tus golpes contra enemigos con `30%` o menos de vida, o que los bajen a ese umbral, hacen `300%` de dano total.
 - `Mouse3` - `Warp`: coste `35` vigor, cooldown `10s`, rango `18m`; teletransporta detras del enemigo apuntado, al mas cercano si no hay objetivo apuntado, o hacia delante si no hay objetivo valido.
 - `Mouse4` - `Marca de sombra`: marca al enemigo seleccionado a `5m` durante `6s` con un efecto visual de sombra sobre el objetivo; acumula el `50%` del dano que reciba mientras dura y al terminar explota en dano de espiritu sobre el objetivo. Cooldown `60s`; si muere un enemigo a `20m` mientras esta en cooldown, se reduce `10s`.
+- `Bloqueo + Mouse4` - `Golpe de cuchillo`: requiere cuchillo, cooldown `8s`, rango `5m`; golpea al enemigo apuntado o frontal mas cercano con `50%` del dano del arma + `0.75` de dano de tajo por nivel de Nott, y ralentiza `50%` durante `5s`.
 - Despues de `Warp`, `Golpe de Warp` hace que el siguiente ataque contra enemigo pegue `x2.5` dano.
 - Si muere un enemigo a `18m` mientras Warp esta en cooldown, se reinicia el cooldown y recuperas vigor.
 
@@ -308,11 +314,11 @@ Equipo y bonus principales:
 
 Habilidades con set completo:
 
-- `Mouse3` - `Esfera de agua`: coste `35` eitr, cooldown `20s`, duracion `8s`; usa la esfera de Njord y atrae e inmoviliza enemigos en `20m` con fuerza de gravedad `16`. Cada impacto aplica dano contundente en el radio de dano de NorseDemigods (`Aoe Damage Radius = 3` por defecto) y escala con Frostbrand usando `NorseDemigods.cfg` (`Base Damage = 5`, `Damage Per Level = 0.7` por nivel).
-- Ataque secundario - `Tajo`: coste `30` eitr, cooldown `8s`; ejecuta la animacion de ataque del arma, aplica dano fuego `30 + 0.90` y tajo `30 + 0.90` por nivel de Frostbrand, y suma al contador de `Bola de fuego`.
+- `Mouse3` - `Esfera de agua`: coste `35` eitr, cooldown `20s`, duracion `8s`; usa la esfera de Njord y atrae e inmoviliza enemigos en `20m` con fuerza de gravedad `16`. Cada impacto aplica dano contundente en el radio de dano de NorseDemigods (`Aoe Damage Radius = 3` por defecto) y escala con Frostbrand usando `NorseDemigods.cfg` (`Base Damage = 4`, `Damage Per Level = 0.7` por nivel).
+- Ataque secundario - `Tajo`: coste `30` eitr, cooldown `8s`; ejecuta la animacion de ataque del arma, aplica dano fuego `24 + 0.90` y tajo `24 + 0.90` por nivel de Frostbrand, y suma al contador de `Bola de fuego`.
 - `Bloqueo + Mouse4` - `Escudo elemental`: coste `50` eitr, cooldown `24s`, duracion `8s`; anula fuego y mitiga todo dano `25% + 0.3%` por nivel de Frostbrand, maximo `70%`.
-- `Mouse4` - `Golpe de rayo`: reemplaza `Crush`; coste `40` eitr, cooldown `18s`, rango `80m`; lanza 3 impactos de rayo estilo Thor/NorseDemigods, separados `0.25s`, con radio alternativo `3m`; dano por impacto `10 + 1.40` por nivel de Frostbrand.
-- Pasiva `Bola de fuego`: cada `3` ataques iniciados con arma Frostbrand o usos de `Tajo` lanza Bola de fuego donde apuntas. El panel de pasivas muestra `2/2` e ilumina la placa cuando el siguiente ataque esta cargado; dano fuego `45 + 0.85` por nivel de Frostbrand; alternativa en radio `3.5m` si el proyectil no esta disponible.
+- `Mouse4` - `Golpe de rayo`: reemplaza `Crush`; coste `40` eitr, cooldown `18s`, rango `80m`; lanza 3 impactos de rayo estilo Thor/NorseDemigods, separados `0.25s`, con radio alternativo `3m`; dano por impacto `8 + 1.40` por nivel de Frostbrand.
+- Pasiva `Bola de fuego`: cada `3` ataques iniciados con arma Frostbrand o usos de `Tajo` lanza Bola de fuego donde apuntas. El panel de pasivas muestra `2/2` e ilumina la placa cuando el siguiente ataque esta cargado; dano fuego `36 + 0.85` por nivel de Frostbrand; alternativa en radio `3.5m` si el proyectil no esta disponible.
 - Pasiva `Recarga`: ataques y habilidades solo suman cargas cuando golpean a un enemigo. Dura `15s`; cada carga aumenta todo el dano un `4%` con maximo `5` cargas. A `5/5`, los ataques activan Cadena de rayos garantizada en cada golpe; salta hasta `3` enemigos cercanos en `8m`, usando parte del dano real del golpe. Los rebotes de la propia Recarga no refrescan sus cargas.
 
 ### Thor - set especial Epic
