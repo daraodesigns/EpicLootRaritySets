@@ -90,7 +90,18 @@ Las tiradas magicas normales de EpicLoot pueden convertirse en piezas de set:
 
 Legendary y Mythic se gestionan desde las secciones generadas de EpicLoot y sus pools propios.
 
-`bosssetdrops.json` fija la rareza de cada boss y convierte las tiradas validas de equipo en piezas aleatorias de set de esa etapa: Eikthyr `Magic`, Anciano `Rare`, Bonemass `Epic`, Moder `Legendary`, Yagluth/Reina `Mythic` y Fader/FrozenKing `Ancient`.
+`bosssetdrops.json` fija la rareza de cada boss y convierte las tiradas validas de equipo en piezas aleatorias de set de esa etapa. No hereda una rareza aleatoria de la tirada base: cada boss usa su rareza asignada, valida que el prefab base pertenezca al pool permitido (`ForceSetDropItems`) y despues elige al azar entre los IDs reales de set de esa misma rareza (`ForceSetItemIds`).
+
+| Boss | Rareza de set |
+| --- | --- |
+| Eikthyr | `Magic` |
+| Anciano | `Rare` |
+| Bonemass | `Epic` |
+| Moder | `Legendary` |
+| Yagluth | `Mythic` |
+| Reina | `Mythic` |
+| Fader | `Ancient` |
+| FrozenKing | `Ancient` |
 
 ## Configs gestionadas
 
