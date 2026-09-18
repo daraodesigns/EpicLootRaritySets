@@ -8,6 +8,7 @@
 - Reduced lag when swapping sets by avoiding repeated class-buff rebuilds and repeated inactive-controller cleanup every frame.
 - Improved global pet commands: `Attack` now targets the aimed enemy at long visible range instead of being limited by the old short command range, and `Follow` now acts as passive follow until `Attack` or `Free` is selected again.
 - Added normalized class-pet scaling for Hraesvelgr, Moonvein, Helveig and Seidr summons: health, outgoing damage and damage taken reduction now scale from each pet owner's class skill with conservative adventure-friendly values instead of relying on raw prefab stats.
+- Added Hraesvelgr `Tame Beast` on `Block + Mouse4`: tames a valid beast within `10m`, removes the current Hraesvelgr pet, persists the chosen prefab and makes `Summon Beasts` spawn that creature with Hraesvelgr pet scaling.
 
 ### Helveig
 - Added `Blood Aegis`: healing applies a non-stacking shield to the healed target equal to `15%` of the ability's potential healing for `15s`, even at full health.

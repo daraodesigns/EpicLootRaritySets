@@ -132,6 +132,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> FrostbrandLightningChannelDamagePerElementalMagicLevel;
         internal static ConfigEntry<KeyboardShortcut> HraesvelgrVolleyHotkey;
         internal static ConfigEntry<KeyboardShortcut> HraesvelgrSummonHotkey;
+        internal static ConfigEntry<KeyboardShortcut> HraesvelgrTamePetHotkey;
         internal static ConfigEntry<float> HraesvelgrSneakyNoiseModifier;
         internal static ConfigEntry<float> HraesvelgrSneakyStealthModifier;
         internal static ConfigEntry<float> HraesvelgrSneakySpeedModifier;
@@ -149,6 +150,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> HraesvelgrSummonDuration;
         internal static ConfigEntry<float> HraesvelgrSummonStaminaUse;
         internal static ConfigEntry<float> HraesvelgrSummonGuardRadius;
+        internal static ConfigEntry<string> HraesvelgrTamedPetPrefab;
         internal static ConfigEntry<KeyboardShortcut> HraesvelgrTrapHotkey;
         internal static ConfigEntry<float> HraesvelgrTrapStaminaUse;
         internal static ConfigEntry<int> HraesvelgrTrapMaxCharges;
@@ -513,6 +515,7 @@ namespace Fran.EpicLootRaritySets
             EnableHraesvelgrAbilities = Config.Bind("Hraesvelgr Abilities", "Enable Hraesvelgr Abilities", true, "Enable the complete-set abilities for the Hraesvelgr archer set.");
             HraesvelgrVolleyHotkey = Config.Bind("Hraesvelgr Abilities", "Rapid Volley Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Hraesvelgr rapid volley.");
             HraesvelgrSummonHotkey = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Hraesvelgr summon beasts.");
+            HraesvelgrTamePetHotkey = Config.Bind("Hraesvelgr Abilities", "Tame Beast Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Hraesvelgr tame beast. Hold block with this hotkey so Rapid Volley remains on Mouse4.");
             HraesvelgrSneakyNoiseModifier = Config.Bind("Hraesvelgr Abilities", "Sneaky Noise Modifier", 0.5f, new ConfigDescription("Noise multiplier while Hraesvelgr Sneaky is active. 0.5 means 50% noise.", new AcceptableValueRange<float>(0.05f, 1f)));
             HraesvelgrSneakyStealthModifier = Config.Bind("Hraesvelgr Abilities", "Sneaky Stealth Modifier", 0.3f, new ConfigDescription("Stealth multiplier while Hraesvelgr Sneaky is active. Lower values make enemies less likely to see the player.", new AcceptableValueRange<float>(0.05f, 1f)));
             HraesvelgrSneakySpeedModifier = Config.Bind("Hraesvelgr Abilities", "Sneaky Speed Modifier", 0.15f, new ConfigDescription("Movement speed modifier while Hraesvelgr Sneaky is active. 0.15 means +15%.", new AcceptableValueRange<float>(0f, 2f)));
@@ -530,6 +533,7 @@ namespace Fran.EpicLootRaritySets
             HraesvelgrSummonDuration = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Duration", 0f, new ConfigDescription("Legacy lifetime for summoned beasts. The current summons stay until killed, set loss, logout cleanup, or manual store.", new AcceptableValueRange<float>(0f, 600f)));
             HraesvelgrSummonStaminaUse = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Stamina Use", 35f, new ConfigDescription("Stamina consumed by Hraesvelgr summon beasts.", new AcceptableValueRange<float>(0f, 250f)));
             HraesvelgrSummonGuardRadius = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Guard Radius", 30f, new ConfigDescription("Radius in meters around the owner where summoned beasts search hostile targets to defend the owner.", new AcceptableValueRange<float>(5f, 100f)));
+            HraesvelgrTamedPetPrefab = Config.Bind("Hraesvelgr Abilities", "Tamed Beast Prefab", string.Empty, "Internal/current Hraesvelgr tamed beast prefab. Empty uses the default Bjorn/Bear summon.");
             HraesvelgrTrapHotkey = Config.Bind("Hraesvelgr Abilities", "Trap Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Hraesvelgr armed trap. Hold block with this hotkey so Summon Beasts remains on Mouse3.");
             HraesvelgrTrapStaminaUse = Config.Bind("Hraesvelgr Abilities", "Trap Stamina Use", 20f, new ConfigDescription("Stamina/vigor consumed when placing an armed Hraesvelgr trap.", new AcceptableValueRange<float>(0f, 250f)));
             HraesvelgrTrapMaxCharges = Config.Bind("Hraesvelgr Abilities", "Trap Max Charges", 5, new ConfigDescription("Maximum armed trap charges Hraesvelgr can store.", new AcceptableValueRange<int>(1, 20)));
@@ -2561,6 +2565,7 @@ namespace Fran.EpicLootRaritySets
             "Werewolf Form",
             "Burning Ground",
             "Rapid Volley",
+            "Tame Beast",
             "Tornado Shot",
             "Tornado Slow",
             "Holy Strike",
@@ -2689,6 +2694,7 @@ namespace Fran.EpicLootRaritySets
                 case "charged shots": return Select("Disparos cargados", "Charged Shots");
                 case "rapid volley": return Select("Rafaga rapida", "Rapid Volley");
                 case "summon beasts": return Select("Invocar bestias", "Summon Beasts");
+                case "tame beast": return Select("Domar bestia", "Tame Beast");
                 case "armed trap": return Select("Trampa armada", "Armed Trap");
                 case "freyja dash": return Select("Dash de Freyja", "Freyja Dash");
                 case "predator focus": return Select("Foco del depredador", "Predator Focus");
@@ -4449,7 +4455,7 @@ namespace Fran.EpicLootRaritySets
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
                 return string.Format(
-                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador sin CD. Coste al invocar: {4:0} vigor. Invoca un oso aliado con vida, dano y reduccion recibida escalados por Hraesvelgr.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. No anade dano propio. Al terminar recuperas todo el vigor.",
+                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador sin CD. Coste al invocar: {4:0} vigor. Invoca tu bestia actual con vida, dano y reduccion recibida escalados por Hraesvelgr. Por defecto es un oso.\nTame Beast: tecla {24}. Doma una bestia valida a 10m, reemplaza la mascota actual y hace que Invocar bestias use esa criatura.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. No anade dano propio. Al terminar recuperas todo el vigor.",
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f,
@@ -4473,7 +4479,8 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.HraesvelgrTrapBuffDuration.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrTrapNextAttackDamageBonus.Value * 100f,
                     hraesvelgr,
-                    trapDamage);
+                    trapDamage,
+                    FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey));
             }
 
             if (string.Equals(baseSetName, "Hellsyng", StringComparison.OrdinalIgnoreCase))
@@ -4755,7 +4762,8 @@ namespace Fran.EpicLootRaritySets
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
                 return "Hraesvelgr full set active.\n\nCurrent class skill: Hraesvelgr " + hraesvelgr.ToString("0.#") + ". These abilities use bow/arrow damage and set multipliers unless a level formula is stated.\n\nPassives:\nSneaky activates while crouching/stealthed. Invisible to monsters, Sneaky visual, noise x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value.ToString("0.##") + ", detection x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nEvery " + EpicLootRaritySetsPlugin.HraesvelgrHeadshotAttackCount.Value + " Hraesvelgr bow shots, that shot counts as a headshot/weak-point hit and deals at least x" + EpicLootRaritySetsPlugin.HraesvelgrHeadshotDamageMultiplier.Value.ToString("0.##") + " shot damage.\n\nAbilities:\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey) + ": Summon Beasts. Toggle with no CD. Summon cost: " + EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value.ToString("0") + " stamina. Summons an allied bear with health, damage and damage taken reduction scaled from Hraesvelgr.\n"
+                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey) + ": Summon Beasts. Toggle with no CD. Summon cost: " + EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value.ToString("0") + " stamina. Summons your current beast with health, damage and damage taken reduction scaled from Hraesvelgr. Defaults to a bear.\n"
+                    + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey) + ": Tame Beast. Tames a valid beast within 10m, replaces the current pet and makes Summon Beasts use that creature.\n"
                     + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTrapHotkey) + ": Armed trap. Cost " + EpicLootRaritySetsPlugin.HraesvelgrTrapStaminaUse.Value.ToString("0") + " stamina. If it catches an enemy, deals " + trapDamage.ToString("0.#") + " pierce damage, roots it and grants " + EpicLootRaritySetsPlugin.HraesvelgrTrapBuffDuration.Value.ToString("0.#") + "s for your next arrow to deal +" + (EpicLootRaritySetsPlugin.HraesvelgrTrapNextAttackDamageBonus.Value * 100f).ToString("0.#") + "% shot damage.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrVolleyHotkey) + ": Channeled Rapid Volley up to " + EpicLootRaritySetsPlugin.HraesvelgrVolleyDuration.Value.ToString("0.#") + "s. CD " + EpicLootRaritySetsPlugin.HraesvelgrVolleyCooldown.Value.ToString("0") + "s. While holding attack and standing still, fires exactly up to 8 arrows at " + EpicLootRaritySetsPlugin.HraesvelgrVolleyShotsPerSecond.Value.ToString("0.#") + " arrows/s. Arrow damage: x" + EpicLootRaritySetsPlugin.HraesvelgrVolleyDamageMultiplier.Value.ToString("0.##") + " normal shot damage, velocity " + EpicLootRaritySetsPlugin.HraesvelgrVolleyProjectileVelocity.Value.ToString("0.#") + ". If weapon/arrow provide no damage, piercing fallback scales with Hraesvelgr: 12+0.25/level. Automatically cancels after 8 arrows.\nSecondary attack: Freyja Dash. Cost " + EpicLootRaritySetsPlugin.HraesvelgrDashEitrUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.HraesvelgrDashCooldown.Value.ToString("0") + "s. Adds no direct damage.\nRestores all stamina when it ends.";
             }
@@ -5450,7 +5458,7 @@ namespace Fran.EpicLootRaritySets
                 if (normalized.Contains("trapdamage") || normalized.Contains("trapfocus") || normalized.Contains("predatorfocus") || normalized.Contains("focodeldepredador")) return GetIcon("Buffs", "hraesvelgr_trap_damage.png");
                 if (normalized.Contains("trapcharge") || normalized.Contains("trap") || normalized.Contains("trampa")) return GetIcon("Buffs", "hraesvelgr_trap_charge.png");
                 if (normalized.Contains("volley") || normalized.Contains("rafaga")) return GetIcon("Abilities", "hraesvelgr_rapid_volley.png");
-                if (normalized.Contains("summon") || normalized.Contains("beasts") || normalized.Contains("bestias") || normalized.Contains("invocarbestias")) return GetIcon("Abilities", "hraesvelgr_summon_beasts.png");
+                if (normalized.Contains("summon") || normalized.Contains("beasts") || normalized.Contains("bestias") || normalized.Contains("invocarbestias") || normalized.Contains("tame") || normalized.Contains("domar")) return GetIcon("Abilities", "hraesvelgr_summon_beasts.png");
             }
             if (setName == "hellsyng" || setName == "solomonkane")
             {
@@ -5614,6 +5622,7 @@ namespace Fran.EpicLootRaritySets
             new AbilityPanelEntry("Ragnar", "Buffs", "ragnar_burning_ground.png", "Burning Ground", "buff", true),
 
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_summon_beasts.png", "Summon Beasts", "shortcut:HraesvelgrSummonHotkey", false, "HraesvelgrSummonBeastsToggle", "HraesvelgrSummonBeastsDeath"),
+            new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_summon_beasts.png", "Tame Beast", "blockShortcut:HraesvelgrTamePetHotkey", false),
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_armed_trap.png", "Armed Trap", "blockShortcut:HraesvelgrTrapHotkey", false),
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_rapid_volley.png", "Rapid Volley", "shortcut:HraesvelgrVolleyHotkey", false, "HraesvelgrRapidVolley"),
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_freyja_dash.png", "Freyja Dash", "secondary", false, "HraesvelgrDash"),
@@ -14609,7 +14618,78 @@ namespace Fran.EpicLootRaritySets
         private const float SneakyBuffTtl = 1f;
         private const float AggroSuppressInterval = 0.25f;
         private const float SummonDeathCooldownSeconds = 60f;
+        private const float TameBeastRange = 10f;
         private const int RapidVolleyShotCap = 8;
+
+        private static readonly string[] TameableBeastTokens =
+        {
+            "seekerbrute",
+            "rdb_crocodile",
+            "rdb_smadrek",
+            "deathsquito",
+            "rdb_lion",
+            "rdb_bee",
+            "rdb_fox",
+            "asksvin",
+            "hatchling",
+            "volture",
+            "seeker",
+            "bjorn",
+            "moose",
+            "wolf",
+            "lox",
+            "bat",
+            "ulv"
+        };
+
+        private static readonly Dictionary<string, string[]> TameableBeastPrefabFallbacks = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "wolf", new[] { "Wolf", "wolf" } },
+            { "bjorn", new[] { "Bjorn", "Bear", "BlackBear_TW", "GrizzlyBear_TW" } },
+            { "asksvin", new[] { "Asksvin", "asksvin" } },
+            { "lox", new[] { "Lox", "lox" } },
+            { "moose", new[] { "RDB_Moose", "Moose", "moose" } },
+            { "volture", new[] { "Volture", "Vulture", "volture" } },
+            { "rdb_bee", new[] { "RDB_Bee", "rdb_bee" } },
+            { "rdb_crocodile", new[] { "RDB_Crocodile", "rdb_crocodile" } },
+            { "rdb_fox", new[] { "RDB_Fox", "rdb_fox" } },
+            { "seeker", new[] { "Seeker", "seeker" } },
+            { "seekerbrute", new[] { "SeekerBrute", "SeekerBrute1", "seekerbrute" } },
+            { "hatchling", new[] { "Hatchling", "hatchling" } },
+            { "bat", new[] { "Bat", "bat" } },
+            { "ulv", new[] { "Ulv", "ulv" } },
+            { "rdb_lion", new[] { "RDB_Lion", "rdb_lion" } },
+            { "deathsquito", new[] { "Deathsquito", "death_squito", "deathsquito" } },
+            { "rdb_smadrek", new[] { "RDB_Smadrek", "rdb_smadrek" } }
+        };
+
+        private sealed class SummonedBeastDefinition
+        {
+            internal readonly string Kind;
+            internal readonly string PrimaryPrefabName;
+            internal readonly string DisplayName;
+            internal readonly string[] PrefabNames;
+
+            internal SummonedBeastDefinition(string kind, string primaryPrefabName, string displayName, string[] prefabNames)
+            {
+                Kind = string.IsNullOrEmpty(kind) ? "Beast" : kind;
+                PrimaryPrefabName = string.IsNullOrEmpty(primaryPrefabName) ? Kind : primaryPrefabName;
+                DisplayName = string.IsNullOrEmpty(displayName) ? HumanizeCreatureName(PrimaryPrefabName) : displayName;
+                PrefabNames = prefabNames ?? new[] { PrimaryPrefabName };
+            }
+        }
+
+        private sealed class SummonSpawnPlan
+        {
+            internal readonly SummonedBeastDefinition Definition;
+            internal readonly GameObject Prefab;
+
+            internal SummonSpawnPlan(SummonedBeastDefinition definition, GameObject prefab)
+            {
+                Definition = definition;
+                Prefab = prefab;
+            }
+        }
 
         private static readonly FieldInfo NoiseModifierField = AccessTools.Field(typeof(SE_Stats), "m_noiseModifier");
         private static readonly FieldInfo StealthModifierField = AccessTools.Field(typeof(SE_Stats), "m_stealthModifier");
@@ -14740,6 +14820,13 @@ namespace Fran.EpicLootRaritySets
             if (SetAbilityInput.IsSecondaryAttackDown())
             {
                 TryDash(player);
+                return;
+            }
+
+            if (IsShortcutDown(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey) &&
+                SetAbilityInput.IsBlockHeld())
+            {
+                TryTameBeast(player);
                 return;
             }
 
@@ -15485,6 +15572,13 @@ namespace Fran.EpicLootRaritySets
 
             ItemDrop.ItemData weapon = player.GetCurrentWeapon();
 
+            List<SummonSpawnPlan> spawnPlans = BuildSummonSpawnPlans();
+            if (spawnPlans.Count == 0)
+            {
+                ShowMessage(player, "Summon Beasts: prefab de mascota no disponible.");
+                return;
+            }
+
             float staminaUse = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value);
             if (!TrySpendStamina(player, staminaUse))
             {
@@ -15492,27 +15586,435 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            GameObject bearPrefab = GetPrefab("Bjorn", "Bear", "BlackBear_TW", "GrizzlyBear_TW");
-            if (bearPrefab == null)
+            DestroySummonedBeasts(false);
+
+            int spawned = 0;
+            for (int i = 0; i < spawnPlans.Count; i++)
             {
-                ShowMessage(player, "Summon Beasts: prefab de oso no disponible.");
+                SummonSpawnPlan plan = spawnPlans[i];
+                if (SpawnSummonedBeast(player, plan.Prefab, plan.Definition.Kind, GetSummonOffset(player, i, spawnPlans.Count)) != null)
+                {
+                    spawned++;
+                }
+            }
+
+            if (spawned <= 0)
+            {
+                ShowMessage(player, "Summon Beasts: no se pudo invocar la mascota.");
                 return;
             }
 
-            DestroySummonedBeasts(false);
+            AddSummonBuff(player, GetWeaponIcon(weapon) ?? FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
+            ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
+            ShowMessage(player, string.Format("Summon Beasts: {0} invocada.", GetCurrentSummonedBeastDefinition().DisplayName));
+        }
 
-            SpawnSummonedBeast(player, bearPrefab, "Bear", player.transform.forward * 2f + player.transform.right * 1.1f);
-
-            StatusEffect buff = GetOrCreateSummonBuff(GetWeaponIcon(weapon) ?? FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
-            if (buff != null)
+        private static void TryTameBeast(Player player)
+        {
+            Character target = FindTameBeastTarget(player, TameBeastRange);
+            if (target == null)
             {
-                SEMan seMan = player.GetSEMan();
-                seMan.RemoveStatusEffect(buff.NameHash(), true);
-                seMan.AddStatusEffect(buff, true, 1, 0f, 0);
+                ShowMessage(player, "Domar bestia: apunta a una bestia valida a 10m.");
+                return;
             }
 
+            SummonedBeastDefinition definition;
+            if (!TryCreateTameDefinition(target, out definition))
+            {
+                ShowMessage(player, "Domar bestia: esa criatura no es una bestia valida.");
+                return;
+            }
+
+            GameObject prefab = GetPrefab(definition.PrefabNames);
+            if (prefab == null)
+            {
+                ShowMessage(player, string.Format("Domar bestia: prefab no disponible ({0}).", definition.PrimaryPrefabName));
+                return;
+            }
+
+            Vector3 spawnPoint = target.transform.position;
+            Quaternion rotation = target.transform.rotation;
+            string petName = GetCreatureDisplayName(target, definition.PrimaryPrefabName, definition.Kind);
+
+            DestroySummonedBeasts(false);
+            StoredSummonNames.Clear();
+            StoredSummonNames[definition.Kind] = petName;
+            SaveTamedBeast(definition);
+            DestroyWildBeast(target.gameObject);
+
+            GameObject beast = SpawnSummonedBeastAt(player, prefab, definition.Kind, spawnPoint, rotation);
+            if (beast == null)
+            {
+                ShowMessage(player, "Domar bestia: no se pudo crear la mascota.");
+                return;
+            }
+
+            SetTameableName(beast, petName);
+            AddSummonBuff(player, FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
-            ShowMessage(player, "Summon Beasts: oso invocado.");
+            ShowMessage(player, string.Format("Domar bestia: {0} ahora es tu mascota.", petName));
+        }
+
+        private static List<SummonSpawnPlan> BuildSummonSpawnPlans()
+        {
+            List<SummonSpawnPlan> result = new List<SummonSpawnPlan>();
+            List<SummonedBeastDefinition> roster = GetSummonRoster();
+            foreach (SummonedBeastDefinition definition in roster)
+            {
+                GameObject prefab = GetPrefab(definition.PrefabNames);
+                if (prefab != null)
+                {
+                    result.Add(new SummonSpawnPlan(definition, prefab));
+                }
+            }
+
+            return result;
+        }
+
+        private static List<SummonedBeastDefinition> GetSummonRoster()
+        {
+            return new List<SummonedBeastDefinition> { GetCurrentSummonedBeastDefinition() };
+        }
+
+        private static SummonedBeastDefinition GetCurrentSummonedBeastDefinition()
+        {
+            SummonedBeastDefinition definition;
+            if (EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab != null &&
+                TryCreateTameDefinition(EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab.Value, out definition))
+            {
+                return definition;
+            }
+
+            return CreateDefaultSummonDefinition();
+        }
+
+        private static SummonedBeastDefinition CreateDefaultSummonDefinition()
+        {
+            return new SummonedBeastDefinition("Bear", "Bjorn", "Bjorn", BuildPrefabNameList("Bjorn", "bjorn"));
+        }
+
+        private static Vector3 GetSummonOffset(Player player, int index, int count)
+        {
+            if (player == null)
+            {
+                return Vector3.forward * 2f;
+            }
+
+            if (count <= 1)
+            {
+                return player.transform.forward * 2f + player.transform.right * 1.1f;
+            }
+
+            float angle = -35f + 70f * (float)index / Mathf.Max(1, count - 1);
+            return Quaternion.AngleAxis(angle, Vector3.up) * player.transform.forward * 2.25f;
+        }
+
+        private static void AddSummonBuff(Player player, Sprite icon)
+        {
+            if (player == null)
+            {
+                return;
+            }
+
+            StatusEffect buff = GetOrCreateSummonBuff(icon ?? FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
+            if (buff == null)
+            {
+                return;
+            }
+
+            SEMan seMan = player.GetSEMan();
+            seMan.RemoveStatusEffect(buff.NameHash(), true);
+            seMan.AddStatusEffect(buff, true, 1, 0f, 0);
+        }
+
+        private static void SaveTamedBeast(SummonedBeastDefinition definition)
+        {
+            if (definition == null || EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab == null)
+            {
+                return;
+            }
+
+            EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab.Value = definition.PrimaryPrefabName;
+            try
+            {
+                EpicLootRaritySetsPlugin.PluginConfig.Save();
+            }
+            catch
+            {
+            }
+        }
+
+        private static Character FindTameBeastTarget(Player player, float range)
+        {
+            if (player == null)
+            {
+                return null;
+            }
+
+            range = Mathf.Max(1f, range);
+            float maxDistanceSqr = range * range;
+            Transform originTransform = GameCamera.instance != null ? GameCamera.instance.transform : player.transform;
+            RaycastHit[] hits = Physics.SphereCastAll(originTransform.position, 0.8f, originTransform.forward, range + 2f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            if (hits != null)
+            {
+                foreach (RaycastHit hit in hits.OrderBy(hit => hit.distance))
+                {
+                    Character character = GetCharacterFromCollider(hit.collider);
+                    if (IsValidTameTarget(player, character, maxDistanceSqr))
+                    {
+                        return character;
+                    }
+                }
+            }
+
+            Collider[] colliders = Physics.OverlapSphere(player.GetCenterPoint(), range, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            Character best = null;
+            float bestScore = float.MinValue;
+            HashSet<Character> seen = new HashSet<Character>();
+            foreach (Collider collider in colliders)
+            {
+                Character character = GetCharacterFromCollider(collider);
+                if (character == null || !seen.Add(character) || !IsValidTameTarget(player, character, maxDistanceSqr))
+                {
+                    continue;
+                }
+
+                Vector3 toTarget = character.GetCenterPoint() - originTransform.position;
+                float distance = Mathf.Max(0.1f, toTarget.magnitude);
+                float facing = Vector3.Dot(originTransform.forward, toTarget.normalized);
+                if (facing < 0.58f)
+                {
+                    continue;
+                }
+
+                float score = facing * 10f - distance;
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    best = character;
+                }
+            }
+
+            return best;
+        }
+
+        private static bool IsValidTameTarget(Player player, Character target, float maxDistanceSqr)
+        {
+            if (player == null || target == null || target == player || target is Player || target.IsDead() || target.IsTamed() || IsSummonedBeast(target))
+            {
+                return false;
+            }
+
+            if ((target.transform.position - player.transform.position).sqrMagnitude > maxDistanceSqr)
+            {
+                return false;
+            }
+
+            SummonedBeastDefinition definition;
+            return TryCreateTameDefinition(target, out definition);
+        }
+
+        private static Character GetCharacterFromCollider(Collider collider)
+        {
+            return collider != null ? collider.GetComponentInParent<Character>() : null;
+        }
+
+        private static bool TryCreateTameDefinition(Character target, out SummonedBeastDefinition definition)
+        {
+            definition = null;
+            if (target == null)
+            {
+                return false;
+            }
+
+            string prefabName = GetPrefabishName(target.gameObject);
+            string search = prefabName + " " + (target.m_name ?? string.Empty) + " " + GetTameableName(target.gameObject);
+            string token;
+            if (!TryGetTameableBeastToken(search, out token))
+            {
+                return false;
+            }
+
+            definition = new SummonedBeastDefinition(
+                GetBeastKind(token),
+                prefabName,
+                GetCreatureDisplayName(target, prefabName, token),
+                BuildPrefabNameList(prefabName, token));
+            return true;
+        }
+
+        private static bool TryCreateTameDefinition(string prefabName, out SummonedBeastDefinition definition)
+        {
+            definition = null;
+            if (string.IsNullOrEmpty(prefabName))
+            {
+                return false;
+            }
+
+            string token;
+            if (!TryGetTameableBeastToken(prefabName, out token))
+            {
+                return false;
+            }
+
+            definition = new SummonedBeastDefinition(
+                GetBeastKind(token),
+                prefabName,
+                HumanizeCreatureName(prefabName),
+                BuildPrefabNameList(prefabName, token));
+            return true;
+        }
+
+        private static bool TryGetTameableBeastToken(string value, out string token)
+        {
+            token = null;
+            string normalized = NormalizeBeastName(value);
+            if (string.IsNullOrEmpty(normalized))
+            {
+                return false;
+            }
+
+            foreach (string candidate in TameableBeastTokens)
+            {
+                if (normalized.Contains(NormalizeBeastName(candidate)))
+                {
+                    token = candidate;
+                    return true;
+                }
+            }
+
+            if (normalized.Contains("bear") || normalized.Contains("blackbear") || normalized.Contains("grizzly"))
+            {
+                token = "bjorn";
+                return true;
+            }
+
+            if (normalized.Contains("vulture"))
+            {
+                token = "volture";
+                return true;
+            }
+
+            return false;
+        }
+
+        private static string GetBeastKind(string token)
+        {
+            if (string.Equals(token, "bjorn", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Bear";
+            }
+
+            if (string.Equals(token, "volture", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Volture";
+            }
+
+            return token;
+        }
+
+        private static string[] BuildPrefabNameList(string primaryPrefabName, string token)
+        {
+            List<string> names = new List<string>();
+            AddUniqueName(names, primaryPrefabName);
+            AddUniqueName(names, token);
+
+            string[] fallbackNames;
+            if (!string.IsNullOrEmpty(token) && TameableBeastPrefabFallbacks.TryGetValue(token, out fallbackNames))
+            {
+                foreach (string fallback in fallbackNames)
+                {
+                    AddUniqueName(names, fallback);
+                }
+            }
+
+            return names.ToArray();
+        }
+
+        private static void AddUniqueName(List<string> names, string name)
+        {
+            if (names == null || string.IsNullOrEmpty(name))
+            {
+                return;
+            }
+
+            foreach (string existing in names)
+            {
+                if (string.Equals(existing, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
+            }
+
+            names.Add(name);
+        }
+
+        private static string GetCreatureDisplayName(Character target, string prefabName, string token)
+        {
+            string name = target != null ? GetTameableName(target.gameObject) : null;
+            if (!string.IsNullOrEmpty(name) && !name.StartsWith("$", StringComparison.Ordinal))
+            {
+                return name;
+            }
+
+            return HumanizeCreatureName(!string.IsNullOrEmpty(prefabName) ? prefabName : token);
+        }
+
+        private static string HumanizeCreatureName(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return "Bestia";
+            }
+
+            string cleaned = value.Replace("(Clone)", string.Empty).Replace("_", " ").Replace("-", " ").Trim();
+            if (cleaned.StartsWith("$", StringComparison.Ordinal) && cleaned.LastIndexOf('_') >= 0)
+            {
+                cleaned = cleaned.Substring(cleaned.LastIndexOf('_') + 1);
+            }
+
+            if (string.IsNullOrEmpty(cleaned))
+            {
+                return "Bestia";
+            }
+
+            return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(cleaned.ToLowerInvariant());
+        }
+
+        private static string NormalizeBeastName(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+
+            StringBuilder builder = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                if (char.IsLetterOrDigit(c))
+                {
+                    builder.Append(char.ToLowerInvariant(c));
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        private static void DestroyWildBeast(GameObject beast)
+        {
+            if (beast == null)
+            {
+                return;
+            }
+
+            if (ZNetScene.instance != null)
+            {
+                ZNetScene.instance.Destroy(beast);
+            }
+            else
+            {
+                UnityEngine.Object.Destroy(beast);
+            }
         }
 
         private static StatusEffect GetOrCreateSneakyBuff(Sprite icon)
@@ -15827,12 +16329,14 @@ namespace Fran.EpicLootRaritySets
             }
 
             float skill = ClassSkillManager.GetLocalSkillLevel(RequiredSet);
+            SummonedBeastDefinition definition = GetCurrentSummonedBeastDefinition();
             _summonBuff.m_tooltip = string.Format(
-                "Mascota Hraesvelgr activa.\n\n{0}: guarda el oso actual.\nVida actual: {1:0.#}.\nDano: x{2:0.##}.\nReduccion recibida: {3:0.#}%.\nCtrl + Mouse4: atacar objetivo. Ctrl + Mouse3: seguir pasivo. Ctrl + ataque secundario: libre.",
+                "Mascota Hraesvelgr activa.\n\nBestia: {1}.\n{0}: guarda la mascota actual.\nVida actual: {2:0.#}.\nDano: x{3:0.##}.\nReduccion recibida: {4:0.#}%.\nCtrl + Mouse4: atacar objetivo. Ctrl + Mouse3: seguir pasivo. Ctrl + ataque secundario: libre.",
                 FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey),
-                GetSummonedBeastMaxHealth("Bear", skill),
-                GetSummonedBeastDamageMultiplier("Bear", skill),
-                GetSummonedBeastDamageTakenReduction("Bear", skill) * 100f);
+                definition.DisplayName,
+                GetSummonedBeastMaxHealth(definition.Kind, skill),
+                GetSummonedBeastDamageMultiplier(definition.Kind, skill),
+                GetSummonedBeastDamageTakenReduction(definition.Kind, skill) * 100f);
             StatusEffectIconHelper.Apply(_summonBuff, RequiredSet, icon);
 
             return _summonBuff;
@@ -16137,6 +16641,16 @@ namespace Fran.EpicLootRaritySets
 
             Vector3 spawnPoint = player.transform.position + offset;
             Quaternion rotation = Quaternion.LookRotation(player.transform.forward);
+            return SpawnSummonedBeastAt(player, prefab, kind, spawnPoint, rotation);
+        }
+
+        private static GameObject SpawnSummonedBeastAt(Player player, GameObject prefab, string kind, Vector3 spawnPoint, Quaternion rotation)
+        {
+            if (player == null || prefab == null)
+            {
+                return null;
+            }
+
             GameObject beast = UnityEngine.Object.Instantiate(prefab, spawnPoint, rotation);
             if (beast == null)
             {
@@ -16555,7 +17069,11 @@ namespace Fran.EpicLootRaritySets
                        prefabName.IndexOf("Bear", StringComparison.OrdinalIgnoreCase) >= 0;
             }
 
-            return prefabName.IndexOf(kind, StringComparison.OrdinalIgnoreCase) >= 0;
+            string normalizedPrefab = NormalizeBeastName(prefabName);
+            string normalizedKind = NormalizeBeastName(kind);
+            return !string.IsNullOrEmpty(normalizedPrefab) &&
+                   !string.IsNullOrEmpty(normalizedKind) &&
+                   (normalizedPrefab.Contains(normalizedKind) || normalizedKind.Contains(normalizedPrefab));
         }
 
         private static string GetPrefabishName(GameObject gameObject)
