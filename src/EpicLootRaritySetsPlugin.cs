@@ -607,7 +607,7 @@ namespace Fran.EpicLootRaritySets
             NottWarpGuardDuration = Config.Bind("Nott Abilities", "Warp Guard Duration", 3f, new ConfigDescription("Seconds of heavy damage reduction granted after a successful Nott Warp.", new AcceptableValueRange<float>(0f, 30f)));
             NottWarpGuardDamageReduction = Config.Bind("Nott Abilities", "Warp Guard Damage Reduction", 0.90f, new ConfigDescription("Fraction of incoming damage reduced while Warp Guard is active. 0.90 means 90% less damage.", new AcceptableValueRange<float>(0f, 0.99f)));
             NottWarpResetRadius = Config.Bind("Nott Abilities", "Warp Cooldown Reset Radius", 18f, new ConfigDescription("Enemy death radius in meters that refreshes Warp while it is cooling down.", new AcceptableValueRange<float>(1f, 100f)));
-            NottShadowMarkHotkey = Config.Bind("Nott Abilities", "Shadow Mark Hotkey", new KeyboardShortcut(KeyCode.Mouse4, KeyCode.LeftControl), "Hotkey for Nott Shadow Mark.");
+            NottShadowMarkHotkey = Config.Bind("Nott Abilities", "Shadow Mark Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Nott Shadow Mark. Hold block with this hotkey.");
             NottShadowMarkRange = Config.Bind("Nott Abilities", "Shadow Mark Range", 5f, new ConfigDescription("Maximum range in meters to mark the selected enemy.", new AcceptableValueRange<float>(0.5f, 50f)));
             NottShadowMarkDuration = Config.Bind("Nott Abilities", "Shadow Mark Duration", 6f, new ConfigDescription("Duration in seconds for Nott Shadow Mark.", new AcceptableValueRange<float>(0.1f, 120f)));
             NottShadowMarkCooldown = Config.Bind("Nott Abilities", "Shadow Mark Cooldown", 60f, new ConfigDescription("Cooldown in seconds for Nott Shadow Mark.", new AcceptableValueRange<float>(0f, 600f)));
@@ -630,7 +630,8 @@ namespace Fran.EpicLootRaritySets
             UpgradeFloatConfig(NottWarpRange, 12f, 18f);
             UpgradeFloatConfig(NottHitSpeedBonus, 0.10f, 0.30f);
             UpgradeIntConfig(NottHitSpeedMaxStacks, 3, 1);
-            UpgradeShortcutConfigToModified(NottShadowMarkHotkey, KeyCode.Mouse4, KeyCode.Mouse4, KeyCode.LeftControl);
+            UpgradeShortcutConfig(NottShadowMarkHotkey, KeyCode.Mouse4, KeyCode.LeftControl, KeyCode.Mouse4);
+            UpgradeShortcutConfig(NottShadowMarkHotkey, KeyCode.Mouse4, KeyCode.RightControl, KeyCode.Mouse4);
             UpgradeShortcutConfig(NottKnifeStrikeHotkey, KeyCode.None, KeyCode.Mouse4);
 
             EnableRagnarAbilities = Config.Bind("Ragnar Abilities", "Enable Ragnar Abilities", true, "Enable the complete-set abilities for the Ragnar berserker set.");
@@ -4467,7 +4468,7 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value,
                     knives,
                     poison,
-                    FormatShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey),
+                    FormatBlockShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey),
                     EpicLootRaritySetsPlugin.NottShadowMarkRange.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f,
@@ -4700,7 +4701,7 @@ namespace Fran.EpicLootRaritySets
                 float knifeStrike = Mathf.Max(0f, knives * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
                 return "Nott full set active.\n\nCurrent scaling: Nott " + knives.ToString("0.#") + ".\n\nPassives:\nSneaky activates while crouching/stealthed. Uses Ullr's Sneaky visual, noise x" + EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value.ToString("0.##") + ", enemy detection x" + EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nShadow Momentum: hitting enemies grants +" + (EpicLootRaritySetsPlugin.NottHitSpeedBonus.Value * 100f).ToString("0.#") + "% speed and +" + (EpicLootRaritySetsPlugin.NottHitSpeedDamageBonus.Value * 100f).ToString("0.#") + "% damage for " + EpicLootRaritySetsPlugin.NottHitSpeedDuration.Value.ToString("0.#") + "s. Does not stack; refreshes.\nPoison Edge scales with Nott: " + EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value.ToString("0.##") + "/level = " + poison.ToString("0.#") + " poison added to each hit.\nExecutor: all Nott damage against enemies already at 30% health or lower deals 300% total damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.NottWarpHotkey) + ": Warp behind the aimed enemy or the nearest enemy. Cost " + EpicLootRaritySetsPlugin.NottWarpStaminaUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.NottWarpCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.NottWarpRange.Value.ToString("0.#") + "m. After Warp, Warp Guard reduces incoming damage by " + (EpicLootRaritySetsPlugin.NottWarpGuardDamageReduction.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottWarpGuardDuration.Value.ToString("0.#") + "s.\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\n"
+                    + FormatBlockShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey) + ": Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
             }
 
@@ -5557,7 +5558,7 @@ namespace Fran.EpicLootRaritySets
             new AbilityPanelEntry("Hellsyng", "Buffs", "hellsyng_hunt.png", "Hunt", "buff", true),
 
             new AbilityPanelEntry("Nott", "Abilities", "nott_warp.png", "Warp", "shortcut:NottWarpHotkey", false, "NottWarp"),
-            new AbilityPanelEntry("Nott", "Abilities", "nott_shadow_mark.png", "Shadow Mark", "shortcut:NottShadowMarkHotkey", false, "NottShadowMark"),
+            new AbilityPanelEntry("Nott", "Abilities", "nott_shadow_mark.png", "Shadow Mark", "blockShortcut:NottShadowMarkHotkey", false, "NottShadowMark"),
             new AbilityPanelEntry("Nott", "Abilities", "nott_knife_strike.png", "Knife Strike", "shortcut:NottKnifeStrikeHotkey", false, "NottKnifeStrike"),
             new AbilityPanelEntry("Nott", "Buffs", "nott_sneaky.png", "Sneaky", "passive", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_poison_edge.png", "Poison Edge", "passive", true),
@@ -11654,7 +11655,7 @@ namespace Fran.EpicLootRaritySets
 
         internal static GameObject SpawnSeidrElementalShield(GameObject parent, float lifetime)
         {
-            GameObject effect = SpawnAttached(
+            return SpawnAttached(
                 parent,
                 Vector3.up * 1.0f,
                 Quaternion.identity,
@@ -11663,15 +11664,12 @@ namespace Fran.EpicLootRaritySets
                 "FxArcaneShield",
                 "ElementalShield",
                 "Shield",
-                "FxLightning",
-                "vfx_StaffShield",
-                "fx_DvergerMage_Support");
-            return effect ?? CreateFallbackShield(parent, lifetime);
+                "FxLightning");
         }
 
         internal static GameObject SpawnSeidrNanocube(Vector3 center, float radius, float lifetime)
         {
-            GameObject effect = Spawn(
+            return Spawn(
                 center,
                 Quaternion.identity,
                 lifetime,
@@ -11679,28 +11677,13 @@ namespace Fran.EpicLootRaritySets
                 "NanoCube",
                 "Nanocube",
                 "Cube");
-            return effect ?? CreateFallbackNanocube(center, radius, lifetime);
         }
 
         private static GameObject FindPrefab(params string[] nameParts)
         {
-            if (nameParts == null || nameParts.Length == 0 || ZNetScene.instance == null)
+            if (nameParts == null || nameParts.Length == 0)
             {
                 return null;
-            }
-
-            foreach (string namePart in nameParts)
-            {
-                if (string.IsNullOrWhiteSpace(namePart))
-                {
-                    continue;
-                }
-
-                GameObject prefab = ZNetScene.instance.GetPrefab(namePart);
-                if (IsSafeVisualPrefab(prefab, namePart))
-                {
-                    return prefab;
-                }
             }
 
             foreach (string namePart in nameParts)
@@ -11712,97 +11695,24 @@ namespace Fran.EpicLootRaritySets
                 }
             }
 
+            if (ZNetScene.instance != null)
+            {
+                foreach (string namePart in nameParts)
+                {
+                    if (string.IsNullOrWhiteSpace(namePart))
+                    {
+                        continue;
+                    }
+
+                    GameObject prefab = ZNetScene.instance.GetPrefab(namePart);
+                    if (IsSafeVisualPrefab(prefab, namePart))
+                    {
+                        return prefab;
+                    }
+                }
+            }
+
             return null;
-        }
-
-        private static GameObject CreateFallbackShield(GameObject parent, float lifetime)
-        {
-            if (parent == null)
-            {
-                return null;
-            }
-
-            try
-            {
-                GameObject root = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                root.name = "FranSeidrElementalShieldVisual";
-                Collider collider = root.GetComponent<Collider>();
-                if (collider != null)
-                {
-                    UnityEngine.Object.Destroy(collider);
-                }
-
-                root.transform.SetParent(parent.transform, false);
-                root.transform.localPosition = Vector3.up * 1.0f;
-                root.transform.localRotation = Quaternion.identity;
-                root.transform.localScale = new Vector3(2.1f, 2.1f, 2.1f);
-                Renderer renderer = root.GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    Material material = new Material(Shader.Find("Sprites/Default"));
-                    material.color = new Color(0.35f, 0.9f, 1f, 0.22f);
-                    renderer.material = material;
-                }
-
-                UnityEngine.Object.Destroy(root, Mathf.Max(0.1f, lifetime));
-                return root;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private static GameObject CreateFallbackNanocube(Vector3 center, float radius, float lifetime)
-        {
-            try
-            {
-                GameObject root = new GameObject("FranSeidrNanocubeVisual");
-                root.transform.position = center;
-                float r = Mathf.Max(1f, radius);
-                float bottom = 0.15f;
-                float top = 2.6f;
-                Vector3[] corners =
-                {
-                    new Vector3(-r, bottom, -r),
-                    new Vector3(r, bottom, -r),
-                    new Vector3(r, bottom, r),
-                    new Vector3(-r, bottom, r),
-                    new Vector3(-r, top, -r),
-                    new Vector3(r, top, -r),
-                    new Vector3(r, top, r),
-                    new Vector3(-r, top, r)
-                };
-                int[,] edges =
-                {
-                    { 0, 1 }, { 1, 2 }, { 2, 3 }, { 3, 0 },
-                    { 4, 5 }, { 5, 6 }, { 6, 7 }, { 7, 4 },
-                    { 0, 4 }, { 1, 5 }, { 2, 6 }, { 3, 7 }
-                };
-                Material material = new Material(Shader.Find("Sprites/Default"));
-                material.color = new Color(0.35f, 0.95f, 1f, 0.72f);
-                for (int i = 0; i < edges.GetLength(0); i++)
-                {
-                    GameObject edge = new GameObject("NanocubeEdge");
-                    edge.transform.SetParent(root.transform, false);
-                    LineRenderer line = edge.AddComponent<LineRenderer>();
-                    line.useWorldSpace = false;
-                    line.positionCount = 2;
-                    line.widthMultiplier = 0.055f;
-                    line.material = material;
-                    line.startColor = new Color(0.35f, 0.95f, 1f, 0.85f);
-                    line.endColor = new Color(0.9f, 1f, 1f, 0.35f);
-                    line.SetPosition(0, corners[edges[i, 0]]);
-                    line.SetPosition(1, corners[edges[i, 1]]);
-                }
-
-                UnityEngine.Object.Destroy(root, Mathf.Max(0.1f, lifetime));
-                return root;
-            }
-            catch
-            {
-                return null;
-            }
         }
 
         private static GameObject FindNorseStaticGameObject(string namePart)
@@ -11864,8 +11774,10 @@ namespace Fran.EpicLootRaritySets
                     prefab.GetComponentInChildren<Character>(true) != null ||
                     prefab.GetComponent<Humanoid>() != null ||
                     prefab.GetComponentInChildren<Humanoid>(true) != null ||
-                    prefab.GetComponent<ZNetView>() != null ||
-                    prefab.GetComponentInChildren<ZNetView>(true) != null ||
+                    prefab.GetComponent<BaseAI>() != null ||
+                    prefab.GetComponentInChildren<BaseAI>(true) != null ||
+                    prefab.GetComponent<Tameable>() != null ||
+                    prefab.GetComponentInChildren<Tameable>(true) != null ||
                     prefab.GetComponent<Piece>() != null ||
                     prefab.GetComponentInChildren<Piece>(true) != null ||
                     prefab.GetComponent<ItemDrop>() != null ||
@@ -19755,7 +19667,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            if (IsShortcutDown(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey))
+            if (!SetAbilityInput.IsBlockHeld() && IsShortcutDown(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey))
             {
                 TryKnifeStrike(player);
                 return;
@@ -19770,23 +19682,12 @@ namespace Fran.EpicLootRaritySets
 
         private static bool IsShadowMarkShortcutDown()
         {
-            if (IsShortcutDown(EpicLootRaritySetsPlugin.NottShadowMarkHotkey))
-            {
-                return true;
-            }
-
-            if (EpicLootRaritySetsPlugin.NottShadowMarkHotkey == null)
+            if (!SetAbilityInput.IsBlockHeld() || EpicLootRaritySetsPlugin.NottShadowMarkHotkey == null)
             {
                 return false;
             }
 
-            KeyboardShortcut shortcut = EpicLootRaritySetsPlugin.NottShadowMarkHotkey.Value;
-            if (shortcut.MainKey != KeyCode.Mouse4 || !Input.GetKeyDown(KeyCode.Mouse4))
-            {
-                return false;
-            }
-
-            return Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+            return IsShortcutDown(EpicLootRaritySetsPlugin.NottShadowMarkHotkey);
         }
 
         internal static void Clear(Player player)

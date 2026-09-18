@@ -244,7 +244,7 @@ Habilidades con set completo:
 - Pasiva `Filo venenoso`: cada golpe contra enemigos anade veneno `8 + 0.35` por nivel de Nott.
 - Pasiva `Ejecutor`: todo el dano de Nott contra enemigos que ya estan al `30%` o menos de vida hace `300%` de dano total.
 - `Mouse3` - `Warp`: coste `25` vigor, cooldown `18s`, rango `18m`; teletransporta detras del enemigo apuntado, al mas cercano si no hay objetivo apuntado, o hacia delante si no hay objetivo valido. Tras Warp, `Guardia de Warp` reduce el dano recibido un `90%` durante `3s`.
-- `Ctrl + Mouse4` - `Marca de sombra`: marca al enemigo seleccionado a `5m` durante `6s` con un efecto visual de sombra sobre el objetivo; acumula el `50%` del dano que reciba mientras dura y al terminar explota en dano de espiritu sobre el objetivo. Cooldown `60s`; si muere un enemigo a `20m` mientras esta en cooldown, se reduce `10s`.
+- `Bloqueo + Mouse4` - `Marca de sombra`: marca al enemigo seleccionado a `5m` durante `6s` con un efecto visual de sombra sobre el objetivo; acumula el `50%` del dano que reciba mientras dura y al terminar explota en dano de espiritu sobre el objetivo. Cooldown `60s`; si muere un enemigo a `20m` mientras esta en cooldown, se reduce `10s`.
 - `Mouse4` - `Golpe de cuchillo`: requiere cuchillo, cooldown `8s`, rango `5m`; golpea al enemigo apuntado o frontal mas cercano con `50%` del dano del arma + `0.75` de dano de tajo por nivel de Nott, usa visual de slash de Norse y ralentiza `50%` durante `5s`.
 - Despues de `Warp`, `Golpe de Warp` hace que el siguiente ataque contra enemigo pegue `x2.5` dano.
 - Si muere un enemigo a `18m` mientras Warp esta en cooldown, se reinicia el cooldown y recuperas vigor.
