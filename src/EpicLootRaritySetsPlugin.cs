@@ -607,14 +607,14 @@ namespace Fran.EpicLootRaritySets
             NottWarpGuardDuration = Config.Bind("Nott Abilities", "Warp Guard Duration", 3f, new ConfigDescription("Seconds of heavy damage reduction granted after a successful Nott Warp.", new AcceptableValueRange<float>(0f, 30f)));
             NottWarpGuardDamageReduction = Config.Bind("Nott Abilities", "Warp Guard Damage Reduction", 0.90f, new ConfigDescription("Fraction of incoming damage reduced while Warp Guard is active. 0.90 means 90% less damage.", new AcceptableValueRange<float>(0f, 0.99f)));
             NottWarpResetRadius = Config.Bind("Nott Abilities", "Warp Cooldown Reset Radius", 18f, new ConfigDescription("Enemy death radius in meters that refreshes Warp while it is cooling down.", new AcceptableValueRange<float>(1f, 100f)));
-            NottShadowMarkHotkey = Config.Bind("Nott Abilities", "Shadow Mark Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Nott Shadow Mark.");
+            NottShadowMarkHotkey = Config.Bind("Nott Abilities", "Shadow Mark Hotkey", new KeyboardShortcut(KeyCode.Mouse4, KeyCode.LeftControl), "Hotkey for Nott Shadow Mark.");
             NottShadowMarkRange = Config.Bind("Nott Abilities", "Shadow Mark Range", 5f, new ConfigDescription("Maximum range in meters to mark the selected enemy.", new AcceptableValueRange<float>(0.5f, 50f)));
             NottShadowMarkDuration = Config.Bind("Nott Abilities", "Shadow Mark Duration", 6f, new ConfigDescription("Duration in seconds for Nott Shadow Mark.", new AcceptableValueRange<float>(0.1f, 120f)));
             NottShadowMarkCooldown = Config.Bind("Nott Abilities", "Shadow Mark Cooldown", 60f, new ConfigDescription("Cooldown in seconds for Nott Shadow Mark.", new AcceptableValueRange<float>(0f, 600f)));
             NottShadowMarkDamageStored = Config.Bind("Nott Abilities", "Shadow Mark Damage Stored Fraction", 0.5f, new ConfigDescription("Fraction of real health damage stored by Shadow Mark and released as spirit damage.", new AcceptableValueRange<float>(0f, 5f)));
             NottShadowMarkCooldownReductionRadius = Config.Bind("Nott Abilities", "Shadow Mark Cooldown Reduction Radius", 20f, new ConfigDescription("Enemy death radius in meters that reduces Shadow Mark cooldown.", new AcceptableValueRange<float>(1f, 100f)));
             NottShadowMarkCooldownReductionOnNearbyDeath = Config.Bind("Nott Abilities", "Shadow Mark Cooldown Reduction On Nearby Death", 10f, new ConfigDescription("Seconds removed from Shadow Mark cooldown when an enemy dies near Nott.", new AcceptableValueRange<float>(0f, 300f)));
-            NottKnifeStrikeHotkey = Config.Bind("Nott Abilities", "Knife Strike Hotkey", new KeyboardShortcut(KeyCode.None), "Legacy fallback hotkey for Nott Knife Strike. The primary input is the game's secondary attack.");
+            NottKnifeStrikeHotkey = Config.Bind("Nott Abilities", "Knife Strike Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Nott Knife Strike.");
             NottKnifeStrikeCooldown = Config.Bind("Nott Abilities", "Knife Strike Cooldown", 8f, new ConfigDescription("Cooldown in seconds for Nott Knife Strike.", new AcceptableValueRange<float>(0f, 300f)));
             NottKnifeStrikeRange = Config.Bind("Nott Abilities", "Knife Strike Range", 5f, new ConfigDescription("Maximum range in meters for Nott Knife Strike.", new AcceptableValueRange<float>(0.5f, 30f)));
             NottKnifeStrikeWeaponDamageMultiplier = Config.Bind("Nott Abilities", "Knife Strike Weapon Damage Multiplier", 0.5f, new ConfigDescription("Fraction of current knife weapon damage dealt by Knife Strike. 0.5 means 50%.", new AcceptableValueRange<float>(0f, 5f)));
@@ -630,7 +630,8 @@ namespace Fran.EpicLootRaritySets
             UpgradeFloatConfig(NottWarpRange, 12f, 18f);
             UpgradeFloatConfig(NottHitSpeedBonus, 0.10f, 0.30f);
             UpgradeIntConfig(NottHitSpeedMaxStacks, 3, 1);
-            UpgradeShortcutConfig(NottKnifeStrikeHotkey, KeyCode.Mouse4, KeyCode.None);
+            UpgradeShortcutConfigToModified(NottShadowMarkHotkey, KeyCode.Mouse4, KeyCode.Mouse4, KeyCode.LeftControl);
+            UpgradeShortcutConfig(NottKnifeStrikeHotkey, KeyCode.None, KeyCode.Mouse4);
 
             EnableRagnarAbilities = Config.Bind("Ragnar Abilities", "Enable Ragnar Abilities", true, "Enable the complete-set abilities for the Ragnar berserker set.");
             RagnarDecayAuraHotkey = Config.Bind("Ragnar Abilities", "Decay Aura Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Ragnar Decay Aura toggle.");
@@ -823,6 +824,7 @@ namespace Fran.EpicLootRaritySets
             WiresEnemyHudCompatibilitySynchronizer.Sync();
             ClassSkillManager.Initialize();
             LastHopeController.Initialize();
+            HelveigAbilityController.RegisterRpcs();
 
             ReloadExternalConfigs();
             UniqueLegendaryHelper.OnSetupLegendaryItemConfig += ReloadExternalConfigs;
@@ -914,6 +916,20 @@ namespace Fran.EpicLootRaritySets
             if (shortcut.MainKey == oldKey && shortcut.Modifiers.Count() == 1 && shortcut.Modifiers.Contains(oldModifier))
             {
                 entry.Value = new KeyboardShortcut(newKey);
+            }
+        }
+
+        private static void UpgradeShortcutConfigToModified(ConfigEntry<KeyboardShortcut> entry, KeyCode oldKey, KeyCode newKey, params KeyCode[] newModifiers)
+        {
+            if (entry == null)
+            {
+                return;
+            }
+
+            KeyboardShortcut shortcut = entry.Value;
+            if (shortcut.MainKey == oldKey && shortcut.Modifiers.Count() == 0)
+            {
+                entry.Value = new KeyboardShortcut(newKey, newModifiers ?? new KeyCode[0]);
             }
         }
     }
@@ -4435,7 +4451,7 @@ namespace Fran.EpicLootRaritySets
                 float poison = ScaleSkillValue(EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value, EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value, knives);
                 float knifeStrike = Mathf.Max(0f, knives * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
                 return string.Format(
-                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad y +{32:0.#}% dano durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\nEjecutor: todo el dano de Nott contra enemigos que ya estan al 30% o menos de vida hace 300% de dano total.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Tras Warp recibes Guardia de Warp: -{30:0.#}% dano recibido durante {31:0.#}s. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.\nGolpe de cuchillo: ataque secundario. Requiere cuchillo. CD {23:0.#}s. Rango {24:0.#}m. Hace {25:0.#}% del dano del arma + {26:0.##}/nivel Nott = {27:0.#} dano de tajo adicional. Ralentiza {28:0.#}% durante {29:0.#}s.",
+                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad y +{32:0.#}% dano durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\nEjecutor: todo el dano de Nott contra enemigos que ya estan al 30% o menos de vida hace 300% de dano total.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Tras Warp recibes Guardia de Warp: -{30:0.#}% dano recibido durante {31:0.#}s. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.\nGolpe de cuchillo: tecla {22}. Requiere cuchillo. CD {23:0.#}s. Rango {24:0.#}m. Hace {25:0.#}% del dano del arma + {26:0.##}/nivel Nott = {27:0.#} dano de tajo adicional. Ralentiza {28:0.#}% durante {29:0.#}s.",
                     EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f,
@@ -4458,7 +4474,7 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value,
-                    FormatBlockShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey),
+                    FormatShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey),
                     EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value,
                     EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value,
                     EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f,
@@ -4576,7 +4592,7 @@ namespace Fran.EpicLootRaritySets
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
                 return string.Format(
-                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida/dano con Helveig y reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion real aplica al objetivo un escudo no acumulable del 15% de la sanacion recibida durante 6s.\nSanguine Devotion: cada curacion real otorga 1 carga, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida/dano. Invocacion actual: {29}.",
+                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida/dano con Helveig y reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion real aplica al objetivo un escudo no acumulable del 15% de la sanacion recibida durante 6s, con visual de escudo elemental.\nSanguine Devotion: cada curacion real otorga 1 carga durante 15s, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida/dano. Invocacion actual: {29}.",
                     FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey),
                     EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value,
                     EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value,
@@ -4685,7 +4701,7 @@ namespace Fran.EpicLootRaritySets
                 return "Nott full set active.\n\nCurrent scaling: Nott " + knives.ToString("0.#") + ".\n\nPassives:\nSneaky activates while crouching/stealthed. Uses Ullr's Sneaky visual, noise x" + EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value.ToString("0.##") + ", enemy detection x" + EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nShadow Momentum: hitting enemies grants +" + (EpicLootRaritySetsPlugin.NottHitSpeedBonus.Value * 100f).ToString("0.#") + "% speed and +" + (EpicLootRaritySetsPlugin.NottHitSpeedDamageBonus.Value * 100f).ToString("0.#") + "% damage for " + EpicLootRaritySetsPlugin.NottHitSpeedDuration.Value.ToString("0.#") + "s. Does not stack; refreshes.\nPoison Edge scales with Nott: " + EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value.ToString("0.##") + "/level = " + poison.ToString("0.#") + " poison added to each hit.\nExecutor: all Nott damage against enemies already at 30% health or lower deals 300% total damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.NottWarpHotkey) + ": Warp behind the aimed enemy or the nearest enemy. Cost " + EpicLootRaritySetsPlugin.NottWarpStaminaUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.NottWarpCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.NottWarpRange.Value.ToString("0.#") + "m. After Warp, Warp Guard reduces incoming damage by " + (EpicLootRaritySetsPlugin.NottWarpGuardDamageReduction.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottWarpGuardDuration.Value.ToString("0.#") + "s.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\n"
-                    + "Secondary attack: Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
+                    + FormatShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey) + ": Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
             }
 
             if (string.Equals(baseSetName, "Ragnar", StringComparison.OrdinalIgnoreCase))
@@ -4726,7 +4742,7 @@ namespace Fran.EpicLootRaritySets
                 float bloodRite = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value, EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value, blood);
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
-                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health/damage scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: real healing grants the healed target a non-stacking shield equal to 15% of healing received for 6s.\nSanguine Devotion: each real heal grants 1 stack, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
+                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health/damage scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: real healing grants the healed target a non-stacking shield equal to 15% of healing received for 6s, with the Elemental Shield visual.\nSanguine Devotion: each real heal grants 1 stack for 15s, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey) + ": Holy Heal. Cost " + EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value.ToString("0") + "s. Heals the aimed ally within " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m, or yourself if no target exists. Scales with Helveig: " + EpicLootRaritySetsPlugin.HelveigHolyHealBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyHealHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyHeal.ToString("0.#") + " healing.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigBloodRiteHotkey) + ": Blood Rite. Cost " + EpicLootRaritySetsPlugin.HelveigBloodRiteEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigBloodRiteCooldown.Value.ToString("0") + "s. Channels " + EpicLootRaritySetsPlugin.HelveigBloodRiteDuration.Value.ToString("0.#") + "s without moving, radius " + EpicLootRaritySetsPlugin.HelveigBloodRiteRadius.Value.ToString("0.#") + "m, tick every " + EpicLootRaritySetsPlugin.HelveigBloodRiteTickInterval.Value.ToString("0.#") + "s. Heals allies, players, allied NPCs, pets and you: " + EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + bloodRite.ToString("0.#") + " per tick. CD starts when the channel finishes or breaks.\nSecondary attack: Holy Strike. Cost " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyStrikeCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m. Scales with Helveig: fire " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeFire.ToString("0.#") + "; spirit " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeSpirit.ToString("0.#") + ". Each impact restores " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrRefund.Value.ToString("0.#") + " eitr.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigSummonUndeadHotkey) + " + block: Summon Monster. Cost " + EpicLootRaritySetsPlugin.HelveigSummonUndeadEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigSummonUndeadCooldown.Value.ToString("0") + "s. Lasts " + EpicLootRaritySetsPlugin.HelveigSummonUndeadDuration.Value.ToString("0.#") + "s. Summons Ent/Abomination/ElakingMole/Fallen Valkyrie based on Helveig and scales health/damage. Current summon: " + GetHelveigUndeadNameForSkill(blood) + ".";
@@ -5542,7 +5558,7 @@ namespace Fran.EpicLootRaritySets
 
             new AbilityPanelEntry("Nott", "Abilities", "nott_warp.png", "Warp", "shortcut:NottWarpHotkey", false, "NottWarp"),
             new AbilityPanelEntry("Nott", "Abilities", "nott_shadow_mark.png", "Shadow Mark", "shortcut:NottShadowMarkHotkey", false, "NottShadowMark"),
-            new AbilityPanelEntry("Nott", "Abilities", "nott_knife_strike.png", "Knife Strike", "secondary", false, "NottKnifeStrike"),
+            new AbilityPanelEntry("Nott", "Abilities", "nott_knife_strike.png", "Knife Strike", "shortcut:NottKnifeStrikeHotkey", false, "NottKnifeStrike"),
             new AbilityPanelEntry("Nott", "Buffs", "nott_sneaky.png", "Sneaky", "passive", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_poison_edge.png", "Poison Edge", "passive", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_executor.png", "Executor", "passive", true),
@@ -11636,6 +11652,36 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
+        internal static GameObject SpawnSeidrElementalShield(GameObject parent, float lifetime)
+        {
+            GameObject effect = SpawnAttached(
+                parent,
+                Vector3.up * 1.0f,
+                Quaternion.identity,
+                lifetime,
+                "FxLightningShield",
+                "FxArcaneShield",
+                "ElementalShield",
+                "Shield",
+                "FxLightning",
+                "vfx_StaffShield",
+                "fx_DvergerMage_Support");
+            return effect ?? CreateFallbackShield(parent, lifetime);
+        }
+
+        internal static GameObject SpawnSeidrNanocube(Vector3 center, float radius, float lifetime)
+        {
+            GameObject effect = Spawn(
+                center,
+                Quaternion.identity,
+                lifetime,
+                "FxNanoCube",
+                "NanoCube",
+                "Nanocube",
+                "Cube");
+            return effect ?? CreateFallbackNanocube(center, radius, lifetime);
+        }
+
         private static GameObject FindPrefab(params string[] nameParts)
         {
             if (nameParts == null || nameParts.Length == 0 || ZNetScene.instance == null)
@@ -11657,7 +11703,106 @@ namespace Fran.EpicLootRaritySets
                 }
             }
 
+            foreach (string namePart in nameParts)
+            {
+                GameObject prefab = FindNorseStaticGameObject(namePart);
+                if (prefab != null)
+                {
+                    return prefab;
+                }
+            }
+
             return null;
+        }
+
+        private static GameObject CreateFallbackShield(GameObject parent, float lifetime)
+        {
+            if (parent == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                GameObject root = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                root.name = "FranSeidrElementalShieldVisual";
+                Collider collider = root.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    UnityEngine.Object.Destroy(collider);
+                }
+
+                root.transform.SetParent(parent.transform, false);
+                root.transform.localPosition = Vector3.up * 1.0f;
+                root.transform.localRotation = Quaternion.identity;
+                root.transform.localScale = new Vector3(2.1f, 2.1f, 2.1f);
+                Renderer renderer = root.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    Material material = new Material(Shader.Find("Sprites/Default"));
+                    material.color = new Color(0.35f, 0.9f, 1f, 0.22f);
+                    renderer.material = material;
+                }
+
+                UnityEngine.Object.Destroy(root, Mathf.Max(0.1f, lifetime));
+                return root;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static GameObject CreateFallbackNanocube(Vector3 center, float radius, float lifetime)
+        {
+            try
+            {
+                GameObject root = new GameObject("FranSeidrNanocubeVisual");
+                root.transform.position = center;
+                float r = Mathf.Max(1f, radius);
+                float bottom = 0.15f;
+                float top = 2.6f;
+                Vector3[] corners =
+                {
+                    new Vector3(-r, bottom, -r),
+                    new Vector3(r, bottom, -r),
+                    new Vector3(r, bottom, r),
+                    new Vector3(-r, bottom, r),
+                    new Vector3(-r, top, -r),
+                    new Vector3(r, top, -r),
+                    new Vector3(r, top, r),
+                    new Vector3(-r, top, r)
+                };
+                int[,] edges =
+                {
+                    { 0, 1 }, { 1, 2 }, { 2, 3 }, { 3, 0 },
+                    { 4, 5 }, { 5, 6 }, { 6, 7 }, { 7, 4 },
+                    { 0, 4 }, { 1, 5 }, { 2, 6 }, { 3, 7 }
+                };
+                Material material = new Material(Shader.Find("Sprites/Default"));
+                material.color = new Color(0.35f, 0.95f, 1f, 0.72f);
+                for (int i = 0; i < edges.GetLength(0); i++)
+                {
+                    GameObject edge = new GameObject("NanocubeEdge");
+                    edge.transform.SetParent(root.transform, false);
+                    LineRenderer line = edge.AddComponent<LineRenderer>();
+                    line.useWorldSpace = false;
+                    line.positionCount = 2;
+                    line.widthMultiplier = 0.055f;
+                    line.material = material;
+                    line.startColor = new Color(0.35f, 0.95f, 1f, 0.85f);
+                    line.endColor = new Color(0.9f, 1f, 1f, 0.35f);
+                    line.SetPosition(0, corners[edges[i, 0]]);
+                    line.SetPosition(1, corners[edges[i, 1]]);
+                }
+
+                UnityEngine.Object.Destroy(root, Mathf.Max(0.1f, lifetime));
+                return root;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static GameObject FindNorseStaticGameObject(string namePart)
@@ -19565,7 +19710,6 @@ namespace Fran.EpicLootRaritySets
         private static float _shadowMarkAuraSpin;
         private static float _hitSpeedTimer;
         private static int _hitSpeedStacks;
-        private static int _secondaryKnifeStrikeConsumedFrame = -1;
         private static int _knifeStrikeAnimationDepth;
         private static bool _wasActive;
         private static bool _sneakyActive;
@@ -19605,8 +19749,13 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            if ((SetAbilityInput.IsSecondaryAttackDown() && _secondaryKnifeStrikeConsumedFrame != Time.frameCount) ||
-                IsShortcutDown(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey))
+            if (IsShadowMarkShortcutDown())
+            {
+                TryShadowMark(player);
+                return;
+            }
+
+            if (IsShortcutDown(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey))
             {
                 TryKnifeStrike(player);
                 return;
@@ -19617,10 +19766,27 @@ namespace Fran.EpicLootRaritySets
                 TryWarp(player);
             }
 
+        }
+
+        private static bool IsShadowMarkShortcutDown()
+        {
             if (IsShortcutDown(EpicLootRaritySetsPlugin.NottShadowMarkHotkey))
             {
-                TryShadowMark(player);
+                return true;
             }
+
+            if (EpicLootRaritySetsPlugin.NottShadowMarkHotkey == null)
+            {
+                return false;
+            }
+
+            KeyboardShortcut shortcut = EpicLootRaritySetsPlugin.NottShadowMarkHotkey.Value;
+            if (shortcut.MainKey != KeyCode.Mouse4 || !Input.GetKeyDown(KeyCode.Mouse4))
+            {
+                return false;
+            }
+
+            return Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
         }
 
         internal static void Clear(Player player)
@@ -19645,7 +19811,6 @@ namespace Fran.EpicLootRaritySets
             _shadowMarkRemaining = 0f;
             _shadowMarkAccumulatedDamage = 0f;
             _shadowMarkVisualTimer = 0f;
-            _secondaryKnifeStrikeConsumedFrame = -1;
             _knifeStrikeAnimationDepth = 0;
             _wasActive = false;
         }
@@ -20065,18 +20230,7 @@ namespace Fran.EpicLootRaritySets
 
         internal static bool TryConsumeSecondaryKnifeStrike(Player player)
         {
-            if (player == null ||
-                player != Player.m_localPlayer ||
-                _knifeStrikeAnimationDepth > 0 ||
-                !IsNottEnabledAndActive() ||
-                !IsKnifeWeapon(player.GetCurrentWeapon()))
-            {
-                return false;
-            }
-
-            _secondaryKnifeStrikeConsumedFrame = Time.frameCount;
-            TryKnifeStrike(player);
-            return true;
+            return false;
         }
 
         private static void TryKnifeStrike(Player player)
@@ -20592,16 +20746,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            _warpGuardVisual = NorseVisualEffectBridge.SpawnAttached(
-                player,
-                Vector3.up * 1.0f,
-                Quaternion.identity,
-                1.4f,
-                "FxLightningShield",
-                "FxArcaneShield",
-                "ElementalShield",
-                "Shield",
-                "FxLightning");
+            _warpGuardVisual = NorseVisualEffectBridge.SpawnSeidrElementalShield(player.gameObject, 1.4f);
         }
 
         private static StatusEffect GetOrCreateHitSpeedBuff(Sprite icon)
@@ -24117,8 +24262,10 @@ namespace Fran.EpicLootRaritySets
         private const int HealingPowerMaxStacks = 3;
         private const float HealingShieldFraction = 0.15f;
         private const float HealingShieldDuration = 6f;
+        private const float HealingPowerDuration = 15f;
         private const float HealingPowerSummonDamagePerStack = 0.05f;
         private const float HealingPowerHolyStrikeDamagePerStack = 0.10f;
+        private const string ApplyHealingShieldRpc = "Fran_ELRS_HelveigBloodAegis";
         private const float BloodRiteBarWidth = 260f;
         private const float BloodRiteBarHeight = 14f;
         private static readonly MethodInfo BaseAIIsEnemyMethod = AccessTools.Method(typeof(BaseAI), "IsEnemy", new[] { typeof(Character), typeof(Character) });
@@ -24156,9 +24303,11 @@ namespace Fran.EpicLootRaritySets
         private static float _bloodRiteRemaining;
         private static float _bloodRiteTickTimer;
         private static float _bloodRiteVisualPulseTimer;
+        private static float _healingPowerRemaining;
         private static Vector3 _bloodRiteOrigin;
         private static bool _bloodRiteActive;
         private static bool _undeadSummonActive;
+        private static bool _rpcsRegistered;
         private static int _healingPowerStacks;
         private static string _undeadSummonKind = SummonEntKind;
         private static string _undeadSummonDisplayName = "Ent";
@@ -24175,6 +24324,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
+            RegisterRpcs();
             _holyHealCooldown = Mathf.Max(0f, _holyHealCooldown - dt);
             _holyStrikeCooldown = Mathf.Max(0f, _holyStrikeCooldown - dt);
             _bloodRiteCooldown = Mathf.Max(0f, _bloodRiteCooldown - dt);
@@ -24184,7 +24334,8 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsHelveigEnabledAndActive())
             {
-                Clear(player);
+                UpdateHealingShields(dt);
+                Clear(player, false);
                 return;
             }
 
@@ -24192,6 +24343,7 @@ namespace Fran.EpicLootRaritySets
             UpdateUndeadSummon(player, dt);
             UpdateBodyguards(player, dt);
             UpdateHealingShields(dt);
+            UpdateHealingPower(player, dt);
 
             if (!CanReadAbilityInput(player))
             {
@@ -24226,6 +24378,11 @@ namespace Fran.EpicLootRaritySets
 
         internal static void Clear(Player player)
         {
+            Clear(player, true);
+        }
+
+        private static void Clear(Player player, bool clearHealingShields)
+        {
             _bloodRiteActive = false;
             _bloodRiteDuration = 0f;
             _bloodRiteRemaining = 0f;
@@ -24236,8 +24393,12 @@ namespace Fran.EpicLootRaritySets
             DestroyBloodRiteChannelBar();
             DestroyUndeadSummon(player);
             DestroyBodyguards(player, true);
-            ClearHealingShields();
+            if (clearHealingShields)
+            {
+                ClearHealingShields();
+            }
             _healingPowerStacks = 0;
+            _healingPowerRemaining = 0f;
             RemoveHealingPowerBuff(player);
             _bodyguardRespawnCooldown = 0f;
             _bodyguardCombatRefreshTimer = 0f;
@@ -25436,6 +25597,7 @@ namespace Fran.EpicLootRaritySets
         {
             internal float Amount;
             internal float Remaining;
+            internal GameObject Visual;
         }
 
         private static bool IsHelveigId(string id)
@@ -25835,6 +25997,40 @@ namespace Fran.EpicLootRaritySets
             return actualHealing;
         }
 
+        internal static void RegisterRpcs()
+        {
+            if (_rpcsRegistered || ZRoutedRpc.instance == null)
+            {
+                return;
+            }
+
+            try
+            {
+                ZRoutedRpc.instance.Register<ZDOID, float, float>(ApplyHealingShieldRpc, RPC_ApplyHealingShield);
+                _rpcsRegistered = true;
+            }
+            catch
+            {
+            }
+        }
+
+        private static void RPC_ApplyHealingShield(long sender, ZDOID targetId, float shieldAmount, float remaining)
+        {
+            Character target = FindCharacterByZdoId(targetId);
+            if (target == null)
+            {
+                return;
+            }
+
+            Player targetPlayer = target as Player;
+            if (targetPlayer != null && targetPlayer != Player.m_localPlayer)
+            {
+                return;
+            }
+
+            ApplyHealingShieldAmount(null, target, shieldAmount, Mathf.Max(0.1f, remaining), false);
+        }
+
         private static float GetHealthSafe(Character target)
         {
             if (target == null)
@@ -25860,6 +26056,16 @@ namespace Fran.EpicLootRaritySets
             }
 
             float shieldAmount = Mathf.Max(0f, actualHealing * HealingShieldFraction);
+            ApplyHealingShieldAmount(caster, target, shieldAmount, HealingShieldDuration, true);
+        }
+
+        private static void ApplyHealingShieldAmount(Player caster, Character target, float shieldAmount, float duration, bool sendRemotePlayerRpc)
+        {
+            if (target == null)
+            {
+                return;
+            }
+
             if (shieldAmount <= 0.01f)
             {
                 return;
@@ -25873,8 +26079,13 @@ namespace Fran.EpicLootRaritySets
             }
 
             state.Amount = Mathf.Max(state.Amount, shieldAmount);
-            state.Remaining = HealingShieldDuration;
+            state.Remaining = Mathf.Max(0.1f, duration);
+            EnsureHealingShieldVisual(target, state);
             RefreshHealingShieldBuff(caster, target, state);
+            if (sendRemotePlayerRpc)
+            {
+                TrySendHealingShieldRpc(target, shieldAmount, state.Remaining);
+            }
         }
 
         private static void AddHealingPowerStack(Player player)
@@ -25885,7 +26096,26 @@ namespace Fran.EpicLootRaritySets
             }
 
             _healingPowerStacks = Mathf.Clamp(_healingPowerStacks + 1, 0, HealingPowerMaxStacks);
+            _healingPowerRemaining = HealingPowerDuration;
             RefreshHealingPowerBuff(player);
+        }
+
+        private static void UpdateHealingPower(Player player, float dt)
+        {
+            if (_healingPowerStacks <= 0)
+            {
+                return;
+            }
+
+            _healingPowerRemaining -= Mathf.Max(0f, dt);
+            if (_healingPowerRemaining > 0f && IsHelveigEnabledAndActive())
+            {
+                return;
+            }
+
+            _healingPowerStacks = 0;
+            _healingPowerRemaining = 0f;
+            RemoveHealingPowerBuff(player);
         }
 
         private static void UpdateHealingShields(float dt)
@@ -25910,7 +26140,10 @@ namespace Fran.EpicLootRaritySets
                 if (state.Remaining <= 0f || state.Amount <= 0.01f)
                 {
                     HealingShieldsToRemove.Add(target);
+                    continue;
                 }
+
+                EnsureHealingShieldVisual(target, state);
             }
 
             foreach (Character target in HealingShieldsToRemove)
@@ -25959,6 +26192,16 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
+        private static void EnsureHealingShieldVisual(Character target, HealingShieldState state)
+        {
+            if (target == null || state == null || state.Remaining <= 0f || state.Visual != null)
+            {
+                return;
+            }
+
+            state.Visual = NorseVisualEffectBridge.SpawnSeidrElementalShield(target.gameObject, Mathf.Max(0.2f, state.Remaining + 0.25f));
+        }
+
         private static void RefreshHealingShieldBuff(Player caster, Character target, HealingShieldState state)
         {
             if (target == null || state == null)
@@ -26002,11 +26245,86 @@ namespace Fran.EpicLootRaritySets
 
         private static void RemoveHealingShield(Character target)
         {
+            HealingShieldState state;
+            if (target != null && HealingShields.TryGetValue(target, out state) && state != null && state.Visual != null)
+            {
+                UnityEngine.Object.Destroy(state.Visual);
+                state.Visual = null;
+            }
+
             HealingShields.Remove(target);
             if (target != null && _healingShieldBuff != null)
             {
                 target.GetSEMan().RemoveStatusEffect(_healingShieldBuff.NameHash(), true);
             }
+        }
+
+        private static void TrySendHealingShieldRpc(Character target, float shieldAmount, float remaining)
+        {
+            Player targetPlayer = target as Player;
+            if (targetPlayer == null || targetPlayer == Player.m_localPlayer)
+            {
+                return;
+            }
+
+            RegisterRpcs();
+            if (!_rpcsRegistered || ZRoutedRpc.instance == null)
+            {
+                return;
+            }
+
+            ZDOID targetId;
+            long owner;
+            if (!TryGetCharacterNetworkIdentity(target, out targetId, out owner) || owner == 0L)
+            {
+                return;
+            }
+
+            try
+            {
+                ZRoutedRpc.instance.InvokeRoutedRPC(owner, ApplyHealingShieldRpc, targetId, shieldAmount, Mathf.Max(0.1f, remaining));
+            }
+            catch
+            {
+            }
+        }
+
+        private static Character FindCharacterByZdoId(ZDOID targetId)
+        {
+            foreach (Character character in Character.GetAllCharacters())
+            {
+                ZDOID characterId;
+                long owner;
+                if (character != null &&
+                    TryGetCharacterNetworkIdentity(character, out characterId, out owner) &&
+                    characterId.Equals(targetId))
+                {
+                    return character;
+                }
+            }
+
+            return null;
+        }
+
+        private static bool TryGetCharacterNetworkIdentity(Character target, out ZDOID id, out long owner)
+        {
+            id = default(ZDOID);
+            owner = 0L;
+            if (target == null)
+            {
+                return false;
+            }
+
+            ZNetView view = target.GetComponent<ZNetView>();
+            ZDO zdo = view != null ? view.GetZDO() : null;
+            if (zdo == null)
+            {
+                return false;
+            }
+
+            id = zdo.m_uid;
+            owner = zdo.GetOwner();
+            return true;
         }
 
         private static void RefreshHealingPowerBuff(Player player)
@@ -26018,20 +26336,22 @@ namespace Fran.EpicLootRaritySets
 
             StatusEffect buff = GetOrCreateHealingPowerBuff(AbilityPanelIconCatalog.GetIcon("Buffs", "helveig_sanguine_devotion.png") ?? FindHelveigIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
             buff.m_name = string.Format("{0} {1}/{2}", LocalizedText.AbilityName("Sanguine Devotion"), _healingPowerStacks, HealingPowerMaxStacks);
-            buff.m_ttl = 0f;
+            buff.m_ttl = Mathf.Max(0.1f, _healingPowerRemaining + 0.1f);
             buff.m_tooltip = LocalizedText.Select(
                 string.Format(
-                    "Devocion sanguinea de Helveig.\n\nCargas: {0}/{1}.\nDano de invocaciones: +{2:0.#}%.\nDano de Golpe sagrado: +{3:0.#}%.",
+                    "Devocion sanguinea de Helveig.\n\nCargas: {0}/{1}.\nDano de invocaciones: +{2:0.#}%.\nDano de Golpe sagrado: +{3:0.#}%.\nTiempo restante: {4:0.#}s.",
                     _healingPowerStacks,
                     HealingPowerMaxStacks,
                     (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
-                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f),
+                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f,
+                    Mathf.Max(0f, _healingPowerRemaining)),
                 string.Format(
-                    "Helveig Sanguine Devotion.\n\nStacks: {0}/{1}.\nSummon damage: +{2:0.#}%.\nHoly Strike damage: +{3:0.#}%.",
+                    "Helveig Sanguine Devotion.\n\nStacks: {0}/{1}.\nSummon damage: +{2:0.#}%.\nHoly Strike damage: +{3:0.#}%.\nTime remaining: {4:0.#}s.",
                     _healingPowerStacks,
                     HealingPowerMaxStacks,
                     (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
-                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f));
+                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f,
+                    Mathf.Max(0f, _healingPowerRemaining)));
 
             SEMan seMan = player.GetSEMan();
             seMan.RemoveStatusEffect(buff.NameHash(), true);
@@ -26046,7 +26366,7 @@ namespace Fran.EpicLootRaritySets
                 _healingPowerBuff.name = HealingPowerBuffName;
                 _healingPowerBuff.m_category = HealingPowerBuffCategory;
                 _healingPowerBuff.m_flashIcon = false;
-                _healingPowerBuff.m_cooldownIcon = false;
+                _healingPowerBuff.m_cooldownIcon = true;
                 _healingPowerBuff.m_hidden = false;
             }
 
@@ -26064,11 +26384,21 @@ namespace Fran.EpicLootRaritySets
 
         private static float GetHealingPowerSummonDamageMultiplier()
         {
+            if (_healingPowerRemaining <= 0f)
+            {
+                return 1f;
+            }
+
             return 1f + Mathf.Clamp(_healingPowerStacks, 0, HealingPowerMaxStacks) * HealingPowerSummonDamagePerStack;
         }
 
         private static float GetHealingPowerHolyStrikeDamageMultiplier()
         {
+            if (_healingPowerRemaining <= 0f)
+            {
+                return 1f;
+            }
+
             return 1f + Mathf.Clamp(_healingPowerStacks, 0, HealingPowerMaxStacks) * HealingPowerHolyStrikeDamagePerStack;
         }
 
@@ -30293,14 +30623,10 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            GameObject visual = NorseVisualEffectBridge.Spawn(
+            GameObject visual = NorseVisualEffectBridge.SpawnSeidrNanocube(
                 _nanoCenter,
-                Quaternion.identity,
-                Mathf.Max(0.2f, _nanoRemaining + 0.2f),
-                "FxNanoCube",
-                "NanoCube",
-                "Nanocube",
-                "Cube");
+                GetNanoLogicRadius(),
+                Mathf.Min(2.7f, Mathf.Max(0.2f, _nanoRemaining + 0.2f)));
             if (visual != null)
             {
                 NanoVisuals.Add(visual);
@@ -30378,16 +30704,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            _shieldVisual = NorseVisualEffectBridge.SpawnAttached(
-                player,
-                Vector3.up * 1.0f,
-                Quaternion.identity,
-                1.4f,
-                "FxLightningShield",
-                "FxArcaneShield",
-                "ElementalShield",
-                "Shield",
-                "FxLightning");
+            _shieldVisual = NorseVisualEffectBridge.SpawnSeidrElementalShield(player.gameObject, 1.4f);
         }
 
         private static void DestroyVisual(ref GameObject visual)

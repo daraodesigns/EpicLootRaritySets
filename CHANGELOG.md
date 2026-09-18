@@ -4,12 +4,18 @@
 
 ### General
 - Bumped `manifest.json` to `1.0.6`.
+- Restored Seidr Nanocube and Elemental Shield visuals by resolving NorseDemigods visual prefabs through both scene prefabs and Norse static resources, with a local fallback visual if neither path is available.
 
 ### Helveig
 - Added `Blood Aegis`: real healing applies a non-stacking shield to the healed target equal to `15%` of healing received for `6s`.
-- Added `Sanguine Devotion`: real healing stacks up to `3`; each stack grants `+5%` summon damage and `+10%` Holy Strike damage.
+- Blood Aegis now applies the Elemental Shield visual to the healed target and sends the buff/shield state to healed player clients.
+- Added `Sanguine Devotion`: real healing stacks up to `3` for `15s`; each stack grants `+5%` summon damage and `+10%` Holy Strike damage.
 - Reduced Summon Monster duration from `60s` to `20s`.
 - Added generated buff icons for `Blood Aegis` and `Sanguine Devotion`.
+
+### Nott
+- Moved `Knife Strike` to `Mouse4`.
+- Moved `Shadow Mark` to `Ctrl + Mouse4`, freeing the game's secondary attack again.
 
 ## [1.0.5] - 2026-09-18
 
