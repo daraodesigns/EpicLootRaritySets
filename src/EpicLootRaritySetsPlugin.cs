@@ -3923,7 +3923,9 @@ namespace Fran.EpicLootRaritySets
 
         private static readonly Dictionary<string, StatusEffect> BuffsByBaseSet = new Dictionary<string, StatusEffect>(StringComparer.OrdinalIgnoreCase);
         private static readonly HashSet<string> ActiveBaseSets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        private static readonly FieldInfo StatusEffectTimeField = AccessTools.Field(typeof(StatusEffect), "m_time");
         private static float _updateTimer;
+        private static string _activeSignature = string.Empty;
 
         internal static bool HasActiveSet(string baseSetName)
         {
@@ -3983,7 +3985,7 @@ namespace Fran.EpicLootRaritySets
                 return false;
             }
 
-            StatusEffect template = GetOrCreateBuff(baseSetName, null);
+            StatusEffect template = GetOrCreateBuff(baseSetName, null, false);
             return template != null && player.GetSEMan().HaveStatusEffect(template.NameHash());
         }
 
@@ -4011,6 +4013,17 @@ namespace Fran.EpicLootRaritySets
             HashSet<string> activeNow = GetActiveBaseSets(player);
             SEMan seMan = player.GetSEMan();
 
+            string activeSignature = BuildActiveSignature(activeNow);
+            if (string.Equals(_activeSignature, activeSignature, StringComparison.Ordinal))
+            {
+                foreach (string baseSetName in activeNow)
+                {
+                    RefreshActiveBuffLifetime(seMan, player, baseSetName);
+                }
+
+                return;
+            }
+
             foreach (string oldBaseSet in ActiveBaseSets.ToArray())
             {
                 if (activeNow.Contains(oldBaseSet))
@@ -4018,7 +4031,7 @@ namespace Fran.EpicLootRaritySets
                     continue;
                 }
 
-                StatusEffect oldBuff = GetOrCreateBuff(oldBaseSet, null);
+                StatusEffect oldBuff = GetOrCreateBuff(oldBaseSet, null, false);
                 if (oldBuff != null)
                 {
                     seMan.RemoveStatusEffect(oldBuff.NameHash(), true);
@@ -4029,12 +4042,14 @@ namespace Fran.EpicLootRaritySets
             foreach (string baseSetName in activeNow)
             {
                 ActiveBaseSets.Add(baseSetName);
-                StatusEffect buff = GetOrCreateBuff(baseSetName, FindActiveSetIcon(player, baseSetName));
+                StatusEffect buff = GetOrCreateBuff(baseSetName, FindActiveSetIcon(player, baseSetName), true);
                 if (buff != null)
                 {
                     seMan.AddStatusEffect(buff, true, 0, 0f, 0);
                 }
             }
+
+            _activeSignature = activeSignature;
         }
 
         internal static void Clear(Player player)
@@ -4044,7 +4059,7 @@ namespace Fran.EpicLootRaritySets
                 SEMan seMan = player.GetSEMan();
                 foreach (string baseSetName in ActiveBaseSets.ToArray())
                 {
-                    StatusEffect buff = GetOrCreateBuff(baseSetName, null);
+                    StatusEffect buff = GetOrCreateBuff(baseSetName, null, false);
                     if (buff != null)
                     {
                         seMan.RemoveStatusEffect(buff.NameHash(), true);
@@ -4053,6 +4068,7 @@ namespace Fran.EpicLootRaritySets
             }
 
             ActiveBaseSets.Clear();
+            _activeSignature = string.Empty;
             _updateTimer = 0f;
         }
 
@@ -4107,7 +4123,55 @@ namespace Fran.EpicLootRaritySets
             return activeBaseSets;
         }
 
-        private static StatusEffect GetOrCreateBuff(string baseSetName, Sprite icon)
+        private static string BuildActiveSignature(HashSet<string> activeBaseSets)
+        {
+            if (activeBaseSets == null || activeBaseSets.Count == 0)
+            {
+                return string.Empty;
+            }
+
+            return string.Join("|", activeBaseSets.OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToArray());
+        }
+
+        private static void RefreshActiveBuffLifetime(SEMan seMan, Player player, string baseSetName)
+        {
+            if (seMan == null || string.IsNullOrEmpty(baseSetName))
+            {
+                return;
+            }
+
+            StatusEffect template = GetOrCreateBuff(baseSetName, null, false);
+            if (template == null)
+            {
+                return;
+            }
+
+            StatusEffect active = seMan.GetStatusEffect(template.NameHash());
+            if (active == null)
+            {
+                StatusEffect buff = GetOrCreateBuff(baseSetName, FindActiveSetIcon(player, baseSetName), true);
+                if (buff != null)
+                {
+                    seMan.AddStatusEffect(buff, true, 0, 0f, 0);
+                }
+
+                return;
+            }
+
+            active.m_ttl = BuffTtl;
+            if (StatusEffectTimeField != null)
+            {
+                try
+                {
+                    StatusEffectTimeField.SetValue(active, 0f);
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private static StatusEffect GetOrCreateBuff(string baseSetName, Sprite icon, bool refreshTooltip = true)
         {
             if (string.IsNullOrEmpty(baseSetName))
             {
@@ -4121,11 +4185,16 @@ namespace Fran.EpicLootRaritySets
                 buff.name = BuffNamePrefix + baseSetName;
                 buff.m_name = GetDisplayName(baseSetName);
                 buff.m_category = BuffCategory;
-                buff.m_ttl = 0f;
                 buff.m_flashIcon = false;
                 buff.m_cooldownIcon = false;
                 buff.m_hidden = false;
                 BuffsByBaseSet[baseSetName] = buff;
+            }
+
+            buff.m_ttl = BuffTtl;
+            if (!refreshTooltip)
+            {
+                return buff;
             }
 
             buff.m_name = GetDisplayName(baseSetName);
@@ -4593,7 +4662,7 @@ namespace Fran.EpicLootRaritySets
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
                 return string.Format(
-                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida/dano con Helveig y reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion real aplica al objetivo un escudo no acumulable del 15% de la sanacion recibida durante 6s, con visual de escudo elemental.\nSanguine Devotion: cada curacion real otorga 1 carga durante 15s, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida/dano. Invocacion actual: {29}.",
+                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida/dano con Helveig y reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion aplica al objetivo un escudo no acumulable del 15% de la sanacion potencial de la habilidad durante 15s, incluso si el objetivo estaba a vida maxima, con visual de escudo elemental.\nSanguine Devotion: cada curacion otorga 1 carga durante 15s, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida/dano. Invocacion actual: {29}.",
                     FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey),
                     EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value,
                     EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value,
@@ -4743,7 +4812,7 @@ namespace Fran.EpicLootRaritySets
                 float bloodRite = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value, EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value, blood);
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
-                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health/damage scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: real healing grants the healed target a non-stacking shield equal to 15% of healing received for 6s, with the Elemental Shield visual.\nSanguine Devotion: each real heal grants 1 stack for 15s, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
+                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health/damage scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: each heal grants the healed target a non-stacking shield equal to 15% of the ability's potential healing for 15s, even if the target was already at full health, with the Elemental Shield visual.\nSanguine Devotion: each heal grants 1 stack for 15s, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey) + ": Holy Heal. Cost " + EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value.ToString("0") + "s. Heals the aimed ally within " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m, or yourself if no target exists. Scales with Helveig: " + EpicLootRaritySetsPlugin.HelveigHolyHealBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyHealHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyHeal.ToString("0.#") + " healing.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigBloodRiteHotkey) + ": Blood Rite. Cost " + EpicLootRaritySetsPlugin.HelveigBloodRiteEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigBloodRiteCooldown.Value.ToString("0") + "s. Channels " + EpicLootRaritySetsPlugin.HelveigBloodRiteDuration.Value.ToString("0.#") + "s without moving, radius " + EpicLootRaritySetsPlugin.HelveigBloodRiteRadius.Value.ToString("0.#") + "m, tick every " + EpicLootRaritySetsPlugin.HelveigBloodRiteTickInterval.Value.ToString("0.#") + "s. Heals allies, players, allied NPCs, pets and you: " + EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + bloodRite.ToString("0.#") + " per tick. CD starts when the channel finishes or breaks.\nSecondary attack: Holy Strike. Cost " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyStrikeCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m. Scales with Helveig: fire " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeFire.ToString("0.#") + "; spirit " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeSpirit.ToString("0.#") + ". Each impact restores " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrRefund.Value.ToString("0.#") + " eitr.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigSummonUndeadHotkey) + " + block: Summon Monster. Cost " + EpicLootRaritySetsPlugin.HelveigSummonUndeadEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigSummonUndeadCooldown.Value.ToString("0") + "s. Lasts " + EpicLootRaritySetsPlugin.HelveigSummonUndeadDuration.Value.ToString("0.#") + "s. Summons Ent/Abomination/ElakingMole/Fallen Valkyrie based on Helveig and scales health/damage. Current summon: " + GetHelveigUndeadNameForSkill(blood) + ".";
@@ -14397,6 +14466,7 @@ namespace Fran.EpicLootRaritySets
         private static bool _headshotArmed;
         private static bool _trapChargesInitialized;
         private static bool _sneakyActive;
+        private static bool _wasActive;
 
         internal static void Update(Player player, float dt)
         {
@@ -14413,37 +14483,14 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsHraesvelgrEnabledAndActive())
             {
-                RemoveStatusEffects(player);
-                if (_sneakyActive || SneakyVisualStates.Count > 0)
+                if (_wasActive || _sneakyActive || SneakyVisualStates.Count > 0 || SummonedBeasts.Count > 0)
                 {
-                    RestoreSneakyVisual();
+                    Clear(player);
                 }
-
-                DestroySummonedBeasts(false);
-                _volleyRemaining = 0f;
-                _volleyShotTimer = 0f;
-                _volleyShotsFired = 0;
-                _dashCooldown = 0f;
-                _summonDeathCooldown = 0f;
-                _summonGuardTimer = 0f;
-                _trapDamageRemaining = 0f;
-                _trapDamageArmed = false;
-                _trapChargesInitialized = false;
-                _trapCharges = 0;
-                _trapRechargeTimer = 0f;
-                _trapChargeRefreshTimer = 0f;
-                _headshotStacks = 0;
-                _headshotArmed = false;
-                _headshotProjectileDepth = 0;
-                _headshotProjectileOwner = null;
-                _headshotProjectileWeapon = null;
-                _headshotBuffRefreshTimer = 0f;
-                _sneakyRefreshTimer = 0f;
-                _aggroSuppressTimer = 0f;
-                _sneakyActive = false;
                 return;
             }
 
+            _wasActive = true;
             UpdateTrapCharges(player, dt);
             UpdateHeadshotBuff(player, dt);
             UpdatePassiveSneaky(player, dt);
@@ -14482,6 +14529,11 @@ namespace Fran.EpicLootRaritySets
         internal static void Clear(Player player)
         {
             RemoveStatusEffects(player);
+            if (_sneakyActive || SneakyVisualStates.Count > 0)
+            {
+                RestoreSneakyVisual();
+            }
+
             DestroySummonedBeasts(false);
             _sneakyRefreshTimer = 0f;
             _aggroSuppressTimer = 0f;
@@ -14505,6 +14557,7 @@ namespace Fran.EpicLootRaritySets
             _headshotProjectileWeapon = null;
             _headshotBuffRefreshTimer = 0f;
             _sneakyActive = false;
+            _wasActive = false;
         }
 
         internal static bool TryGetHeadshotStacks(out int stacks, out int maxStacks)
@@ -17508,6 +17561,7 @@ namespace Fran.EpicLootRaritySets
         private static bool _batHandItemsHidden;
         private static bool _loggedEpicLootFailure;
         private static bool _loggedBatVisualFailure;
+        private static bool _wasActive;
         private static int _projectileHitDepth;
         private static int _abilityDamageDepth;
         private static Player _projectileOwner;
@@ -17530,10 +17584,14 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _batFormActive || _infusedBoltArmed || _silverVerdictArmed || MarkedTargets.Count > 0)
+                {
+                    Clear(player);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateArmedInfusedBolt(player, dt);
             UpdateMarkedTargets(player, dt);
             UpdateBatForm(player, dt);
@@ -17603,6 +17661,7 @@ namespace Fran.EpicLootRaritySets
             _abilityDamageDepth = 0;
             _projectileOwner = null;
             _projectileWeapon = null;
+            _wasActive = false;
         }
 
         internal static void TryMarkProjectile(Projectile projectile, Player player, ItemDrop.ItemData weapon)
@@ -21830,6 +21889,7 @@ namespace Fran.EpicLootRaritySets
         private static int _rechargeChainDepth;
         private static bool _tornadoArmed;
         private static bool _loggedProjectileFailure;
+        private static bool _wasActive;
 
         private enum MoonveinSpell
         {
@@ -21853,11 +21913,15 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsMoonveinEnabledAndActive())
             {
-                Clear(player);
-                ClearTornadoes();
+                if (_wasActive || _spiritWolf != null || ArmedTornadoProjectiles.Count > 0 || ActiveTornadoes.Count > 0 || _stacks > 0 || _tornadoArmed || _rechargeStacks > 0)
+                {
+                    Clear(player);
+                    ClearTornadoes();
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateArcaneShotsBuff(player, dt);
             UpdateRechargeBuff(player, dt);
 
@@ -21911,6 +21975,7 @@ namespace Fran.EpicLootRaritySets
             _arcaneShotsRefreshTimer = 0f;
             _spiritWolfCombatRefreshTimer = 0f;
             ArmedTornadoProjectiles.Clear();
+            _wasActive = false;
         }
 
         internal static bool TryGetChargedShotStacks(out int stacks, out int maxStacks)
@@ -24162,7 +24227,7 @@ namespace Fran.EpicLootRaritySets
         private const string SummonFallenValkyrieKind = "FallenValkyrie";
         private const int HealingPowerMaxStacks = 3;
         private const float HealingShieldFraction = 0.15f;
-        private const float HealingShieldDuration = 6f;
+        private const float HealingShieldDuration = 15f;
         private const float HealingPowerDuration = 15f;
         private const float HealingPowerSummonDamagePerStack = 0.05f;
         private const float HealingPowerHolyStrikeDamagePerStack = 0.10f;
@@ -24209,6 +24274,7 @@ namespace Fran.EpicLootRaritySets
         private static bool _bloodRiteActive;
         private static bool _undeadSummonActive;
         private static bool _rpcsRegistered;
+        private static bool _wasActive;
         private static int _healingPowerStacks;
         private static string _undeadSummonKind = SummonEntKind;
         private static string _undeadSummonDisplayName = "Ent";
@@ -24236,10 +24302,14 @@ namespace Fran.EpicLootRaritySets
             if (!IsHelveigEnabledAndActive())
             {
                 UpdateHealingShields(dt);
-                Clear(player, false);
+                if (_wasActive || _bloodRiteActive || _undeadSummonActive || _undeadSummon != null || Bodyguards.Count > 0 || _healingPowerStacks > 0)
+                {
+                    Clear(player, false);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateBloodRite(player, dt);
             UpdateUndeadSummon(player, dt);
             UpdateBodyguards(player, dt);
@@ -24303,6 +24373,7 @@ namespace Fran.EpicLootRaritySets
             RemoveHealingPowerBuff(player);
             _bodyguardRespawnCooldown = 0f;
             _bodyguardCombatRefreshTimer = 0f;
+            _wasActive = false;
         }
 
         private static void TryHolyHeal(Player player)
@@ -25866,7 +25937,7 @@ namespace Fran.EpicLootRaritySets
                     continue;
                 }
 
-                if (HealAndApplyPassives(player, character, healing) > 0.01f)
+                if (HealAndApplyPassives(player, character, healing) > 0.01f || healing > 0.01f)
                 {
                     healedAny = true;
                 }
@@ -25885,15 +25956,11 @@ namespace Fran.EpicLootRaritySets
                 return 0f;
             }
 
+            float potentialHealing = Mathf.Max(0f, healing);
             float before = GetHealthSafe(target);
-            target.Heal(healing, true);
+            target.Heal(potentialHealing, true);
             float actualHealing = Mathf.Max(0f, GetHealthSafe(target) - before);
-            if (actualHealing <= 0.01f)
-            {
-                return 0f;
-            }
-
-            ApplyHealingShield(caster, target, actualHealing);
+            ApplyHealingShield(caster, target, potentialHealing);
             AddHealingPowerStack(caster);
             return actualHealing;
         }
@@ -26820,6 +26887,7 @@ namespace Fran.EpicLootRaritySets
         private static bool _crushArmed;
         private static bool _crushLeftGround;
         private static bool _crushForcesLoaded;
+        private static bool _wasActive;
         private static float _decayTickTimer;
         private static float _bloodFrenzyRemaining;
         private static float _bloodFrenzyCooldown;
@@ -26843,10 +26911,14 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _decayAuraActive || _bloodFrenzyRemaining > 0f || _furyStacks > 0 || _crushArmed || _crushTimer > 0f || _crushQueuedTimer > 0f)
+                {
+                    Clear(player);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateDecayAura(player, dt);
             UpdateFuryBuff(player, dt);
             UpdateBloodFrenzy(player, dt);
@@ -26903,6 +26975,7 @@ namespace Fran.EpicLootRaritySets
             RemoveBloodFrenzyBuff(player);
             DestroyVisual(ref _decayAuraVisual);
             DestroyVisual(ref _crushFlameVisual);
+            _wasActive = false;
         }
 
         internal static bool TryGetBloodSurgeStacks(out int stacks, out int maxStacks)
@@ -28073,6 +28146,7 @@ namespace Fran.EpicLootRaritySets
         private static float _recentBlockableDamageTimer;
         private static bool _loggedHarpoonProjectileFailure;
         private static bool _loggedHarpoonRopeFailure;
+        private static bool _wasActive;
 
         internal static void Update(Player player, float dt)
         {
@@ -28091,11 +28165,16 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _armorStacks > 0 || _lightningStormRemaining > 0f || _stoneShieldRemaining > 0f ||
+                    _lightningStormVisual != null || _stoneShieldVisual != null || _harpoonRopeVisual != null)
+                {
+                    Clear(player);
+                }
                 _lastObservedStamina = currentStamina;
                 return;
             }
 
+            _wasActive = true;
             UpdateLightningStorm(player, dt);
             UpdateStoneShield(player, dt);
 
@@ -28144,6 +28223,7 @@ namespace Fran.EpicLootRaritySets
             DestroyVisual(ref _lightningStormVisual);
             DestroyVisual(ref _stoneShieldVisual);
             DestroyVisual(ref _harpoonRopeVisual);
+            _wasActive = false;
         }
 
         internal static void ModifyIncomingDamage(Player player, HitData hit)
@@ -29866,6 +29946,7 @@ namespace Fran.EpicLootRaritySets
         private static float _nanoVisualRefreshTimer;
         private static bool _nanoAreaActive;
         private static bool _nanoPlayerInside;
+        private static bool _wasActive;
         private static float _nanoCooldown;
         private static float _shieldCooldown;
         private static bool _shieldActive;
@@ -29887,10 +29968,14 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _nanoRemaining > 0f || _shieldActive || _stoneGolem != null)
+                {
+                    Clear(player);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateNanoCube(player, dt);
             UpdateElementalShield(player, dt);
             UpdateStoneGolem(player, dt);
@@ -29943,6 +30028,7 @@ namespace Fran.EpicLootRaritySets
             DestroyNanoVisuals();
             DestroyVisual(ref _shieldVisual);
             DestroyStoneGolem();
+            _wasActive = false;
         }
 
         internal static void ModifyIncomingDamage(Player player, HitData hit)

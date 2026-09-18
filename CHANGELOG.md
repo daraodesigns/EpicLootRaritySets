@@ -5,11 +5,12 @@
 ### General
 - Bumped `manifest.json` to `1.0.6`.
 - Restored Seidr Nanocube, Elemental Shield and Frost Nova visuals to the stable `0.1.26` NorseDemigods lookup flow, then kept the current 1.0.6 costs and scaling.
+- Reduced lag when swapping sets by avoiding repeated class-buff rebuilds and repeated inactive-controller cleanup every frame.
 
 ### Helveig
-- Added `Blood Aegis`: real healing applies a non-stacking shield to the healed target equal to `15%` of healing received for `6s`.
+- Added `Blood Aegis`: healing applies a non-stacking shield to the healed target equal to `15%` of the ability's potential healing for `15s`, even at full health.
 - Blood Aegis now applies the Elemental Shield visual to the healed target and sends the buff/shield state to healed player clients.
-- Added `Sanguine Devotion`: real healing stacks up to `3` for `15s`; each stack grants `+5%` summon damage and `+10%` Holy Strike damage.
+- Added `Sanguine Devotion`: healing stacks up to `3` for `15s`; each stack grants `+5%` summon damage and `+10%` Holy Strike damage.
 - Reduced Summon Monster duration from `60s` to `20s`.
 - Added generated buff icons for `Blood Aegis` and `Sanguine Devotion`.
 
