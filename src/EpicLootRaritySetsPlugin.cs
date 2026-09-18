@@ -293,6 +293,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> MoonveinTornadoSlow;
         internal static ConfigEntry<float> MoonveinTornadoSlowDuration;
         internal static ConfigEntry<float> MoonveinSpiritWolfCooldown;
+        internal static ConfigEntry<float> MoonveinSpiritWolfDuration;
         internal static ConfigEntry<float> MoonveinSpiritWolfEitrUse;
         internal static ConfigEntry<float> MoonveinSpiritWolfGuardRadius;
         internal static ConfigEntry<float> MoonveinSpiritWolfBaseHealth;
@@ -529,7 +530,7 @@ namespace Fran.EpicLootRaritySets
             HraesvelgrVolleyProjectileVelocity = Config.Bind("Hraesvelgr Abilities", "Rapid Volley Projectile Velocity", 90f, new ConfigDescription("Projectile velocity for automatic Rapid Volley arrows.", new AcceptableValueRange<float>(5f, 250f)));
             HraesvelgrDashCooldown = Config.Bind("Hraesvelgr Abilities", "Dash Cooldown", 10f, new ConfigDescription("Cooldown in seconds for Hraesvelgr Freyja dash on secondary attack.", new AcceptableValueRange<float>(0f, 120f)));
             HraesvelgrDashEitrUse = Config.Bind("Hraesvelgr Abilities", "Dash Stamina Use", 20f, new ConfigDescription("Stamina/vigor consumed by Hraesvelgr Freyja dash.", new AcceptableValueRange<float>(0f, 250f)));
-            HraesvelgrSummonCooldown = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Cooldown", 0f, new ConfigDescription("Legacy cooldown for Hraesvelgr summon beasts. The current ability is a no-cooldown toggle.", new AcceptableValueRange<float>(0f, 600f)));
+            HraesvelgrSummonCooldown = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Cooldown", 30f, new ConfigDescription("Cooldown in seconds for Hraesvelgr summon beasts after summoning or storing the current beast.", new AcceptableValueRange<float>(0f, 600f)));
             HraesvelgrSummonDuration = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Duration", 0f, new ConfigDescription("Legacy lifetime for summoned beasts. The current summons stay until killed, set loss, logout cleanup, or manual store.", new AcceptableValueRange<float>(0f, 600f)));
             HraesvelgrSummonStaminaUse = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Stamina Use", 35f, new ConfigDescription("Stamina consumed by Hraesvelgr summon beasts.", new AcceptableValueRange<float>(0f, 250f)));
             HraesvelgrSummonGuardRadius = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Guard Radius", 30f, new ConfigDescription("Radius in meters around the owner where summoned beasts search hostile targets to defend the owner.", new AcceptableValueRange<float>(5f, 100f)));
@@ -555,7 +556,7 @@ namespace Fran.EpicLootRaritySets
             UpgradeFloatConfig(HraesvelgrVolleyProjectileSpeedMultiplier, 4f, 6f);
             UpgradeFloatConfig(HraesvelgrVolleyStaminaUseMultiplier, 0.25f, 0.05f);
             UpgradeFloatConfig(HraesvelgrVolleyDamageMultiplier, 0.65f, 0.5f);
-            UpgradeFloatConfig(HraesvelgrSummonCooldown, 60f, 0f);
+            UpgradeFloatConfig(HraesvelgrSummonCooldown, 0f, 30f);
             UpgradeFloatConfig(HraesvelgrSummonDuration, 60f, 0f);
             UpgradeShortcutConfig(HraesvelgrTrapHotkey, KeyCode.Mouse3, KeyCode.LeftControl, KeyCode.Mouse3);
             UpgradeShortcutConfig(HraesvelgrTrapHotkey, KeyCode.Mouse3, KeyCode.RightControl, KeyCode.Mouse3);
@@ -707,7 +708,8 @@ namespace Fran.EpicLootRaritySets
             MoonveinTornadoImpactForce = Config.Bind("Moonvein Abilities", "Tornado Impact Force", 30f, new ConfigDescription("Impact force used by Moonvein fallback tornado damage ticks.", new AcceptableValueRange<float>(0f, 500f)));
             MoonveinTornadoSlow = Config.Bind("Moonvein Abilities", "Tornado Slow", 0.40f, new ConfigDescription("Movement slow applied by Moonvein tornado hits. 0.40 means 40% slow.", new AcceptableValueRange<float>(0f, 0.95f)));
             MoonveinTornadoSlowDuration = Config.Bind("Moonvein Abilities", "Tornado Slow Duration", 6f, new ConfigDescription("Duration in seconds for Moonvein tornado slow.", new AcceptableValueRange<float>(0.1f, 30f)));
-            MoonveinSpiritWolfCooldown = Config.Bind("Moonvein Abilities", "Spirit Wolf Cooldown", 0f, new ConfigDescription("Legacy cooldown for Moonvein Spirit Wolf. The current ability is a no-cooldown toggle unless the wolf dies.", new AcceptableValueRange<float>(0f, 600f)));
+            MoonveinSpiritWolfCooldown = Config.Bind("Moonvein Abilities", "Spirit Wolf Cooldown", 60f, new ConfigDescription("Cooldown in seconds after Spirit Wolf ends or both wolves die.", new AcceptableValueRange<float>(0f, 600f)));
+            MoonveinSpiritWolfDuration = Config.Bind("Moonvein Abilities", "Spirit Wolf Duration", 30f, new ConfigDescription("Duration in seconds for Moonvein Spirit Wolves.", new AcceptableValueRange<float>(1f, 600f)));
             MoonveinSpiritWolfEitrUse = Config.Bind("Moonvein Abilities", "Spirit Wolf Eitr Use", 20f, new ConfigDescription("Eitr consumed by Moonvein Spirit Wolf.", new AcceptableValueRange<float>(0f, 250f)));
             MoonveinSpiritWolfGuardRadius = Config.Bind("Moonvein Abilities", "Spirit Wolf Guard Radius", 30f, new ConfigDescription("Radius in meters around the owner where the spirit wolf searches hostile targets.", new AcceptableValueRange<float>(5f, 100f)));
             MoonveinSpiritWolfBaseHealth = Config.Bind("Moonvein Abilities", "Spirit Wolf Base Health", 90f, new ConfigDescription("Base max health assigned to the Moonvein spirit wolf, independent from the source prefab.", new AcceptableValueRange<float>(1f, 2000f)));
@@ -4455,7 +4457,7 @@ namespace Fran.EpicLootRaritySets
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
                 return string.Format(
-                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador sin CD. Coste al invocar: {4:0} vigor. Invoca tu bestia actual con vida, dano y reduccion recibida escalados por Hraesvelgr. Por defecto es un oso.\nTame Beast: tecla {24}. Doma una bestia valida a 10m, reemplaza la mascota actual y hace que Invocar bestias use esa criatura.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. No anade dano propio. Al terminar recuperas todo el vigor.",
+                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador con CD {25:0}s al invocar o guardar. Coste al invocar: {4:0} vigor. Invoca tu bestia actual con vida, dano y reduccion recibida escalados por Hraesvelgr. Por defecto es un oso.\nTame Beast: tecla {24}. Doma una bestia valida a 10m, reemplaza la mascota actual y hace que Invocar bestias use esa criatura.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. No anade dano propio. Al terminar recuperas todo el vigor.",
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f,
@@ -4480,7 +4482,8 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.HraesvelgrTrapNextAttackDamageBonus.Value * 100f,
                     hraesvelgr,
                     trapDamage,
-                    FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey));
+                    FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey),
+                    EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value);
             }
 
             if (string.Equals(baseSetName, "Hellsyng", StringComparison.OrdinalIgnoreCase))
@@ -4762,7 +4765,7 @@ namespace Fran.EpicLootRaritySets
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
                 return "Hraesvelgr full set active.\n\nCurrent class skill: Hraesvelgr " + hraesvelgr.ToString("0.#") + ". These abilities use bow/arrow damage and set multipliers unless a level formula is stated.\n\nPassives:\nSneaky activates while crouching/stealthed. Invisible to monsters, Sneaky visual, noise x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value.ToString("0.##") + ", detection x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nEvery " + EpicLootRaritySetsPlugin.HraesvelgrHeadshotAttackCount.Value + " Hraesvelgr bow shots, that shot counts as a headshot/weak-point hit and deals at least x" + EpicLootRaritySetsPlugin.HraesvelgrHeadshotDamageMultiplier.Value.ToString("0.##") + " shot damage.\n\nAbilities:\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey) + ": Summon Beasts. Toggle with no CD. Summon cost: " + EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value.ToString("0") + " stamina. Summons your current beast with health, damage and damage taken reduction scaled from Hraesvelgr. Defaults to a bear.\n"
+                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey) + ": Summon Beasts. Toggle CD " + EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value.ToString("0") + "s after summoning or storing. Summon cost: " + EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value.ToString("0") + " stamina. Summons your current beast with health, damage and damage taken reduction scaled from Hraesvelgr. Defaults to a bear.\n"
                     + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey) + ": Tame Beast. Tames a valid beast within 10m, replaces the current pet and makes Summon Beasts use that creature.\n"
                     + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTrapHotkey) + ": Armed trap. Cost " + EpicLootRaritySetsPlugin.HraesvelgrTrapStaminaUse.Value.ToString("0") + " stamina. If it catches an enemy, deals " + trapDamage.ToString("0.#") + " pierce damage, roots it and grants " + EpicLootRaritySetsPlugin.HraesvelgrTrapBuffDuration.Value.ToString("0.#") + "s for your next arrow to deal +" + (EpicLootRaritySetsPlugin.HraesvelgrTrapNextAttackDamageBonus.Value * 100f).ToString("0.#") + "% shot damage.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrVolleyHotkey) + ": Channeled Rapid Volley up to " + EpicLootRaritySetsPlugin.HraesvelgrVolleyDuration.Value.ToString("0.#") + "s. CD " + EpicLootRaritySetsPlugin.HraesvelgrVolleyCooldown.Value.ToString("0") + "s. While holding attack and standing still, fires exactly up to 8 arrows at " + EpicLootRaritySetsPlugin.HraesvelgrVolleyShotsPerSecond.Value.ToString("0.#") + " arrows/s. Arrow damage: x" + EpicLootRaritySetsPlugin.HraesvelgrVolleyDamageMultiplier.Value.ToString("0.##") + " normal shot damage, velocity " + EpicLootRaritySetsPlugin.HraesvelgrVolleyProjectileVelocity.Value.ToString("0.#") + ". If weapon/arrow provide no damage, piercing fallback scales with Hraesvelgr: 12+0.25/level. Automatically cancels after 8 arrows.\nSecondary attack: Freyja Dash. Cost " + EpicLootRaritySetsPlugin.HraesvelgrDashEitrUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.HraesvelgrDashCooldown.Value.ToString("0") + "s. Adds no direct damage.\nRestores all stamina when it ends.";
@@ -14765,6 +14768,7 @@ namespace Fran.EpicLootRaritySets
         private static float _volleyShotTimer;
         private static float _dashCooldown;
         private static float _summonDeathCooldown;
+        private static float _summonToggleCooldown;
         private static float _summonGuardTimer;
         private static float _trapDamageRemaining;
         private static float _trapRechargeTimer;
@@ -14794,6 +14798,7 @@ namespace Fran.EpicLootRaritySets
             _volleyCooldown = Mathf.Max(0f, _volleyCooldown - dt);
             _dashCooldown = Mathf.Max(0f, _dashCooldown - dt);
             _summonDeathCooldown = Mathf.Max(0f, _summonDeathCooldown - dt);
+            _summonToggleCooldown = Mathf.Max(0f, _summonToggleCooldown - dt);
             UpdateSummonedBeasts(dt);
             UpdateTrapDamageBuff(player, dt);
 
@@ -14866,6 +14871,7 @@ namespace Fran.EpicLootRaritySets
             _volleyShotsFired = 0;
             _dashCooldown = 0f;
             _summonDeathCooldown = 0f;
+            _summonToggleCooldown = 0f;
             _summonGuardTimer = 0f;
             _trapDamageRemaining = 0f;
             _trapDamageArmed = false;
@@ -15556,10 +15562,17 @@ namespace Fran.EpicLootRaritySets
 
         private static void TrySummonBeasts(Player player)
         {
+            if (_summonToggleCooldown > 0f)
+            {
+                ShowMessage(player, string.Format("Summon Beasts: {0:0}s cooldown.", _summonToggleCooldown));
+                return;
+            }
+
             if (HasActiveSummons())
             {
                 DestroySummonedBeasts(true);
                 RemoveSummonBuff(player);
+                StartSummonToggleCooldown(player);
                 ShowMessage(player, "Summon Beasts: mascotas guardadas.");
                 return;
             }
@@ -15606,7 +15619,17 @@ namespace Fran.EpicLootRaritySets
 
             AddSummonBuff(player, GetWeaponIcon(weapon) ?? FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
+            StartSummonToggleCooldown(player);
             ShowMessage(player, string.Format("Summon Beasts: {0} invocada.", GetCurrentSummonedBeastDefinition().DisplayName));
+        }
+
+        private static void StartSummonToggleCooldown(Player player)
+        {
+            _summonToggleCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value);
+            if (player != null && _summonToggleCooldown > 0f)
+            {
+                AbilityCooldownBuffController.Start(player, "HraesvelgrSummonBeastsToggle", "Summon Beasts", _summonToggleCooldown, FindHraesvelgrIcon(player));
+            }
         }
 
         private static void TryTameBeast(Player player)
@@ -22667,6 +22690,9 @@ namespace Fran.EpicLootRaritySets
         private static StatusEffect _tornadoArmedBuff;
         private static StatusEffect _tornadoSlowBuff;
         private static GameObject _spiritWolf;
+        private static GameObject _spiritWolfSecondary;
+        private static float _spiritWolfRemaining;
+        private static bool _spiritWolvesActive;
         private static int _stacks;
         private static float _meteorCooldown;
         private static float _tornadoCooldown;
@@ -22760,6 +22786,10 @@ namespace Fran.EpicLootRaritySets
             DestroySpiritWolf(false);
             _stacks = 0;
             _tornadoArmed = false;
+            _spiritWolf = null;
+            _spiritWolfSecondary = null;
+            _spiritWolfRemaining = 0f;
+            _spiritWolvesActive = false;
             _spiritWolfCooldown = 0f;
             _rechargeChainDepth = 0;
             _arcaneShotsRefreshTimer = 0f;
@@ -22866,7 +22896,10 @@ namespace Fran.EpicLootRaritySets
 
         internal static int GetActivePetCount()
         {
-            return HasActiveSpiritWolf() ? 1 : 0;
+            int count = 0;
+            if (IsAliveWolf(_spiritWolf)) count++;
+            if (IsAliveWolf(_spiritWolfSecondary)) count++;
+            return count;
         }
 
         internal static void ReleasePetFollow(Player owner)
@@ -24204,11 +24237,11 @@ namespace Fran.EpicLootRaritySets
 
         private static void TrySpiritWolf(Player player)
         {
-            if (HasActiveSpiritWolf())
+            if (_spiritWolvesActive || HasActiveSpiritWolf())
             {
-                DestroySpiritWolf(true);
-                RemoveSpiritWolfBuff(player);
-                ShowMessage(player, "Lobo espiritual: mascota guardada.");
+                ShowMessage(player, string.Format(
+                    "Lobos espirituales activos ({0:0}s).",
+                    Mathf.Max(0f, _spiritWolfRemaining)));
                 return;
             }
 
@@ -24217,62 +24250,120 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            GameObject prefab = GetSpiritWolfPrefab();
-            if (prefab == null)
+            GameObject secondaryPrefab = GetFriendlyWolfPrefab();
+            GameObject primaryPrefab = GetSpiritWolfPrefab();
+
+            ShowMessage(player, string.Format(
+                "Prefabs: primary={0} secondary={1}",
+                primaryPrefab != null ? primaryPrefab.name : "NULL",
+                secondaryPrefab != null ? secondaryPrefab.name : "NULL"));
+
+            if (primaryPrefab == null && secondaryPrefab == null)
             {
                 ShowMessage(player, "Spirit Wolf: prefab no disponible.");
-                LogProjectileFailureOnce("Moonvein spirit wolf prefab could not be resolved: wolf_spiritcaller.");
+                LogProjectileFailureOnce("Moonvein spirit wolf prefab could not be resolved: wolf_spiritcaller / wolf_friendly.");
                 return;
             }
 
-            Vector3 spawn = player.transform.position + player.transform.forward * 2f + player.transform.right * 1.1f;
-            TryProjectGround(spawn, out spawn);
-            GameObject wolf = UnityEngine.Object.Instantiate(prefab, spawn, Quaternion.LookRotation(player.transform.forward));
-            if (wolf == null)
+            DestroySpiritWolf(false);
+
+            int spawned = 0;
+
+            if (primaryPrefab != null)
             {
+                Vector3 spawn = player.transform.position + player.transform.forward * 2f + player.transform.right * 1.1f;
+                TryProjectGround(spawn, out spawn);
+                GameObject wolf = UnityEngine.Object.Instantiate(primaryPrefab, spawn, Quaternion.LookRotation(player.transform.forward));
+                if (wolf != null)
+                {
+                    _spiritWolf = wolf;
+                    SetupSpiritWolf(player, wolf);
+                    ApplySpiritWolfScaling(player, wolf);
+                    spawned++;
+                }
+            }
+
+            if (secondaryPrefab != null)
+            {
+                Vector3 spawn = player.transform.position + player.transform.forward * 2f + player.transform.right * -1.1f;
+                TryProjectGround(spawn, out spawn);
+                GameObject wolf = UnityEngine.Object.Instantiate(secondaryPrefab, spawn, Quaternion.LookRotation(player.transform.forward));
+                if (wolf != null)
+                {
+                    _spiritWolfSecondary = wolf;
+                    SetupSpiritWolf(player, wolf);
+                    ApplySpiritWolfScaling(player, wolf);
+                    spawned++;
+                }
+            }
+
+            if (spawned <= 0)
+            {
+                ShowMessage(player, "Spirit Wolf: no se pudo invocar.");
                 return;
             }
 
-            _spiritWolf = wolf;
-            SetupSpiritWolf(player, wolf);
-            ApplySpiritWolfScaling(player, wolf);
             player.UseEitr(EpicLootRaritySetsPlugin.MoonveinSpiritWolfEitrUse.Value);
-            _spiritWolfCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfCooldown.Value);
-            if (_spiritWolfCooldown > 0f)
-            {
-                AbilityCooldownBuffController.Start(player, "MoonveinSpiritWolfToggle", "Spirit Wolf", _spiritWolfCooldown, GetSpiritWolfIcon(player));
-            }
+            _spiritWolvesActive = true;
+            _spiritWolfRemaining = Mathf.Max(1f,
+                EpicLootRaritySetsPlugin.MoonveinSpiritWolfDuration != null
+                    ? EpicLootRaritySetsPlugin.MoonveinSpiritWolfDuration.Value
+                    : 30f);
 
             RefreshSpiritWolfBuff(player);
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
-            ShowMessage(player, "Lobo espiritual invocado.");
+            ShowMessage(player, string.Format("Lobos espirituales invocados ({0:0}s).", _spiritWolfRemaining));
+
+            EpicLootRaritySetsPlugin.Log.LogInfo(string.Format(
+            "[SpiritWolf] Spawned primary={0} secondary={1}",
+            _spiritWolf != null ? _spiritWolf.name : "NULL",
+            _spiritWolfSecondary != null ? _spiritWolfSecondary.name : "NULL"));
         }
 
         private static void UpdateSpiritWolf(Player player, float dt)
         {
-            if (_spiritWolf == null)
+            _spiritWolfCooldown = Mathf.Max(0f, _spiritWolfCooldown - dt);
+
+            bool anyAlive = HasActiveSpiritWolf();
+
+            if (_spiritWolvesActive && !anyAlive)
+            {
+                RemoveSpiritWolfBuff(player);
+                StartSpiritWolfEndCooldown(player);
+                return;
+            }
+
+            if (!_spiritWolvesActive)
             {
                 RemoveSpiritWolfBuff(player);
                 return;
             }
 
-            Character character = _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>();
-            if (character == null || character.IsDead())
+            _spiritWolfRemaining -= dt;
+            if (_spiritWolfRemaining <= 0f)
             {
-                _spiritWolf = null;
+                DestroySpiritWolf(false);
                 RemoveSpiritWolfBuff(player);
-                StartSpiritWolfDeathCooldown(player);
+                StartSpiritWolfEndCooldown(player);
+                ShowMessage(player, "Lobos espirituales: tiempo agotado.");
                 return;
             }
+
+            RefreshSpiritWolfBuff(player);
 
             if (player == null || !IsMoonveinEnabledAndActive())
             {
                 return;
             }
 
-            if (PetCommandController.ApplyToPet(player, _spiritWolf, target => IsEnemyTarget(player, target)))
+            if (_spiritWolf != null)
             {
-                return;
+                PetCommandController.ApplyToPet(player, _spiritWolf, target => IsEnemyTarget(player, target));
+            }
+
+            if (_spiritWolfSecondary != null)
+            {
+                PetCommandController.ApplyToPet(player, _spiritWolfSecondary, target => IsEnemyTarget(player, target));
             }
 
             _spiritWolfCombatRefreshTimer -= dt;
@@ -24280,6 +24371,19 @@ namespace Fran.EpicLootRaritySets
             {
                 _spiritWolfCombatRefreshTimer = SpiritWolfCombatRefreshSeconds;
                 RefreshSpiritWolfCombat(player);
+
+                if (_spiritWolfSecondary != null)
+                {
+                    Character target = FindSpiritWolfDefenseTarget(player);
+                    if (target != null)
+                    {
+                        BaseAI baseAI = _spiritWolfSecondary.GetComponent<BaseAI>() ?? _spiritWolfSecondary.GetComponentInChildren<BaseAI>();
+                        if (baseAI != null)
+                        {
+                            AssignAITarget(baseAI, target);
+                        }
+                    }
+                }
             }
         }
 
@@ -24411,26 +24515,46 @@ namespace Fran.EpicLootRaritySets
 
         private static bool HasActiveSpiritWolf()
         {
-            Character character = _spiritWolf != null ? _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>() : null;
-            if (character != null && !character.IsDead())
-            {
-                return true;
-            }
+            bool primaryAlive = IsAliveWolf(_spiritWolf);
+            bool secondaryAlive = IsAliveWolf(_spiritWolfSecondary);
 
-            if (_spiritWolf != null)
+            if (!primaryAlive && _spiritWolf != null)
             {
                 ClassPetScalingController.Unregister(_spiritWolf);
                 _spiritWolf = null;
-                StartSpiritWolfDeathCooldown(Player.m_localPlayer);
             }
 
-            return false;
+            if (!secondaryAlive && _spiritWolfSecondary != null)
+            {
+                ClassPetScalingController.Unregister(_spiritWolfSecondary);
+                _spiritWolfSecondary = null;
+            }
+
+            return primaryAlive || secondaryAlive;
         }
 
-        private static void StartSpiritWolfDeathCooldown(Player player)
+        private static bool IsAliveWolf(GameObject wolf)
         {
-            _spiritWolfCooldown = Mathf.Max(_spiritWolfCooldown, SpiritWolfDeathCooldownSeconds);
-            if (player != null)
+            if (wolf == null)
+            {
+                return false;
+            }
+
+            Character character = wolf.GetComponent<Character>() ?? wolf.GetComponentInChildren<Character>();
+            return character != null && !character.IsDead();
+        }
+
+        private static void StartSpiritWolfEndCooldown(Player player)
+        {
+            if (!_spiritWolvesActive)
+            {
+                return;
+            }
+
+            _spiritWolvesActive = false;
+            _spiritWolfRemaining = 0f;
+            _spiritWolfCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfCooldown.Value);
+            if (player != null && _spiritWolfCooldown > 0f)
             {
                 AbilityCooldownBuffController.Start(player, "MoonveinSpiritWolfDeath", "Spirit Wolf", _spiritWolfCooldown, GetSpiritWolfIcon(player));
             }
@@ -24438,21 +24562,30 @@ namespace Fran.EpicLootRaritySets
 
         private static void DestroySpiritWolf(bool storeName)
         {
-            if (_spiritWolf != null)
+            DestroyOneWolf(ref _spiritWolf);
+            DestroyOneWolf(ref _spiritWolfSecondary);
+            _spiritWolfRemaining = 0f;
+            RemoveSpiritWolfBuff(Player.m_localPlayer);
+        }
+
+        private static void DestroyOneWolf(ref GameObject wolf)
+        {
+            if (wolf == null)
             {
-                ClassPetScalingController.Unregister(_spiritWolf);
-                if (ZNetScene.instance != null)
-                {
-                    ZNetScene.instance.Destroy(_spiritWolf);
-                }
-                else
-                {
-                    UnityEngine.Object.Destroy(_spiritWolf);
-                }
+                return;
             }
 
-            _spiritWolf = null;
-            RemoveSpiritWolfBuff(Player.m_localPlayer);
+            ClassPetScalingController.Unregister(wolf);
+            if (ZNetScene.instance != null)
+            {
+                ZNetScene.instance.Destroy(wolf);
+            }
+            else
+            {
+                UnityEngine.Object.Destroy(wolf);
+            }
+
+            wolf = null;
         }
 
         private static void RefreshSpiritWolfBuff(Player player)
@@ -24519,24 +24652,41 @@ namespace Fran.EpicLootRaritySets
         private static GameObject GetSpiritWolfPrefab()
         {
             GameObject prefab = GetPrefab(
-                "wolf_spiritcaller",
-                "wolf_spirit_caller",
-                "Wolf_SpiritCaller",
-                "wol_spirit_caller",
-                "Wolf_Spirit_Caller",
+                "Wolf_spiritcaller",
                 "WolfSpirit_Caller",
                 "WolfSpiritCaller",
-                "wolfspiritcaller",
-                "SpiritWolf",
-                "Wolf_Spirit");
+                "wolfspiritcaller");
+            EpicLootRaritySetsPlugin.Log.LogInfo("[SpiritWolf] prueba 1 prefab antes validacion=" + prefab);
+            return prefab;
+        }
+
+        private static GameObject GetFriendlyWolfPrefab()
+        {
+            GameObject prefab = GetPrefab(
+                "wolf_friendly",
+                "Wolf_friendly",
+                "Wolf_Friendly",
+                "WolfFriendly");
+
             Character character = prefab != null ? prefab.GetComponent<Character>() ?? prefab.GetComponentInChildren<Character>() : null;
             return character != null ? prefab : null;
         }
 
         private static bool IsSpiritWolf(Character character)
         {
-            Character spiritWolfCharacter = _spiritWolf != null ? _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>() : null;
-            return character != null && spiritWolfCharacter != null && character == spiritWolfCharacter;
+            if (character == null)
+            {
+                return false;
+            }
+
+            Character primary = _spiritWolf != null
+                ? _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>()
+                : null;
+            Character secondary = _spiritWolfSecondary != null
+                ? _spiritWolfSecondary.GetComponent<Character>() ?? _spiritWolfSecondary.GetComponentInChildren<Character>()
+                : null;
+
+            return character == primary || character == secondary;
         }
 
         private static bool IsValidSpiritWolfEnemy(Character target)
