@@ -21,6 +21,16 @@
 - Moved `Knife Strike` to `Mouse4`.
 - Moved `Shadow Mark` to `Block + Mouse4`, leaving plain `Mouse4` for `Knife Strike`.
 
+### Seidr
+- Fixed visual bugs.
+
+### Moonvein
+- New ability
+- Rework damage
+
+### Hraesvelgr
+- New ability tame pets
+
 ## [1.0.5] - 2026-09-18
 
 ### General
