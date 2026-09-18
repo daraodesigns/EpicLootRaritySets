@@ -384,6 +384,14 @@
     "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_warp_strike.png"
   },
   {
+    "category": "Buffs",
+    "id": "nott_warp_guard",
+    "label": "Warp Guard",
+    "class": "nott",
+    "kind": "warp_guard",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_warp_guard.png"
+  },
+  {
     "category": "Abilities",
     "id": "seidr_nanocube",
     "label": "Nanocube",

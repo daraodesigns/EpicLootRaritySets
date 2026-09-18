@@ -1,6 +1,6 @@
 {
   "name": "EpicLootRaritySets",
-  "version_number": "1.0.4",
+  "version_number": "1.0.5",
   "website_url": "",
   "description": "Stable EpicLoot class-set progression with rarity tiers, boss drops, movable ability/passive panels and localized compendium.",
   "dependencies": [

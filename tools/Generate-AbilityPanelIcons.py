@@ -127,10 +127,13 @@ ICONS = [
     # Nott
     ("Abilities", "nott_warp", "Warp", "nott", "warp"),
     ("Abilities", "nott_shadow_mark", "Shadow Mark", "nott", "shadow_mark"),
+    ("Abilities", "nott_knife_strike", "Knife Strike", "nott", "knife_strike"),
     ("Buffs", "nott_sneaky", "Sneaky", "nott", "sneaky"),
     ("Buffs", "nott_poison_edge", "Poison Edge", "nott", "poison_edge"),
+    ("Buffs", "nott_executor", "Executor", "nott", "executor"),
     ("Buffs", "nott_shadow_momentum", "Shadow Momentum", "nott", "shadow_momentum"),
     ("Buffs", "nott_warp_strike", "Warp Strike", "nott", "warp_strike"),
+    ("Buffs", "nott_warp_guard", "Warp Guard", "nott", "warp_guard"),
 
     # Seidr
     ("Abilities", "seidr_nanocube", "Nanocube", "seidr", "nanocube"),
@@ -146,6 +149,8 @@ ICONS = [
     ("Abilities", "helveig_holy_strike", "Holy Strike", "helveig", "holy_strike"),
     ("Abilities", "helveig_summon_monster", "Summon Monster", "helveig", "summon_monster"),
     ("Buffs", "helveig_undead_bodyguard", "Undead Bodyguard", "helveig", "undead_bodyguard"),
+    ("Buffs", "helveig_blood_aegis", "Blood Aegis", "helveig", "blood_aegis"),
+    ("Buffs", "helveig_sanguine_devotion", "Sanguine Devotion", "helveig", "sanguine_devotion"),
     ("Buffs", "helveig_bodyguard_respawn", "Bodyguard Respawn", "helveig", "bodyguard_respawn"),
 
     # Moonvein
@@ -557,6 +562,18 @@ def draw_symbol(img, kind, theme_name):
     elif kind == "holy_strike":
         draw_cross(d, 64, 61, rgba(hot, 240), 0.85)
         draw_arrow(d, (34, 94), (91, 35), rgba(white, 230), 5)
+
+    elif kind == "blood_aegis":
+        poly(d, shield_points(64, 66, 50, 64), rgba((75, 18, 34), 232), outline=rgba(accent, 230), width=3)
+        glow(lambda g, c: draw_cross(g, 64, 59, c, 0.58), hot, 4)
+        ellipse(d, (51, 78, 77, 101), fill=rgba((170, 20, 44), 225), outline=rgba(white, 180), width=2)
+
+    elif kind == "sanguine_devotion":
+        ellipse(d, (36, 32, 92, 91), outline=rgba(accent, 220), width=4)
+        poly(d, [(49, 45), (79, 45), (74, 70), (64, 88), (54, 70)], rgba((160, 18, 42), 230), outline=rgba(hot, 220), width=2)
+        draw_cross(d, 64, 59, rgba(white, 230), 0.42)
+        for cx in (45, 64, 83):
+            ellipse(d, (cx - 4, 96, cx + 4, 104), fill=rgba(hot, 235))
 
     elif kind in ("summon_monster", "undead_bodyguard", "bodyguard_respawn"):
         if kind == "bodyguard_respawn":

@@ -564,7 +564,7 @@
         {
           "Count": 3,
           "Effect": {
-            "Type": "Lifesteal",
+            "Type": "LifeSteal",
             "Values": {
               "MinValue": 3,
               "MaxValue": 3,
