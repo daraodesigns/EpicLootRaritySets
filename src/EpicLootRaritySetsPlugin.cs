@@ -4576,7 +4576,7 @@ namespace Fran.EpicLootRaritySets
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
                 return string.Format(
-                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasiva:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida/dano con Helveig y reaparece {30:0.#}s despues de morir.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida/dano. Invocacion actual: {29}.",
+                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida/dano con Helveig y reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion real aplica al objetivo un escudo no acumulable del 15% de la sanacion recibida durante 6s.\nSanguine Devotion: cada curacion real otorga 1 carga, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida/dano. Invocacion actual: {29}.",
                     FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey),
                     EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value,
                     EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value,
@@ -4726,7 +4726,7 @@ namespace Fran.EpicLootRaritySets
                 float bloodRite = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value, EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value, blood);
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
-                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassive: summons a Charred Dyrnwyn bodyguard while the set is active. Health/damage scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\n\nAbilities:\n"
+                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health/damage scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: real healing grants the healed target a non-stacking shield equal to 15% of healing received for 6s.\nSanguine Devotion: each real heal grants 1 stack, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey) + ": Holy Heal. Cost " + EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value.ToString("0") + "s. Heals the aimed ally within " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m, or yourself if no target exists. Scales with Helveig: " + EpicLootRaritySetsPlugin.HelveigHolyHealBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyHealHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyHeal.ToString("0.#") + " healing.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigBloodRiteHotkey) + ": Blood Rite. Cost " + EpicLootRaritySetsPlugin.HelveigBloodRiteEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigBloodRiteCooldown.Value.ToString("0") + "s. Channels " + EpicLootRaritySetsPlugin.HelveigBloodRiteDuration.Value.ToString("0.#") + "s without moving, radius " + EpicLootRaritySetsPlugin.HelveigBloodRiteRadius.Value.ToString("0.#") + "m, tick every " + EpicLootRaritySetsPlugin.HelveigBloodRiteTickInterval.Value.ToString("0.#") + "s. Heals allies, players, allied NPCs, pets and you: " + EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + bloodRite.ToString("0.#") + " per tick. CD starts when the channel finishes or breaks.\nSecondary attack: Holy Strike. Cost " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyStrikeCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m. Scales with Helveig: fire " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeFire.ToString("0.#") + "; spirit " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeSpirit.ToString("0.#") + ". Each impact restores " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrRefund.Value.ToString("0.#") + " eitr.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigSummonUndeadHotkey) + " + block: Summon Monster. Cost " + EpicLootRaritySetsPlugin.HelveigSummonUndeadEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigSummonUndeadCooldown.Value.ToString("0") + "s. Lasts " + EpicLootRaritySetsPlugin.HelveigSummonUndeadDuration.Value.ToString("0.#") + "s. Summons Ent/Abomination/ElakingMole/Fallen Valkyrie based on Helveig and scales health/damage. Current summon: " + GetHelveigUndeadNameForSkill(blood) + ".";
@@ -25968,10 +25968,15 @@ namespace Fran.EpicLootRaritySets
 
             StatusEffect buff = GetOrCreateHealingShieldBuff(AbilityPanelIconCatalog.GetIcon("Buffs", "helveig_blood_aegis.png") ?? FindHelveigIcon(caster) ?? StatusEffectIconHelper.GetIcon(caster, RequiredSet));
             buff.m_ttl = Mathf.Max(0.1f, state.Remaining);
-            buff.m_tooltip = string.Format(
-                "Egida de sangre de Helveig.\n\nAbsorbe {0:0.#} de dano.\nTiempo restante: {1:0.#}s.",
-                Mathf.Max(0f, state.Amount),
-                Mathf.Max(0f, state.Remaining));
+            buff.m_tooltip = LocalizedText.Select(
+                string.Format(
+                    "Egida de sangre de Helveig.\n\nAbsorbe {0:0.#} de dano.\nTiempo restante: {1:0.#}s.",
+                    Mathf.Max(0f, state.Amount),
+                    Mathf.Max(0f, state.Remaining)),
+                string.Format(
+                    "Helveig Blood Aegis.\n\nAbsorbs {0:0.#} damage.\nTime remaining: {1:0.#}s.",
+                    Mathf.Max(0f, state.Amount),
+                    Mathf.Max(0f, state.Remaining)));
 
             SEMan seMan = target.GetSEMan();
             seMan.RemoveStatusEffect(buff.NameHash(), true);
@@ -26014,12 +26019,19 @@ namespace Fran.EpicLootRaritySets
             StatusEffect buff = GetOrCreateHealingPowerBuff(AbilityPanelIconCatalog.GetIcon("Buffs", "helveig_sanguine_devotion.png") ?? FindHelveigIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
             buff.m_name = string.Format("{0} {1}/{2}", LocalizedText.AbilityName("Sanguine Devotion"), _healingPowerStacks, HealingPowerMaxStacks);
             buff.m_ttl = 0f;
-            buff.m_tooltip = string.Format(
-                "Devocion sanguinea de Helveig.\n\nCargas: {0}/{1}.\nDano de invocaciones: +{2:0.#}%.\nDano de Golpe sagrado: +{3:0.#}%.",
-                _healingPowerStacks,
-                HealingPowerMaxStacks,
-                (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
-                (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f);
+            buff.m_tooltip = LocalizedText.Select(
+                string.Format(
+                    "Devocion sanguinea de Helveig.\n\nCargas: {0}/{1}.\nDano de invocaciones: +{2:0.#}%.\nDano de Golpe sagrado: +{3:0.#}%.",
+                    _healingPowerStacks,
+                    HealingPowerMaxStacks,
+                    (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
+                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f),
+                string.Format(
+                    "Helveig Sanguine Devotion.\n\nStacks: {0}/{1}.\nSummon damage: +{2:0.#}%.\nHoly Strike damage: +{3:0.#}%.",
+                    _healingPowerStacks,
+                    HealingPowerMaxStacks,
+                    (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
+                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f));
 
             SEMan seMan = player.GetSEMan();
             seMan.RemoveStatusEffect(buff.NameHash(), true);

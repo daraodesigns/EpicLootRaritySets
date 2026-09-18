@@ -279,9 +279,11 @@ Habilidades con set completo:
 
 - `Mouse3` - `Curacion sagrada`: coste `25` eitr, cooldown `10s`; cura `35 + 0.75` por nivel de Helveig al aliado apuntado en rango (`30m`) o a ti si no hay objetivo.
 - Pasiva `Guardaespaldas no muerto`: al activar el set aparece `Charred_Melee_Dyrnwyn`; desaparece al perder el set. Si muere, reaparece automaticamente tras `30s`. Vida/dano escalan con Helveig de forma conservadora y obedece ordenes de mascota.
+- Pasiva `Egida de sangre`: cada curacion real aplica al objetivo curado un escudo no acumulable equivalente al `15%` de la sanacion recibida durante `6s`.
+- Pasiva `Devocion sanguinea`: cada curacion real otorga una carga, hasta `3`. Cada carga aumenta `+5%` el dano de invocaciones y `+10%` el dano de `Golpe sagrado`.
 - `Mouse4` - `Rito de sangre`: coste `45` eitr, cooldown `20s`; canaliza `10s`, radio `30m`, pulso cada `1s`; cura a ti, jugadores, NPCs aliados, mascotas activas y domesticados `12 + 0.30` por nivel de Helveig por pulso; moverte mas de `0.65m` cancela; el cooldown empieza al terminar o romperse.
 - Ataque secundario - `Golpe sagrado`: coste `25` eitr, cooldown `6s`, rango `30m`; dano fuego `55 + 0.45` y espiritu `65 + 0.70` por nivel de Helveig. Cada impacto devuelve `2` eitr.
-- `Bloqueo + Mouse3` - `Invocar monstruo`: coste `55` eitr, cooldown `60s`, duracion `60s`; invoca `Ent` / `Abomination` / `ElakingMole` / `FallenValkyrie` segun nivel de Helveig. Vida/dano escalan de forma conservadora, obedece ordenes de mascota y muestra buff activo con tiempo restante.
+- `Bloqueo + Mouse3` - `Invocar monstruo`: coste `55` eitr, cooldown `60s`, duracion `20s`; invoca `Ent` / `Abomination` / `ElakingMole` / `FallenValkyrie` segun nivel de Helveig. Vida/dano escalan de forma conservadora, obedece ordenes de mascota y muestra buff activo con tiempo restante.
 
 ### Moonvein - arquero magico
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.6] - 2026-09-18
+
+### General
+- Bumped `manifest.json` to `1.0.6`.
+
+### Helveig
+- Added `Blood Aegis`: real healing applies a non-stacking shield to the healed target equal to `15%` of healing received for `6s`.
+- Added `Sanguine Devotion`: real healing stacks up to `3`; each stack grants `+5%` summon damage and `+10%` Holy Strike damage.
+- Reduced Summon Monster duration from `60s` to `20s`.
+- Added generated buff icons for `Blood Aegis` and `Sanguine Devotion`.
+
 ## [1.0.5] - 2026-09-18
 
 ### General
