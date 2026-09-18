@@ -74,10 +74,11 @@ Los buffs de set completo muestran el nombre de clase y el nivel de habilidad (`
 
 - `Panel de habilidades`: aparece al tener un buff de clase activo; muestra solo habilidades activas, su nombre, tecla y cooldown. Se puede arrastrar mientras el inventario esta abierto con `Tab`. Si hay mascotas activas, anade una seccion `Pets` con `Atacar` (`Ctrl + Mouse4`), `Seguir` (`Ctrl + Mouse3`) y `Libre` (`Ctrl + ataque secundario`); el estado actual queda resaltado.
 - `Panel de pasivas`: muestra placas de 2 orbes para pasivas estaticas con carga (`Disparos cargados`, `Bola de fuego`, `Disparo certero`, `Oleada de sangre`). Al llenar los 2 orbes, la placa completa se ilumina con borde pulsante y etiqueta `LISTO` para indicar que el siguiente disparo/ataque esta cargado. Se puede arrastrar con `Tab`.
-- `Ctrl + Mouse4`: ordena a las mascotas activas atacar al enemigo apuntado. Si el enemigo muere o deja de ser valido, pasan a seguir al jugador.
-- `Ctrl + Mouse3`: fuerza a las mascotas activas a seguir al jugador aunque haya enemigos cerca.
+- `Ctrl + Mouse4`: ordena a las mascotas activas atacar al enemigo apuntado, sin limite practico de rango si el objetivo esta visible bajo la mira. Si el enemigo muere o deja de ser valido, pasan a seguir al jugador.
+- `Ctrl + Mouse3`: fuerza a las mascotas activas a seguir al jugador en modo pasivo; no atacan hasta volver a usar `Atacar` o `Libre`.
 - `Ctrl + ataque secundario`: libera a las mascotas al modo normal, sin seguimiento forzado.
-- Las ordenes de mascotas se aplican a invocaciones persistentes o controladas de `Hraesvelgr`, `Hellsyng`, `Helveig` y `Seidr`, incluido el `Golem de piedra`.
+- Las ordenes de mascotas se aplican a invocaciones persistentes o controladas de `Hraesvelgr`, `Moonvein`, `Helveig` y `Seidr`, incluido el `Golem de piedra`.
+- Las mascotas de clase usan stats normalizados por el mod: vida, dano y reduccion recibida escalan con la skill de su clase para acompanar la aventura sin depender de valores brutos del prefab.
 - Las mascotas persistentes desaparecen al perder el buff de clase. Si mueren mientras siguen activas, usan un cooldown de reaparicion de `30s` cuando su clase lo permite.
 - Las explosiones propias de `T.N.T.`, `Fuego rapido` y efectos equivalentes evitan dano a aliados, jugadores friendly y mascotas.
 - Los buffs de habilidades, invocaciones y estados temporales usan los iconos generados del mod cuando existe icono especifico o icono de habilidad equivalente.
@@ -204,7 +205,7 @@ Habilidades con set completo:
 
 - Pasiva `Sigilo`: al agacharte/en sigilo eres invisible para monstruos; ruido `x0.5`, deteccion `x0.3`, velocidad `+15%`.
 - Pasiva `Disparo certero`: cada `3` disparos con arco Hraesvelgr, la flecha cuenta como punto debil/headshot y aplica al menos `x1.5` dano. El panel de pasivas muestra `2/2` e ilumina la placa cuando la siguiente flecha esta cargada.
-- `Mouse3` - `Invocar bestias`: toggle sin cooldown; invoca o guarda un bjorn/bear aliado; coste `35` vigor al invocar. Si muere estando activo, entra en cooldown de mascota muerta durante `60s`. Muestra buff visible mientras queda vivo.
+- `Mouse3` - `Invocar bestias`: toggle sin cooldown; invoca o guarda un bjorn/bear aliado con vida, dano y reduccion recibida escalados por Hraesvelgr; coste `35` vigor al invocar. Si muere estando activo, entra en cooldown de mascota muerta durante `60s`. Muestra buff visible mientras queda vivo.
 - `Bloqueo + Mouse3` - trampa armada: coste `20` vigor; maximo `5` cargas, recarga `1` cada `60s`; al atrapar un enemigo hace dano perforante `35 + 0.55` por nivel de Hraesvelgr, lo inmoviliza y da `30s` para que la siguiente flecha haga `+50%` dano.
 - `Mouse4` - `Rafaga rapida`: canaliza hasta `3s`, cooldown `18s`; mientras mantienes ataque y estas quieto, dispara como maximo `8` flechas exactas a `8` flechas/s; cada flecha hace `x0.5` dano normal, velocidad `90`. Si arma/flecha no aportan dano, usa alternativa perforante `12 + 0.25` por nivel de Hraesvelgr. Al llegar a 8 flechas se cancela y restaura todo el vigor.
 - Ataque secundario - Dash de Freyja: coste `20` vigor, cooldown `10s`, sin dano propio.
@@ -263,7 +264,7 @@ Habilidades con set completo:
 
 - `Mouse3` - `Nanocubo`: coste `50` eitr, cooldown `30s`, duracion `10s`; empuja enemigos fuera de `5m`; dentro del cubo tu dano magico se multiplica `x1.30`.
 - `Mouse4` - `Escudo elemental`: toggle; coste inicial `25` eitr; sin cooldown; eres inmune al dano mientras haya eitr; consume `2%` de eitr maximo por segundo, minimo `1` eitr/s.
-- Ataque secundario - `Golem de piedra`: coste `80` eitr, cooldown `60s`, duracion `60s`; invoca un golem friendly de Brokkr con stats de criatura. Obedece las ordenes globales de mascota.
+- Ataque secundario - `Golem de piedra`: coste `80` eitr, cooldown `60s`, duracion `60s`; invoca un golem friendly de Brokkr con vida, dano y reduccion recibida escalados por Seidr. Obedece las ordenes globales de mascota.
 - `Bloqueo + Mouse4` - `Nova de escarcha`: coste `45` eitr, cooldown `12s`, radio `8m`; dano frost `45 + 0.85` por nivel de Seidr; ralentizacion `40%` durante `5s`.
 
 ### Helveig - mago de sangre
@@ -278,12 +279,12 @@ Equipo y bonus principales:
 Habilidades con set completo:
 
 - `Mouse3` - `Curacion sagrada`: coste `25` eitr, cooldown `10s`; cura `35 + 0.75` por nivel de Helveig al aliado apuntado en rango (`30m`) o a ti si no hay objetivo.
-- Pasiva `Guardaespaldas no muerto`: al activar el set aparece `Charred_Melee_Dyrnwyn`; desaparece al perder el set. Si muere, reaparece automaticamente tras `30s`. Vida/dano escalan con Helveig de forma conservadora y obedece ordenes de mascota.
+- Pasiva `Guardaespaldas no muerto`: al activar el set aparece `Charred_Melee_Dyrnwyn`; desaparece al perder el set. Si muere, reaparece automaticamente tras `30s`. Vida, dano y reduccion recibida escalan con Helveig de forma conservadora y obedece ordenes de mascota.
 - Pasiva `Egida de sangre`: cada curacion aplica al objetivo curado un escudo no acumulable equivalente al `15%` de la sanacion potencial de la habilidad durante `15s`, aunque el objetivo estuviera a vida maxima, con visual de escudo elemental.
 - Pasiva `Devocion sanguinea`: cada curacion otorga una carga durante `15s`, hasta `3`. Cada carga aumenta `+5%` el dano de invocaciones y `+10%` el dano de `Golpe sagrado`.
 - `Mouse4` - `Rito de sangre`: coste `45` eitr, cooldown `20s`; canaliza `10s`, radio `30m`, pulso cada `1s`; cura a ti, jugadores, NPCs aliados, mascotas activas y domesticados `12 + 0.30` por nivel de Helveig por pulso; moverte mas de `0.65m` cancela; el cooldown empieza al terminar o romperse.
 - Ataque secundario - `Golpe sagrado`: coste `25` eitr, cooldown `6s`, rango `30m`; dano fuego `55 + 0.45` y espiritu `65 + 0.70` por nivel de Helveig. Cada impacto devuelve `2` eitr.
-- `Bloqueo + Mouse3` - `Invocar monstruo`: coste `55` eitr, cooldown `60s`, duracion `20s`; invoca `Ent` / `Abomination` / `ElakingMole` / `FallenValkyrie` segun nivel de Helveig. Vida/dano escalan de forma conservadora, obedece ordenes de mascota y muestra buff activo con tiempo restante.
+- `Bloqueo + Mouse3` - `Invocar monstruo`: coste `55` eitr, cooldown `60s`, duracion `20s`; invoca `Ent` / `Abomination` / `ElakingMole` / `FallenValkyrie` segun nivel de Helveig. Vida, dano y reduccion recibida escalan de forma conservadora, obedece ordenes de mascota y muestra buff activo con tiempo restante.
 
 ### Moonvein - arquero magico
 
@@ -306,7 +307,7 @@ Habilidades con set completo:
 - Bola de fuego: fuego `58 + 0.80` por nivel de Moonvein.
 - `Mouse3` - `Meteoro`: coste `30` eitr, cooldown `10s`, rango `60m`; dano fuego + contundente, cada tipo `35 + 1.20` por nivel de Moonvein; empuje `80`.
 - `Mouse4` - `Disparo tornado`: coste `20` eitr, cooldown `12s`; arma la siguiente flecha; al impactar invoca tornado de Njord durante `6s`; ralentizacion `40%` durante `6s`; alternativa de dano en `4m`: rayo `18 + 0.75` por nivel de Moonvein cada `0.5s`.
-- `Bloqueo + Mouse3` - `Lobo espiritual`: coste `20` eitr; invoca `wolf_spiritcaller`, obedece el panel de mascotas y escala vida/dano con Moonvein. Si muere, aplica cooldown de `60s`.
+- `Bloqueo + Mouse3` - `Lobo espiritual`: coste `20` eitr; invoca `wolf_spiritcaller`, obedece el panel de mascotas y escala vida, dano y reduccion recibida con Moonvein. Si muere, aplica cooldown de `60s`.
 
 ### Frostbrand - spellblade
 

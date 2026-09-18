@@ -6,6 +6,8 @@
 - Bumped `manifest.json` to `1.0.6`.
 - Restored Seidr Nanocube, Elemental Shield and Frost Nova visuals to the stable `0.1.26` NorseDemigods lookup flow, then kept the current 1.0.6 costs and scaling.
 - Reduced lag when swapping sets by avoiding repeated class-buff rebuilds and repeated inactive-controller cleanup every frame.
+- Improved global pet commands: `Attack` now targets the aimed enemy at long visible range instead of being limited by the old short command range, and `Follow` now acts as passive follow until `Attack` or `Free` is selected again.
+- Added normalized class-pet scaling for Hraesvelgr, Moonvein, Helveig and Seidr summons: health, outgoing damage and damage taken reduction now scale from each pet owner's class skill with conservative adventure-friendly values instead of relying on raw prefab stats.
 
 ### Helveig
 - Added `Blood Aegis`: healing applies a non-stacking shield to the healed target equal to `15%` of the ability's potential healing for `15s`, even at full health.
