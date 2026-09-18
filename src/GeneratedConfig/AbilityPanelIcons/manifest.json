@@ -336,6 +336,14 @@
     "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\nott_shadow_mark.png"
   },
   {
+    "category": "Abilities",
+    "id": "nott_knife_strike",
+    "label": "Knife Strike",
+    "class": "nott",
+    "kind": "knife_strike",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Abilities\\nott_knife_strike.png"
+  },
+  {
     "category": "Buffs",
     "id": "nott_sneaky",
     "label": "Sneaky",
@@ -353,6 +361,14 @@
   },
   {
     "category": "Buffs",
+    "id": "nott_executor",
+    "label": "Executor",
+    "class": "nott",
+    "kind": "executor",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_executor.png"
+  },
+  {
+    "category": "Buffs",
     "id": "nott_shadow_momentum",
     "label": "Shadow Momentum",
     "class": "nott",
@@ -366,6 +382,14 @@
     "class": "nott",
     "kind": "warp_strike",
     "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_warp_strike.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "nott_warp_guard",
+    "label": "Warp Guard",
+    "class": "nott",
+    "kind": "warp_guard",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\nott_warp_guard.png"
   },
   {
     "category": "Abilities",
