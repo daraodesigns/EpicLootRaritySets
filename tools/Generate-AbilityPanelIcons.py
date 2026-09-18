@@ -70,6 +70,11 @@ THEMES = {
         "accent": (190, 220, 255),
         "hot": (246, 229, 160),
     },
+    "pets": {
+        "bg": ((14, 17, 22), (54, 66, 78), (180, 206, 230)),
+        "accent": (190, 220, 255),
+        "hot": (246, 229, 160),
+    },
 }
 
 
@@ -167,6 +172,11 @@ ICONS = [
     ("Buffs", "frostbrand_fire_ball", "Fire Ball", "frostbrand", "fire_ball"),
     ("Buffs", "frostbrand_recharge", "Recharge", "frostbrand", "recharge"),
     ("Buffs", "frostbrand_burning_ground", "Burning Ground", "frostbrand", "burning_ground"),
+
+    # Global pet commands
+    ("Abilities", "pet_attack", "Pet Attack", "pets", "pet_attack"),
+    ("Abilities", "pet_follow", "Pet Follow", "pets", "pet_follow"),
+    ("Abilities", "pet_free", "Pet Free", "pets", "pet_free"),
 ]
 
 
@@ -358,7 +368,23 @@ def draw_symbol(img, kind, theme_name):
     def glow(draw_func, color=accent, blur=4, alpha=145):
         layer_glow(img, draw_func, color, blur, alpha)
 
-    if kind in ("lightning_storm", "lightning_strike"):
+    if kind == "pet_attack":
+        glow(lambda g, c: draw_paw(g, 54, 69, c, 0.88), accent, 5)
+        draw_arrow(d, (42, 91), (91, 42), rgba(hot, 240), 5)
+
+    elif kind == "pet_follow":
+        glow(lambda g, c: draw_paw(g, 55, 70, c, 0.86), accent, 5)
+        arc(d, (35, 30, 98, 96), 210, 500, rgba(hot, 230), 5)
+        draw_arrow(d, (88, 43), (99, 55), rgba(hot, 235), 4)
+
+    elif kind == "pet_free":
+        glow(lambda g, c: draw_paw(g, 64, 69, c, 0.9), accent, 5)
+        for x, y in ((39, 42), (86, 38), (94, 82), (35, 88)):
+            ellipse(d, (x - 4, y - 4, x + 4, y + 4), fill=rgba(hot, 235))
+        arc(d, (31, 31, 97, 97), 28, 148, rgba(white, 210), 4)
+        arc(d, (31, 31, 97, 97), 208, 328, rgba(white, 210), 4)
+
+    elif kind in ("lightning_storm", "lightning_strike"):
         for x in (44, 66, 85) if kind == "lightning_strike" else (64,):
             glow(lambda g, c, x=x: poly(g, bolt_shape(x, 63, 0.9 if kind == "lightning_strike" else 1.15), c), hot if kind == "lightning_strike" else accent, 5)
         if kind == "lightning_storm":
@@ -721,6 +747,7 @@ def main():
 
     with (OUT / "manifest.json").open("w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
+        f.write("\n")
 
     make_contact_sheet(records, "EpicLootRaritySets ability panel icons - all", OUT / "contact_sheets" / "contact_sheet_all.png", columns=7)
     for category in ("ClassBuffs", "Abilities", "Buffs"):

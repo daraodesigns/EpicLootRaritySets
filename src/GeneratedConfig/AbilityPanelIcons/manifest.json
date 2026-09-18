@@ -481,6 +481,22 @@
   },
   {
     "category": "Buffs",
+    "id": "helveig_blood_aegis",
+    "label": "Blood Aegis",
+    "class": "helveig",
+    "kind": "blood_aegis",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\helveig_blood_aegis.png"
+  },
+  {
+    "category": "Buffs",
+    "id": "helveig_sanguine_devotion",
+    "label": "Sanguine Devotion",
+    "class": "helveig",
+    "kind": "sanguine_devotion",
+    "path": "C:\\Users\\Fran\\Desktop\\proyectos\\thunderstore\\EpicLootRaritySets\\src\\GeneratedConfig\\AbilityPanelIcons\\Buffs\\helveig_sanguine_devotion.png"
+  },
+  {
+    "category": "Buffs",
     "id": "helveig_bodyguard_respawn",
     "label": "Bodyguard Respawn",
     "class": "helveig",

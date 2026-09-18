@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.0.6] - 2026-09-18
+
+### General
+- Bumped `manifest.json` to `1.0.6`.
+- Restored Seidr Nanocube, Elemental Shield and Frost Nova visuals to the stable `0.1.26` NorseDemigods lookup flow, then kept the current 1.0.6 costs and scaling.
+- Reduced lag when swapping sets by avoiding repeated class-buff rebuilds and repeated inactive-controller cleanup every frame.
+- Improved global pet commands: `Attack` now targets the aimed enemy at long visible range instead of being limited by the old short command range, and `Follow` now acts as passive follow until `Attack` or `Free` is selected again.
+- Added normalized class-pet scaling for Hraesvelgr, Moonvein, Helveig and Seidr summons: health, outgoing damage and damage taken reduction now scale from each pet owner's class skill with conservative adventure-friendly values instead of relying on raw prefab stats.
+- Added Hraesvelgr `Tame Beast` on `Block + Mouse4`: tames a valid beast within `10m`, removes the current Hraesvelgr pet, persists the chosen prefab and makes `Summon Beasts` spawn that creature with Hraesvelgr pet scaling.
+
+### Helveig
+- Added `Blood Aegis`: healing applies a non-stacking shield to the healed target equal to `15%` of the ability's potential healing for `15s`, even at full health.
+- Blood Aegis now applies the Elemental Shield visual to the healed target and sends the buff/shield state to healed player clients.
+- Added `Sanguine Devotion`: healing stacks up to `3` for `15s`; each stack grants `+5%` summon damage and `+10%` Holy Strike damage.
+- Reduced Summon Monster duration from `60s` to `20s`.
+- Added generated buff icons for `Blood Aegis` and `Sanguine Devotion`.
+
+### Nott
+- Moved `Knife Strike` to `Mouse4`.
+- Moved `Shadow Mark` to `Block + Mouse4`, leaving plain `Mouse4` for `Knife Strike`.
+
+### Seidr
+- Fixed visual bugs.
+
+### Moonvein
+- New ability
+- Rework damage
+
+### Hraesvelgr
+- New ability tame pets
+
 ## [1.0.5] - 2026-09-18
 
 ### General
@@ -29,7 +60,7 @@
 ### Moonvein
 - Added `Disparos arcanos`: normal Moonvein bow shots add lightning and spirit damage, both scaling with Moonvein and passing through EpicLoot damage modifiers.
 - Added Moonvein `Recarga`, matching Frostbrand's charge style: hits build up to `5` stacks, increase all damage, and trigger guaranteed Chain Lightning at full stacks.
-- Added `Lobo espiritual` on `Bloqueo + Mouse3`: summons `wolf_spirit_caller`, scales health/damage with Moonvein, obeys the pet command panel, and applies death cooldown when killed.
+- Added `Lobo espiritual` on `Bloqueo + Mouse3`: summons `wolf_spiritcaller`, scales health/damage with Moonvein, obeys the pet command panel, and applies death cooldown when killed.
 - Added Spirit Wolf support to pet command/enemy relationship handling.
 - Rebalanced Moonvein charged-shot projectiles:
   - Acid Bolt base damage `20 -> 40`.
