@@ -306,7 +306,7 @@ Habilidades con set completo:
 - Bola de fuego: fuego `58 + 0.80` por nivel de Moonvein.
 - `Mouse3` - `Meteoro`: coste `30` eitr, cooldown `10s`, rango `60m`; dano fuego + contundente, cada tipo `35 + 1.20` por nivel de Moonvein; empuje `80`.
 - `Mouse4` - `Disparo tornado`: coste `20` eitr, cooldown `12s`; arma la siguiente flecha; al impactar invoca tornado de Njord durante `6s`; ralentizacion `40%` durante `6s`; alternativa de dano en `4m`: rayo `18 + 0.75` por nivel de Moonvein cada `0.5s`.
-- `Bloqueo + Mouse3` - `Lobo espiritual`: coste `20` eitr; invoca `wolf_spirit_caller`, obedece el panel de mascotas y escala vida/dano con Moonvein. Si muere, aplica cooldown de `60s`.
+- `Bloqueo + Mouse3` - `Lobo espiritual`: coste `20` eitr; invoca `wolf_spiritcaller`, obedece el panel de mascotas y escala vida/dano con Moonvein. Si muere, aplica cooldown de `60s`.
 
 ### Frostbrand - spellblade
 

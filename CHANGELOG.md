@@ -47,7 +47,7 @@
 ### Moonvein
 - Added `Disparos arcanos`: normal Moonvein bow shots add lightning and spirit damage, both scaling with Moonvein and passing through EpicLoot damage modifiers.
 - Added Moonvein `Recarga`, matching Frostbrand's charge style: hits build up to `5` stacks, increase all damage, and trigger guaranteed Chain Lightning at full stacks.
-- Added `Lobo espiritual` on `Bloqueo + Mouse3`: summons `wolf_spirit_caller`, scales health/damage with Moonvein, obeys the pet command panel, and applies death cooldown when killed.
+- Added `Lobo espiritual` on `Bloqueo + Mouse3`: summons `wolf_spiritcaller`, scales health/damage with Moonvein, obeys the pet command panel, and applies death cooldown when killed.
 - Added Spirit Wolf support to pet command/enemy relationship handling.
 - Rebalanced Moonvein charged-shot projectiles:
   - Acid Bolt base damage `20 -> 40`.
