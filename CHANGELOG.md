@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.8] - 2026-09-22
+
+### Compatibility
+- Disabled BetterArchery's quiver inventory-slot handling from this DLL, so `LeatherQuiver` no longer reserves or creates the three extra quiver slots even when equipped.
+- Neutralized BetterArchery's `FindEmptySlot`/`HaveEmptySlot` quiver overrides so InventorySlots expanded cells are counted correctly during normal loot pickup instead of reporting inventory full while expanded cells are free.
+
+### UI
+- Ability and passive/orb panels now refresh their localized text when the game language changes.
+- Rarity set names shown on item names and set tooltips now switch to Spanish when the game language is Spanish.
+
+### Combat
+- Hraesvelgr Freyja Dash now uses this mod's PvP-safe trail hit instead of NorseDemigods internal path damage: crossed enemies take notable pierce damage scaling with Hraesvelgr skill and are staggered; players are affected only when PvP is active.
+- Nott Warp Strike now always staggers the empowered-hit target and slows it by `50%` for `6s`, while keeping the empowered hit damage multiplier.
+- Updated Active Effects and Epic Loot Rarity Sets compendium text in Spanish and English for Hraesvelgr Dash and Nott Warp Strike.
+- EpicLoot rarity set tooltips and active set effects now use the exact bonus values from the loaded set JSON, so `FrostDamageAOE` on `MagicFrostbrand` displays and applies `10%` instead of falling back to another rarity/default value.
+
 ## [1.0.7] - 2026-09-22
 
 ### General

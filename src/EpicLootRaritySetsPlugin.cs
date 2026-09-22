@@ -67,6 +67,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<int> WolfPackAttackRange;
         internal static ConfigEntry<int> WolfPackMaxTames;
         internal static ConfigEntry<bool> ConfigureWiresEnemyHudCompatibility;
+        internal static ConfigEntry<bool> DisableBetterArcheryQuiverInventorySlots;
         internal static ConfigEntry<KeyboardShortcut> FrostbrandDashHotkey;
         internal static ConfigEntry<KeyboardShortcut> FrostbrandHolyStrikeHotkey;
         internal static ConfigEntry<KeyboardShortcut> FrostbrandWaterSphereHotkey;
@@ -152,6 +153,8 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> HraesvelgrVolleyProjectileVelocity;
         internal static ConfigEntry<float> HraesvelgrDashCooldown;
         internal static ConfigEntry<float> HraesvelgrDashEitrUse;
+        internal static ConfigEntry<float> HraesvelgrDashBaseDamage;
+        internal static ConfigEntry<float> HraesvelgrDashDamagePerHraesvelgrLevel;
         internal static ConfigEntry<float> HraesvelgrSummonCooldown;
         internal static ConfigEntry<float> HraesvelgrSummonDuration;
         internal static ConfigEntry<float> HraesvelgrSummonStaminaUse;
@@ -215,6 +218,8 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> NottWarpEitrUse;
         internal static ConfigEntry<float> NottWarpStaminaUse;
         internal static ConfigEntry<float> NottWarpDamageMultiplier;
+        internal static ConfigEntry<float> NottWarpStrikeSlow;
+        internal static ConfigEntry<float> NottWarpStrikeSlowDuration;
         internal static ConfigEntry<float> NottWarpGuardDuration;
         internal static ConfigEntry<float> NottWarpGuardDamageReduction;
         internal static ConfigEntry<float> NottWarpResetRadius;
@@ -438,6 +443,7 @@ namespace Fran.EpicLootRaritySets
             WolfPackAttackRange = Config.Bind("WolfPack Compatibility", "Tames Attack Range", 150, new ConfigDescription("TamesAttackRange written into WolfPack when compatibility sync is enabled.", new AcceptableValueRange<int>(0, 150)));
             WolfPackMaxTames = Config.Bind("WolfPack Compatibility", "Max Tames", 20, new ConfigDescription("MaxTames written into WolfPack when compatibility sync is enabled.", new AcceptableValueRange<int>(1, 50)));
             ConfigureWiresEnemyHudCompatibility = Config.Bind("Wires Enemy HUD Compatibility", "Configure Wires Enemy HUD", true, "Update Wires Enemy HUD config on startup so enemy health text shows current and max HP.");
+            DisableBetterArcheryQuiverInventorySlots = Config.Bind("Compatibility", "Disable BetterArchery Quiver Inventory Slots", true, "Disable BetterArchery's extra quiver inventory slots so InventorySlots expanded cells remain available for normal loot pickup.");
 
             EnableFrostbrandAbilities = Config.Bind("Frostbrand Abilities", "Enable Frostbrand Abilities", true, "Enable the complete-set abilities for the Frostbrand spellblade set.");
             FrostbrandDashHotkey = Config.Bind("Frostbrand Abilities", "Dash Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Frostbrand dash.");
@@ -557,6 +563,8 @@ namespace Fran.EpicLootRaritySets
             HraesvelgrVolleyProjectileVelocity = Config.Bind("Hraesvelgr Abilities", "Rapid Volley Projectile Velocity", 90f, new ConfigDescription("Projectile velocity for automatic Rapid Volley arrows.", new AcceptableValueRange<float>(5f, 250f)));
             HraesvelgrDashCooldown = Config.Bind("Hraesvelgr Abilities", "Dash Cooldown", 10f, new ConfigDescription("Cooldown in seconds for Hraesvelgr Freyja dash on secondary attack.", new AcceptableValueRange<float>(0f, 120f)));
             HraesvelgrDashEitrUse = Config.Bind("Hraesvelgr Abilities", "Dash Stamina Use", 20f, new ConfigDescription("Stamina/vigor consumed by Hraesvelgr Freyja dash.", new AcceptableValueRange<float>(0f, 250f)));
+            HraesvelgrDashBaseDamage = Config.Bind("Hraesvelgr Abilities", "Dash Base Damage", 55f, new ConfigDescription("Base pierce damage dealt to enemies crossed by Hraesvelgr Freyja dash before class-skill scaling and EpicLoot modifiers.", new AcceptableValueRange<float>(0f, 2000f)));
+            HraesvelgrDashDamagePerHraesvelgrLevel = Config.Bind("Hraesvelgr Abilities", "Dash Damage Per Hraesvelgr Level", 1.1f, new ConfigDescription("Additional pierce damage per Hraesvelgr class level dealt to enemies crossed by Freyja dash.", new AcceptableValueRange<float>(0f, 30f)));
             HraesvelgrSummonCooldown = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Cooldown", 30f, new ConfigDescription("Cooldown in seconds for Hraesvelgr summon beasts after summoning or storing the current beast.", new AcceptableValueRange<float>(0f, 600f)));
             HraesvelgrSummonDuration = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Duration", 0f, new ConfigDescription("Legacy lifetime for summoned beasts. The current summons stay until killed, set loss, logout cleanup, or manual store.", new AcceptableValueRange<float>(0f, 600f)));
             HraesvelgrSummonStaminaUse = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Stamina Use", 35f, new ConfigDescription("Stamina consumed by Hraesvelgr summon beasts.", new AcceptableValueRange<float>(0f, 250f)));
@@ -641,6 +649,8 @@ namespace Fran.EpicLootRaritySets
             NottWarpEitrUse = Config.Bind("Nott Abilities", "Warp Eitr Use", 0f, new ConfigDescription("Legacy setting. Nott Warp now consumes stamina/vigor instead of eitr.", new AcceptableValueRange<float>(0f, 250f)));
             NottWarpStaminaUse = Config.Bind("Nott Abilities", "Warp Stamina Use", 25f, new ConfigDescription("Stamina/vigor consumed by Nott Warp.", new AcceptableValueRange<float>(0f, 250f)));
             NottWarpDamageMultiplier = Config.Bind("Nott Abilities", "Warp Next Attack Damage Multiplier", 2.5f, new ConfigDescription("Damage multiplier for the first attack after Nott Warp.", new AcceptableValueRange<float>(1f, 20f)));
+            NottWarpStrikeSlow = Config.Bind("Nott Abilities", "Warp Strike Slow", 0.50f, new ConfigDescription("Movement slow applied by Warp Strike. 0.50 means 50% slow.", new AcceptableValueRange<float>(0f, 0.95f)));
+            NottWarpStrikeSlowDuration = Config.Bind("Nott Abilities", "Warp Strike Slow Duration", 6f, new ConfigDescription("Duration in seconds for Warp Strike slow.", new AcceptableValueRange<float>(0.1f, 60f)));
             NottWarpGuardDuration = Config.Bind("Nott Abilities", "Warp Guard Duration", 3f, new ConfigDescription("Seconds of heavy damage reduction granted after a successful Nott Warp.", new AcceptableValueRange<float>(0f, 30f)));
             NottWarpGuardDamageReduction = Config.Bind("Nott Abilities", "Warp Guard Damage Reduction", 0.90f, new ConfigDescription("Fraction of incoming damage reduced while Warp Guard is active. 0.90 means 90% less damage.", new AcceptableValueRange<float>(0f, 0.99f)));
             NottWarpResetRadius = Config.Bind("Nott Abilities", "Warp Cooldown Reset Radius", 18f, new ConfigDescription("Enemy death radius in meters that refreshes Warp while it is cooling down.", new AcceptableValueRange<float>(1f, 100f)));
@@ -890,6 +900,7 @@ namespace Fran.EpicLootRaritySets
             UniqueLegendaryHelper.OnSetupLegendaryItemConfig += ReloadExternalConfigs;
 
             _harmony = new Harmony(PluginGuid);
+            BetterArcheryInventorySlotsCompatibility.Patch(_harmony);
             WiresEnemyHudCompatibilitySynchronizer.Patch(_harmony);
             _harmony.PatchAll();
 
@@ -1407,6 +1418,155 @@ namespace Fran.EpicLootRaritySets
         }
     }
 
+    internal static class BetterArcheryInventorySlotsCompatibility
+    {
+        private const string BetterArcheryTypeName = "BetterArchery.BetterArchery";
+        private static bool _logged;
+        private static bool _quiverRowIndexFieldResolved;
+        private static FieldInfo _quiverRowIndexField;
+
+        internal static void Patch(Harmony harmony)
+        {
+            if (harmony == null ||
+                EpicLootRaritySetsPlugin.DisableBetterArcheryQuiverInventorySlots == null ||
+                !EpicLootRaritySetsPlugin.DisableBetterArcheryQuiverInventorySlots.Value)
+            {
+                return;
+            }
+
+            Type betterArcheryType = AccessTools.TypeByName(BetterArcheryTypeName);
+            if (betterArcheryType == null)
+            {
+                return;
+            }
+
+            try
+            {
+                PatchVoidSkip(harmony, "BetterArchery.Player_Awake_Patch", "Prefix");
+                PatchBoolPassThrough(harmony, "BetterArchery.Player_SetInventorySize_Patch", "Prefix");
+                PatchBoolPassThrough(harmony, "BetterArchery.Inventory_FindEmptySlot_Patch", "Prefix");
+                PatchBoolPassThrough(harmony, "BetterArchery.Inventory_HaveEmptySlot_Patch", "Prefix");
+                PatchBoolPassThrough(harmony, "BetterArchery.Player_CreateTombStone_Patch", "Prefix");
+                PatchVoidSkip(harmony, "BetterArchery.InventoryGrid_UpdateGui_Patch", "Postfix");
+
+                PatchBoolFalse(harmony, AccessTools.Method(betterArcheryType, "IsQuiverSlot", new[] { typeof(Vector2i) }));
+                PatchBoolFalse(harmony, AccessTools.Method(betterArcheryType, "IsQuiverSlot", new[] { typeof(int), typeof(int) }));
+                PatchVoidSkip(harmony, AccessTools.Method(betterArcheryType, "CheckQuiverUseInput", new[] { typeof(Player), typeof(int) }));
+
+                Type quiverHudType = AccessTools.TypeByName("BetterArchery.QuiverHud");
+                if (quiverHudType != null)
+                {
+                    PatchBoolFalse(harmony, AccessTools.Method(quiverHudType, "BuildSlots", new[] { typeof(Player) }));
+                    PatchVoidSkip(harmony, AccessTools.Method(quiverHudType, "SetSlotsVisible", new[] { typeof(bool) }));
+                    PatchVoidSkip(harmony, AccessTools.Method(quiverHudType, "UseQuiverSlot", new[] { typeof(int) }));
+                }
+
+                SetQuiverRowIndex(-1);
+                EpicLootRaritySetsPlugin.Log.LogInfo("BetterArchery quiver inventory slots disabled; InventorySlots can use expanded cells for normal pickup.");
+            }
+            catch (Exception ex)
+            {
+                EpicLootRaritySetsPlugin.Log.LogWarning("Could not patch BetterArchery quiver inventory slots: " + ex.GetBaseException().Message);
+            }
+        }
+
+        private static void PatchBoolPassThrough(Harmony harmony, string typeName, string methodName)
+        {
+            Type type = AccessTools.TypeByName(typeName);
+            PatchBoolPassThrough(harmony, type == null ? null : AccessTools.Method(type, methodName));
+        }
+
+        private static void PatchBoolPassThrough(Harmony harmony, MethodInfo target)
+        {
+            MethodInfo prefix = AccessTools.Method(typeof(BetterArcheryInventorySlotsCompatibility), "ReturnTrueAndSkip");
+            Patch(harmony, target, prefix);
+        }
+
+        private static void PatchBoolFalse(Harmony harmony, MethodInfo target)
+        {
+            MethodInfo prefix = AccessTools.Method(typeof(BetterArcheryInventorySlotsCompatibility), "ReturnFalseAndSkip");
+            Patch(harmony, target, prefix);
+        }
+
+        private static void PatchVoidSkip(Harmony harmony, string typeName, string methodName)
+        {
+            Type type = AccessTools.TypeByName(typeName);
+            PatchVoidSkip(harmony, type == null ? null : AccessTools.Method(type, methodName));
+        }
+
+        private static void PatchVoidSkip(Harmony harmony, MethodInfo target)
+        {
+            MethodInfo prefix = AccessTools.Method(typeof(BetterArcheryInventorySlotsCompatibility), "SkipVoid");
+            Patch(harmony, target, prefix);
+        }
+
+        private static void Patch(Harmony harmony, MethodInfo target, MethodInfo prefix)
+        {
+            if (harmony == null || target == null || prefix == null)
+            {
+                return;
+            }
+
+            harmony.Patch(target, prefix: new HarmonyMethod(prefix));
+        }
+
+        private static bool ReturnTrueAndSkip(ref bool __result)
+        {
+            __result = true;
+            SetQuiverRowIndex(-1);
+            LogOnce();
+            return false;
+        }
+
+        private static bool ReturnFalseAndSkip(ref bool __result)
+        {
+            __result = false;
+            SetQuiverRowIndex(-1);
+            LogOnce();
+            return false;
+        }
+
+        private static bool SkipVoid()
+        {
+            SetQuiverRowIndex(-1);
+            LogOnce();
+            return false;
+        }
+
+        private static void SetQuiverRowIndex(int rowIndex)
+        {
+            FieldInfo field = GetQuiverRowIndexField();
+            if (field != null)
+            {
+                field.SetValue(null, rowIndex);
+            }
+        }
+
+        private static FieldInfo GetQuiverRowIndexField()
+        {
+            if (_quiverRowIndexFieldResolved)
+            {
+                return _quiverRowIndexField;
+            }
+
+            _quiverRowIndexFieldResolved = true;
+            Type betterArcheryType = AccessTools.TypeByName(BetterArcheryTypeName);
+            _quiverRowIndexField = betterArcheryType == null ? null : AccessTools.Field(betterArcheryType, "QuiverRowIndex");
+            return _quiverRowIndexField;
+        }
+
+        private static void LogOnce()
+        {
+            if (_logged || EpicLootRaritySetsPlugin.Log == null)
+            {
+                return;
+            }
+
+            _logged = true;
+            EpicLootRaritySetsPlugin.Log.LogInfo("Suppressed BetterArchery quiver slot handling.");
+        }
+    }
+
     internal static class RaritySetRegistry
     {
         private static readonly ItemRarity[] SupportedRarities =
@@ -1575,6 +1735,77 @@ namespace Fran.EpicLootRaritySets
             }
 
             return false;
+        }
+
+        internal static bool TryBuildActiveSetMagicEffects(Player player, string effectType, out List<MagicItemEffect> effects)
+        {
+            effects = null;
+            if (player == null)
+            {
+                return false;
+            }
+
+            HashSet<LegendarySetInfo> equippedSets = EpicLoot.PlayerExtensions.GetEquippedSets(player);
+            if (equippedSets == null || equippedSets.Count == 0)
+            {
+                return false;
+            }
+
+            bool hasManagedSet = false;
+            List<MagicItemEffect> rebuiltEffects = new List<MagicItemEffect>();
+            foreach (LegendarySetInfo equippedSet in equippedSets)
+            {
+                if (equippedSet == null || string.IsNullOrEmpty(equippedSet.ID))
+                {
+                    continue;
+                }
+
+                LegendarySetInfo setInfo = equippedSet;
+                ItemRarity rarity;
+                LegendarySetInfo managedSetInfo;
+                if (TryGetSetInfo(equippedSet.ID, out managedSetInfo, out rarity) && managedSetInfo != null)
+                {
+                    setInfo = managedSetInfo;
+                    hasManagedSet = true;
+                }
+
+                int equippedPieceCount = EpicLoot.PlayerExtensions.GetMagicEquippedSetPieces(player, setInfo.ID).Count;
+                AddActiveSetEffects(setInfo, equippedPieceCount, effectType, rebuiltEffects);
+            }
+
+            if (!hasManagedSet)
+            {
+                return false;
+            }
+
+            effects = rebuiltEffects;
+            return true;
+        }
+
+        private static void AddActiveSetEffects(LegendarySetInfo setInfo, int equippedPieceCount, string effectType, List<MagicItemEffect> effects)
+        {
+            if (setInfo == null || setInfo.SetBonuses == null || effects == null)
+            {
+                return;
+            }
+
+            foreach (SetBonusInfo bonus in setInfo.SetBonuses)
+            {
+                if (bonus == null || bonus.Effect == null || equippedPieceCount < bonus.Count)
+                {
+                    continue;
+                }
+
+                string bonusEffectType = bonus.Effect.Type;
+                if (string.IsNullOrEmpty(bonusEffectType) ||
+                    (!string.IsNullOrEmpty(effectType) && !string.Equals(bonusEffectType, effectType, StringComparison.Ordinal)))
+                {
+                    continue;
+                }
+
+                float value = bonus.Effect.Values != null ? bonus.Effect.Values.MinValue : MagicItemEffect.DefaultValue;
+                effects.Add(new MagicItemEffect(bonusEffectType, value));
+            }
         }
 
         internal static bool TryRollSetItem(ItemRarity rarity, ItemDrop.ItemData baseItem, MagicItem originalMagicItem, float powerLevelMod, out MagicItem rolledMagicItem)
@@ -2648,6 +2879,7 @@ namespace Fran.EpicLootRaritySets
             "Rapid Fire",
             "Shadow Mark",
             "Warp Strike",
+            "Warp Strike Slow",
             "Warp Guard",
             "Knife Strike",
             "Knife Strike Slow",
@@ -2778,6 +3010,7 @@ namespace Fran.EpicLootRaritySets
                 case "warp": return Select("Warp", "Warp");
                 case "nott sneaky": return Select("Sigilo Nott", "Nott Sneaky");
                 case "warp strike": return Select("Golpe de Warp", "Warp Strike");
+                case "warp strike slow": return Select("Ralentizacion de Warp", "Warp Strike Slow");
                 case "warp guard": return Select("Guardia de Warp", "Warp Guard");
                 case "knife strike": return Select("Golpe de cuchillo", "Knife Strike");
                 case "knife strike slow": return Select("Ralentizacion de cuchillo", "Knife Strike Slow");
@@ -2912,6 +3145,210 @@ namespace Fran.EpicLootRaritySets
         }
     }
 
+    internal static class RaritySetLocalization
+    {
+        private static readonly RaritySetName[] SetNames =
+        {
+            new RaritySetName("MagicHeimdall", "Gate-Spark Ward", "Amparo de chispa del portal"),
+            new RaritySetName("RareHeimdall", "Stonewatch Oath", "Juramento del vigia de piedra"),
+            new RaritySetName("EpicHeimdall", "Sunwall Aegis", "Egida del muro solar"),
+            new RaritySetName("Heimdall", "Heimdall's Watch", "Vigilia de Heimdall"),
+            new RaritySetName("MythicHeimdall", "Gjallarhorn Guard", "Guardia de Gjallarhorn"),
+            new RaritySetName("AncientHeimdall", "Bifrost Bastion", "Bastion de Bifrost"),
+
+            new RaritySetName("MagicRagnar", "Ember-Axe Reavers", "Saqueadores del hacha ascua"),
+            new RaritySetName("RareRagnar", "Storm-Bitten Raiders", "Asaltantes mordidos por la tormenta"),
+            new RaritySetName("EpicRagnar", "Frostfang Fury", "Furia colmillo de escarcha"),
+            new RaritySetName("Ragnar", "Ragnar's Fury", "Furia de Ragnar"),
+            new RaritySetName("MythicRagnar", "Ragnarok Bloodwake", "Estela sangrienta del Ragnarok"),
+            new RaritySetName("AncientRagnar", "World-End Berserkers", "Berserkers del fin del mundo"),
+
+            new RaritySetName("MagicHraesvelgr", "Pinewind Fletchers", "Flecheros de pino y viento"),
+            new RaritySetName("RareHraesvelgr", "Skyline Hunters", "Cazadores del horizonte"),
+            new RaritySetName("EpicHraesvelgr", "Gale-Eye Stalkers", "Acechadores ojo de vendaval"),
+            new RaritySetName("Hraesvelgr", "Hraesvelgr's Hunt", "Caceria de Hraesvelgr"),
+            new RaritySetName("MythicHraesvelgr", "Stormfeather Pursuit", "Persecucion pluma de tormenta"),
+            new RaritySetName("AncientHraesvelgr", "Eagle-Wind Sovereigns", "Soberanos viento de aguila"),
+
+            new RaritySetName("MagicHellsyng", "Powder-Spark Watch", "Guardia de chispa de polvora"),
+            new RaritySetName("RareHellsyng", "Iron Bolt Vigil", "Vigilia del virote de hierro"),
+            new RaritySetName("EpicHellsyng", "Hellsyng", "Hellsyng"),
+            new RaritySetName("Hellsyng", "Blackpowder Judgment", "Juicio de polvora negra"),
+            new RaritySetName("MythicHellsyng", "Witchfinder Verdict", "Veredicto del cazabrujas"),
+            new RaritySetName("AncientHellsyng", "Last-Rite Arbalests", "Arbalestas del ultimo rito"),
+
+            new RaritySetName("MagicNott", "Duskstep Veil", "Velo del paso crepuscular"),
+            new RaritySetName("RareNott", "Blackglass Silence", "Silencio de cristal negro"),
+            new RaritySetName("EpicNott", "Umbral Knives", "Cuchillos umbrales"),
+            new RaritySetName("Nott", "Nott's Silence", "Silencio de Nott"),
+            new RaritySetName("MythicNott", "Night-Court Execution", "Ejecucion de la corte nocturna"),
+            new RaritySetName("AncientNott", "Starless Covenant", "Pacto sin estrellas"),
+
+            new RaritySetName("MagicSeidr", "Rune-Spark Weave", "Tejido de chispa runica"),
+            new RaritySetName("RareSeidr", "Mist-Eitr Regalia", "Regalia de niebla y eitr"),
+            new RaritySetName("EpicSeidr", "Starfall Vestments", "Vestiduras de lluvia estelar"),
+            new RaritySetName("Seidr", "Seidr Starfall", "Lluvia estelar Seidr"),
+            new RaritySetName("MythicSeidr", "World-Root Arcanum", "Arcanum de la raiz del mundo"),
+            new RaritySetName("AncientSeidr", "Ninefold Seidr", "Seidr noveno"),
+
+            new RaritySetName("MagicHelveig", "Bone-Spark Pact", "Pacto de chispa osea"),
+            new RaritySetName("RareHelveig", "Marrowcaller Rite", "Rito del invocamedula"),
+            new RaritySetName("EpicHelveig", "Draugr Choir", "Coro draugr"),
+            new RaritySetName("Helveig", "Helveig Covenant", "Pacto de Helveig"),
+            new RaritySetName("MythicHelveig", "Blood-Moon Conclave", "Conclave de luna sangrienta"),
+            new RaritySetName("AncientHelveig", "Helheim Dominion", "Dominio de Helheim"),
+
+            new RaritySetName("MagicMoonvein", "Moonlit Nock", "Muesca lunar"),
+            new RaritySetName("RareMoonvein", "Eitrstring Path", "Camino de cuerda de eitr"),
+            new RaritySetName("EpicMoonvein", "Spellbow Meridian", "Meridiano del arcohechizo"),
+            new RaritySetName("Moonvein", "Moonvein Arcana", "Arcana Moonvein"),
+            new RaritySetName("MythicMoonvein", "Lunar Spellshot", "Disparo lunar hechizado"),
+            new RaritySetName("AncientMoonvein", "Celestial Bow-Rite", "Rito del arco celestial"),
+
+            new RaritySetName("MagicFrostbrand", "Frost-Touched Blades", "Filos tocados por la escarcha"),
+            new RaritySetName("RareFrostbrand", "Runeblade Accord", "Acuerdo de la hoja runica"),
+            new RaritySetName("EpicFrostbrand", "Cold Star Blades", "Filos de estrella fria"),
+            new RaritySetName("Frostbrand", "Frostbrand Covenant", "Pacto Frostbrand"),
+            new RaritySetName("MythicFrostbrand", "Glacierbrand Oath", "Juramento marca glacial"),
+            new RaritySetName("AncientFrostbrand", "Fimbulwinter Blades", "Filos del Fimbulwinter")
+        };
+
+        private static readonly Dictionary<string, RaritySetName> SetNamesById = BuildSetNameMap();
+
+        internal static string GetSetDisplayName(string setId, string fallback)
+        {
+            RaritySetName setName;
+            if (!string.IsNullOrEmpty(setId) && SetNamesById.TryGetValue(setId, out setName))
+            {
+                return LocalizedText.IsSpanish() ? setName.Spanish : Localize(setName.English);
+            }
+
+            return LocalizeKnownSetName(fallback);
+        }
+
+        internal static string LocalizeSetPieceDisplayName(string itemId, string fallback)
+        {
+            return LocalizeKnownSetName(fallback);
+        }
+
+        internal static string LocalizeItemDisplayName(ItemDrop.ItemData itemData, string displayName)
+        {
+            string localized = Localize(displayName);
+            if (!LocalizedText.IsSpanish())
+            {
+                return localized;
+            }
+
+            string setId;
+            RaritySetName setName;
+            if (TryGetSetId(itemData, out setId) && SetNamesById.TryGetValue(setId, out setName))
+            {
+                return ReplaceSetNamePrefix(localized, setName.English, setName.Spanish);
+            }
+
+            return LocalizeKnownSetName(localized);
+        }
+
+        private static Dictionary<string, RaritySetName> BuildSetNameMap()
+        {
+            Dictionary<string, RaritySetName> result = new Dictionary<string, RaritySetName>(StringComparer.OrdinalIgnoreCase);
+            foreach (RaritySetName setName in SetNames)
+            {
+                result[setName.Id] = setName;
+            }
+
+            return result;
+        }
+
+        private static bool TryGetSetId(ItemDrop.ItemData itemData, out string setId)
+        {
+            setId = null;
+            MagicItem magicItem;
+            if (itemData == null || !ItemDataExtensions.IsMagic(itemData, out magicItem) || magicItem == null)
+            {
+                return false;
+            }
+
+            LegendarySetInfo setInfo;
+            ItemRarity rarity;
+            if (!string.IsNullOrEmpty(magicItem.SetID) && RaritySetRegistry.TryGetSetInfo(magicItem.SetID, out setInfo, out rarity))
+            {
+                setId = magicItem.SetID;
+                return true;
+            }
+
+            LegendaryInfo info;
+            if (!string.IsNullOrEmpty(magicItem.LegendaryID) && RaritySetRegistry.TryGetInfo(magicItem.LegendaryID, out info))
+            {
+                setId = RaritySetRegistry.GetSetForItem(info);
+                return !string.IsNullOrEmpty(setId);
+            }
+
+            return false;
+        }
+
+        private static string LocalizeKnownSetName(string value)
+        {
+            string localized = Localize(value);
+            if (!LocalizedText.IsSpanish() || string.IsNullOrEmpty(localized))
+            {
+                return localized;
+            }
+
+            foreach (RaritySetName setName in SetNames.OrderByDescending(x => x.English.Length))
+            {
+                string translated = ReplaceSetNamePrefix(localized, setName.English, setName.Spanish);
+                if (!string.Equals(translated, localized, StringComparison.Ordinal))
+                {
+                    return translated;
+                }
+            }
+
+            return localized;
+        }
+
+        private static string ReplaceSetNamePrefix(string value, string english, string spanish)
+        {
+            if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(english) || string.IsNullOrEmpty(spanish))
+            {
+                return value;
+            }
+
+            if (string.Equals(value, english, StringComparison.OrdinalIgnoreCase))
+            {
+                return spanish;
+            }
+
+            if (value.Length > english.Length &&
+                value.StartsWith(english, StringComparison.OrdinalIgnoreCase) &&
+                char.IsWhiteSpace(value[english.Length]))
+            {
+                return spanish + value.Substring(english.Length);
+            }
+
+            return value;
+        }
+
+        private static string Localize(string value)
+        {
+            return Localization.instance != null ? Localization.instance.Localize(value) : value;
+        }
+
+        private sealed class RaritySetName
+        {
+            internal readonly string Id;
+            internal readonly string English;
+            internal readonly string Spanish;
+
+            internal RaritySetName(string id, string english, string spanish)
+            {
+                Id = id;
+                English = english;
+                Spanish = spanish;
+            }
+        }
+    }
+
     internal static class ClassSkillManager
     {
         internal static readonly Skills.SkillType Heimdall = (Skills.SkillType)1101;
@@ -2960,7 +3397,7 @@ namespace Fran.EpicLootRaritySets
             RegisterLocalization();
             if (!_languageHooked)
             {
-                Localization.OnLanguageChange += RegisterLocalization;
+                Localization.OnLanguageChange += OnLanguageChanged;
                 _languageHooked = true;
             }
         }
@@ -2969,9 +3406,16 @@ namespace Fran.EpicLootRaritySets
         {
             if (_languageHooked)
             {
-                Localization.OnLanguageChange -= RegisterLocalization;
+                Localization.OnLanguageChange -= OnLanguageChanged;
                 _languageHooked = false;
             }
+        }
+
+        private static void OnLanguageChanged()
+        {
+            RegisterLocalization();
+            AbilityPanelController.RefreshLocalization();
+            PassiveStackPanelController.RefreshLocalization();
         }
 
         internal static void EnsureRegistered(Skills skills)
@@ -4522,8 +4966,9 @@ namespace Fran.EpicLootRaritySets
             {
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
+                float dashDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrDashBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrDashDamagePerHraesvelgrLevel.Value);
                 return string.Format(
-                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador con CD {25:0}s al invocar o guardar. Coste al invocar: {4:0} vigor. Invoca tu bestia actual con vida, dano y reduccion recibida escalados por Hraesvelgr. Por defecto es un oso. Si guardas una mascota ensillada, recupera la silla al invocarla.\nTame Beast: tecla {24}. Doma una bestia valida a 10m, reemplaza la mascota actual y hace que Invocar bestias use esa criatura.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. No anade dano propio. Al terminar recuperas todo el vigor.",
+                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador con CD {25:0}s al invocar o guardar. Coste al invocar: {4:0} vigor. Invoca tu bestia actual con vida, dano y reduccion recibida escalados por Hraesvelgr. Por defecto es un oso. Si guardas una mascota ensillada, recupera la silla al invocarla.\nTame Beast: tecla {24}. Doma una bestia valida a 10m, reemplaza la mascota actual y hace que Invocar bestias use esa criatura.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. Inflige {26:0.#} dano perforante ({27:0.#}+{28:0.##}/nivel) a enemigos que atraviesas y siempre los staggera. Jugadores solo si tienen JcJ activo.",
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f,
@@ -4549,7 +4994,10 @@ namespace Fran.EpicLootRaritySets
                     hraesvelgr,
                     trapDamage,
                     FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey),
-                    EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value);
+                    EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value,
+                    dashDamage,
+                    EpicLootRaritySetsPlugin.HraesvelgrDashBaseDamage.Value,
+                    EpicLootRaritySetsPlugin.HraesvelgrDashDamagePerHraesvelgrLevel.Value);
             }
 
             if (string.Equals(baseSetName, "Hellsyng", StringComparison.OrdinalIgnoreCase))
@@ -4607,7 +5055,7 @@ namespace Fran.EpicLootRaritySets
                 float poison = ScaleSkillValue(EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value, EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value, knives);
                 float knifeStrike = Mathf.Max(0f, knives * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
                 return string.Format(
-                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad y +{32:0.#}% dano durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\nEjecutor: todo el dano de Nott contra enemigos que ya estan al 30% o menos de vida hace 300% de dano total.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Tras Warp recibes Guardia de Warp: -{30:0.#}% dano recibido durante {31:0.#}s. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.\nGolpe de cuchillo: tecla {22}. Requiere cuchillo. CD {23:0.#}s. Rango {24:0.#}m. Hace {25:0.#}% del dano del arma + {26:0.##}/nivel Nott = {27:0.#} dano de tajo adicional. Ralentiza {28:0.#}% durante {29:0.#}s.",
+                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad y +{32:0.#}% dano durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\nEjecutor: todo el dano de Nott contra enemigos que ya estan al 30% o menos de vida hace 300% de dano total.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Tras Warp recibes Guardia de Warp: -{30:0.#}% dano recibido durante {31:0.#}s. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano, siempre lo staggera y lo ralentiza {33:0.#}% durante {34:0.#}s. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.\nGolpe de cuchillo: tecla {22}. Requiere cuchillo. CD {23:0.#}s. Rango {24:0.#}m. Hace {25:0.#}% del dano del arma + {26:0.##}/nivel Nott = {27:0.#} dano de tajo adicional. Ralentiza {28:0.#}% durante {29:0.#}s.",
                     EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f,
@@ -4640,7 +5088,9 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value,
                     EpicLootRaritySetsPlugin.NottWarpGuardDamageReduction.Value * 100f,
                     EpicLootRaritySetsPlugin.NottWarpGuardDuration.Value,
-                    EpicLootRaritySetsPlugin.NottHitSpeedDamageBonus.Value * 100f);
+                    EpicLootRaritySetsPlugin.NottHitSpeedDamageBonus.Value * 100f,
+                    EpicLootRaritySetsPlugin.NottWarpStrikeSlow.Value * 100f,
+                    EpicLootRaritySetsPlugin.NottWarpStrikeSlowDuration.Value);
             }
 
             if (string.Equals(baseSetName, "Ragnar", StringComparison.OrdinalIgnoreCase))
@@ -4832,11 +5282,12 @@ namespace Fran.EpicLootRaritySets
             {
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
+                float dashDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrDashBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrDashDamagePerHraesvelgrLevel.Value);
                 return "Hraesvelgr full set active.\n\nCurrent class skill: Hraesvelgr " + hraesvelgr.ToString("0.#") + ". These abilities use bow/arrow damage and set multipliers unless a level formula is stated.\n\nPassives:\nSneaky activates while crouching/stealthed. Invisible to monsters, Sneaky visual, noise x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value.ToString("0.##") + ", detection x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nEvery " + EpicLootRaritySetsPlugin.HraesvelgrHeadshotAttackCount.Value + " Hraesvelgr bow shots, that shot counts as a headshot/weak-point hit and deals at least x" + EpicLootRaritySetsPlugin.HraesvelgrHeadshotDamageMultiplier.Value.ToString("0.##") + " shot damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey) + ": Summon Beasts. Toggle CD " + EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value.ToString("0") + "s after summoning or storing. Summon cost: " + EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value.ToString("0") + " stamina. Summons your current beast with health, damage and damage taken reduction scaled from Hraesvelgr. Defaults to a bear. If stored with a saddle, the pet keeps it when summoned again.\n"
                     + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey) + ": Tame Beast. Tames a valid beast within 10m, replaces the current pet and makes Summon Beasts use that creature.\n"
                     + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTrapHotkey) + ": Armed trap. Cost " + EpicLootRaritySetsPlugin.HraesvelgrTrapStaminaUse.Value.ToString("0") + " stamina. If it catches an enemy, deals " + trapDamage.ToString("0.#") + " pierce damage, roots it and grants " + EpicLootRaritySetsPlugin.HraesvelgrTrapBuffDuration.Value.ToString("0.#") + "s for your next arrow to deal +" + (EpicLootRaritySetsPlugin.HraesvelgrTrapNextAttackDamageBonus.Value * 100f).ToString("0.#") + "% shot damage.\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrVolleyHotkey) + ": Channeled Rapid Volley up to " + EpicLootRaritySetsPlugin.HraesvelgrVolleyDuration.Value.ToString("0.#") + "s. CD " + EpicLootRaritySetsPlugin.HraesvelgrVolleyCooldown.Value.ToString("0") + "s. While holding attack and standing still, fires exactly up to 8 arrows at " + EpicLootRaritySetsPlugin.HraesvelgrVolleyShotsPerSecond.Value.ToString("0.#") + " arrows/s. Arrow damage: x" + EpicLootRaritySetsPlugin.HraesvelgrVolleyDamageMultiplier.Value.ToString("0.##") + " normal shot damage, velocity " + EpicLootRaritySetsPlugin.HraesvelgrVolleyProjectileVelocity.Value.ToString("0.#") + ". If weapon/arrow provide no damage, piercing fallback scales with Hraesvelgr: 12+0.25/level. Automatically cancels after 8 arrows.\nSecondary attack: Freyja Dash. Cost " + EpicLootRaritySetsPlugin.HraesvelgrDashEitrUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.HraesvelgrDashCooldown.Value.ToString("0") + "s. Adds no direct damage.\nRestores all stamina when it ends.";
+                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrVolleyHotkey) + ": Channeled Rapid Volley up to " + EpicLootRaritySetsPlugin.HraesvelgrVolleyDuration.Value.ToString("0.#") + "s. CD " + EpicLootRaritySetsPlugin.HraesvelgrVolleyCooldown.Value.ToString("0") + "s. While holding attack and standing still, fires exactly up to 8 arrows at " + EpicLootRaritySetsPlugin.HraesvelgrVolleyShotsPerSecond.Value.ToString("0.#") + " arrows/s. Arrow damage: x" + EpicLootRaritySetsPlugin.HraesvelgrVolleyDamageMultiplier.Value.ToString("0.##") + " normal shot damage, velocity " + EpicLootRaritySetsPlugin.HraesvelgrVolleyProjectileVelocity.Value.ToString("0.#") + ". If weapon/arrow provide no damage, piercing fallback scales with Hraesvelgr: 12+0.25/level. Automatically cancels after 8 arrows.\nSecondary attack: Freyja Dash. Cost " + EpicLootRaritySetsPlugin.HraesvelgrDashEitrUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.HraesvelgrDashCooldown.Value.ToString("0") + "s. Deals " + dashDamage.ToString("0.#") + " pierce damage (" + EpicLootRaritySetsPlugin.HraesvelgrDashBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HraesvelgrDashDamagePerHraesvelgrLevel.Value.ToString("0.##") + "/level) to crossed enemies and always staggers them. Players are affected only when PvP is active.";
             }
 
             if (string.Equals(baseSetName, "Hellsyng", StringComparison.OrdinalIgnoreCase))
@@ -4860,7 +5311,7 @@ namespace Fran.EpicLootRaritySets
                 return "Nott full set active.\n\nCurrent scaling: Nott " + knives.ToString("0.#") + ".\n\nPassives:\nSneaky activates while crouching/stealthed. Uses Ullr's Sneaky visual, noise x" + EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value.ToString("0.##") + ", enemy detection x" + EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nShadow Momentum: hitting enemies grants +" + (EpicLootRaritySetsPlugin.NottHitSpeedBonus.Value * 100f).ToString("0.#") + "% speed and +" + (EpicLootRaritySetsPlugin.NottHitSpeedDamageBonus.Value * 100f).ToString("0.#") + "% damage for " + EpicLootRaritySetsPlugin.NottHitSpeedDuration.Value.ToString("0.#") + "s. Does not stack; refreshes.\nPoison Edge scales with Nott: " + EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value.ToString("0.##") + "/level = " + poison.ToString("0.#") + " poison added to each hit.\nExecutor: all Nott damage against enemies already at 30% health or lower deals 300% total damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.NottWarpHotkey) + ": Warp behind the aimed enemy or the nearest enemy. Cost " + EpicLootRaritySetsPlugin.NottWarpStaminaUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.NottWarpCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.NottWarpRange.Value.ToString("0.#") + "m. After Warp, Warp Guard reduces incoming damage by " + (EpicLootRaritySetsPlugin.NottWarpGuardDamageReduction.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottWarpGuardDuration.Value.ToString("0.#") + "s.\n"
                     + FormatBlockShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey) + ": Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
+                    + FormatShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey) + ": Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage, always staggers and slows " + (EpicLootRaritySetsPlugin.NottWarpStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottWarpStrikeSlowDuration.Value.ToString("0.#") + "s. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
             }
 
             if (string.Equals(baseSetName, "Ragnar", StringComparison.OrdinalIgnoreCase))
@@ -5121,9 +5572,9 @@ namespace Fran.EpicLootRaritySets
 
             AddSetBlock(instance, "Heimdall", LocalizedText.Select("Tanque de escudo", "Shield tank"), LocalizedText.Select("Bloquea para ganar armadura y dano, controla enemigos con Esfera de agua, atrae amenaza con rayos y convierte el dano mitigado en reflejo.", "Blocks to gain armor and damage, controls enemies with Water Sphere, pulls threat with lightning and turns mitigated damage into reflection."));
             AddSetBlock(instance, "Ragnar", LocalizedText.Select("Berserker Ragnar", "Ragnar berserker"), LocalizedText.Select("Gana furia por golpes melee, Oleada de sangre, Frenesi de sangre y Crush de Ragnar junto a un aura de decadencia.", "Gains fury from melee hits, Blood Surge, Blood Frenzy and Ragnar Crush alongside a decay aura."));
-            AddSetBlock(instance, "Hraesvelgr", LocalizedText.Select("Arquero fisico", "Physical archer"), LocalizedText.Select("Usa sigilo, invocaciones, trampas, dash y rafagas de arco para jugar a distancia.", "Uses stealth, summons, traps, dash and bow volleys to fight at range."));
+            AddSetBlock(instance, "Hraesvelgr", LocalizedText.Select("Arquero fisico", "Physical archer"), LocalizedText.Select("Usa sigilo, invocaciones, trampas, dash con dano/stagger y rafagas de arco para jugar a distancia.", "Uses stealth, summons, traps, damaging/staggering dash and bow volleys to fight at range."));
             AddSetBlock(instance, "Hellsyng", LocalizedText.Select("Cazador Hellsyng", "Hellsyng hunter"), LocalizedText.Select("Usa mascotas, cambios de forma, marcas T.N.T., balas de plata y fuego rapido de ballesta con escalado de clase.", "Uses pets, shapeshifting, T.N.T. marks, silver bullets and rapid crossbow fire with class scaling."));
-            AddSetBlock(instance, "Nott", LocalizedText.Select("Duelista Nott de sigilo", "Nott stealth duelist"), LocalizedText.Select("Entra y sale de combate con Warp, veneno, velocidad por golpe e invisibilidad en sigilo.", "Moves in and out of combat with Warp, poison, hit speed and stealth invisibility."));
+            AddSetBlock(instance, "Nott", LocalizedText.Select("Duelista Nott de sigilo", "Nott stealth duelist"), LocalizedText.Select("Entra y sale de combate con Warp, veneno, velocidad por golpe, stagger/ralentizacion e invisibilidad en sigilo.", "Moves in and out of combat with Warp, poison, hit speed, stagger/slow pressure and stealth invisibility."));
             AddSetBlock(instance, "Seidr", LocalizedText.Select("Mago Seidr", "Seidr mage"), LocalizedText.Select("Controla zona con Nanocubo, escudo de eitr, golem y Nova de escarcha.", "Controls space with Nanocube, eitr shield, golem and Frost Nova."));
             AddSetBlock(instance, "Helveig", LocalizedText.Select("Mago Helveig", "Helveig mage"), LocalizedText.Select("Mantiene un Charred Dyrnwyn como guardaespaldas, cura aliados, canaliza Rito de sangre, golpea con Golpe sagrado e invoca Ent, Abomination, ElakingMole o Fallen Valkyrie temporal.", "Keeps a Charred Dyrnwyn bodyguard, heals allies, channels Blood Rite, strikes with Holy Strike and temporarily summons Ent, Abomination, ElakingMole or Fallen Valkyrie."));
             AddSetBlock(instance, "Moonvein", LocalizedText.Select("Arquero magico", "Magic archer"), LocalizedText.Select("El Moonbow consume eitr, prepara hechizos con 2 cargas y puede invocar Meteoro o Disparo tornado.", "The Moonbow consumes eitr, charges spells every third shot and can call Meteor or Tornado Shot."));
@@ -5880,6 +6331,23 @@ namespace Fran.EpicLootRaritySets
             _cachedActiveClass = null;
         }
 
+        internal static void RefreshLocalization()
+        {
+            _layoutSignature = null;
+            _lastHeaderText = null;
+            _cachedActiveClass = null;
+            _activeClassRefreshTimer = 0f;
+            _cellRefreshTimer = 0f;
+            _cellRefreshElapsed = 0f;
+            foreach (AbilityPanelCell cell in Cells)
+            {
+                if (cell != null)
+                {
+                    cell.KeyRefreshTimer = 0f;
+                }
+            }
+        }
+
         private static void EnsurePanel()
         {
             if (_rootObject != null)
@@ -5964,7 +6432,7 @@ namespace Fran.EpicLootRaritySets
             if (showPets)
             {
                 float petsTopOffset = HeaderHeight + abilityRows * CellHeight;
-                Text petsLabel = CreateText("PetsSection", _root, "Pets", 12, TextAnchor.MiddleLeft, new Color(0.96f, 0.76f, 0.38f, 1f));
+                Text petsLabel = CreateText("PetsSection", _root, LocalizedText.Select("Mascotas", "Pets"), 12, TextAnchor.MiddleLeft, new Color(0.96f, 0.76f, 0.38f, 1f));
                 petsLabel.fontStyle = FontStyle.Bold;
                 RectTransform petsRect = petsLabel.GetComponent<RectTransform>();
                 petsRect.anchorMin = new Vector2(0f, 1f);
@@ -6906,6 +7374,12 @@ namespace Fran.EpicLootRaritySets
             _signature = null;
             _dragging = false;
             _wasInventoryVisible = false;
+            _refreshTimer = 0f;
+        }
+
+        internal static void RefreshLocalization()
+        {
+            _signature = null;
             _refreshTimer = 0f;
         }
 
@@ -8369,6 +8843,62 @@ namespace Fran.EpicLootRaritySets
 
     }
 
+    internal static class CharacterControlEffects
+    {
+        private static readonly MethodInfo CharacterStaggerMethod = AccessTools.GetDeclaredMethods(typeof(Character))
+            .FirstOrDefault(method =>
+            {
+                if (method == null || !string.Equals(method.Name, "Stagger", StringComparison.Ordinal))
+                {
+                    return false;
+                }
+
+                ParameterInfo[] parameters = method.GetParameters();
+                return parameters.Length > 0 && parameters[0].ParameterType == typeof(Vector3);
+            });
+
+        internal static void TryStagger(Character target, Vector3 direction)
+        {
+            if (target == null || target.IsDead() || CharacterStaggerMethod == null)
+            {
+                return;
+            }
+
+            if (direction.sqrMagnitude <= 0.001f)
+            {
+                direction = target.transform.forward;
+            }
+
+            ParameterInfo[] parameters = CharacterStaggerMethod.GetParameters();
+            object[] args = new object[parameters.Length];
+            args[0] = direction.normalized;
+            for (int i = 1; i < args.Length; i++)
+            {
+                Type parameterType = parameters[i].ParameterType;
+                if (parameterType == typeof(float))
+                {
+                    args[i] = 1f;
+                }
+                else if (parameterType == typeof(bool))
+                {
+                    args[i] = true;
+                }
+                else
+                {
+                    args[i] = parameterType.IsValueType ? Activator.CreateInstance(parameterType) : null;
+                }
+            }
+
+            try
+            {
+                CharacterStaggerMethod.Invoke(target, args);
+            }
+            catch
+            {
+            }
+        }
+    }
+
     internal static class ZNetSceneSafety
     {
         private static readonly FieldInfo ZNetSceneInstancesField = AccessTools.Field(typeof(ZNetScene), "m_instances");
@@ -8973,7 +9503,7 @@ namespace Fran.EpicLootRaritySets
         private static object _dashTheme;
         private static object _slotOneAbilityType;
 
-        internal static bool TryDash(Player player, out string reason)
+        internal static bool TryDash(Player player, out string reason, bool damageEnemiesOnTheWay = true)
         {
             reason = null;
             if (player == null)
@@ -9000,7 +9530,11 @@ namespace Fran.EpicLootRaritySets
 
                 _teleportPositionField.SetValue(ability, target);
                 _teleportingToLookDirectionField.SetValue(ability, teleportingToLookDirection);
-                _damageEnemiesOnTheWayMethod.Invoke(ability, null);
+                if (damageEnemiesOnTheWay)
+                {
+                    _damageEnemiesOnTheWayMethod.Invoke(ability, null);
+                }
+
                 _dashMethod.Invoke(ability, null);
                 return true;
             }
@@ -15818,6 +16352,9 @@ namespace Fran.EpicLootRaritySets
         private const float SummonDeathCooldownSeconds = 60f;
         private const float TameBeastRange = 10f;
         private const int RapidVolleyShotCap = 8;
+        private const float DashHitRadius = 1.75f;
+        private const float DashFallbackDistance = 8f;
+        private const float DashStaggerMultiplier = 8f;
 
         private static readonly string[] TameableBeastTokens =
         {
@@ -16627,17 +17164,110 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
+            Vector3 dashStart = player.transform.position;
             string failureReason;
-            if (!NorseDashBridge.TryDash(player, out failureReason))
+            if (!NorseDashBridge.TryDash(player, out failureReason, false))
             {
                 ShowMessage(player, failureReason);
                 return;
             }
 
+            Vector3 dashEnd = player.transform.position;
+            ApplyDashTrailDamage(player, dashStart, dashEnd);
             TrySpendStamina(player, staminaUse);
             _dashCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrDashCooldown.Value);
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
             AbilityCooldownBuffController.Start(player, "HraesvelgrDash", "Dash", _dashCooldown, FindHraesvelgrIcon(player));
+        }
+
+        private static void ApplyDashTrailDamage(Player owner, Vector3 start, Vector3 end)
+        {
+            if (owner == null)
+            {
+                return;
+            }
+
+            float skillLevel = ClassSkillManager.GetSkillLevel(owner, RequiredSet);
+            float damage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrDashBaseDamage.Value + skillLevel * EpicLootRaritySetsPlugin.HraesvelgrDashDamagePerHraesvelgrLevel.Value);
+            if (damage <= 0.01f)
+            {
+                return;
+            }
+
+            Vector3 travel = end - start;
+            if (travel.sqrMagnitude <= 0.25f)
+            {
+                travel = owner.transform.forward * DashFallbackDistance;
+                end = start + travel;
+            }
+
+            float radius = Mathf.Max(DashHitRadius, owner.GetRadius() + 1.1f);
+            float radiusSqr = radius * radius;
+            foreach (Character target in Character.GetAllCharacters())
+            {
+                if (target == null || target == owner || target.IsDead() || target.IsTamed() || IsSummonedBeast(target) || !IsEnemyTarget(owner, target))
+                {
+                    continue;
+                }
+
+                Vector3 targetPoint = target.GetCenterPoint();
+                if (DistancePointToSegmentSquared(targetPoint, start, end) > radiusSqr)
+                {
+                    continue;
+                }
+
+                DamageDashTarget(owner, target, damage, skillLevel, targetPoint, travel.normalized);
+            }
+        }
+
+        private static void DamageDashTarget(Player owner, Character target, float damage, float skillLevel, Vector3 point, Vector3 travelDirection)
+        {
+            if (owner == null || target == null)
+            {
+                return;
+            }
+
+            HitData.DamageTypes damages = new HitData.DamageTypes { m_pierce = damage };
+            ApplyEpicLootDamageModifiers(owner, owner.GetCurrentWeapon(), ref damages);
+
+            Vector3 direction = point - owner.GetCenterPoint();
+            if (direction.sqrMagnitude <= 0.001f)
+            {
+                direction = travelDirection.sqrMagnitude > 0.001f ? travelDirection : owner.transform.forward;
+            }
+
+            HitData hit = new HitData
+            {
+                m_damage = damages,
+                m_skill = ClassSkillManager.Hraesvelgr,
+                m_skillLevel = skillLevel,
+                m_ranged = false,
+                m_dodgeable = false,
+                m_blockable = true,
+                m_backstabBonus = 1f,
+                m_staggerMultiplier = DashStaggerMultiplier,
+                m_pushForce = 18f,
+                m_point = point,
+                m_dir = direction.normalized
+            };
+
+            hit.SetAttacker(owner);
+            target.Damage(hit);
+            CharacterControlEffects.TryStagger(target, hit.m_dir);
+        }
+
+        private static float DistancePointToSegmentSquared(Vector3 point, Vector3 segmentStart, Vector3 segmentEnd)
+        {
+            Vector3 segment = segmentEnd - segmentStart;
+            float lengthSqr = segment.sqrMagnitude;
+            if (lengthSqr <= 0.0001f)
+            {
+                return (point - segmentStart).sqrMagnitude;
+            }
+
+            float t = Mathf.Clamp01(Vector3.Dot(point - segmentStart, segment) / lengthSqr);
+            Vector3 closest = segmentStart + segment * t;
+            return (point - closest).sqrMagnitude;
         }
 
         private static void TryPlaceTrap(Player player)
@@ -21757,6 +22387,8 @@ namespace Fran.EpicLootRaritySets
         private const string SneakyBuffCategory = "FranNottSneaky";
         private const string WarpStrikeBuffName = "FranNottWarpStrike";
         private const string WarpStrikeBuffCategory = "FranNottWarpStrike";
+        private const string WarpStrikeSlowBuffName = "FranNottWarpStrikeSlow";
+        private const string WarpStrikeSlowBuffCategory = "FranNottWarpStrikeSlow";
         private const string WarpGuardBuffName = "FranNottWarpGuard";
         private const string WarpGuardBuffCategory = "FranNottWarpGuard";
         private const string HitSpeedBuffName = "FranNottShadowMomentum";
@@ -21818,6 +22450,7 @@ namespace Fran.EpicLootRaritySets
 
         private static StatusEffect _sneakyBuff;
         private static StatusEffect _warpStrikeBuff;
+        private static StatusEffect _warpStrikeSlowBuff;
         private static StatusEffect _warpGuardBuff;
         private static StatusEffect _hitSpeedBuff;
         private static StatusEffect _poisonPassiveBuff;
@@ -22039,6 +22672,9 @@ namespace Fran.EpicLootRaritySets
 
             float multiplier = Mathf.Max(1f, EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value);
             MultiplyDamage(ref hit.m_damage, multiplier);
+            hit.m_staggerMultiplier = Mathf.Max(hit.m_staggerMultiplier, 8f);
+            CharacterControlEffects.TryStagger(target, GetDirection(player, target));
+            ApplyWarpStrikeSlow(target);
             _warpStrikeArmed = false;
             RemoveWarpStrikeBuff(player);
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
@@ -22532,6 +23168,43 @@ namespace Fran.EpicLootRaritySets
             seMan.AddStatusEffect(buff, true, 1, 0f, 0);
         }
 
+        private static void ApplyWarpStrikeSlow(Character target)
+        {
+            StatusEffect buff = GetOrCreateWarpStrikeSlowBuff(AbilityPanelIconCatalog.GetIcon("Buffs", "nott_warp_strike.png"));
+            if (target == null || buff == null)
+            {
+                return;
+            }
+
+            SEMan seMan = target.GetSEMan();
+            seMan.RemoveStatusEffect(buff.NameHash(), true);
+            seMan.AddStatusEffect(buff, true, 1, 0f, 0);
+        }
+
+        private static StatusEffect GetOrCreateWarpStrikeSlowBuff(Sprite icon)
+        {
+            if (_warpStrikeSlowBuff == null)
+            {
+                _warpStrikeSlowBuff = ScriptableObject.CreateInstance<SE_Stats>();
+                _warpStrikeSlowBuff.name = WarpStrikeSlowBuffName;
+                _warpStrikeSlowBuff.m_name = LocalizedText.AbilityName("Warp Strike Slow");
+                _warpStrikeSlowBuff.m_category = WarpStrikeSlowBuffCategory;
+                _warpStrikeSlowBuff.m_flashIcon = false;
+                _warpStrikeSlowBuff.m_cooldownIcon = true;
+                _warpStrikeSlowBuff.m_hidden = false;
+            }
+
+            float slow = Mathf.Clamp01(EpicLootRaritySetsPlugin.NottWarpStrikeSlow.Value);
+            float duration = Mathf.Max(0.1f, EpicLootRaritySetsPlugin.NottWarpStrikeSlowDuration.Value);
+            _warpStrikeSlowBuff.m_ttl = duration;
+            _warpStrikeSlowBuff.m_tooltip = LocalizedText.Select(
+                string.Format("Ralentizado por Golpe de Warp de Nott.\n\nVelocidad: -{0:0.#}%.\nDuracion: {1:0.#}s.", slow * 100f, duration),
+                string.Format("Slowed by Nott Warp Strike.\n\nSpeed: -{0:0.#}%.\nDuration: {1:0.#}s.", slow * 100f, duration));
+            SetFloatField(_warpStrikeSlowBuff, SpeedModifierField, -slow);
+            StatusEffectIconHelper.Apply(_warpStrikeSlowBuff, RequiredSet, icon);
+            return _warpStrikeSlowBuff;
+        }
+
         private static StatusEffect GetOrCreateKnifeStrikeSlowBuff(Sprite icon)
         {
             if (_knifeStrikeSlowBuff == null)
@@ -22551,6 +23224,20 @@ namespace Fran.EpicLootRaritySets
             SetFloatField(_knifeStrikeSlowBuff, SpeedModifierField, -slow);
             StatusEffectIconHelper.Apply(_knifeStrikeSlowBuff, RequiredSet, icon);
             return _knifeStrikeSlowBuff;
+        }
+
+        private static Vector3 GetDirection(Character source, Character target)
+        {
+            if (source != null && target != null)
+            {
+                Vector3 direction = target.GetCenterPoint() - source.GetCenterPoint();
+                if (direction.sqrMagnitude > 0.001f)
+                {
+                    return direction.normalized;
+                }
+            }
+
+            return source != null ? source.transform.forward : Vector3.forward;
         }
 
         private static void TriggerKnifeStrikeAnimation(Player player)
@@ -22826,9 +23513,17 @@ namespace Fran.EpicLootRaritySets
             }
 
             _warpStrikeBuff.m_ttl = 0f;
-            _warpStrikeBuff.m_tooltip = string.Format(
-                "El siguiente ataque contra un enemigo tras Warp pega x{0:0.##} dano.\n\nNo expira por tiempo; desaparece al golpear. Si un enemigo cercano muere mientras Warp esta en CD, el CD se reinicia y recuperas el vigor usado.",
-                EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value);
+            _warpStrikeBuff.m_tooltip = LocalizedText.Select(
+                string.Format(
+                    "El siguiente ataque contra un enemigo tras Warp pega x{0:0.##} dano, lo staggera y lo ralentiza un {1:0.#}% durante {2:0.#}s.\n\nNo expira por tiempo; desaparece al golpear. Si un enemigo cercano muere mientras Warp esta en CD, el CD se reinicia y recuperas el vigor usado.",
+                    EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value,
+                    Mathf.Clamp01(EpicLootRaritySetsPlugin.NottWarpStrikeSlow.Value) * 100f,
+                    Mathf.Max(0.1f, EpicLootRaritySetsPlugin.NottWarpStrikeSlowDuration.Value)),
+                string.Format(
+                    "Your next attack against an enemy after Warp deals x{0:0.##} damage, staggers it and slows it by {1:0.#}% for {2:0.#}s.\n\nIt does not expire by time; it disappears on hit. If a nearby enemy dies while Warp is on cooldown, the cooldown resets and the spent stamina is restored.",
+                    EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value,
+                    Mathf.Clamp01(EpicLootRaritySetsPlugin.NottWarpStrikeSlow.Value) * 100f,
+                    Mathf.Max(0.1f, EpicLootRaritySetsPlugin.NottWarpStrikeSlowDuration.Value)));
             StatusEffectIconHelper.Apply(_warpStrikeBuff, RequiredSet, icon);
 
             return _warpStrikeBuff;
@@ -35725,6 +36420,144 @@ namespace Fran.EpicLootRaritySets
             {
                 __result = values;
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(ItemDataExtensions), "GetDisplayName")]
+    internal static class RaritySetItemDisplayNameLocalizationPatch
+    {
+        private static void Postfix(ItemDrop.ItemData itemData, ref string __result)
+        {
+            __result = RaritySetLocalization.LocalizeItemDisplayName(itemData, __result);
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerExtensions), "GetAllActiveSetMagicEffects")]
+    internal static class GetAllActiveSetMagicEffectsPatch
+    {
+        private static bool Prefix(Player player, string effectType, ref List<MagicItemEffect> __result)
+        {
+            List<MagicItemEffect> effects;
+            if (RaritySetRegistry.TryBuildActiveSetMagicEffects(player, effectType, out effects))
+            {
+                __result = effects;
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch]
+    internal static class RaritySetTooltipValuesPatch
+    {
+        private static MethodBase TargetMethod()
+        {
+            return AccessTools.Method(typeof(ItemDataExtensions), "GetSetTooltip", new[] { typeof(ItemDrop.ItemData), typeof(string), typeof(int), typeof(bool) });
+        }
+
+        private static bool Prefix(ItemDrop.ItemData item, string setID, int setSize, bool isMundane, ref string __result)
+        {
+            if (isMundane || item == null || string.IsNullOrEmpty(setID))
+            {
+                return true;
+            }
+
+            LegendarySetInfo setInfo;
+            ItemRarity rarity;
+            if (!RaritySetRegistry.TryGetSetInfo(setID, out setInfo, out rarity) || setInfo == null)
+            {
+                return true;
+            }
+
+            try
+            {
+                __result = BuildTooltip(item, setID, setSize, setInfo);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                EpicLootRaritySetsPlugin.Log.LogWarning("Could not build rarity set tooltip for " + setID + ": " + ex.GetBaseException().Message);
+                return true;
+            }
+        }
+
+        private static string BuildTooltip(ItemDrop.ItemData item, string setID, int setSize, LegendarySetInfo setInfo)
+        {
+            StringBuilder sb = new StringBuilder();
+            List<string> setPieces = ItemDataExtensions.GetSetPieces(setID, false) ?? new List<string>();
+            List<ItemDrop.ItemData> equippedPieces = Player.m_localPlayer != null
+                ? EpicLoot.PlayerExtensions.GetEquippedSetPieces(Player.m_localPlayer, setID)
+                : new List<ItemDrop.ItemData>();
+            if (equippedPieces == null)
+            {
+                equippedPieces = new List<ItemDrop.ItemData>();
+            }
+
+            string setDisplayName = RaritySetLocalization.GetSetDisplayName(setID, ItemDataExtensions.GetSetDisplayName(item, false));
+            int displaySetSize = setSize > 0 ? setSize : setPieces.Count;
+
+            sb.Append("\n\n<color=");
+            sb.Append(EpicLoot.EpicLoot.GetSetItemColor());
+            sb.Append("> $mod_epicloot_set: ");
+            sb.AppendFormat("{0} ({1}/{2}):</color>", setDisplayName, equippedPieces.Count, displaySetSize);
+
+            foreach (string piece in setPieces)
+            {
+                string color = ItemDataExtensions.IsSetItemEquipped(equippedPieces, piece, false) ? "white" : "#808080ff";
+                sb.Append("\n  <color=");
+                sb.Append(color);
+                sb.Append(">");
+                sb.Append(GetSetItemDisplayName(piece));
+                sb.Append("</color>");
+            }
+
+            if (setInfo.SetBonuses != null)
+            {
+                foreach (SetBonusInfo bonus in setInfo.SetBonuses.OrderBy(x => x != null ? x.Count : int.MaxValue))
+                {
+                    AppendSetBonus(sb, bonus, equippedPieces.Count);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        private static void AppendSetBonus(StringBuilder sb, SetBonusInfo bonus, int equippedPieceCount)
+        {
+            if (sb == null || bonus == null || bonus.Effect == null || string.IsNullOrEmpty(bonus.Effect.Type))
+            {
+                return;
+            }
+
+            MagicItemEffectDefinition effectDef = MagicItemEffectDefinitions.Get(bonus.Effect.Type);
+            if (effectDef == null)
+            {
+                return;
+            }
+
+            float value = bonus.Effect.Values != null ? bonus.Effect.Values.MinValue : 0f;
+            string text = MagicItem.GetEffectText(effectDef, value);
+            string color = equippedPieceCount >= bonus.Count ? EpicLoot.EpicLoot.GetSetItemColor() : "#808080ff";
+
+            sb.Append("\n<color=");
+            sb.Append(color);
+            sb.Append(">(");
+            sb.Append(bonus.Count);
+            sb.Append(") \u2023 ");
+            sb.Append(text);
+            sb.Append("</color>");
+        }
+
+        private static string GetSetItemDisplayName(string setItemName)
+        {
+            LegendaryInfo info;
+            if (UniqueLegendaryHelper.TryGetLegendaryInfo(setItemName, out info) && info != null && !string.IsNullOrEmpty(info.Name))
+            {
+                return RaritySetLocalization.LocalizeSetPieceDisplayName(setItemName, info.Name);
+            }
+
+            return RaritySetLocalization.LocalizeSetPieceDisplayName(setItemName, setItemName);
         }
     }
 

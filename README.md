@@ -214,7 +214,7 @@ Full-set abilities:
 - `Block + Mouse4` - `Tame Beast`: tames a valid beast within `10m`, removes the current pet and makes `Summon Beasts` use that creature with Hraesvelgr scaling. Valid creatures: wolf, bjorn, asksvin, lox, moose, volture, rdb_bee, rdb_crocodile, rdb_fox, seeker, seekerbrute, hatchling, bat, ulv, rdb_lion, deathsquito and rdb_smadrek.
 - `Block + Mouse3` - armed trap: cost `20` stamina; maximum `5` charges, recovers `1` every `60s`; when it catches an enemy it deals pierce damage `35 + 0.55` per Hraesvelgr level, roots the target and grants `30s` for the next arrow to deal `+50%` damage.
 - `Mouse4` - `Rapid Volley`: channels up to `3s`, cooldown `18s`; while holding attack and standing still, fires up to exactly `8` arrows at `8` arrows/s; each arrow deals `x0.5` normal damage, speed `90`. If weapon/ammo provides no damage, it uses fallback pierce `12 + 0.25` per Hraesvelgr level. Reaching 8 arrows cancels the channel and restores all stamina.
-- Secondary attack - `Freyja Dash`: cost `20` stamina, cooldown `10s`, no built-in damage.
+- Secondary attack - `Freyja Dash`: cost `20` stamina, cooldown `10s`; enemies crossed by the dash take pierce damage `55 + 1.1` per Hraesvelgr level and are staggered. Players are affected only when PvP is active.
 
 ### Hellsyng - Crossbow Hunter
 
@@ -253,7 +253,7 @@ Full-set abilities:
 - `Mouse3` - `Warp`: cost `25` stamina, cooldown `18s`, range `18m`; teleports behind the aimed enemy, to the nearest enemy if none is aimed, or forward if no valid target exists. After Warp, `Warp Guard` reduces incoming damage by `90%` for `3s`.
 - `Block + Mouse4` - `Shadow Mark`: marks the selected enemy within `5m` for `6s` with a shadow visual above the target; stores `50%` of the damage it receives while active and then explodes as spirit damage on the target. Cooldown `60s`; if an enemy dies within `20m` while it is on cooldown, the cooldown is reduced by `10s`.
 - `Mouse4` - `Knife Strike`: requires a knife, cooldown `8s`, range `5m`; hits the aimed enemy or nearest frontal enemy with `50%` weapon damage plus `0.75` slash damage per Nott level, uses a Norse slash visual and slows by `50%` for `5s`.
-- After `Warp`, `Warp Strike` makes the next attack against an enemy deal `x2.5` damage.
+- After `Warp`, `Warp Strike` makes the next attack against an enemy deal `x2.5` damage, always stagger and slow by `50%` for `6s`.
 - If an enemy dies within `18m` while Warp is on cooldown, the cooldown resets and you regain stamina.
 
 ### Seidr - Elemental Mage
