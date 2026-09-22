@@ -132,6 +132,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> FrostbrandLightningChannelDamagePerElementalMagicLevel;
         internal static ConfigEntry<KeyboardShortcut> HraesvelgrVolleyHotkey;
         internal static ConfigEntry<KeyboardShortcut> HraesvelgrSummonHotkey;
+        internal static ConfigEntry<KeyboardShortcut> HraesvelgrTamePetHotkey;
         internal static ConfigEntry<float> HraesvelgrSneakyNoiseModifier;
         internal static ConfigEntry<float> HraesvelgrSneakyStealthModifier;
         internal static ConfigEntry<float> HraesvelgrSneakySpeedModifier;
@@ -149,6 +150,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> HraesvelgrSummonDuration;
         internal static ConfigEntry<float> HraesvelgrSummonStaminaUse;
         internal static ConfigEntry<float> HraesvelgrSummonGuardRadius;
+        internal static ConfigEntry<string> HraesvelgrTamedPetPrefab;
         internal static ConfigEntry<KeyboardShortcut> HraesvelgrTrapHotkey;
         internal static ConfigEntry<float> HraesvelgrTrapStaminaUse;
         internal static ConfigEntry<int> HraesvelgrTrapMaxCharges;
@@ -291,10 +293,15 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> MoonveinTornadoSlow;
         internal static ConfigEntry<float> MoonveinTornadoSlowDuration;
         internal static ConfigEntry<float> MoonveinSpiritWolfCooldown;
+        internal static ConfigEntry<float> MoonveinSpiritWolfDuration;
         internal static ConfigEntry<float> MoonveinSpiritWolfEitrUse;
         internal static ConfigEntry<float> MoonveinSpiritWolfGuardRadius;
+        internal static ConfigEntry<float> MoonveinSpiritWolfBaseHealth;
         internal static ConfigEntry<float> MoonveinSpiritWolfHealthPerMoonveinLevel;
+        internal static ConfigEntry<float> MoonveinSpiritWolfBaseDamageMultiplier;
         internal static ConfigEntry<float> MoonveinSpiritWolfDamagePerMoonveinLevel;
+        internal static ConfigEntry<float> MoonveinSpiritWolfDamageTakenReductionPerMoonveinLevel;
+        internal static ConfigEntry<float> MoonveinSpiritWolfMaxDamageTakenReduction;
         internal static ConfigEntry<KeyboardShortcut> HelveigHolyHealHotkey;
         internal static ConfigEntry<KeyboardShortcut> HelveigBloodRiteHotkey;
         internal static ConfigEntry<KeyboardShortcut> HelveigHolyStrikeHotkey;
@@ -509,6 +516,7 @@ namespace Fran.EpicLootRaritySets
             EnableHraesvelgrAbilities = Config.Bind("Hraesvelgr Abilities", "Enable Hraesvelgr Abilities", true, "Enable the complete-set abilities for the Hraesvelgr archer set.");
             HraesvelgrVolleyHotkey = Config.Bind("Hraesvelgr Abilities", "Rapid Volley Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Hraesvelgr rapid volley.");
             HraesvelgrSummonHotkey = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Hraesvelgr summon beasts.");
+            HraesvelgrTamePetHotkey = Config.Bind("Hraesvelgr Abilities", "Tame Beast Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Hraesvelgr tame beast. Hold block with this hotkey so Rapid Volley remains on Mouse4.");
             HraesvelgrSneakyNoiseModifier = Config.Bind("Hraesvelgr Abilities", "Sneaky Noise Modifier", 0.5f, new ConfigDescription("Noise multiplier while Hraesvelgr Sneaky is active. 0.5 means 50% noise.", new AcceptableValueRange<float>(0.05f, 1f)));
             HraesvelgrSneakyStealthModifier = Config.Bind("Hraesvelgr Abilities", "Sneaky Stealth Modifier", 0.3f, new ConfigDescription("Stealth multiplier while Hraesvelgr Sneaky is active. Lower values make enemies less likely to see the player.", new AcceptableValueRange<float>(0.05f, 1f)));
             HraesvelgrSneakySpeedModifier = Config.Bind("Hraesvelgr Abilities", "Sneaky Speed Modifier", 0.15f, new ConfigDescription("Movement speed modifier while Hraesvelgr Sneaky is active. 0.15 means +15%.", new AcceptableValueRange<float>(0f, 2f)));
@@ -522,10 +530,11 @@ namespace Fran.EpicLootRaritySets
             HraesvelgrVolleyProjectileVelocity = Config.Bind("Hraesvelgr Abilities", "Rapid Volley Projectile Velocity", 90f, new ConfigDescription("Projectile velocity for automatic Rapid Volley arrows.", new AcceptableValueRange<float>(5f, 250f)));
             HraesvelgrDashCooldown = Config.Bind("Hraesvelgr Abilities", "Dash Cooldown", 10f, new ConfigDescription("Cooldown in seconds for Hraesvelgr Freyja dash on secondary attack.", new AcceptableValueRange<float>(0f, 120f)));
             HraesvelgrDashEitrUse = Config.Bind("Hraesvelgr Abilities", "Dash Stamina Use", 20f, new ConfigDescription("Stamina/vigor consumed by Hraesvelgr Freyja dash.", new AcceptableValueRange<float>(0f, 250f)));
-            HraesvelgrSummonCooldown = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Cooldown", 0f, new ConfigDescription("Legacy cooldown for Hraesvelgr summon beasts. The current ability is a no-cooldown toggle.", new AcceptableValueRange<float>(0f, 600f)));
+            HraesvelgrSummonCooldown = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Cooldown", 30f, new ConfigDescription("Cooldown in seconds for Hraesvelgr summon beasts after summoning or storing the current beast.", new AcceptableValueRange<float>(0f, 600f)));
             HraesvelgrSummonDuration = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Duration", 0f, new ConfigDescription("Legacy lifetime for summoned beasts. The current summons stay until killed, set loss, logout cleanup, or manual store.", new AcceptableValueRange<float>(0f, 600f)));
             HraesvelgrSummonStaminaUse = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Stamina Use", 35f, new ConfigDescription("Stamina consumed by Hraesvelgr summon beasts.", new AcceptableValueRange<float>(0f, 250f)));
             HraesvelgrSummonGuardRadius = Config.Bind("Hraesvelgr Abilities", "Summon Beasts Guard Radius", 30f, new ConfigDescription("Radius in meters around the owner where summoned beasts search hostile targets to defend the owner.", new AcceptableValueRange<float>(5f, 100f)));
+            HraesvelgrTamedPetPrefab = Config.Bind("Hraesvelgr Abilities", "Tamed Beast Prefab", string.Empty, "Internal/current Hraesvelgr tamed beast prefab. Empty uses the default Bjorn/Bear summon.");
             HraesvelgrTrapHotkey = Config.Bind("Hraesvelgr Abilities", "Trap Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Hraesvelgr armed trap. Hold block with this hotkey so Summon Beasts remains on Mouse3.");
             HraesvelgrTrapStaminaUse = Config.Bind("Hraesvelgr Abilities", "Trap Stamina Use", 20f, new ConfigDescription("Stamina/vigor consumed when placing an armed Hraesvelgr trap.", new AcceptableValueRange<float>(0f, 250f)));
             HraesvelgrTrapMaxCharges = Config.Bind("Hraesvelgr Abilities", "Trap Max Charges", 5, new ConfigDescription("Maximum armed trap charges Hraesvelgr can store.", new AcceptableValueRange<int>(1, 20)));
@@ -547,7 +556,7 @@ namespace Fran.EpicLootRaritySets
             UpgradeFloatConfig(HraesvelgrVolleyProjectileSpeedMultiplier, 4f, 6f);
             UpgradeFloatConfig(HraesvelgrVolleyStaminaUseMultiplier, 0.25f, 0.05f);
             UpgradeFloatConfig(HraesvelgrVolleyDamageMultiplier, 0.65f, 0.5f);
-            UpgradeFloatConfig(HraesvelgrSummonCooldown, 60f, 0f);
+            UpgradeFloatConfig(HraesvelgrSummonCooldown, 0f, 30f);
             UpgradeFloatConfig(HraesvelgrSummonDuration, 60f, 0f);
             UpgradeShortcutConfig(HraesvelgrTrapHotkey, KeyCode.Mouse3, KeyCode.LeftControl, KeyCode.Mouse3);
             UpgradeShortcutConfig(HraesvelgrTrapHotkey, KeyCode.Mouse3, KeyCode.RightControl, KeyCode.Mouse3);
@@ -607,14 +616,14 @@ namespace Fran.EpicLootRaritySets
             NottWarpGuardDuration = Config.Bind("Nott Abilities", "Warp Guard Duration", 3f, new ConfigDescription("Seconds of heavy damage reduction granted after a successful Nott Warp.", new AcceptableValueRange<float>(0f, 30f)));
             NottWarpGuardDamageReduction = Config.Bind("Nott Abilities", "Warp Guard Damage Reduction", 0.90f, new ConfigDescription("Fraction of incoming damage reduced while Warp Guard is active. 0.90 means 90% less damage.", new AcceptableValueRange<float>(0f, 0.99f)));
             NottWarpResetRadius = Config.Bind("Nott Abilities", "Warp Cooldown Reset Radius", 18f, new ConfigDescription("Enemy death radius in meters that refreshes Warp while it is cooling down.", new AcceptableValueRange<float>(1f, 100f)));
-            NottShadowMarkHotkey = Config.Bind("Nott Abilities", "Shadow Mark Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Nott Shadow Mark.");
+            NottShadowMarkHotkey = Config.Bind("Nott Abilities", "Shadow Mark Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Nott Shadow Mark. Hold block with this hotkey.");
             NottShadowMarkRange = Config.Bind("Nott Abilities", "Shadow Mark Range", 5f, new ConfigDescription("Maximum range in meters to mark the selected enemy.", new AcceptableValueRange<float>(0.5f, 50f)));
             NottShadowMarkDuration = Config.Bind("Nott Abilities", "Shadow Mark Duration", 6f, new ConfigDescription("Duration in seconds for Nott Shadow Mark.", new AcceptableValueRange<float>(0.1f, 120f)));
             NottShadowMarkCooldown = Config.Bind("Nott Abilities", "Shadow Mark Cooldown", 60f, new ConfigDescription("Cooldown in seconds for Nott Shadow Mark.", new AcceptableValueRange<float>(0f, 600f)));
             NottShadowMarkDamageStored = Config.Bind("Nott Abilities", "Shadow Mark Damage Stored Fraction", 0.5f, new ConfigDescription("Fraction of real health damage stored by Shadow Mark and released as spirit damage.", new AcceptableValueRange<float>(0f, 5f)));
             NottShadowMarkCooldownReductionRadius = Config.Bind("Nott Abilities", "Shadow Mark Cooldown Reduction Radius", 20f, new ConfigDescription("Enemy death radius in meters that reduces Shadow Mark cooldown.", new AcceptableValueRange<float>(1f, 100f)));
             NottShadowMarkCooldownReductionOnNearbyDeath = Config.Bind("Nott Abilities", "Shadow Mark Cooldown Reduction On Nearby Death", 10f, new ConfigDescription("Seconds removed from Shadow Mark cooldown when an enemy dies near Nott.", new AcceptableValueRange<float>(0f, 300f)));
-            NottKnifeStrikeHotkey = Config.Bind("Nott Abilities", "Knife Strike Hotkey", new KeyboardShortcut(KeyCode.None), "Legacy fallback hotkey for Nott Knife Strike. The primary input is the game's secondary attack.");
+            NottKnifeStrikeHotkey = Config.Bind("Nott Abilities", "Knife Strike Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Nott Knife Strike.");
             NottKnifeStrikeCooldown = Config.Bind("Nott Abilities", "Knife Strike Cooldown", 8f, new ConfigDescription("Cooldown in seconds for Nott Knife Strike.", new AcceptableValueRange<float>(0f, 300f)));
             NottKnifeStrikeRange = Config.Bind("Nott Abilities", "Knife Strike Range", 5f, new ConfigDescription("Maximum range in meters for Nott Knife Strike.", new AcceptableValueRange<float>(0.5f, 30f)));
             NottKnifeStrikeWeaponDamageMultiplier = Config.Bind("Nott Abilities", "Knife Strike Weapon Damage Multiplier", 0.5f, new ConfigDescription("Fraction of current knife weapon damage dealt by Knife Strike. 0.5 means 50%.", new AcceptableValueRange<float>(0f, 5f)));
@@ -630,7 +639,9 @@ namespace Fran.EpicLootRaritySets
             UpgradeFloatConfig(NottWarpRange, 12f, 18f);
             UpgradeFloatConfig(NottHitSpeedBonus, 0.10f, 0.30f);
             UpgradeIntConfig(NottHitSpeedMaxStacks, 3, 1);
-            UpgradeShortcutConfig(NottKnifeStrikeHotkey, KeyCode.Mouse4, KeyCode.None);
+            UpgradeShortcutConfig(NottShadowMarkHotkey, KeyCode.Mouse4, KeyCode.LeftControl, KeyCode.Mouse4);
+            UpgradeShortcutConfig(NottShadowMarkHotkey, KeyCode.Mouse4, KeyCode.RightControl, KeyCode.Mouse4);
+            UpgradeShortcutConfig(NottKnifeStrikeHotkey, KeyCode.None, KeyCode.Mouse4);
 
             EnableRagnarAbilities = Config.Bind("Ragnar Abilities", "Enable Ragnar Abilities", true, "Enable the complete-set abilities for the Ragnar berserker set.");
             RagnarDecayAuraHotkey = Config.Bind("Ragnar Abilities", "Decay Aura Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Ragnar Decay Aura toggle.");
@@ -697,11 +708,16 @@ namespace Fran.EpicLootRaritySets
             MoonveinTornadoImpactForce = Config.Bind("Moonvein Abilities", "Tornado Impact Force", 30f, new ConfigDescription("Impact force used by Moonvein fallback tornado damage ticks.", new AcceptableValueRange<float>(0f, 500f)));
             MoonveinTornadoSlow = Config.Bind("Moonvein Abilities", "Tornado Slow", 0.40f, new ConfigDescription("Movement slow applied by Moonvein tornado hits. 0.40 means 40% slow.", new AcceptableValueRange<float>(0f, 0.95f)));
             MoonveinTornadoSlowDuration = Config.Bind("Moonvein Abilities", "Tornado Slow Duration", 6f, new ConfigDescription("Duration in seconds for Moonvein tornado slow.", new AcceptableValueRange<float>(0.1f, 30f)));
-            MoonveinSpiritWolfCooldown = Config.Bind("Moonvein Abilities", "Spirit Wolf Cooldown", 0f, new ConfigDescription("Legacy cooldown for Moonvein Spirit Wolf. The current ability is a no-cooldown toggle unless the wolf dies.", new AcceptableValueRange<float>(0f, 600f)));
+            MoonveinSpiritWolfCooldown = Config.Bind("Moonvein Abilities", "Spirit Wolf Cooldown", 60f, new ConfigDescription("Cooldown in seconds after Spirit Wolf ends or both wolves die.", new AcceptableValueRange<float>(0f, 600f)));
+            MoonveinSpiritWolfDuration = Config.Bind("Moonvein Abilities", "Spirit Wolf Duration", 30f, new ConfigDescription("Duration in seconds for Moonvein Spirit Wolves.", new AcceptableValueRange<float>(1f, 600f)));
             MoonveinSpiritWolfEitrUse = Config.Bind("Moonvein Abilities", "Spirit Wolf Eitr Use", 20f, new ConfigDescription("Eitr consumed by Moonvein Spirit Wolf.", new AcceptableValueRange<float>(0f, 250f)));
             MoonveinSpiritWolfGuardRadius = Config.Bind("Moonvein Abilities", "Spirit Wolf Guard Radius", 30f, new ConfigDescription("Radius in meters around the owner where the spirit wolf searches hostile targets.", new AcceptableValueRange<float>(5f, 100f)));
-            MoonveinSpiritWolfHealthPerMoonveinLevel = Config.Bind("Moonvein Abilities", "Spirit Wolf Health Per Class Skill Level", 0.01f, new ConfigDescription("Max-health multiplier added per Moonvein level. 0.01 means +1% per level.", new AcceptableValueRange<float>(0f, 1f)));
-            MoonveinSpiritWolfDamagePerMoonveinLevel = Config.Bind("Moonvein Abilities", "Spirit Wolf Damage Per Class Skill Level", 0.01f, new ConfigDescription("Damage multiplier added per Moonvein level. 0.01 means +1% per level.", new AcceptableValueRange<float>(0f, 1f)));
+            MoonveinSpiritWolfBaseHealth = Config.Bind("Moonvein Abilities", "Spirit Wolf Base Health", 90f, new ConfigDescription("Base max health assigned to the Moonvein spirit wolf, independent from the source prefab.", new AcceptableValueRange<float>(1f, 2000f)));
+            MoonveinSpiritWolfHealthPerMoonveinLevel = Config.Bind("Moonvein Abilities", "Spirit Wolf Health Per Class Skill Level", 1.4f, new ConfigDescription("Extra max health added to the Moonvein spirit wolf per Moonvein level.", new AcceptableValueRange<float>(0f, 50f)));
+            MoonveinSpiritWolfBaseDamageMultiplier = Config.Bind("Moonvein Abilities", "Spirit Wolf Base Damage Multiplier", 0.45f, new ConfigDescription("Base outgoing damage multiplier for the Moonvein spirit wolf before Moonvein skill scaling.", new AcceptableValueRange<float>(0.01f, 5f)));
+            MoonveinSpiritWolfDamagePerMoonveinLevel = Config.Bind("Moonvein Abilities", "Spirit Wolf Damage Per Class Skill Level", 0.004f, new ConfigDescription("Outgoing damage multiplier added to the Moonvein spirit wolf per Moonvein level.", new AcceptableValueRange<float>(0f, 0.1f)));
+            MoonveinSpiritWolfDamageTakenReductionPerMoonveinLevel = Config.Bind("Moonvein Abilities", "Spirit Wolf Damage Taken Reduction Per Class Skill Level", 0.0025f, new ConfigDescription("Damage taken reduction added to the Moonvein spirit wolf per Moonvein level. 0.0025 means +0.25% per level.", new AcceptableValueRange<float>(0f, 0.05f)));
+            MoonveinSpiritWolfMaxDamageTakenReduction = Config.Bind("Moonvein Abilities", "Spirit Wolf Max Damage Taken Reduction", 0.25f, new ConfigDescription("Maximum damage taken reduction for the Moonvein spirit wolf from Moonvein scaling. 0.25 means 25%.", new AcceptableValueRange<float>(0f, 0.75f)));
             UpgradeFloatConfig(MoonveinTornadoCooldown, 25f, 8f);
             UpgradeFloatConfig(MoonveinTornadoCooldown, 8f, 12f);
             UpgradeFloatConfig(MoonveinTornadoSlow, 0.30f, 0.40f);
@@ -715,6 +731,8 @@ namespace Fran.EpicLootRaritySets
             UpgradeFloatConfig(MoonveinMeteorEitrUse, 45f, 30f);
             UpgradeFloatConfig(MoonveinTornadoEitrUse, 35f, 20f);
             UpgradeFloatConfig(MoonveinSpiritWolfEitrUse, 35f, 20f);
+            UpgradeFloatConfig(MoonveinSpiritWolfHealthPerMoonveinLevel, 0.01f, 1.4f);
+            UpgradeFloatConfig(MoonveinSpiritWolfDamagePerMoonveinLevel, 0.01f, 0.004f);
 
             EnableHelveigAbilities = Config.Bind("Helveig Abilities", "Enable Helveig Abilities", true, "Enable the complete-set abilities for the Helveig blood mage set.");
             HelveigHolyHealHotkey = Config.Bind("Helveig Abilities", "Holy Heal Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Helveig Holy Heal.");
@@ -823,6 +841,7 @@ namespace Fran.EpicLootRaritySets
             WiresEnemyHudCompatibilitySynchronizer.Sync();
             ClassSkillManager.Initialize();
             LastHopeController.Initialize();
+            HelveigAbilityController.RegisterRpcs();
 
             ReloadExternalConfigs();
             UniqueLegendaryHelper.OnSetupLegendaryItemConfig += ReloadExternalConfigs;
@@ -914,6 +933,20 @@ namespace Fran.EpicLootRaritySets
             if (shortcut.MainKey == oldKey && shortcut.Modifiers.Count() == 1 && shortcut.Modifiers.Contains(oldModifier))
             {
                 entry.Value = new KeyboardShortcut(newKey);
+            }
+        }
+
+        private static void UpgradeShortcutConfigToModified(ConfigEntry<KeyboardShortcut> entry, KeyCode oldKey, KeyCode newKey, params KeyCode[] newModifiers)
+        {
+            if (entry == null)
+            {
+                return;
+            }
+
+            KeyboardShortcut shortcut = entry.Value;
+            if (shortcut.MainKey == oldKey && shortcut.Modifiers.Count() == 0)
+            {
+                entry.Value = new KeyboardShortcut(newKey, newModifiers ?? new KeyCode[0]);
             }
         }
     }
@@ -2534,6 +2567,7 @@ namespace Fran.EpicLootRaritySets
             "Werewolf Form",
             "Burning Ground",
             "Rapid Volley",
+            "Tame Beast",
             "Tornado Shot",
             "Tornado Slow",
             "Holy Strike",
@@ -2662,6 +2696,7 @@ namespace Fran.EpicLootRaritySets
                 case "charged shots": return Select("Disparos cargados", "Charged Shots");
                 case "rapid volley": return Select("Rafaga rapida", "Rapid Volley");
                 case "summon beasts": return Select("Invocar bestias", "Summon Beasts");
+                case "tame beast": return Select("Domar bestia", "Tame Beast");
                 case "armed trap": return Select("Trampa armada", "Armed Trap");
                 case "freyja dash": return Select("Dash de Freyja", "Freyja Dash");
                 case "predator focus": return Select("Foco del depredador", "Predator Focus");
@@ -3906,7 +3941,9 @@ namespace Fran.EpicLootRaritySets
 
         private static readonly Dictionary<string, StatusEffect> BuffsByBaseSet = new Dictionary<string, StatusEffect>(StringComparer.OrdinalIgnoreCase);
         private static readonly HashSet<string> ActiveBaseSets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        private static readonly FieldInfo StatusEffectTimeField = AccessTools.Field(typeof(StatusEffect), "m_time");
         private static float _updateTimer;
+        private static string _activeSignature = string.Empty;
 
         internal static bool HasActiveSet(string baseSetName)
         {
@@ -3966,7 +4003,7 @@ namespace Fran.EpicLootRaritySets
                 return false;
             }
 
-            StatusEffect template = GetOrCreateBuff(baseSetName, null);
+            StatusEffect template = GetOrCreateBuff(baseSetName, null, false);
             return template != null && player.GetSEMan().HaveStatusEffect(template.NameHash());
         }
 
@@ -3994,6 +4031,17 @@ namespace Fran.EpicLootRaritySets
             HashSet<string> activeNow = GetActiveBaseSets(player);
             SEMan seMan = player.GetSEMan();
 
+            string activeSignature = BuildActiveSignature(activeNow);
+            if (string.Equals(_activeSignature, activeSignature, StringComparison.Ordinal))
+            {
+                foreach (string baseSetName in activeNow)
+                {
+                    RefreshActiveBuffLifetime(seMan, player, baseSetName);
+                }
+
+                return;
+            }
+
             foreach (string oldBaseSet in ActiveBaseSets.ToArray())
             {
                 if (activeNow.Contains(oldBaseSet))
@@ -4001,7 +4049,7 @@ namespace Fran.EpicLootRaritySets
                     continue;
                 }
 
-                StatusEffect oldBuff = GetOrCreateBuff(oldBaseSet, null);
+                StatusEffect oldBuff = GetOrCreateBuff(oldBaseSet, null, false);
                 if (oldBuff != null)
                 {
                     seMan.RemoveStatusEffect(oldBuff.NameHash(), true);
@@ -4012,12 +4060,14 @@ namespace Fran.EpicLootRaritySets
             foreach (string baseSetName in activeNow)
             {
                 ActiveBaseSets.Add(baseSetName);
-                StatusEffect buff = GetOrCreateBuff(baseSetName, FindActiveSetIcon(player, baseSetName));
+                StatusEffect buff = GetOrCreateBuff(baseSetName, FindActiveSetIcon(player, baseSetName), true);
                 if (buff != null)
                 {
                     seMan.AddStatusEffect(buff, true, 0, 0f, 0);
                 }
             }
+
+            _activeSignature = activeSignature;
         }
 
         internal static void Clear(Player player)
@@ -4027,7 +4077,7 @@ namespace Fran.EpicLootRaritySets
                 SEMan seMan = player.GetSEMan();
                 foreach (string baseSetName in ActiveBaseSets.ToArray())
                 {
-                    StatusEffect buff = GetOrCreateBuff(baseSetName, null);
+                    StatusEffect buff = GetOrCreateBuff(baseSetName, null, false);
                     if (buff != null)
                     {
                         seMan.RemoveStatusEffect(buff.NameHash(), true);
@@ -4036,6 +4086,7 @@ namespace Fran.EpicLootRaritySets
             }
 
             ActiveBaseSets.Clear();
+            _activeSignature = string.Empty;
             _updateTimer = 0f;
         }
 
@@ -4090,7 +4141,55 @@ namespace Fran.EpicLootRaritySets
             return activeBaseSets;
         }
 
-        private static StatusEffect GetOrCreateBuff(string baseSetName, Sprite icon)
+        private static string BuildActiveSignature(HashSet<string> activeBaseSets)
+        {
+            if (activeBaseSets == null || activeBaseSets.Count == 0)
+            {
+                return string.Empty;
+            }
+
+            return string.Join("|", activeBaseSets.OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToArray());
+        }
+
+        private static void RefreshActiveBuffLifetime(SEMan seMan, Player player, string baseSetName)
+        {
+            if (seMan == null || string.IsNullOrEmpty(baseSetName))
+            {
+                return;
+            }
+
+            StatusEffect template = GetOrCreateBuff(baseSetName, null, false);
+            if (template == null)
+            {
+                return;
+            }
+
+            StatusEffect active = seMan.GetStatusEffect(template.NameHash());
+            if (active == null)
+            {
+                StatusEffect buff = GetOrCreateBuff(baseSetName, FindActiveSetIcon(player, baseSetName), true);
+                if (buff != null)
+                {
+                    seMan.AddStatusEffect(buff, true, 0, 0f, 0);
+                }
+
+                return;
+            }
+
+            active.m_ttl = BuffTtl;
+            if (StatusEffectTimeField != null)
+            {
+                try
+                {
+                    StatusEffectTimeField.SetValue(active, 0f);
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private static StatusEffect GetOrCreateBuff(string baseSetName, Sprite icon, bool refreshTooltip = true)
         {
             if (string.IsNullOrEmpty(baseSetName))
             {
@@ -4104,11 +4203,16 @@ namespace Fran.EpicLootRaritySets
                 buff.name = BuffNamePrefix + baseSetName;
                 buff.m_name = GetDisplayName(baseSetName);
                 buff.m_category = BuffCategory;
-                buff.m_ttl = 0f;
                 buff.m_flashIcon = false;
                 buff.m_cooldownIcon = false;
                 buff.m_hidden = false;
                 BuffsByBaseSet[baseSetName] = buff;
+            }
+
+            buff.m_ttl = BuffTtl;
+            if (!refreshTooltip)
+            {
+                return buff;
             }
 
             buff.m_name = GetDisplayName(baseSetName);
@@ -4307,7 +4411,7 @@ namespace Fran.EpicLootRaritySets
                 float arcaneLightning = ScaleSkillValue(EpicLootRaritySetsPlugin.MoonveinShotLightningBaseDamage.Value, EpicLootRaritySetsPlugin.MoonveinShotLightningDamagePerMoonveinLevel.Value, elemental);
                 float arcaneSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.MoonveinShotSpiritBaseDamage.Value, EpicLootRaritySetsPlugin.MoonveinShotSpiritDamagePerMoonveinLevel.Value, elemental);
                 return string.Format(
-                    "Moonvein set completo activo.\n\nEscalado actual: Moonvein {21:0.#}.\n\nPasivas:\nDisparos arcanos: cada disparo normal con arco Moonvein anade {27:0.#}+{28:0.##}/nivel = {29:0.#} rayo y {30:0.#}+{31:0.##}/nivel = {32:0.#} espiritu.\nDisparos cargados: al llenar 2 cargas, el siguiente disparo consecutivo lanza un hechizo aleatorio desde el arco y reinicia el contador.\nRecarga: ataques y habilidades Moonvein suman cargas al golpear. Dura 15s, cada carga da +4% todo el dano, maximo 5. A 5/5, los golpes activan Chain Lightning garantizado hasta 3 saltos en 8m.\n\nDisparos cargados:\nProbabilidades: Proyectil acido 40%, Proyectil de rayo 40%, Bola de fuego 20%.\nProyectil acido: {6:0.#}+{7:0.##}/nivel = {22:0.#} veneno.\nProyectil de rayo: {8:0.#}+{9:0.##}/nivel = {23:0.#} rayo.\nBola de fuego: {10:0.#}+{11:0.##}/nivel = {24:0.#} fuego.\n\nHabilidades:\nMeteoro: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Escala con Moonvein: {12:0.#}+{13:0.##}/nivel = {25:0.#} fuego + {25:0.#} contundente.\nDisparo tornado: tecla {3}. Coste {4:0} eitr. CD {5:0}s. Arma la siguiente flecha; al impactar invoca el tornado de Njord donde caiga durante {17:0.#}s. Ralentizacion {19:0.#}% durante {20:0.#}s por golpe. Alternativa: rayo {14:0.#}+{15:0.##}/nivel = {26:0.#} cada {16:0.##}s en {18:0.#}m.\nLobo espiritual: tecla {33}. Coste {34:0} eitr. Invoca wolf_spirit_caller, con vida +{36:0.#}%/nivel y dano +{37:0.#}%/nivel. Obedece comandos de mascota. Si muere, CD {35:0}s.\nLos hechizos de dano propios pasan por modificadores de EpicLoot como ModifyDamage y ModifyElementalDamage.",
+                    "Moonvein set completo activo.\n\nEscalado actual: Moonvein {21:0.#}.\n\nPasivas:\nDisparos arcanos: cada disparo normal con arco Moonvein anade {27:0.#}+{28:0.##}/nivel = {29:0.#} rayo y {30:0.#}+{31:0.##}/nivel = {32:0.#} espiritu.\nDisparos cargados: al llenar 2 cargas, el siguiente disparo consecutivo lanza un hechizo aleatorio desde el arco y reinicia el contador.\nRecarga: ataques y habilidades Moonvein suman cargas al golpear. Dura 15s, cada carga da +4% todo el dano, maximo 5. A 5/5, los golpes activan Chain Lightning garantizado hasta 3 saltos en 8m.\n\nDisparos cargados:\nProbabilidades: Proyectil acido 40%, Proyectil de rayo 40%, Bola de fuego 20%.\nProyectil acido: {6:0.#}+{7:0.##}/nivel = {22:0.#} veneno.\nProyectil de rayo: {8:0.#}+{9:0.##}/nivel = {23:0.#} rayo.\nBola de fuego: {10:0.#}+{11:0.##}/nivel = {24:0.#} fuego.\n\nHabilidades:\nMeteoro: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Escala con Moonvein: {12:0.#}+{13:0.##}/nivel = {25:0.#} fuego + {25:0.#} contundente.\nDisparo tornado: tecla {3}. Coste {4:0} eitr. CD {5:0}s. Arma la siguiente flecha; al impactar invoca el tornado de Njord donde caiga durante {17:0.#}s. Ralentizacion {19:0.#}% durante {20:0.#}s por golpe. Alternativa: rayo {14:0.#}+{15:0.##}/nivel = {26:0.#} cada {16:0.##}s en {18:0.#}m.\nLobo espiritual: tecla {33}. Coste {34:0} eitr. Invoca wolf_spiritcaller con vida, dano y reduccion recibida escalados por Moonvein. Obedece comandos de mascota. Si muere, CD {35:0}s.\nLos hechizos de dano propios pasan por modificadores de EpicLoot como ModifyDamage y ModifyElementalDamage.",
                     FormatShortcut(EpicLootRaritySetsPlugin.MoonveinMeteorHotkey),
                     EpicLootRaritySetsPlugin.MoonveinMeteorEitrUse.Value,
                     EpicLootRaritySetsPlugin.MoonveinMeteorCooldown.Value,
@@ -4353,7 +4457,7 @@ namespace Fran.EpicLootRaritySets
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
                 return string.Format(
-                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador sin CD. Coste al invocar: {4:0} vigor. Invoca un oso aliado.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. No anade dano propio. Al terminar recuperas todo el vigor.",
+                    "Hraesvelgr set completo activo.\n\nNivel de clase actual: Hraesvelgr {22:0.#}. Estas habilidades usan dano del arco/flecha y multiplicadores del set cuando no tienen formula por nivel.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Invisible para monstruos, visual de sigilo, ruido x{0:0.##}, deteccion x{1:0.##}, velocidad +{2:0.#}%.\nHeadshot: cada {16} disparos con arco Hraesvelgr, ese disparo cuenta como headshot/punto debil y aplica al menos x{17:0.##} dano del disparo.\n\nHabilidades:\nSummon Beasts: tecla {3}. Conmutador con CD {25:0}s al invocar o guardar. Coste al invocar: {4:0} vigor. Invoca tu bestia actual con vida, dano y reduccion recibida escalados por Hraesvelgr. Por defecto es un oso.\nTame Beast: tecla {24}. Doma una bestia valida a 10m, reemplaza la mascota actual y hace que Invocar bestias use esa criatura.\nArmed Trap: tecla {18}. Coste {19:0} vigor. Si atrapa un enemigo le inflige {23:0.#} dano perforante, lo inmoviliza y obtienes {20:0.#}s para que tu siguiente flecha haga +{21:0.#}% dano del disparo.\nRapid Volley: tecla {5}. Canalizado hasta {6:0.#}s. CD {7:0}s. Mientras mantienes ataque y estas quieto, dispara un maximo exacto de 8 flechas a {11:0.#} flechas/s. Dano por flecha: x{12:0.##} del disparo normal, velocidad {13:0.#}. Si arma/flecha no aportan dano, alternativa perforante escala con Hraesvelgr: 12+0.25/nivel. Al disparar 8 flechas se cancela automaticamente.\nFreyja Dash: tecla ataque secundario. Coste {14:0} vigor. CD {15:0}s. No anade dano propio. Al terminar recuperas todo el vigor.",
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f,
@@ -4377,7 +4481,9 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.HraesvelgrTrapBuffDuration.Value,
                     EpicLootRaritySetsPlugin.HraesvelgrTrapNextAttackDamageBonus.Value * 100f,
                     hraesvelgr,
-                    trapDamage);
+                    trapDamage,
+                    FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey),
+                    EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value);
             }
 
             if (string.Equals(baseSetName, "Hellsyng", StringComparison.OrdinalIgnoreCase))
@@ -4435,7 +4541,7 @@ namespace Fran.EpicLootRaritySets
                 float poison = ScaleSkillValue(EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value, EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value, knives);
                 float knifeStrike = Mathf.Max(0f, knives * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
                 return string.Format(
-                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad y +{32:0.#}% dano durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\nEjecutor: todo el dano de Nott contra enemigos que ya estan al 30% o menos de vida hace 300% de dano total.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Tras Warp recibes Guardia de Warp: -{30:0.#}% dano recibido durante {31:0.#}s. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.\nGolpe de cuchillo: ataque secundario. Requiere cuchillo. CD {23:0.#}s. Rango {24:0.#}m. Hace {25:0.#}% del dano del arma + {26:0.##}/nivel Nott = {27:0.#} dano de tajo adicional. Ralentiza {28:0.#}% durante {29:0.#}s.",
+                    "Nott set completo activo.\n\nEscalado actual: Nott {13:0.#}.\n\nPasivas:\nSneaky: se activa al agacharte/en sigilo. Usa el visual de sigilo de Ullr, ruido x{0:0.##}, deteccion enemiga x{1:0.##}, velocidad +{2:0.#}%.\nShadow Momentum: golpear enemigos otorga +{9:0.#}% velocidad y +{32:0.#}% dano durante {10:0.#}s. No acumula cargas; se refresca.\nPoison Edge: escala con Nott: {11:0.#}+{12:0.##}/nivel = {14:0.#} veneno anadido a cada golpe.\nEjecutor: todo el dano de Nott contra enemigos que ya estan al 30% o menos de vida hace 300% de dano total.\n\nHabilidades:\nWarp: tecla {3}. Salta detras del enemigo apuntado o del enemigo mas cercano. Coste {4:0} vigor. CD {5:0}s. Rango {6:0.#}m. Tras Warp recibes Guardia de Warp: -{30:0.#}% dano recibido durante {31:0.#}s. Si no hay enemigos en rango, salta hacia delante. Si muere un enemigo a {7:0.#}m mientras Warp esta en CD, el CD se reinicia y recuperas vigor.\nWarp Strike: despues de usar Warp, tu siguiente ataque contra enemigo pega x{8:0.##} dano. El buff no expira por tiempo.\nShadow Mark: tecla {15}. Marca al enemigo seleccionado a {16:0.#}m durante {17:0.#}s con un efecto visual de sombra. Acumula {18:0.#}% del dano real recibido y explota como espiritu. CD {19:0.#}s. Si muere un enemigo a {20:0.#}m mientras Shadow Mark esta en CD, reduce ese CD {21:0.#}s.\nGolpe de cuchillo: tecla {22}. Requiere cuchillo. CD {23:0.#}s. Rango {24:0.#}m. Hace {25:0.#}% del dano del arma + {26:0.##}/nivel Nott = {27:0.#} dano de tajo adicional. Ralentiza {28:0.#}% durante {29:0.#}s.",
                     EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value,
                     EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f,
@@ -4451,14 +4557,14 @@ namespace Fran.EpicLootRaritySets
                     EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value,
                     knives,
                     poison,
-                    FormatShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey),
+                    FormatBlockShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey),
                     EpicLootRaritySetsPlugin.NottShadowMarkRange.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f,
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value,
                     EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value,
-                    FormatBlockShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey),
+                    FormatShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey),
                     EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value,
                     EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value,
                     EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f,
@@ -4576,7 +4682,7 @@ namespace Fran.EpicLootRaritySets
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
                 return string.Format(
-                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasiva:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida/dano con Helveig y reaparece {30:0.#}s despues de morir.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida/dano. Invocacion actual: {29}.",
+                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida, dano y reduccion recibida con Helveig y reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion aplica al objetivo un escudo no acumulable del 15% de la sanacion potencial de la habilidad durante 15s, incluso si el objetivo estaba a vida maxima, con visual de escudo elemental.\nSanguine Devotion: cada curacion otorga 1 carga durante 15s, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida, dano y reduccion recibida. Invocacion actual: {29}.",
                     FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey),
                     EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value,
                     EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value,
@@ -4651,7 +4757,7 @@ namespace Fran.EpicLootRaritySets
                 return "Moonvein full set active.\n\nCurrent scaling: Moonvein " + elemental.ToString("0.#") + ".\n\nPassives:\nArcane Shots: normal Moonvein bow shots add " + EpicLootRaritySetsPlugin.MoonveinShotLightningBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.MoonveinShotLightningDamagePerMoonveinLevel.Value.ToString("0.##") + "/level = " + arcaneLightning.ToString("0.#") + " lightning and " + EpicLootRaritySetsPlugin.MoonveinShotSpiritBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.MoonveinShotSpiritDamagePerMoonveinLevel.Value.ToString("0.##") + "/level = " + arcaneSpirit.ToString("0.#") + " spirit.\nCharged Shots: after 2 visible charges, the next consecutive shot casts a random spell from the bow and resets the counter.\nRecharge: Moonvein shots and abilities add stacks when they hit. Lasts 15s, each stack grants +4% all damage, max 5. At 5/5, hits trigger guaranteed Chain Lightning up to 3 jumps within 8m.\n\nCharged shots:\nChances: Acid Bolt 40%, Lightning Bolt 40%, Fireball 20%.\nAcid Bolt: " + EpicLootRaritySetsPlugin.MoonveinAcidBoltBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.MoonveinAcidBoltDamagePerElementalMagicLevel.Value.ToString("0.##") + "/level = " + acid.ToString("0.#") + " poison.\nLightning Bolt: " + EpicLootRaritySetsPlugin.MoonveinLightningBoltBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.MoonveinLightningBoltDamagePerElementalMagicLevel.Value.ToString("0.##") + "/level = " + lightning.ToString("0.#") + " lightning.\nFireball: " + EpicLootRaritySetsPlugin.MoonveinFireballBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.MoonveinFireballDamagePerElementalMagicLevel.Value.ToString("0.##") + "/level = " + fireball.ToString("0.#") + " fire.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.MoonveinMeteorHotkey) + ": Meteor. Cost " + EpicLootRaritySetsPlugin.MoonveinMeteorEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.MoonveinMeteorCooldown.Value.ToString("0") + "s. Scales with Moonvein: " + EpicLootRaritySetsPlugin.MoonveinMeteorBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.MoonveinMeteorDamagePerElementalMagicLevel.Value.ToString("0.##") + "/level = " + meteor.ToString("0.#") + " fire + " + meteor.ToString("0.#") + " blunt.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.MoonveinTornadoHotkey) + ": Tornado Shot. Cost " + EpicLootRaritySetsPlugin.MoonveinTornadoEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.MoonveinTornadoCooldown.Value.ToString("0") + "s. Arms the next arrow; on impact it summons Njord's tornado for " + EpicLootRaritySetsPlugin.MoonveinTornadoDuration.Value.ToString("0.#") + "s. Slow " + (EpicLootRaritySetsPlugin.MoonveinTornadoSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.MoonveinTornadoSlowDuration.Value.ToString("0.#") + "s per hit. Fallback: lightning " + EpicLootRaritySetsPlugin.MoonveinTornadoBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.MoonveinTornadoDamagePerElementalMagicLevel.Value.ToString("0.##") + "/level = " + tornado.ToString("0.#") + " every " + EpicLootRaritySetsPlugin.MoonveinTornadoTickInterval.Value.ToString("0.##") + "s in " + EpicLootRaritySetsPlugin.MoonveinTornadoRadius.Value.ToString("0.#") + "m.\n"
-                    + FormatBlockShortcut(EpicLootRaritySetsPlugin.MoonveinSpiritWolfHotkey) + ": Spirit Wolf. Cost " + EpicLootRaritySetsPlugin.MoonveinSpiritWolfEitrUse.Value.ToString("0") + " eitr. Summons wolf_spirit_caller with health +" + (EpicLootRaritySetsPlugin.MoonveinSpiritWolfHealthPerMoonveinLevel.Value * 100f).ToString("0.#") + "%/level and damage +" + (EpicLootRaritySetsPlugin.MoonveinSpiritWolfDamagePerMoonveinLevel.Value * 100f).ToString("0.#") + "%/level. Obeys pet commands. Death cooldown 60s.\nOwn spell damage goes through EpicLoot modifiers such as ModifyDamage and ModifyElementalDamage.";
+                    + FormatBlockShortcut(EpicLootRaritySetsPlugin.MoonveinSpiritWolfHotkey) + ": Spirit Wolf. Cost " + EpicLootRaritySetsPlugin.MoonveinSpiritWolfEitrUse.Value.ToString("0") + " eitr. Summons wolf_spiritcaller with health, damage and damage taken reduction scaled from Moonvein. Obeys pet commands. Death cooldown 60s.\nOwn spell damage goes through EpicLoot modifiers such as ModifyDamage and ModifyElementalDamage.";
             }
 
             if (string.Equals(baseSetName, "Hraesvelgr", StringComparison.OrdinalIgnoreCase))
@@ -4659,7 +4765,8 @@ namespace Fran.EpicLootRaritySets
                 float hraesvelgr = ClassSkillManager.GetLocalSkillLevel("Hraesvelgr");
                 float trapDamage = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrTrapBaseDamage.Value + hraesvelgr * EpicLootRaritySetsPlugin.HraesvelgrTrapDamagePerHraesvelgrLevel.Value);
                 return "Hraesvelgr full set active.\n\nCurrent class skill: Hraesvelgr " + hraesvelgr.ToString("0.#") + ". These abilities use bow/arrow damage and set multipliers unless a level formula is stated.\n\nPassives:\nSneaky activates while crouching/stealthed. Invisible to monsters, Sneaky visual, noise x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyNoiseModifier.Value.ToString("0.##") + ", detection x" + EpicLootRaritySetsPlugin.HraesvelgrSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.HraesvelgrSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nEvery " + EpicLootRaritySetsPlugin.HraesvelgrHeadshotAttackCount.Value + " Hraesvelgr bow shots, that shot counts as a headshot/weak-point hit and deals at least x" + EpicLootRaritySetsPlugin.HraesvelgrHeadshotDamageMultiplier.Value.ToString("0.##") + " shot damage.\n\nAbilities:\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey) + ": Summon Beasts. Toggle with no CD. Summon cost: " + EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value.ToString("0") + " stamina. Summons an allied bear.\n"
+                    + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey) + ": Summon Beasts. Toggle CD " + EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value.ToString("0") + "s after summoning or storing. Summon cost: " + EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value.ToString("0") + " stamina. Summons your current beast with health, damage and damage taken reduction scaled from Hraesvelgr. Defaults to a bear.\n"
+                    + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey) + ": Tame Beast. Tames a valid beast within 10m, replaces the current pet and makes Summon Beasts use that creature.\n"
                     + FormatBlockShortcut(EpicLootRaritySetsPlugin.HraesvelgrTrapHotkey) + ": Armed trap. Cost " + EpicLootRaritySetsPlugin.HraesvelgrTrapStaminaUse.Value.ToString("0") + " stamina. If it catches an enemy, deals " + trapDamage.ToString("0.#") + " pierce damage, roots it and grants " + EpicLootRaritySetsPlugin.HraesvelgrTrapBuffDuration.Value.ToString("0.#") + "s for your next arrow to deal +" + (EpicLootRaritySetsPlugin.HraesvelgrTrapNextAttackDamageBonus.Value * 100f).ToString("0.#") + "% shot damage.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrVolleyHotkey) + ": Channeled Rapid Volley up to " + EpicLootRaritySetsPlugin.HraesvelgrVolleyDuration.Value.ToString("0.#") + "s. CD " + EpicLootRaritySetsPlugin.HraesvelgrVolleyCooldown.Value.ToString("0") + "s. While holding attack and standing still, fires exactly up to 8 arrows at " + EpicLootRaritySetsPlugin.HraesvelgrVolleyShotsPerSecond.Value.ToString("0.#") + " arrows/s. Arrow damage: x" + EpicLootRaritySetsPlugin.HraesvelgrVolleyDamageMultiplier.Value.ToString("0.##") + " normal shot damage, velocity " + EpicLootRaritySetsPlugin.HraesvelgrVolleyProjectileVelocity.Value.ToString("0.#") + ". If weapon/arrow provide no damage, piercing fallback scales with Hraesvelgr: 12+0.25/level. Automatically cancels after 8 arrows.\nSecondary attack: Freyja Dash. Cost " + EpicLootRaritySetsPlugin.HraesvelgrDashEitrUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.HraesvelgrDashCooldown.Value.ToString("0") + "s. Adds no direct damage.\nRestores all stamina when it ends.";
             }
@@ -4684,8 +4791,8 @@ namespace Fran.EpicLootRaritySets
                 float knifeStrike = Mathf.Max(0f, knives * EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value);
                 return "Nott full set active.\n\nCurrent scaling: Nott " + knives.ToString("0.#") + ".\n\nPassives:\nSneaky activates while crouching/stealthed. Uses Ullr's Sneaky visual, noise x" + EpicLootRaritySetsPlugin.NottSneakyNoiseModifier.Value.ToString("0.##") + ", enemy detection x" + EpicLootRaritySetsPlugin.NottSneakyStealthModifier.Value.ToString("0.##") + ", speed +" + (EpicLootRaritySetsPlugin.NottSneakySpeedModifier.Value * 100f).ToString("0.#") + "%.\nShadow Momentum: hitting enemies grants +" + (EpicLootRaritySetsPlugin.NottHitSpeedBonus.Value * 100f).ToString("0.#") + "% speed and +" + (EpicLootRaritySetsPlugin.NottHitSpeedDamageBonus.Value * 100f).ToString("0.#") + "% damage for " + EpicLootRaritySetsPlugin.NottHitSpeedDuration.Value.ToString("0.#") + "s. Does not stack; refreshes.\nPoison Edge scales with Nott: " + EpicLootRaritySetsPlugin.NottPoisonBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.NottPoisonDamagePerKnivesLevel.Value.ToString("0.##") + "/level = " + poison.ToString("0.#") + " poison added to each hit.\nExecutor: all Nott damage against enemies already at 30% health or lower deals 300% total damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.NottWarpHotkey) + ": Warp behind the aimed enemy or the nearest enemy. Cost " + EpicLootRaritySetsPlugin.NottWarpStaminaUse.Value.ToString("0") + " stamina. CD " + EpicLootRaritySetsPlugin.NottWarpCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.NottWarpRange.Value.ToString("0.#") + "m. After Warp, Warp Guard reduces incoming damage by " + (EpicLootRaritySetsPlugin.NottWarpGuardDamageReduction.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottWarpGuardDuration.Value.ToString("0.#") + "s.\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\n"
-                    + "Secondary attack: Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
+                    + FormatBlockShortcut(EpicLootRaritySetsPlugin.NottShadowMarkHotkey) + ": Shadow Mark. Marks the selected enemy within " + EpicLootRaritySetsPlugin.NottShadowMarkRange.Value.ToString("0.#") + "m for " + EpicLootRaritySetsPlugin.NottShadowMarkDuration.Value.ToString("0.#") + "s with a shadow visual. Stores " + (EpicLootRaritySetsPlugin.NottShadowMarkDamageStored.Value * 100f).ToString("0.#") + "% of real damage received and explodes as spirit. CD " + EpicLootRaritySetsPlugin.NottShadowMarkCooldown.Value.ToString("0.#") + "s. If an enemy dies within " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionRadius.Value.ToString("0.#") + "m while Shadow Mark is on CD, that CD is reduced by " + EpicLootRaritySetsPlugin.NottShadowMarkCooldownReductionOnNearbyDeath.Value.ToString("0.#") + "s.\n"
+                    + FormatShortcut(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey) + ": Knife Strike. Requires a knife. CD " + EpicLootRaritySetsPlugin.NottKnifeStrikeCooldown.Value.ToString("0.#") + "s. Range " + EpicLootRaritySetsPlugin.NottKnifeStrikeRange.Value.ToString("0.#") + "m. Deals " + (EpicLootRaritySetsPlugin.NottKnifeStrikeWeaponDamageMultiplier.Value * 100f).ToString("0.#") + "% weapon damage + " + EpicLootRaritySetsPlugin.NottKnifeStrikeDamagePerNottLevel.Value.ToString("0.##") + "/Nott level = " + knifeStrike.ToString("0.#") + " extra slash, and slows " + (EpicLootRaritySetsPlugin.NottKnifeStrikeSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.NottKnifeStrikeSlowDuration.Value.ToString("0.#") + "s.\nIf no enemies are in range, Warp jumps forward. If an enemy dies within " + EpicLootRaritySetsPlugin.NottWarpResetRadius.Value.ToString("0.#") + "m while Warp is on CD, the CD resets and stamina is restored.\nAfter Warp, your next attack against an enemy deals x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + " hit damage. Result: hit damage x" + EpicLootRaritySetsPlugin.NottWarpDamageMultiplier.Value.ToString("0.##") + ". This buff does not expire by time.";
             }
 
             if (string.Equals(baseSetName, "Ragnar", StringComparison.OrdinalIgnoreCase))
@@ -4715,7 +4822,7 @@ namespace Fran.EpicLootRaritySets
                 float frostNova = ScaleSkillValue(EpicLootRaritySetsPlugin.SeidrFrostNovaBaseDamage.Value, EpicLootRaritySetsPlugin.SeidrFrostNovaDamagePerElementalMagicLevel.Value, elemental);
                 return "Seidr full set active.\n\nCurrent scaling: Seidr " + elemental.ToString("0.#") + ".\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.SeidrNanoCubeHotkey) + ": Nanocube. Cost " + EpicLootRaritySetsPlugin.SeidrNanoCubeEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.SeidrNanoCubeCooldown.Value.ToString("0") + "s. Lasts " + EpicLootRaritySetsPlugin.SeidrNanoCubeDuration.Value.ToString("0.#") + "s, pushes enemies out of " + EpicLootRaritySetsPlugin.SeidrNanoCubeRadius.Value.ToString("0.#") + "m. Inside the cube your resulting magic damage is multiplied by x" + (1f + Mathf.Max(0f, EpicLootRaritySetsPlugin.SeidrNanoCubeMagicDamageBonus.Value)).ToString("0.##") + " (+" + (EpicLootRaritySetsPlugin.SeidrNanoCubeMagicDamageBonus.Value * 100f).ToString("0.#") + "%). Does not scale by skill.\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.SeidrElementalShieldHotkey) + ": Elemental Shield toggle. Cost " + EpicLootRaritySetsPlugin.SeidrElementalShieldEitrUse.Value.ToString("0") + " eitr. Immune to damage; consumes " + (EpicLootRaritySetsPlugin.SeidrElementalShieldEitrPercentPerSecond.Value * 100f).ToString("0.#") + "% max eitr/s, minimum 1 eitr/s. No CD, can be toggled freely. Does not scale by skill.\nSecondary attack: friendly Brokkr Stone Golem. Cost " + EpicLootRaritySetsPlugin.SeidrStoneGolemEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.SeidrStoneGolemCooldown.Value.ToString("0") + "s. Summons golem for " + EpicLootRaritySetsPlugin.SeidrStoneGolemDuration.Value.ToString("0.#") + "s. The summon uses creature stats and no direct scaled damage.\n"
+                    + FormatShortcut(EpicLootRaritySetsPlugin.SeidrElementalShieldHotkey) + ": Elemental Shield toggle. Cost " + EpicLootRaritySetsPlugin.SeidrElementalShieldEitrUse.Value.ToString("0") + " eitr. Immune to damage; consumes " + (EpicLootRaritySetsPlugin.SeidrElementalShieldEitrPercentPerSecond.Value * 100f).ToString("0.#") + "% max eitr/s, minimum 1 eitr/s. No CD, can be toggled freely. Does not scale by skill.\nSecondary attack: friendly Brokkr Stone Golem. Cost " + EpicLootRaritySetsPlugin.SeidrStoneGolemEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.SeidrStoneGolemCooldown.Value.ToString("0") + "s. Summons golem for " + EpicLootRaritySetsPlugin.SeidrStoneGolemDuration.Value.ToString("0.#") + "s. Health, damage and damage taken reduction scale from Seidr with balanced class-pet stats.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.SeidrFrostNovaHotkey) + " + block: Frost Nova. Cost " + EpicLootRaritySetsPlugin.SeidrFrostNovaEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.SeidrFrostNovaCooldown.Value.ToString("0") + "s. Radius " + EpicLootRaritySetsPlugin.SeidrFrostNovaRadius.Value.ToString("0.#") + "m. Scales with Seidr: " + EpicLootRaritySetsPlugin.SeidrFrostNovaBaseDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.SeidrFrostNovaDamagePerElementalMagicLevel.Value.ToString("0.##") + "/level = " + frostNova.ToString("0.#") + " frost and slow " + (EpicLootRaritySetsPlugin.SeidrFrostNovaSlow.Value * 100f).ToString("0.#") + "% for " + EpicLootRaritySetsPlugin.SeidrFrostNovaSlowDuration.Value.ToString("0.#") + "s.";
             }
 
@@ -4726,10 +4833,10 @@ namespace Fran.EpicLootRaritySets
                 float bloodRite = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value, EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value, blood);
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
-                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassive: summons a Charred Dyrnwyn bodyguard while the set is active. Health/damage scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\n\nAbilities:\n"
+                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health, damage and damage taken reduction scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: each heal grants the healed target a non-stacking shield equal to 15% of the ability's potential healing for 15s, even if the target was already at full health, with the Elemental Shield visual.\nSanguine Devotion: each heal grants 1 stack for 15s, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey) + ": Holy Heal. Cost " + EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value.ToString("0") + "s. Heals the aimed ally within " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m, or yourself if no target exists. Scales with Helveig: " + EpicLootRaritySetsPlugin.HelveigHolyHealBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyHealHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyHeal.ToString("0.#") + " healing.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigBloodRiteHotkey) + ": Blood Rite. Cost " + EpicLootRaritySetsPlugin.HelveigBloodRiteEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigBloodRiteCooldown.Value.ToString("0") + "s. Channels " + EpicLootRaritySetsPlugin.HelveigBloodRiteDuration.Value.ToString("0.#") + "s without moving, radius " + EpicLootRaritySetsPlugin.HelveigBloodRiteRadius.Value.ToString("0.#") + "m, tick every " + EpicLootRaritySetsPlugin.HelveigBloodRiteTickInterval.Value.ToString("0.#") + "s. Heals allies, players, allied NPCs, pets and you: " + EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + bloodRite.ToString("0.#") + " per tick. CD starts when the channel finishes or breaks.\nSecondary attack: Holy Strike. Cost " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyStrikeCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m. Scales with Helveig: fire " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeFire.ToString("0.#") + "; spirit " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeSpirit.ToString("0.#") + ". Each impact restores " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrRefund.Value.ToString("0.#") + " eitr.\n"
-                    + FormatShortcut(EpicLootRaritySetsPlugin.HelveigSummonUndeadHotkey) + " + block: Summon Monster. Cost " + EpicLootRaritySetsPlugin.HelveigSummonUndeadEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigSummonUndeadCooldown.Value.ToString("0") + "s. Lasts " + EpicLootRaritySetsPlugin.HelveigSummonUndeadDuration.Value.ToString("0.#") + "s. Summons Ent/Abomination/ElakingMole/Fallen Valkyrie based on Helveig and scales health/damage. Current summon: " + GetHelveigUndeadNameForSkill(blood) + ".";
+                    + FormatShortcut(EpicLootRaritySetsPlugin.HelveigSummonUndeadHotkey) + " + block: Summon Monster. Cost " + EpicLootRaritySetsPlugin.HelveigSummonUndeadEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigSummonUndeadCooldown.Value.ToString("0") + "s. Lasts " + EpicLootRaritySetsPlugin.HelveigSummonUndeadDuration.Value.ToString("0.#") + "s. Summons Ent/Abomination/ElakingMole/Fallen Valkyrie based on Helveig and scales health, damage and damage taken reduction. Current summon: " + GetHelveigUndeadNameForSkill(blood) + ".";
             }
 
             return baseSetName + " full set active.";
@@ -5354,7 +5461,7 @@ namespace Fran.EpicLootRaritySets
                 if (normalized.Contains("trapdamage") || normalized.Contains("trapfocus") || normalized.Contains("predatorfocus") || normalized.Contains("focodeldepredador")) return GetIcon("Buffs", "hraesvelgr_trap_damage.png");
                 if (normalized.Contains("trapcharge") || normalized.Contains("trap") || normalized.Contains("trampa")) return GetIcon("Buffs", "hraesvelgr_trap_charge.png");
                 if (normalized.Contains("volley") || normalized.Contains("rafaga")) return GetIcon("Abilities", "hraesvelgr_rapid_volley.png");
-                if (normalized.Contains("summon") || normalized.Contains("beasts") || normalized.Contains("bestias") || normalized.Contains("invocarbestias")) return GetIcon("Abilities", "hraesvelgr_summon_beasts.png");
+                if (normalized.Contains("summon") || normalized.Contains("beasts") || normalized.Contains("bestias") || normalized.Contains("invocarbestias") || normalized.Contains("tame") || normalized.Contains("domar")) return GetIcon("Abilities", "hraesvelgr_summon_beasts.png");
             }
             if (setName == "hellsyng" || setName == "solomonkane")
             {
@@ -5518,6 +5625,7 @@ namespace Fran.EpicLootRaritySets
             new AbilityPanelEntry("Ragnar", "Buffs", "ragnar_burning_ground.png", "Burning Ground", "buff", true),
 
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_summon_beasts.png", "Summon Beasts", "shortcut:HraesvelgrSummonHotkey", false, "HraesvelgrSummonBeastsToggle", "HraesvelgrSummonBeastsDeath"),
+            new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_summon_beasts.png", "Tame Beast", "blockShortcut:HraesvelgrTamePetHotkey", false),
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_armed_trap.png", "Armed Trap", "blockShortcut:HraesvelgrTrapHotkey", false),
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_rapid_volley.png", "Rapid Volley", "shortcut:HraesvelgrVolleyHotkey", false, "HraesvelgrRapidVolley"),
             new AbilityPanelEntry("Hraesvelgr", "Abilities", "hraesvelgr_freyja_dash.png", "Freyja Dash", "secondary", false, "HraesvelgrDash"),
@@ -5541,8 +5649,8 @@ namespace Fran.EpicLootRaritySets
             new AbilityPanelEntry("Hellsyng", "Buffs", "hellsyng_hunt.png", "Hunt", "buff", true),
 
             new AbilityPanelEntry("Nott", "Abilities", "nott_warp.png", "Warp", "shortcut:NottWarpHotkey", false, "NottWarp"),
-            new AbilityPanelEntry("Nott", "Abilities", "nott_shadow_mark.png", "Shadow Mark", "shortcut:NottShadowMarkHotkey", false, "NottShadowMark"),
-            new AbilityPanelEntry("Nott", "Abilities", "nott_knife_strike.png", "Knife Strike", "secondary", false, "NottKnifeStrike"),
+            new AbilityPanelEntry("Nott", "Abilities", "nott_shadow_mark.png", "Shadow Mark", "blockShortcut:NottShadowMarkHotkey", false, "NottShadowMark"),
+            new AbilityPanelEntry("Nott", "Abilities", "nott_knife_strike.png", "Knife Strike", "shortcut:NottKnifeStrikeHotkey", false, "NottKnifeStrike"),
             new AbilityPanelEntry("Nott", "Buffs", "nott_sneaky.png", "Sneaky", "passive", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_poison_edge.png", "Poison Edge", "passive", true),
             new AbilityPanelEntry("Nott", "Buffs", "nott_executor.png", "Executor", "passive", true),
@@ -7502,7 +7610,8 @@ namespace Fran.EpicLootRaritySets
             ForceAttack
         }
 
-        private const float AimRange = 80f;
+        private const float DirectAimRange = 10000f;
+        private const float AimAssistRange = 120f;
         private const float AimAssistRadius = 2.25f;
 
         private static readonly FieldInfo BaseAITargetCreatureField = AccessTools.Field(typeof(BaseAI), "m_targetCreature");
@@ -7622,13 +7731,36 @@ namespace Fran.EpicLootRaritySets
         internal static bool ShouldCommandedPetsTreatAsEnemy(Character first, Character second)
         {
             Player owner = Player.m_localPlayer;
-            if (owner == null || _mode == CommandMode.Default)
+            if (owner == null || _mode != CommandMode.ForceAttack || !IsValidManualTarget(owner, _forcedTarget))
             {
                 return false;
             }
 
-            return (IsCommandedPet(first) && IsValidManualTarget(owner, second)) ||
-                   (IsCommandedPet(second) && IsValidManualTarget(owner, first));
+            return (IsCommandedPet(first) && second == _forcedTarget) ||
+                   (IsCommandedPet(second) && first == _forcedTarget);
+        }
+
+        internal static bool ShouldPassivePetIgnoreEnemy(Character first, Character second)
+        {
+            Player owner = Player.m_localPlayer;
+            return owner != null &&
+                   _mode == CommandMode.ForceFollow &&
+                   IsCommandedPet(first) &&
+                   IsValidManualTarget(owner, second);
+        }
+
+        internal static void ModifyCommandedPetOutgoingDamage(HitData hit)
+        {
+            if (_mode != CommandMode.ForceFollow || hit == null)
+            {
+                return;
+            }
+
+            Character attacker = GetAttacker(hit);
+            if (IsCommandedPet(attacker))
+            {
+                hit.m_damage.Modify(0f);
+            }
         }
 
         private static void TryCommandAttack(Player player)
@@ -7834,16 +7966,23 @@ namespace Fran.EpicLootRaritySets
             Vector3 origin = originTransform.position;
             Vector3 direction = originTransform.forward;
 
-            RaycastHit[] hits = Physics.RaycastAll(origin, direction, AimRange, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            RaycastHit[] hits = Physics.RaycastAll(origin, direction, DirectAimRange, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
             Array.Sort(hits, (left, right) => left.distance.CompareTo(right.distance));
             foreach (RaycastHit hit in hits)
             {
                 Character candidate = hit.collider != null ? hit.collider.GetComponentInParent<Character>() : null;
+                if (candidate == player || IsCommandedPet(candidate))
+                {
+                    continue;
+                }
+
                 if (IsValidManualTarget(player, candidate))
                 {
                     target = candidate;
                     return true;
                 }
+
+                return false;
             }
 
             float bestScore = float.MaxValue;
@@ -7856,7 +7995,7 @@ namespace Fran.EpicLootRaritySets
 
                 Vector3 toTarget = character.GetCenterPoint() - origin;
                 float alongRay = Vector3.Dot(toTarget, direction);
-                if (alongRay < 0f || alongRay > AimRange)
+                if (alongRay < 0f || alongRay > AimAssistRange)
                 {
                     continue;
                 }
@@ -7898,6 +8037,23 @@ namespace Fran.EpicLootRaritySets
                    MoonveinAbilityController.IsSpiritWolfForPetCommand(character) ||
                    HelveigAbilityController.IsControlledUndeadForPetCommand(character) ||
                    SeidrAbilityController.IsStoneGolemForPetCommand(character);
+        }
+
+        private static Character GetAttacker(HitData hit)
+        {
+            if (hit == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                return hit.GetAttacker();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static bool TryGetLivingPetCharacter(GameObject pet, out Character character)
@@ -7982,6 +8138,184 @@ namespace Fran.EpicLootRaritySets
             if (player != null)
             {
                 player.Message(MessageHud.MessageType.Center, message, 0, null, false);
+            }
+        }
+    }
+
+    internal static class ClassPetScalingController
+    {
+        private sealed class PetScaling
+        {
+            internal readonly float DamageMultiplier;
+            internal readonly float DamageTakenReduction;
+
+            internal PetScaling(float damageMultiplier, float damageTakenReduction)
+            {
+                DamageMultiplier = Mathf.Max(0.01f, damageMultiplier);
+                DamageTakenReduction = Mathf.Clamp(damageTakenReduction, 0f, 0.95f);
+            }
+        }
+
+        private static readonly FieldInfo CharacterBaseHpField = AccessTools.Field(typeof(Character), "m_baseHP");
+        private static readonly FieldInfo CharacterHealthField = AccessTools.Field(typeof(Character), "m_health");
+        private static readonly MethodInfo CharacterSetMaxHealthMethod = AccessTools.Method(typeof(Character), "SetMaxHealth", new[] { typeof(float) });
+        private static readonly MethodInfo CharacterSetHealthMethod = AccessTools.Method(typeof(Character), "SetHealth", new[] { typeof(float) });
+        private static readonly Dictionary<Character, PetScaling> ScalingByCharacter = new Dictionary<Character, PetScaling>();
+
+        internal static void Register(GameObject pet, float maxHealth, float damageMultiplier, float damageTakenReduction)
+        {
+            Character character = pet != null ? pet.GetComponent<Character>() ?? pet.GetComponentInChildren<Character>() : null;
+            if (character == null)
+            {
+                return;
+            }
+
+            SetCharacterHealth(character, Mathf.Max(1f, maxHealth));
+            ScalingByCharacter[character] = new PetScaling(damageMultiplier, damageTakenReduction);
+        }
+
+        internal static void Unregister(GameObject pet)
+        {
+            Character character = pet != null ? pet.GetComponent<Character>() ?? pet.GetComponentInChildren<Character>() : null;
+            if (character != null)
+            {
+                ScalingByCharacter.Remove(character);
+            }
+        }
+
+        internal static bool TryGetDamageMultiplier(Character character, out float multiplier)
+        {
+            multiplier = 1f;
+            PetScaling scaling;
+            if (!TryGetScaling(character, out scaling))
+            {
+                return false;
+            }
+
+            multiplier = scaling.DamageMultiplier;
+            return true;
+        }
+
+        internal static void ModifyOutgoingDamage(HitData hit)
+        {
+            if (hit == null)
+            {
+                return;
+            }
+
+            float multiplier;
+            if (TryGetDamageMultiplier(GetAttacker(hit), out multiplier))
+            {
+                ScaleAllDamage(ref hit.m_damage, multiplier);
+            }
+        }
+
+        internal static void ModifyIncomingDamage(Character target, HitData hit)
+        {
+            if (target == null || hit == null)
+            {
+                return;
+            }
+
+            PetScaling scaling;
+            if (!TryGetScaling(target, out scaling) || scaling.DamageTakenReduction <= 0f)
+            {
+                return;
+            }
+
+            ScaleAllDamage(ref hit.m_damage, Mathf.Clamp01(1f - scaling.DamageTakenReduction));
+        }
+
+        private static bool TryGetScaling(Character character, out PetScaling scaling)
+        {
+            scaling = null;
+            if (character == null)
+            {
+                return false;
+            }
+
+            if (!ScalingByCharacter.TryGetValue(character, out scaling))
+            {
+                return false;
+            }
+
+            if (character.IsDead())
+            {
+                ScalingByCharacter.Remove(character);
+                scaling = null;
+                return false;
+            }
+
+            return true;
+        }
+
+        private static Character GetAttacker(HitData hit)
+        {
+            try
+            {
+                return hit != null ? hit.GetAttacker() : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static void SetCharacterHealth(Character character, float maxHealth)
+        {
+            TrySetFloatField(character, CharacterBaseHpField, maxHealth);
+            TryInvoke(CharacterSetMaxHealthMethod, character, new object[] { maxHealth });
+            TryInvoke(CharacterSetHealthMethod, character, new object[] { maxHealth });
+            TrySetFloatField(character, CharacterHealthField, maxHealth);
+        }
+
+        private static void ScaleAllDamage(ref HitData.DamageTypes damages, float multiplier)
+        {
+            damages.m_blunt *= multiplier;
+            damages.m_slash *= multiplier;
+            damages.m_pierce *= multiplier;
+            damages.m_chop *= multiplier;
+            damages.m_pickaxe *= multiplier;
+            damages.m_fire *= multiplier;
+            damages.m_frost *= multiplier;
+            damages.m_lightning *= multiplier;
+            damages.m_poison *= multiplier;
+            damages.m_spirit *= multiplier;
+        }
+
+        private static bool TrySetFloatField(object instance, FieldInfo field, float value)
+        {
+            if (instance == null || field == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                field.SetValue(instance, value);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static bool TryInvoke(MethodInfo method, object target, object[] args)
+        {
+            if (method == null || target == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                method.Invoke(target, args);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
@@ -11636,24 +11970,62 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
+        internal static GameObject SpawnSeidrElementalShield(GameObject parent, float lifetime)
+        {
+            return SpawnAttached(
+                parent,
+                Vector3.up * 1.0f,
+                Quaternion.identity,
+                lifetime,
+                "FxLightningShield",
+                "FxArcaneShield",
+                "ElementalShield",
+                "Shield",
+                "FxLightning");
+        }
+
+        internal static GameObject SpawnSeidrNanocube(Vector3 center, float radius, float lifetime)
+        {
+            return Spawn(
+                center,
+                Quaternion.identity,
+                lifetime,
+                "FxNanoCube",
+                "NanoCube",
+                "Nanocube",
+                "Cube");
+        }
+
         private static GameObject FindPrefab(params string[] nameParts)
         {
-            if (nameParts == null || nameParts.Length == 0 || ZNetScene.instance == null)
+            if (nameParts == null || nameParts.Length == 0)
             {
                 return null;
             }
 
             foreach (string namePart in nameParts)
             {
-                if (string.IsNullOrWhiteSpace(namePart))
-                {
-                    continue;
-                }
-
-                GameObject prefab = ZNetScene.instance.GetPrefab(namePart);
-                if (IsSafeVisualPrefab(prefab, namePart))
+                GameObject prefab = FindNorseStaticGameObject(namePart);
+                if (prefab != null)
                 {
                     return prefab;
+                }
+            }
+
+            if (ZNetScene.instance != null)
+            {
+                foreach (string namePart in nameParts)
+                {
+                    if (string.IsNullOrWhiteSpace(namePart))
+                    {
+                        continue;
+                    }
+
+                    GameObject prefab = ZNetScene.instance.GetPrefab(namePart);
+                    if (IsSafeVisualPrefab(prefab, namePart))
+                    {
+                        return prefab;
+                    }
                 }
             }
 
@@ -11719,8 +12091,10 @@ namespace Fran.EpicLootRaritySets
                     prefab.GetComponentInChildren<Character>(true) != null ||
                     prefab.GetComponent<Humanoid>() != null ||
                     prefab.GetComponentInChildren<Humanoid>(true) != null ||
-                    prefab.GetComponent<ZNetView>() != null ||
-                    prefab.GetComponentInChildren<ZNetView>(true) != null ||
+                    prefab.GetComponent<BaseAI>() != null ||
+                    prefab.GetComponentInChildren<BaseAI>(true) != null ||
+                    prefab.GetComponent<Tameable>() != null ||
+                    prefab.GetComponentInChildren<Tameable>(true) != null ||
                     prefab.GetComponent<Piece>() != null ||
                     prefab.GetComponentInChildren<Piece>(true) != null ||
                     prefab.GetComponent<ItemDrop>() != null ||
@@ -14247,7 +14621,78 @@ namespace Fran.EpicLootRaritySets
         private const float SneakyBuffTtl = 1f;
         private const float AggroSuppressInterval = 0.25f;
         private const float SummonDeathCooldownSeconds = 60f;
+        private const float TameBeastRange = 10f;
         private const int RapidVolleyShotCap = 8;
+
+        private static readonly string[] TameableBeastTokens =
+        {
+            "seekerbrute",
+            "rdb_crocodile",
+            "rdb_smadrek",
+            "deathsquito",
+            "rdb_lion",
+            "rdb_bee",
+            "rdb_fox",
+            "asksvin",
+            "hatchling",
+            "volture",
+            "seeker",
+            "bjorn",
+            "moose",
+            "wolf",
+            "lox",
+            "bat",
+            "ulv"
+        };
+
+        private static readonly Dictionary<string, string[]> TameableBeastPrefabFallbacks = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "wolf", new[] { "Wolf", "wolf" } },
+            { "bjorn", new[] { "Bjorn", "Bear", "BlackBear_TW", "GrizzlyBear_TW" } },
+            { "asksvin", new[] { "Asksvin", "asksvin" } },
+            { "lox", new[] { "Lox", "lox" } },
+            { "moose", new[] { "RDB_Moose", "Moose", "moose" } },
+            { "volture", new[] { "Volture", "Vulture", "volture" } },
+            { "rdb_bee", new[] { "RDB_Bee", "rdb_bee" } },
+            { "rdb_crocodile", new[] { "RDB_Crocodile", "rdb_crocodile" } },
+            { "rdb_fox", new[] { "RDB_Fox", "rdb_fox" } },
+            { "seeker", new[] { "Seeker", "seeker" } },
+            { "seekerbrute", new[] { "SeekerBrute", "SeekerBrute1", "seekerbrute" } },
+            { "hatchling", new[] { "Hatchling", "hatchling" } },
+            { "bat", new[] { "Bat", "bat" } },
+            { "ulv", new[] { "Ulv", "ulv" } },
+            { "rdb_lion", new[] { "RDB_Lion", "rdb_lion" } },
+            { "deathsquito", new[] { "Deathsquito", "death_squito", "deathsquito" } },
+            { "rdb_smadrek", new[] { "RDB_Smadrek", "rdb_smadrek" } }
+        };
+
+        private sealed class SummonedBeastDefinition
+        {
+            internal readonly string Kind;
+            internal readonly string PrimaryPrefabName;
+            internal readonly string DisplayName;
+            internal readonly string[] PrefabNames;
+
+            internal SummonedBeastDefinition(string kind, string primaryPrefabName, string displayName, string[] prefabNames)
+            {
+                Kind = string.IsNullOrEmpty(kind) ? "Beast" : kind;
+                PrimaryPrefabName = string.IsNullOrEmpty(primaryPrefabName) ? Kind : primaryPrefabName;
+                DisplayName = string.IsNullOrEmpty(displayName) ? HumanizeCreatureName(PrimaryPrefabName) : displayName;
+                PrefabNames = prefabNames ?? new[] { PrimaryPrefabName };
+            }
+        }
+
+        private sealed class SummonSpawnPlan
+        {
+            internal readonly SummonedBeastDefinition Definition;
+            internal readonly GameObject Prefab;
+
+            internal SummonSpawnPlan(SummonedBeastDefinition definition, GameObject prefab)
+            {
+                Definition = definition;
+                Prefab = prefab;
+            }
+        }
 
         private static readonly FieldInfo NoiseModifierField = AccessTools.Field(typeof(SE_Stats), "m_noiseModifier");
         private static readonly FieldInfo StealthModifierField = AccessTools.Field(typeof(SE_Stats), "m_stealthModifier");
@@ -14323,6 +14768,7 @@ namespace Fran.EpicLootRaritySets
         private static float _volleyShotTimer;
         private static float _dashCooldown;
         private static float _summonDeathCooldown;
+        private static float _summonToggleCooldown;
         private static float _summonGuardTimer;
         private static float _trapDamageRemaining;
         private static float _trapRechargeTimer;
@@ -14340,6 +14786,7 @@ namespace Fran.EpicLootRaritySets
         private static bool _headshotArmed;
         private static bool _trapChargesInitialized;
         private static bool _sneakyActive;
+        private static bool _wasActive;
 
         internal static void Update(Player player, float dt)
         {
@@ -14351,42 +14798,20 @@ namespace Fran.EpicLootRaritySets
             _volleyCooldown = Mathf.Max(0f, _volleyCooldown - dt);
             _dashCooldown = Mathf.Max(0f, _dashCooldown - dt);
             _summonDeathCooldown = Mathf.Max(0f, _summonDeathCooldown - dt);
+            _summonToggleCooldown = Mathf.Max(0f, _summonToggleCooldown - dt);
             UpdateSummonedBeasts(dt);
             UpdateTrapDamageBuff(player, dt);
 
             if (!IsHraesvelgrEnabledAndActive())
             {
-                RemoveStatusEffects(player);
-                if (_sneakyActive || SneakyVisualStates.Count > 0)
+                if (_wasActive || _sneakyActive || SneakyVisualStates.Count > 0 || SummonedBeasts.Count > 0)
                 {
-                    RestoreSneakyVisual();
+                    Clear(player);
                 }
-
-                DestroySummonedBeasts(false);
-                _volleyRemaining = 0f;
-                _volleyShotTimer = 0f;
-                _volleyShotsFired = 0;
-                _dashCooldown = 0f;
-                _summonDeathCooldown = 0f;
-                _summonGuardTimer = 0f;
-                _trapDamageRemaining = 0f;
-                _trapDamageArmed = false;
-                _trapChargesInitialized = false;
-                _trapCharges = 0;
-                _trapRechargeTimer = 0f;
-                _trapChargeRefreshTimer = 0f;
-                _headshotStacks = 0;
-                _headshotArmed = false;
-                _headshotProjectileDepth = 0;
-                _headshotProjectileOwner = null;
-                _headshotProjectileWeapon = null;
-                _headshotBuffRefreshTimer = 0f;
-                _sneakyRefreshTimer = 0f;
-                _aggroSuppressTimer = 0f;
-                _sneakyActive = false;
                 return;
             }
 
+            _wasActive = true;
             UpdateTrapCharges(player, dt);
             UpdateHeadshotBuff(player, dt);
             UpdatePassiveSneaky(player, dt);
@@ -14400,6 +14825,13 @@ namespace Fran.EpicLootRaritySets
             if (SetAbilityInput.IsSecondaryAttackDown())
             {
                 TryDash(player);
+                return;
+            }
+
+            if (IsShortcutDown(EpicLootRaritySetsPlugin.HraesvelgrTamePetHotkey) &&
+                SetAbilityInput.IsBlockHeld())
+            {
+                TryTameBeast(player);
                 return;
             }
 
@@ -14425,6 +14857,11 @@ namespace Fran.EpicLootRaritySets
         internal static void Clear(Player player)
         {
             RemoveStatusEffects(player);
+            if (_sneakyActive || SneakyVisualStates.Count > 0)
+            {
+                RestoreSneakyVisual();
+            }
+
             DestroySummonedBeasts(false);
             _sneakyRefreshTimer = 0f;
             _aggroSuppressTimer = 0f;
@@ -14434,6 +14871,7 @@ namespace Fran.EpicLootRaritySets
             _volleyShotsFired = 0;
             _dashCooldown = 0f;
             _summonDeathCooldown = 0f;
+            _summonToggleCooldown = 0f;
             _summonGuardTimer = 0f;
             _trapDamageRemaining = 0f;
             _trapDamageArmed = false;
@@ -14448,6 +14886,7 @@ namespace Fran.EpicLootRaritySets
             _headshotProjectileWeapon = null;
             _headshotBuffRefreshTimer = 0f;
             _sneakyActive = false;
+            _wasActive = false;
         }
 
         internal static bool TryGetHeadshotStacks(out int stacks, out int maxStacks)
@@ -15123,10 +15562,17 @@ namespace Fran.EpicLootRaritySets
 
         private static void TrySummonBeasts(Player player)
         {
+            if (_summonToggleCooldown > 0f)
+            {
+                ShowMessage(player, string.Format("Summon Beasts: {0:0}s cooldown.", _summonToggleCooldown));
+                return;
+            }
+
             if (HasActiveSummons())
             {
                 DestroySummonedBeasts(true);
                 RemoveSummonBuff(player);
+                StartSummonToggleCooldown(player);
                 ShowMessage(player, "Summon Beasts: mascotas guardadas.");
                 return;
             }
@@ -15139,6 +15585,13 @@ namespace Fran.EpicLootRaritySets
 
             ItemDrop.ItemData weapon = player.GetCurrentWeapon();
 
+            List<SummonSpawnPlan> spawnPlans = BuildSummonSpawnPlans();
+            if (spawnPlans.Count == 0)
+            {
+                ShowMessage(player, "Summon Beasts: prefab de mascota no disponible.");
+                return;
+            }
+
             float staminaUse = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrSummonStaminaUse.Value);
             if (!TrySpendStamina(player, staminaUse))
             {
@@ -15146,27 +15599,445 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            GameObject bearPrefab = GetPrefab("Bjorn", "Bear", "BlackBear_TW", "GrizzlyBear_TW");
-            if (bearPrefab == null)
+            DestroySummonedBeasts(false);
+
+            int spawned = 0;
+            for (int i = 0; i < spawnPlans.Count; i++)
             {
-                ShowMessage(player, "Summon Beasts: prefab de oso no disponible.");
+                SummonSpawnPlan plan = spawnPlans[i];
+                if (SpawnSummonedBeast(player, plan.Prefab, plan.Definition.Kind, GetSummonOffset(player, i, spawnPlans.Count)) != null)
+                {
+                    spawned++;
+                }
+            }
+
+            if (spawned <= 0)
+            {
+                ShowMessage(player, "Summon Beasts: no se pudo invocar la mascota.");
                 return;
             }
 
-            DestroySummonedBeasts(false);
+            AddSummonBuff(player, GetWeaponIcon(weapon) ?? FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
+            ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
+            StartSummonToggleCooldown(player);
+            ShowMessage(player, string.Format("Summon Beasts: {0} invocada.", GetCurrentSummonedBeastDefinition().DisplayName));
+        }
 
-            SpawnSummonedBeast(player, bearPrefab, "Bear", player.transform.forward * 2f + player.transform.right * 1.1f);
-
-            StatusEffect buff = GetOrCreateSummonBuff(GetWeaponIcon(weapon) ?? FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
-            if (buff != null)
+        private static void StartSummonToggleCooldown(Player player)
+        {
+            _summonToggleCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.HraesvelgrSummonCooldown.Value);
+            if (player != null && _summonToggleCooldown > 0f)
             {
-                SEMan seMan = player.GetSEMan();
-                seMan.RemoveStatusEffect(buff.NameHash(), true);
-                seMan.AddStatusEffect(buff, true, 1, 0f, 0);
+                AbilityCooldownBuffController.Start(player, "HraesvelgrSummonBeastsToggle", "Summon Beasts", _summonToggleCooldown, FindHraesvelgrIcon(player));
+            }
+        }
+
+        private static void TryTameBeast(Player player)
+        {
+            Character target = FindTameBeastTarget(player, TameBeastRange);
+            if (target == null)
+            {
+                ShowMessage(player, "Domar bestia: apunta a una bestia valida a 10m.");
+                return;
             }
 
+            SummonedBeastDefinition definition;
+            if (!TryCreateTameDefinition(target, out definition))
+            {
+                ShowMessage(player, "Domar bestia: esa criatura no es una bestia valida.");
+                return;
+            }
+
+            GameObject prefab = GetPrefab(definition.PrefabNames);
+            if (prefab == null)
+            {
+                ShowMessage(player, string.Format("Domar bestia: prefab no disponible ({0}).", definition.PrimaryPrefabName));
+                return;
+            }
+
+            Vector3 spawnPoint = target.transform.position;
+            Quaternion rotation = target.transform.rotation;
+            string petName = GetCreatureDisplayName(target, definition.PrimaryPrefabName, definition.Kind);
+
+            DestroySummonedBeasts(false);
+            StoredSummonNames.Clear();
+            StoredSummonNames[definition.Kind] = petName;
+            SaveTamedBeast(definition);
+            DestroyWildBeast(target.gameObject);
+
+            GameObject beast = SpawnSummonedBeastAt(player, prefab, definition.Kind, spawnPoint, rotation);
+            if (beast == null)
+            {
+                ShowMessage(player, "Domar bestia: no se pudo crear la mascota.");
+                return;
+            }
+
+            SetTameableName(beast, petName);
+            AddSummonBuff(player, FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
-            ShowMessage(player, "Summon Beasts: oso invocado.");
+            ShowMessage(player, string.Format("Domar bestia: {0} ahora es tu mascota.", petName));
+        }
+
+        private static List<SummonSpawnPlan> BuildSummonSpawnPlans()
+        {
+            List<SummonSpawnPlan> result = new List<SummonSpawnPlan>();
+            List<SummonedBeastDefinition> roster = GetSummonRoster();
+            foreach (SummonedBeastDefinition definition in roster)
+            {
+                GameObject prefab = GetPrefab(definition.PrefabNames);
+                if (prefab != null)
+                {
+                    result.Add(new SummonSpawnPlan(definition, prefab));
+                }
+            }
+
+            return result;
+        }
+
+        private static List<SummonedBeastDefinition> GetSummonRoster()
+        {
+            return new List<SummonedBeastDefinition> { GetCurrentSummonedBeastDefinition() };
+        }
+
+        private static SummonedBeastDefinition GetCurrentSummonedBeastDefinition()
+        {
+            SummonedBeastDefinition definition;
+            if (EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab != null &&
+                TryCreateTameDefinition(EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab.Value, out definition))
+            {
+                return definition;
+            }
+
+            return CreateDefaultSummonDefinition();
+        }
+
+        private static SummonedBeastDefinition CreateDefaultSummonDefinition()
+        {
+            return new SummonedBeastDefinition("Bear", "Bjorn", "Bjorn", BuildPrefabNameList("Bjorn", "bjorn"));
+        }
+
+        private static Vector3 GetSummonOffset(Player player, int index, int count)
+        {
+            if (player == null)
+            {
+                return Vector3.forward * 2f;
+            }
+
+            if (count <= 1)
+            {
+                return player.transform.forward * 2f + player.transform.right * 1.1f;
+            }
+
+            float angle = -35f + 70f * (float)index / Mathf.Max(1, count - 1);
+            return Quaternion.AngleAxis(angle, Vector3.up) * player.transform.forward * 2.25f;
+        }
+
+        private static void AddSummonBuff(Player player, Sprite icon)
+        {
+            if (player == null)
+            {
+                return;
+            }
+
+            StatusEffect buff = GetOrCreateSummonBuff(icon ?? FindHraesvelgrIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
+            if (buff == null)
+            {
+                return;
+            }
+
+            SEMan seMan = player.GetSEMan();
+            seMan.RemoveStatusEffect(buff.NameHash(), true);
+            seMan.AddStatusEffect(buff, true, 1, 0f, 0);
+        }
+
+        private static void SaveTamedBeast(SummonedBeastDefinition definition)
+        {
+            if (definition == null || EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab == null)
+            {
+                return;
+            }
+
+            EpicLootRaritySetsPlugin.HraesvelgrTamedPetPrefab.Value = definition.PrimaryPrefabName;
+            try
+            {
+                EpicLootRaritySetsPlugin.PluginConfig.Save();
+            }
+            catch
+            {
+            }
+        }
+
+        private static Character FindTameBeastTarget(Player player, float range)
+        {
+            if (player == null)
+            {
+                return null;
+            }
+
+            range = Mathf.Max(1f, range);
+            float maxDistanceSqr = range * range;
+            Transform originTransform = GameCamera.instance != null ? GameCamera.instance.transform : player.transform;
+            RaycastHit[] hits = Physics.SphereCastAll(originTransform.position, 0.8f, originTransform.forward, range + 2f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            if (hits != null)
+            {
+                foreach (RaycastHit hit in hits.OrderBy(hit => hit.distance))
+                {
+                    Character character = GetCharacterFromCollider(hit.collider);
+                    if (IsValidTameTarget(player, character, maxDistanceSqr))
+                    {
+                        return character;
+                    }
+                }
+            }
+
+            Collider[] colliders = Physics.OverlapSphere(player.GetCenterPoint(), range, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            Character best = null;
+            float bestScore = float.MinValue;
+            HashSet<Character> seen = new HashSet<Character>();
+            foreach (Collider collider in colliders)
+            {
+                Character character = GetCharacterFromCollider(collider);
+                if (character == null || !seen.Add(character) || !IsValidTameTarget(player, character, maxDistanceSqr))
+                {
+                    continue;
+                }
+
+                Vector3 toTarget = character.GetCenterPoint() - originTransform.position;
+                float distance = Mathf.Max(0.1f, toTarget.magnitude);
+                float facing = Vector3.Dot(originTransform.forward, toTarget.normalized);
+                if (facing < 0.58f)
+                {
+                    continue;
+                }
+
+                float score = facing * 10f - distance;
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    best = character;
+                }
+            }
+
+            return best;
+        }
+
+        private static bool IsValidTameTarget(Player player, Character target, float maxDistanceSqr)
+        {
+            if (player == null || target == null || target == player || target is Player || target.IsDead() || target.IsTamed() || IsSummonedBeast(target))
+            {
+                return false;
+            }
+
+            if ((target.transform.position - player.transform.position).sqrMagnitude > maxDistanceSqr)
+            {
+                return false;
+            }
+
+            SummonedBeastDefinition definition;
+            return TryCreateTameDefinition(target, out definition);
+        }
+
+        private static Character GetCharacterFromCollider(Collider collider)
+        {
+            return collider != null ? collider.GetComponentInParent<Character>() : null;
+        }
+
+        private static bool TryCreateTameDefinition(Character target, out SummonedBeastDefinition definition)
+        {
+            definition = null;
+            if (target == null)
+            {
+                return false;
+            }
+
+            string prefabName = GetPrefabishName(target.gameObject);
+            string search = prefabName + " " + (target.m_name ?? string.Empty) + " " + GetTameableName(target.gameObject);
+            string token;
+            if (!TryGetTameableBeastToken(search, out token))
+            {
+                return false;
+            }
+
+            definition = new SummonedBeastDefinition(
+                GetBeastKind(token),
+                prefabName,
+                GetCreatureDisplayName(target, prefabName, token),
+                BuildPrefabNameList(prefabName, token));
+            return true;
+        }
+
+        private static bool TryCreateTameDefinition(string prefabName, out SummonedBeastDefinition definition)
+        {
+            definition = null;
+            if (string.IsNullOrEmpty(prefabName))
+            {
+                return false;
+            }
+
+            string token;
+            if (!TryGetTameableBeastToken(prefabName, out token))
+            {
+                return false;
+            }
+
+            definition = new SummonedBeastDefinition(
+                GetBeastKind(token),
+                prefabName,
+                HumanizeCreatureName(prefabName),
+                BuildPrefabNameList(prefabName, token));
+            return true;
+        }
+
+        private static bool TryGetTameableBeastToken(string value, out string token)
+        {
+            token = null;
+            string normalized = NormalizeBeastName(value);
+            if (string.IsNullOrEmpty(normalized))
+            {
+                return false;
+            }
+
+            foreach (string candidate in TameableBeastTokens)
+            {
+                if (normalized.Contains(NormalizeBeastName(candidate)))
+                {
+                    token = candidate;
+                    return true;
+                }
+            }
+
+            if (normalized.Contains("bear") || normalized.Contains("blackbear") || normalized.Contains("grizzly"))
+            {
+                token = "bjorn";
+                return true;
+            }
+
+            if (normalized.Contains("vulture"))
+            {
+                token = "volture";
+                return true;
+            }
+
+            return false;
+        }
+
+        private static string GetBeastKind(string token)
+        {
+            if (string.Equals(token, "bjorn", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Bear";
+            }
+
+            if (string.Equals(token, "volture", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Volture";
+            }
+
+            return token;
+        }
+
+        private static string[] BuildPrefabNameList(string primaryPrefabName, string token)
+        {
+            List<string> names = new List<string>();
+            AddUniqueName(names, primaryPrefabName);
+            AddUniqueName(names, token);
+
+            string[] fallbackNames;
+            if (!string.IsNullOrEmpty(token) && TameableBeastPrefabFallbacks.TryGetValue(token, out fallbackNames))
+            {
+                foreach (string fallback in fallbackNames)
+                {
+                    AddUniqueName(names, fallback);
+                }
+            }
+
+            return names.ToArray();
+        }
+
+        private static void AddUniqueName(List<string> names, string name)
+        {
+            if (names == null || string.IsNullOrEmpty(name))
+            {
+                return;
+            }
+
+            foreach (string existing in names)
+            {
+                if (string.Equals(existing, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
+            }
+
+            names.Add(name);
+        }
+
+        private static string GetCreatureDisplayName(Character target, string prefabName, string token)
+        {
+            string name = target != null ? GetTameableName(target.gameObject) : null;
+            if (!string.IsNullOrEmpty(name) && !name.StartsWith("$", StringComparison.Ordinal))
+            {
+                return name;
+            }
+
+            return HumanizeCreatureName(!string.IsNullOrEmpty(prefabName) ? prefabName : token);
+        }
+
+        private static string HumanizeCreatureName(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return "Bestia";
+            }
+
+            string cleaned = value.Replace("(Clone)", string.Empty).Replace("_", " ").Replace("-", " ").Trim();
+            if (cleaned.StartsWith("$", StringComparison.Ordinal) && cleaned.LastIndexOf('_') >= 0)
+            {
+                cleaned = cleaned.Substring(cleaned.LastIndexOf('_') + 1);
+            }
+
+            if (string.IsNullOrEmpty(cleaned))
+            {
+                return "Bestia";
+            }
+
+            return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(cleaned.ToLowerInvariant());
+        }
+
+        private static string NormalizeBeastName(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+
+            StringBuilder builder = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                if (char.IsLetterOrDigit(c))
+                {
+                    builder.Append(char.ToLowerInvariant(c));
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        private static void DestroyWildBeast(GameObject beast)
+        {
+            if (beast == null)
+            {
+                return;
+            }
+
+            if (ZNetScene.instance != null)
+            {
+                ZNetScene.instance.Destroy(beast);
+            }
+            else
+            {
+                UnityEngine.Object.Destroy(beast);
+            }
         }
 
         private static StatusEffect GetOrCreateSneakyBuff(Sprite icon)
@@ -15480,9 +16351,15 @@ namespace Fran.EpicLootRaritySets
                 _summonBuff.m_hidden = false;
             }
 
+            float skill = ClassSkillManager.GetLocalSkillLevel(RequiredSet);
+            SummonedBeastDefinition definition = GetCurrentSummonedBeastDefinition();
             _summonBuff.m_tooltip = string.Format(
-                "Mascota Hraesvelgr activa.\n\n{0}: guarda el oso actual.\nSe comporta como mascota domesticada normal de Valheim y sigue/defiende al duenio con su IA tameada.\nSi le cambiaste el nombre, se recordara al guardarlo y volver a invocarlo, salvo que muera.",
-                FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey));
+                "Mascota Hraesvelgr activa.\n\nBestia: {1}.\n{0}: guarda la mascota actual.\nVida actual: {2:0.#}.\nDano: x{3:0.##}.\nReduccion recibida: {4:0.#}%.\nCtrl + Mouse4: atacar objetivo. Ctrl + Mouse3: seguir pasivo. Ctrl + ataque secundario: libre.",
+                FormatShortcut(EpicLootRaritySetsPlugin.HraesvelgrSummonHotkey),
+                definition.DisplayName,
+                GetSummonedBeastMaxHealth(definition.Kind, skill),
+                GetSummonedBeastDamageMultiplier(definition.Kind, skill),
+                GetSummonedBeastDamageTakenReduction(definition.Kind, skill) * 100f);
             StatusEffectIconHelper.Apply(_summonBuff, RequiredSet, icon);
 
             return _summonBuff;
@@ -15787,6 +16664,16 @@ namespace Fran.EpicLootRaritySets
 
             Vector3 spawnPoint = player.transform.position + offset;
             Quaternion rotation = Quaternion.LookRotation(player.transform.forward);
+            return SpawnSummonedBeastAt(player, prefab, kind, spawnPoint, rotation);
+        }
+
+        private static GameObject SpawnSummonedBeastAt(Player player, GameObject prefab, string kind, Vector3 spawnPoint, Quaternion rotation)
+        {
+            if (player == null || prefab == null)
+            {
+                return null;
+            }
+
             GameObject beast = UnityEngine.Object.Instantiate(prefab, spawnPoint, rotation);
             if (beast == null)
             {
@@ -15794,10 +16681,39 @@ namespace Fran.EpicLootRaritySets
             }
 
             SetupSummonedBeast(player, beast);
+            ApplySummonedBeastScaling(player, beast, kind);
             ApplyStoredSummonName(kind, beast);
             SummonedBeasts.Add(beast);
             SummonedBeastKinds[beast.GetInstanceID()] = kind;
             return beast;
+        }
+
+        private static void ApplySummonedBeastScaling(Player player, GameObject beast, string kind)
+        {
+            float skill = ClassSkillManager.GetSkillLevel(player, RequiredSet);
+            ClassPetScalingController.Register(
+                beast,
+                GetSummonedBeastMaxHealth(kind, skill),
+                GetSummonedBeastDamageMultiplier(kind, skill),
+                GetSummonedBeastDamageTakenReduction(kind, skill));
+        }
+
+        private static float GetSummonedBeastMaxHealth(string kind, float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return 110f + skill * 1.6f;
+        }
+
+        private static float GetSummonedBeastDamageMultiplier(string kind, float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return 0.45f + skill * 0.004f;
+        }
+
+        private static float GetSummonedBeastDamageTakenReduction(string kind, float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return Mathf.Min(0.20f, skill * 0.0015f);
         }
 
         private static void MatchSummonedBeastHealth(GameObject target, GameObject source)
@@ -15931,6 +16847,7 @@ namespace Fran.EpicLootRaritySets
                 Character character = beast.GetComponent<Character>();
                 if (character != null && character.IsDead())
                 {
+                    ClassPetScalingController.Unregister(beast);
                     ForgetSummonName(beast);
                     SummonedBeastKinds.Remove(beast.GetInstanceID());
                     SummonedBeasts.RemoveAt(i);
@@ -16175,7 +17092,11 @@ namespace Fran.EpicLootRaritySets
                        prefabName.IndexOf("Bear", StringComparison.OrdinalIgnoreCase) >= 0;
             }
 
-            return prefabName.IndexOf(kind, StringComparison.OrdinalIgnoreCase) >= 0;
+            string normalizedPrefab = NormalizeBeastName(prefabName);
+            string normalizedKind = NormalizeBeastName(kind);
+            return !string.IsNullOrEmpty(normalizedPrefab) &&
+                   !string.IsNullOrEmpty(normalizedKind) &&
+                   (normalizedPrefab.Contains(normalizedKind) || normalizedKind.Contains(normalizedPrefab));
         }
 
         private static string GetPrefabishName(GameObject gameObject)
@@ -16292,6 +17213,7 @@ namespace Fran.EpicLootRaritySets
                 Character character = beast.GetComponent<Character>();
                 if (character != null && character.IsDead())
                 {
+                    ClassPetScalingController.Unregister(beast);
                     ForgetSummonName(beast);
                     SummonedBeastKinds.Remove(beast.GetInstanceID());
                     SummonedBeasts.RemoveAt(i);
@@ -16329,6 +17251,7 @@ namespace Fran.EpicLootRaritySets
                     StoreSummonName(beast);
                 }
 
+                ClassPetScalingController.Unregister(beast);
                 if (ZNetScene.instance != null)
                 {
                     ZNetScene.instance.Destroy(beast);
@@ -17451,6 +18374,7 @@ namespace Fran.EpicLootRaritySets
         private static bool _batHandItemsHidden;
         private static bool _loggedEpicLootFailure;
         private static bool _loggedBatVisualFailure;
+        private static bool _wasActive;
         private static int _projectileHitDepth;
         private static int _abilityDamageDepth;
         private static Player _projectileOwner;
@@ -17473,10 +18397,14 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _batFormActive || _infusedBoltArmed || _silverVerdictArmed || MarkedTargets.Count > 0)
+                {
+                    Clear(player);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateArmedInfusedBolt(player, dt);
             UpdateMarkedTargets(player, dt);
             UpdateBatForm(player, dt);
@@ -17546,6 +18474,7 @@ namespace Fran.EpicLootRaritySets
             _abilityDamageDepth = 0;
             _projectileOwner = null;
             _projectileWeapon = null;
+            _wasActive = false;
         }
 
         internal static void TryMarkProjectile(Projectile projectile, Player player, ItemDrop.ItemData weapon)
@@ -19565,7 +20494,6 @@ namespace Fran.EpicLootRaritySets
         private static float _shadowMarkAuraSpin;
         private static float _hitSpeedTimer;
         private static int _hitSpeedStacks;
-        private static int _secondaryKnifeStrikeConsumedFrame = -1;
         private static int _knifeStrikeAnimationDepth;
         private static bool _wasActive;
         private static bool _sneakyActive;
@@ -19605,8 +20533,13 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            if ((SetAbilityInput.IsSecondaryAttackDown() && _secondaryKnifeStrikeConsumedFrame != Time.frameCount) ||
-                IsShortcutDown(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey))
+            if (IsShadowMarkShortcutDown())
+            {
+                TryShadowMark(player);
+                return;
+            }
+
+            if (!SetAbilityInput.IsBlockHeld() && IsShortcutDown(EpicLootRaritySetsPlugin.NottKnifeStrikeHotkey))
             {
                 TryKnifeStrike(player);
                 return;
@@ -19617,10 +20550,16 @@ namespace Fran.EpicLootRaritySets
                 TryWarp(player);
             }
 
-            if (IsShortcutDown(EpicLootRaritySetsPlugin.NottShadowMarkHotkey))
+        }
+
+        private static bool IsShadowMarkShortcutDown()
+        {
+            if (!SetAbilityInput.IsBlockHeld() || EpicLootRaritySetsPlugin.NottShadowMarkHotkey == null)
             {
-                TryShadowMark(player);
+                return false;
             }
+
+            return IsShortcutDown(EpicLootRaritySetsPlugin.NottShadowMarkHotkey);
         }
 
         internal static void Clear(Player player)
@@ -19645,7 +20584,6 @@ namespace Fran.EpicLootRaritySets
             _shadowMarkRemaining = 0f;
             _shadowMarkAccumulatedDamage = 0f;
             _shadowMarkVisualTimer = 0f;
-            _secondaryKnifeStrikeConsumedFrame = -1;
             _knifeStrikeAnimationDepth = 0;
             _wasActive = false;
         }
@@ -20065,18 +21003,7 @@ namespace Fran.EpicLootRaritySets
 
         internal static bool TryConsumeSecondaryKnifeStrike(Player player)
         {
-            if (player == null ||
-                player != Player.m_localPlayer ||
-                _knifeStrikeAnimationDepth > 0 ||
-                !IsNottEnabledAndActive() ||
-                !IsKnifeWeapon(player.GetCurrentWeapon()))
-            {
-                return false;
-            }
-
-            _secondaryKnifeStrikeConsumedFrame = Time.frameCount;
-            TryKnifeStrike(player);
-            return true;
+            return false;
         }
 
         private static void TryKnifeStrike(Player player)
@@ -20592,16 +21519,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            _warpGuardVisual = NorseVisualEffectBridge.SpawnAttached(
-                player,
-                Vector3.up * 1.0f,
-                Quaternion.identity,
-                1.4f,
-                "FxLightningShield",
-                "FxArcaneShield",
-                "ElementalShield",
-                "Shield",
-                "FxLightning");
+            _warpGuardVisual = NorseVisualEffectBridge.SpawnSeidrElementalShield(player.gameObject, 1.4f);
         }
 
         private static StatusEffect GetOrCreateHitSpeedBuff(Sprite icon)
@@ -21772,6 +22690,9 @@ namespace Fran.EpicLootRaritySets
         private static StatusEffect _tornadoArmedBuff;
         private static StatusEffect _tornadoSlowBuff;
         private static GameObject _spiritWolf;
+        private static GameObject _spiritWolfSecondary;
+        private static float _spiritWolfRemaining;
+        private static bool _spiritWolvesActive;
         private static int _stacks;
         private static float _meteorCooldown;
         private static float _tornadoCooldown;
@@ -21784,6 +22705,7 @@ namespace Fran.EpicLootRaritySets
         private static int _rechargeChainDepth;
         private static bool _tornadoArmed;
         private static bool _loggedProjectileFailure;
+        private static bool _wasActive;
 
         private enum MoonveinSpell
         {
@@ -21807,11 +22729,15 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsMoonveinEnabledAndActive())
             {
-                Clear(player);
-                ClearTornadoes();
+                if (_wasActive || _spiritWolf != null || ArmedTornadoProjectiles.Count > 0 || ActiveTornadoes.Count > 0 || _stacks > 0 || _tornadoArmed || _rechargeStacks > 0)
+                {
+                    Clear(player);
+                    ClearTornadoes();
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateArcaneShotsBuff(player, dt);
             UpdateRechargeBuff(player, dt);
 
@@ -21860,11 +22786,16 @@ namespace Fran.EpicLootRaritySets
             DestroySpiritWolf(false);
             _stacks = 0;
             _tornadoArmed = false;
+            _spiritWolf = null;
+            _spiritWolfSecondary = null;
+            _spiritWolfRemaining = 0f;
+            _spiritWolvesActive = false;
             _spiritWolfCooldown = 0f;
             _rechargeChainDepth = 0;
             _arcaneShotsRefreshTimer = 0f;
             _spiritWolfCombatRefreshTimer = 0f;
             ArmedTornadoProjectiles.Clear();
+            _wasActive = false;
         }
 
         internal static bool TryGetChargedShotStacks(out int stacks, out int maxStacks)
@@ -21917,7 +22848,12 @@ namespace Fran.EpicLootRaritySets
 
             Player owner = Player.m_localPlayer;
             float skill = owner != null ? ClassSkillManager.GetSkillLevel(owner, RequiredSet) : 0f;
-            float multiplier = 1f + Mathf.Clamp(skill, 0f, 100f) * Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfDamagePerMoonveinLevel.Value);
+            float multiplier;
+            if (!ClassPetScalingController.TryGetDamageMultiplier(attacker, out multiplier))
+            {
+                multiplier = GetSpiritWolfDamageMultiplier(skill);
+            }
+
             ScaleAllDamage(ref hit.m_damage, Mathf.Max(0.01f, multiplier));
         }
 
@@ -21960,7 +22896,10 @@ namespace Fran.EpicLootRaritySets
 
         internal static int GetActivePetCount()
         {
-            return HasActiveSpiritWolf() ? 1 : 0;
+            int count = 0;
+            if (IsAliveWolf(_spiritWolf)) count++;
+            if (IsAliveWolf(_spiritWolfSecondary)) count++;
+            return count;
         }
 
         internal static void ReleasePetFollow(Player owner)
@@ -23298,11 +24237,11 @@ namespace Fran.EpicLootRaritySets
 
         private static void TrySpiritWolf(Player player)
         {
-            if (HasActiveSpiritWolf())
+            if (_spiritWolvesActive || HasActiveSpiritWolf())
             {
-                DestroySpiritWolf(true);
-                RemoveSpiritWolfBuff(player);
-                ShowMessage(player, "Lobo espiritual: mascota guardada.");
+                ShowMessage(player, string.Format(
+                    "Lobos espirituales activos ({0:0}s).",
+                    Mathf.Max(0f, _spiritWolfRemaining)));
                 return;
             }
 
@@ -23311,62 +24250,120 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            GameObject prefab = GetSpiritWolfPrefab();
-            if (prefab == null)
+            GameObject secondaryPrefab = GetFriendlyWolfPrefab();
+            GameObject primaryPrefab = GetSpiritWolfPrefab();
+
+            ShowMessage(player, string.Format(
+                "Prefabs: primary={0} secondary={1}",
+                primaryPrefab != null ? primaryPrefab.name : "NULL",
+                secondaryPrefab != null ? secondaryPrefab.name : "NULL"));
+
+            if (primaryPrefab == null && secondaryPrefab == null)
             {
                 ShowMessage(player, "Spirit Wolf: prefab no disponible.");
-                LogProjectileFailureOnce("Moonvein spirit wolf prefab could not be resolved: wolf_spirit_caller.");
+                LogProjectileFailureOnce("Moonvein spirit wolf prefab could not be resolved: wolf_spiritcaller / wolf_friendly.");
                 return;
             }
 
-            Vector3 spawn = player.transform.position + player.transform.forward * 2f + player.transform.right * 1.1f;
-            TryProjectGround(spawn, out spawn);
-            GameObject wolf = UnityEngine.Object.Instantiate(prefab, spawn, Quaternion.LookRotation(player.transform.forward));
-            if (wolf == null)
+            DestroySpiritWolf(false);
+
+            int spawned = 0;
+
+            if (primaryPrefab != null)
             {
+                Vector3 spawn = player.transform.position + player.transform.forward * 2f + player.transform.right * 1.1f;
+                TryProjectGround(spawn, out spawn);
+                GameObject wolf = UnityEngine.Object.Instantiate(primaryPrefab, spawn, Quaternion.LookRotation(player.transform.forward));
+                if (wolf != null)
+                {
+                    _spiritWolf = wolf;
+                    SetupSpiritWolf(player, wolf);
+                    ApplySpiritWolfScaling(player, wolf);
+                    spawned++;
+                }
+            }
+
+            if (secondaryPrefab != null)
+            {
+                Vector3 spawn = player.transform.position + player.transform.forward * 2f + player.transform.right * -1.1f;
+                TryProjectGround(spawn, out spawn);
+                GameObject wolf = UnityEngine.Object.Instantiate(secondaryPrefab, spawn, Quaternion.LookRotation(player.transform.forward));
+                if (wolf != null)
+                {
+                    _spiritWolfSecondary = wolf;
+                    SetupSpiritWolf(player, wolf);
+                    ApplySpiritWolfScaling(player, wolf);
+                    spawned++;
+                }
+            }
+
+            if (spawned <= 0)
+            {
+                ShowMessage(player, "Spirit Wolf: no se pudo invocar.");
                 return;
             }
 
-            _spiritWolf = wolf;
-            SetupSpiritWolf(player, wolf);
-            ApplySpiritWolfScaling(player, wolf);
             player.UseEitr(EpicLootRaritySetsPlugin.MoonveinSpiritWolfEitrUse.Value);
-            _spiritWolfCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfCooldown.Value);
-            if (_spiritWolfCooldown > 0f)
-            {
-                AbilityCooldownBuffController.Start(player, "MoonveinSpiritWolfToggle", "Spirit Wolf", _spiritWolfCooldown, GetSpiritWolfIcon(player));
-            }
+            _spiritWolvesActive = true;
+            _spiritWolfRemaining = Mathf.Max(1f,
+                EpicLootRaritySetsPlugin.MoonveinSpiritWolfDuration != null
+                    ? EpicLootRaritySetsPlugin.MoonveinSpiritWolfDuration.Value
+                    : 30f);
 
             RefreshSpiritWolfBuff(player);
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
-            ShowMessage(player, "Lobo espiritual invocado.");
+            ShowMessage(player, string.Format("Lobos espirituales invocados ({0:0}s).", _spiritWolfRemaining));
+
+            EpicLootRaritySetsPlugin.Log.LogInfo(string.Format(
+            "[SpiritWolf] Spawned primary={0} secondary={1}",
+            _spiritWolf != null ? _spiritWolf.name : "NULL",
+            _spiritWolfSecondary != null ? _spiritWolfSecondary.name : "NULL"));
         }
 
         private static void UpdateSpiritWolf(Player player, float dt)
         {
-            if (_spiritWolf == null)
+            _spiritWolfCooldown = Mathf.Max(0f, _spiritWolfCooldown - dt);
+
+            bool anyAlive = HasActiveSpiritWolf();
+
+            if (_spiritWolvesActive && !anyAlive)
+            {
+                RemoveSpiritWolfBuff(player);
+                StartSpiritWolfEndCooldown(player);
+                return;
+            }
+
+            if (!_spiritWolvesActive)
             {
                 RemoveSpiritWolfBuff(player);
                 return;
             }
 
-            Character character = _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>();
-            if (character == null || character.IsDead())
+            _spiritWolfRemaining -= dt;
+            if (_spiritWolfRemaining <= 0f)
             {
-                _spiritWolf = null;
+                DestroySpiritWolf(false);
                 RemoveSpiritWolfBuff(player);
-                StartSpiritWolfDeathCooldown(player);
+                StartSpiritWolfEndCooldown(player);
+                ShowMessage(player, "Lobos espirituales: tiempo agotado.");
                 return;
             }
+
+            RefreshSpiritWolfBuff(player);
 
             if (player == null || !IsMoonveinEnabledAndActive())
             {
                 return;
             }
 
-            if (PetCommandController.ApplyToPet(player, _spiritWolf, target => IsEnemyTarget(player, target)))
+            if (_spiritWolf != null)
             {
-                return;
+                PetCommandController.ApplyToPet(player, _spiritWolf, target => IsEnemyTarget(player, target));
+            }
+
+            if (_spiritWolfSecondary != null)
+            {
+                PetCommandController.ApplyToPet(player, _spiritWolfSecondary, target => IsEnemyTarget(player, target));
             }
 
             _spiritWolfCombatRefreshTimer -= dt;
@@ -23374,6 +24371,19 @@ namespace Fran.EpicLootRaritySets
             {
                 _spiritWolfCombatRefreshTimer = SpiritWolfCombatRefreshSeconds;
                 RefreshSpiritWolfCombat(player);
+
+                if (_spiritWolfSecondary != null)
+                {
+                    Character target = FindSpiritWolfDefenseTarget(player);
+                    if (target != null)
+                    {
+                        BaseAI baseAI = _spiritWolfSecondary.GetComponent<BaseAI>() ?? _spiritWolfSecondary.GetComponentInChildren<BaseAI>();
+                        if (baseAI != null)
+                        {
+                            AssignAITarget(baseAI, target);
+                        }
+                    }
+                }
             }
         }
 
@@ -23476,38 +24486,75 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            float baseHealth = GetCharacterMaxHealth(character);
-            if (baseHealth <= 0f)
-            {
-                baseHealth = 80f;
-            }
-
             float skill = ClassSkillManager.GetSkillLevel(player, RequiredSet);
-            float multiplier = 1f + Mathf.Clamp(skill, 0f, 100f) * Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfHealthPerMoonveinLevel.Value);
-            SetCharacterHealth(character, Mathf.Max(1f, baseHealth * multiplier));
+            ClassPetScalingController.Register(
+                wolf,
+                GetSpiritWolfMaxHealth(skill),
+                GetSpiritWolfDamageMultiplier(skill),
+                GetSpiritWolfDamageTakenReduction(skill));
+        }
+
+        private static float GetSpiritWolfMaxHealth(float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return Mathf.Max(1f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfBaseHealth.Value + skill * Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfHealthPerMoonveinLevel.Value));
+        }
+
+        private static float GetSpiritWolfDamageMultiplier(float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return Mathf.Max(0.01f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfBaseDamageMultiplier.Value + skill * Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfDamagePerMoonveinLevel.Value));
+        }
+
+        private static float GetSpiritWolfDamageTakenReduction(float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            float reduction = skill * Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfDamageTakenReductionPerMoonveinLevel.Value);
+            return Mathf.Min(Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfMaxDamageTakenReduction.Value), reduction);
         }
 
         private static bool HasActiveSpiritWolf()
         {
-            Character character = _spiritWolf != null ? _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>() : null;
-            if (character != null && !character.IsDead())
-            {
-                return true;
-            }
+            bool primaryAlive = IsAliveWolf(_spiritWolf);
+            bool secondaryAlive = IsAliveWolf(_spiritWolfSecondary);
 
-            if (_spiritWolf != null)
+            if (!primaryAlive && _spiritWolf != null)
             {
+                ClassPetScalingController.Unregister(_spiritWolf);
                 _spiritWolf = null;
-                StartSpiritWolfDeathCooldown(Player.m_localPlayer);
             }
 
-            return false;
+            if (!secondaryAlive && _spiritWolfSecondary != null)
+            {
+                ClassPetScalingController.Unregister(_spiritWolfSecondary);
+                _spiritWolfSecondary = null;
+            }
+
+            return primaryAlive || secondaryAlive;
         }
 
-        private static void StartSpiritWolfDeathCooldown(Player player)
+        private static bool IsAliveWolf(GameObject wolf)
         {
-            _spiritWolfCooldown = Mathf.Max(_spiritWolfCooldown, SpiritWolfDeathCooldownSeconds);
-            if (player != null)
+            if (wolf == null)
+            {
+                return false;
+            }
+
+            Character character = wolf.GetComponent<Character>() ?? wolf.GetComponentInChildren<Character>();
+            return character != null && !character.IsDead();
+        }
+
+        private static void StartSpiritWolfEndCooldown(Player player)
+        {
+            if (!_spiritWolvesActive)
+            {
+                return;
+            }
+
+            _spiritWolvesActive = false;
+            _spiritWolfRemaining = 0f;
+            _spiritWolfCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.MoonveinSpiritWolfCooldown.Value);
+            if (player != null && _spiritWolfCooldown > 0f)
             {
                 AbilityCooldownBuffController.Start(player, "MoonveinSpiritWolfDeath", "Spirit Wolf", _spiritWolfCooldown, GetSpiritWolfIcon(player));
             }
@@ -23515,20 +24562,30 @@ namespace Fran.EpicLootRaritySets
 
         private static void DestroySpiritWolf(bool storeName)
         {
-            if (_spiritWolf != null)
+            DestroyOneWolf(ref _spiritWolf);
+            DestroyOneWolf(ref _spiritWolfSecondary);
+            _spiritWolfRemaining = 0f;
+            RemoveSpiritWolfBuff(Player.m_localPlayer);
+        }
+
+        private static void DestroyOneWolf(ref GameObject wolf)
+        {
+            if (wolf == null)
             {
-                if (ZNetScene.instance != null)
-                {
-                    ZNetScene.instance.Destroy(_spiritWolf);
-                }
-                else
-                {
-                    UnityEngine.Object.Destroy(_spiritWolf);
-                }
+                return;
             }
 
-            _spiritWolf = null;
-            RemoveSpiritWolfBuff(Player.m_localPlayer);
+            ClassPetScalingController.Unregister(wolf);
+            if (ZNetScene.instance != null)
+            {
+                ZNetScene.instance.Destroy(wolf);
+            }
+            else
+            {
+                UnityEngine.Object.Destroy(wolf);
+            }
+
+            wolf = null;
         }
 
         private static void RefreshSpiritWolfBuff(Player player)
@@ -23556,15 +24613,18 @@ namespace Fran.EpicLootRaritySets
             }
 
             _spiritWolfBuff.m_ttl = 0f;
+            float skill = ClassSkillManager.GetLocalSkillLevel(RequiredSet);
             _spiritWolfBuff.m_tooltip = LocalizedText.Select(
                 string.Format(
-                    "Lobo espiritual Moonvein invocado.\n\nVida: +{0:0.#}% por nivel de Moonvein.\nDano: +{1:0.#}% por nivel de Moonvein.\nUsa los comandos de mascotas con Ctrl.",
-                    EpicLootRaritySetsPlugin.MoonveinSpiritWolfHealthPerMoonveinLevel.Value * 100f,
-                    EpicLootRaritySetsPlugin.MoonveinSpiritWolfDamagePerMoonveinLevel.Value * 100f),
+                    "Lobo espiritual Moonvein invocado.\n\nVida actual: {0:0.#}.\nDano: x{1:0.##}.\nReduccion recibida: {2:0.#}%.\nCtrl + Mouse4: atacar objetivo. Ctrl + Mouse3: seguir pasivo. Ctrl + ataque secundario: libre.",
+                    GetSpiritWolfMaxHealth(skill),
+                    GetSpiritWolfDamageMultiplier(skill),
+                    GetSpiritWolfDamageTakenReduction(skill) * 100f),
                 string.Format(
-                    "Moonvein spirit wolf summoned.\n\nHealth: +{0:0.#}% per Moonvein level.\nDamage: +{1:0.#}% per Moonvein level.\nUse pet commands with Ctrl.",
-                    EpicLootRaritySetsPlugin.MoonveinSpiritWolfHealthPerMoonveinLevel.Value * 100f,
-                    EpicLootRaritySetsPlugin.MoonveinSpiritWolfDamagePerMoonveinLevel.Value * 100f));
+                    "Moonvein spirit wolf summoned.\n\nCurrent health: {0:0.#}.\nDamage: x{1:0.##}.\nDamage taken reduction: {2:0.#}%.\nCtrl + Mouse4: attack target. Ctrl + Mouse3: passive follow. Ctrl + secondary attack: free.",
+                    GetSpiritWolfMaxHealth(skill),
+                    GetSpiritWolfDamageMultiplier(skill),
+                    GetSpiritWolfDamageTakenReduction(skill) * 100f));
             StatusEffectIconHelper.Apply(_spiritWolfBuff, RequiredSet, icon);
             return _spiritWolfBuff;
         }
@@ -23592,23 +24652,41 @@ namespace Fran.EpicLootRaritySets
         private static GameObject GetSpiritWolfPrefab()
         {
             GameObject prefab = GetPrefab(
-                "wolf_spirit_caller",
-                "wol_spirit_caller",
-                "Wolf_Spirit_Caller",
+                "Wolf_spiritcaller",
                 "WolfSpirit_Caller",
                 "WolfSpiritCaller",
-                "Wolf_SpiritCaller",
-                "wolfspiritcaller",
-                "SpiritWolf",
-                "Wolf_Spirit");
+                "wolfspiritcaller");
+            EpicLootRaritySetsPlugin.Log.LogInfo("[SpiritWolf] prueba 1 prefab antes validacion=" + prefab);
+            return prefab;
+        }
+
+        private static GameObject GetFriendlyWolfPrefab()
+        {
+            GameObject prefab = GetPrefab(
+                "wolf_friendly",
+                "Wolf_friendly",
+                "Wolf_Friendly",
+                "WolfFriendly");
+
             Character character = prefab != null ? prefab.GetComponent<Character>() ?? prefab.GetComponentInChildren<Character>() : null;
             return character != null ? prefab : null;
         }
 
         private static bool IsSpiritWolf(Character character)
         {
-            Character spiritWolfCharacter = _spiritWolf != null ? _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>() : null;
-            return character != null && spiritWolfCharacter != null && character == spiritWolfCharacter;
+            if (character == null)
+            {
+                return false;
+            }
+
+            Character primary = _spiritWolf != null
+                ? _spiritWolf.GetComponent<Character>() ?? _spiritWolf.GetComponentInChildren<Character>()
+                : null;
+            Character secondary = _spiritWolfSecondary != null
+                ? _spiritWolfSecondary.GetComponent<Character>() ?? _spiritWolfSecondary.GetComponentInChildren<Character>()
+                : null;
+
+            return character == primary || character == secondary;
         }
 
         private static bool IsValidSpiritWolfEnemy(Character target)
@@ -24116,9 +25194,11 @@ namespace Fran.EpicLootRaritySets
         private const string SummonFallenValkyrieKind = "FallenValkyrie";
         private const int HealingPowerMaxStacks = 3;
         private const float HealingShieldFraction = 0.15f;
-        private const float HealingShieldDuration = 6f;
+        private const float HealingShieldDuration = 15f;
+        private const float HealingPowerDuration = 15f;
         private const float HealingPowerSummonDamagePerStack = 0.05f;
         private const float HealingPowerHolyStrikeDamagePerStack = 0.10f;
+        private const string ApplyHealingShieldRpc = "Fran_ELRS_HelveigBloodAegis";
         private const float BloodRiteBarWidth = 260f;
         private const float BloodRiteBarHeight = 14f;
         private static readonly MethodInfo BaseAIIsEnemyMethod = AccessTools.Method(typeof(BaseAI), "IsEnemy", new[] { typeof(Character), typeof(Character) });
@@ -24156,9 +25236,12 @@ namespace Fran.EpicLootRaritySets
         private static float _bloodRiteRemaining;
         private static float _bloodRiteTickTimer;
         private static float _bloodRiteVisualPulseTimer;
+        private static float _healingPowerRemaining;
         private static Vector3 _bloodRiteOrigin;
         private static bool _bloodRiteActive;
         private static bool _undeadSummonActive;
+        private static bool _rpcsRegistered;
+        private static bool _wasActive;
         private static int _healingPowerStacks;
         private static string _undeadSummonKind = SummonEntKind;
         private static string _undeadSummonDisplayName = "Ent";
@@ -24175,6 +25258,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
+            RegisterRpcs();
             _holyHealCooldown = Mathf.Max(0f, _holyHealCooldown - dt);
             _holyStrikeCooldown = Mathf.Max(0f, _holyStrikeCooldown - dt);
             _bloodRiteCooldown = Mathf.Max(0f, _bloodRiteCooldown - dt);
@@ -24184,14 +25268,20 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsHelveigEnabledAndActive())
             {
-                Clear(player);
+                UpdateHealingShields(dt);
+                if (_wasActive || _bloodRiteActive || _undeadSummonActive || _undeadSummon != null || Bodyguards.Count > 0 || _healingPowerStacks > 0)
+                {
+                    Clear(player, false);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateBloodRite(player, dt);
             UpdateUndeadSummon(player, dt);
             UpdateBodyguards(player, dt);
             UpdateHealingShields(dt);
+            UpdateHealingPower(player, dt);
 
             if (!CanReadAbilityInput(player))
             {
@@ -24226,6 +25316,11 @@ namespace Fran.EpicLootRaritySets
 
         internal static void Clear(Player player)
         {
+            Clear(player, true);
+        }
+
+        private static void Clear(Player player, bool clearHealingShields)
+        {
             _bloodRiteActive = false;
             _bloodRiteDuration = 0f;
             _bloodRiteRemaining = 0f;
@@ -24236,11 +25331,16 @@ namespace Fran.EpicLootRaritySets
             DestroyBloodRiteChannelBar();
             DestroyUndeadSummon(player);
             DestroyBodyguards(player, true);
-            ClearHealingShields();
+            if (clearHealingShields)
+            {
+                ClearHealingShields();
+            }
             _healingPowerStacks = 0;
+            _healingPowerRemaining = 0f;
             RemoveHealingPowerBuff(player);
             _bodyguardRespawnCooldown = 0f;
             _bodyguardCombatRefreshTimer = 0f;
+            _wasActive = false;
         }
 
         private static void TryHolyHeal(Player player)
@@ -24458,6 +25558,7 @@ namespace Fran.EpicLootRaritySets
             if (character == null || character.IsDead())
             {
                 StartUndeadSummonCooldown(player);
+                ClassPetScalingController.Unregister(_undeadSummon);
                 _undeadSummon = null;
                 _undeadSummonActive = false;
                 _undeadSummonRemaining = 0f;
@@ -24682,6 +25783,7 @@ namespace Fran.EpicLootRaritySets
             if (_undeadSummon != null)
             {
                 SpawnBodyguardEffect(_undeadSummon.transform.position);
+                ClassPetScalingController.Unregister(_undeadSummon);
                 if (ZNetScene.instance != null)
                 {
                     ZNetScene.instance.Destroy(_undeadSummon);
@@ -24716,6 +25818,7 @@ namespace Fran.EpicLootRaritySets
                 Character character = bodyguard.GetComponent<Character>() ?? bodyguard.GetComponentInChildren<Character>();
                 if (character == null || character.IsDead())
                 {
+                    ClassPetScalingController.Unregister(bodyguard);
                     BodyguardKinds.Remove(bodyguard.GetInstanceID());
                     Bodyguards.RemoveAt(i);
                     lostBodyguard = true;
@@ -24825,8 +25928,11 @@ namespace Fran.EpicLootRaritySets
             }
 
             float skill = ClassSkillManager.GetSkillLevel(player, RequiredSet);
-            float maxHealth = GetBodyguardMaxHealth(kind, skill);
-            SetCharacterHealth(character, maxHealth);
+            ClassPetScalingController.Register(
+                bodyguard,
+                GetBodyguardMaxHealth(kind, skill),
+                GetBodyguardDamageMultiplier(kind, skill),
+                GetBodyguardDamageTakenReduction(kind, skill));
         }
 
         private static void ApplyActiveSummonScaling(Player player, GameObject summon, string kind)
@@ -24838,8 +25944,11 @@ namespace Fran.EpicLootRaritySets
             }
 
             float skill = ClassSkillManager.GetSkillLevel(player, RequiredSet);
-            float maxHealth = GetActiveSummonMaxHealth(kind, skill);
-            SetCharacterHealth(character, maxHealth);
+            ClassPetScalingController.Register(
+                summon,
+                GetActiveSummonMaxHealth(kind, skill),
+                GetActiveSummonDamageMultiplier(kind, skill),
+                GetBodyguardDamageTakenReduction(kind, skill));
         }
 
         private static float GetBodyguardMaxHealth(string kind, float skill)
@@ -24847,10 +25956,10 @@ namespace Fran.EpicLootRaritySets
             skill = Mathf.Clamp(skill, 0f, 100f);
             if (string.Equals(kind, BodyguardDyrnwynKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 140f + skill * 2.2f;
+                return 140f + skill * 1.8f;
             }
 
-            return 80f + skill * 1.2f;
+            return 110f + skill * 1.4f;
         }
 
         private static float GetActiveSummonMaxHealth(string kind, float skill)
@@ -24858,25 +25967,25 @@ namespace Fran.EpicLootRaritySets
             skill = Mathf.Clamp(skill, 0f, 100f);
             if (string.Equals(kind, SummonEntKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 250f + skill * 2.0f;
+                return 180f + skill * 1.4f;
             }
 
             if (string.Equals(kind, SummonAbominationKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 400f + skill * 3.0f;
+                return 260f + skill * 2.0f;
             }
 
             if (string.Equals(kind, SummonElakingMoleKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 520f + skill * 3.6f;
+                return 320f + skill * 2.3f;
             }
 
             if (string.Equals(kind, SummonFallenValkyrieKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 480f + skill * 3.2f;
+                return 300f + skill * 2.1f;
             }
 
-            return 250f + skill * 2.0f;
+            return 180f + skill * 1.4f;
         }
 
         private static float GetBodyguardDamageMultiplier(string kind, float skill)
@@ -24884,7 +25993,7 @@ namespace Fran.EpicLootRaritySets
             skill = Mathf.Clamp(skill, 0f, 100f);
             if (string.Equals(kind, BodyguardDyrnwynKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 0.65f + skill * 0.006f;
+                return 0.55f + skill * 0.004f;
             }
 
             if (IsActiveSummonKind(kind))
@@ -24892,7 +26001,7 @@ namespace Fran.EpicLootRaritySets
                 return GetActiveSummonDamageMultiplier(kind, skill);
             }
 
-            return 0.85f + skill * 0.008f;
+            return 0.50f + skill * 0.0035f;
         }
 
         private static float GetActiveSummonDamageMultiplier(string kind, float skill)
@@ -24900,25 +26009,31 @@ namespace Fran.EpicLootRaritySets
             skill = Mathf.Clamp(skill, 0f, 100f);
             if (string.Equals(kind, SummonEntKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 0.65f + skill * 0.004f;
+                return 0.45f + skill * 0.0035f;
             }
 
             if (string.Equals(kind, SummonAbominationKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 0.55f + skill * 0.004f;
+                return 0.40f + skill * 0.0035f;
             }
 
             if (string.Equals(kind, SummonElakingMoleKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 0.60f + skill * 0.0045f;
+                return 0.45f + skill * 0.0035f;
             }
 
             if (string.Equals(kind, SummonFallenValkyrieKind, StringComparison.OrdinalIgnoreCase))
             {
-                return 0.60f + skill * 0.005f;
+                return 0.45f + skill * 0.004f;
             }
 
-            return 0.65f + skill * 0.004f;
+            return 0.45f + skill * 0.0035f;
+        }
+
+        private static float GetBodyguardDamageTakenReduction(string kind, float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return Mathf.Min(0.20f, skill * 0.0015f);
         }
 
         private static bool IsActiveSummonKind(string kind)
@@ -24951,8 +26066,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            float skill = Player.m_localPlayer != null ? ClassSkillManager.GetSkillLevel(Player.m_localPlayer, RequiredSet) : 0f;
-            ScaleAllDamage(ref hit.m_damage, GetBodyguardDamageMultiplier(kind, skill) * GetHealingPowerSummonDamageMultiplier());
+            ScaleAllDamage(ref hit.m_damage, GetHealingPowerSummonDamageMultiplier());
         }
 
         private static void RefreshBodyguardFollow(Player owner, GameObject bodyguard)
@@ -25258,6 +26372,7 @@ namespace Fran.EpicLootRaritySets
                     SpawnBodyguardEffect(bodyguard.transform.position);
                 }
 
+                ClassPetScalingController.Unregister(bodyguard);
                 if (ZNetScene.instance != null)
                 {
                     ZNetScene.instance.Destroy(bodyguard);
@@ -25436,6 +26551,7 @@ namespace Fran.EpicLootRaritySets
         {
             internal float Amount;
             internal float Remaining;
+            internal GameObject Visual;
         }
 
         private static bool IsHelveigId(string id)
@@ -25499,10 +26615,11 @@ namespace Fran.EpicLootRaritySets
                 : string.Empty;
             _bodyguardBuff.m_ttl = 0f;
             _bodyguardBuff.m_tooltip = string.Format(
-                "Guardaespaldas no muerto de Helveig.\n\nVivos: {0}/1.\nCharred Dyrnwyn: {1:0} vida, x{2:0.##} dano.{3}",
+                "Guardaespaldas no muerto de Helveig.\n\nVivos: {0}/1.\nCharred Dyrnwyn: {1:0} vida, x{2:0.##} dano, {3:0.#}% reduccion recibida.{4}",
                 living,
                 GetBodyguardMaxHealth(BodyguardDyrnwynKind, skill),
                 GetBodyguardDamageMultiplier(BodyguardDyrnwynKind, skill),
+                GetBodyguardDamageTakenReduction(BodyguardDyrnwynKind, skill) * 100f,
                 respawn);
             StatusEffectIconHelper.Apply(_bodyguardBuff, RequiredSet, icon);
 
@@ -25803,7 +26920,7 @@ namespace Fran.EpicLootRaritySets
                     continue;
                 }
 
-                if (HealAndApplyPassives(player, character, healing) > 0.01f)
+                if (HealAndApplyPassives(player, character, healing) > 0.01f || healing > 0.01f)
                 {
                     healedAny = true;
                 }
@@ -25822,17 +26939,47 @@ namespace Fran.EpicLootRaritySets
                 return 0f;
             }
 
+            float potentialHealing = Mathf.Max(0f, healing);
             float before = GetHealthSafe(target);
-            target.Heal(healing, true);
+            target.Heal(potentialHealing, true);
             float actualHealing = Mathf.Max(0f, GetHealthSafe(target) - before);
-            if (actualHealing <= 0.01f)
-            {
-                return 0f;
-            }
-
-            ApplyHealingShield(caster, target, actualHealing);
+            ApplyHealingShield(caster, target, potentialHealing);
             AddHealingPowerStack(caster);
             return actualHealing;
+        }
+
+        internal static void RegisterRpcs()
+        {
+            if (_rpcsRegistered || ZRoutedRpc.instance == null)
+            {
+                return;
+            }
+
+            try
+            {
+                ZRoutedRpc.instance.Register<ZDOID, float, float>(ApplyHealingShieldRpc, RPC_ApplyHealingShield);
+                _rpcsRegistered = true;
+            }
+            catch
+            {
+            }
+        }
+
+        private static void RPC_ApplyHealingShield(long sender, ZDOID targetId, float shieldAmount, float remaining)
+        {
+            Character target = FindCharacterByZdoId(targetId);
+            if (target == null)
+            {
+                return;
+            }
+
+            Player targetPlayer = target as Player;
+            if (targetPlayer != null && targetPlayer != Player.m_localPlayer)
+            {
+                return;
+            }
+
+            ApplyHealingShieldAmount(null, target, shieldAmount, Mathf.Max(0.1f, remaining), false);
         }
 
         private static float GetHealthSafe(Character target)
@@ -25860,6 +27007,16 @@ namespace Fran.EpicLootRaritySets
             }
 
             float shieldAmount = Mathf.Max(0f, actualHealing * HealingShieldFraction);
+            ApplyHealingShieldAmount(caster, target, shieldAmount, HealingShieldDuration, true);
+        }
+
+        private static void ApplyHealingShieldAmount(Player caster, Character target, float shieldAmount, float duration, bool sendRemotePlayerRpc)
+        {
+            if (target == null)
+            {
+                return;
+            }
+
             if (shieldAmount <= 0.01f)
             {
                 return;
@@ -25873,8 +27030,13 @@ namespace Fran.EpicLootRaritySets
             }
 
             state.Amount = Mathf.Max(state.Amount, shieldAmount);
-            state.Remaining = HealingShieldDuration;
+            state.Remaining = Mathf.Max(0.1f, duration);
+            EnsureHealingShieldVisual(target, state);
             RefreshHealingShieldBuff(caster, target, state);
+            if (sendRemotePlayerRpc)
+            {
+                TrySendHealingShieldRpc(target, shieldAmount, state.Remaining);
+            }
         }
 
         private static void AddHealingPowerStack(Player player)
@@ -25885,7 +27047,26 @@ namespace Fran.EpicLootRaritySets
             }
 
             _healingPowerStacks = Mathf.Clamp(_healingPowerStacks + 1, 0, HealingPowerMaxStacks);
+            _healingPowerRemaining = HealingPowerDuration;
             RefreshHealingPowerBuff(player);
+        }
+
+        private static void UpdateHealingPower(Player player, float dt)
+        {
+            if (_healingPowerStacks <= 0)
+            {
+                return;
+            }
+
+            _healingPowerRemaining -= Mathf.Max(0f, dt);
+            if (_healingPowerRemaining > 0f && IsHelveigEnabledAndActive())
+            {
+                return;
+            }
+
+            _healingPowerStacks = 0;
+            _healingPowerRemaining = 0f;
+            RemoveHealingPowerBuff(player);
         }
 
         private static void UpdateHealingShields(float dt)
@@ -25910,7 +27091,10 @@ namespace Fran.EpicLootRaritySets
                 if (state.Remaining <= 0f || state.Amount <= 0.01f)
                 {
                     HealingShieldsToRemove.Add(target);
+                    continue;
                 }
+
+                EnsureHealingShieldVisual(target, state);
             }
 
             foreach (Character target in HealingShieldsToRemove)
@@ -25959,6 +27143,16 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
+        private static void EnsureHealingShieldVisual(Character target, HealingShieldState state)
+        {
+            if (target == null || state == null || state.Remaining <= 0f || state.Visual != null)
+            {
+                return;
+            }
+
+            state.Visual = NorseVisualEffectBridge.SpawnSeidrElementalShield(target.gameObject, Mathf.Max(0.2f, state.Remaining + 0.25f));
+        }
+
         private static void RefreshHealingShieldBuff(Player caster, Character target, HealingShieldState state)
         {
             if (target == null || state == null)
@@ -25968,10 +27162,15 @@ namespace Fran.EpicLootRaritySets
 
             StatusEffect buff = GetOrCreateHealingShieldBuff(AbilityPanelIconCatalog.GetIcon("Buffs", "helveig_blood_aegis.png") ?? FindHelveigIcon(caster) ?? StatusEffectIconHelper.GetIcon(caster, RequiredSet));
             buff.m_ttl = Mathf.Max(0.1f, state.Remaining);
-            buff.m_tooltip = string.Format(
-                "Egida de sangre de Helveig.\n\nAbsorbe {0:0.#} de dano.\nTiempo restante: {1:0.#}s.",
-                Mathf.Max(0f, state.Amount),
-                Mathf.Max(0f, state.Remaining));
+            buff.m_tooltip = LocalizedText.Select(
+                string.Format(
+                    "Egida de sangre de Helveig.\n\nAbsorbe {0:0.#} de dano.\nTiempo restante: {1:0.#}s.",
+                    Mathf.Max(0f, state.Amount),
+                    Mathf.Max(0f, state.Remaining)),
+                string.Format(
+                    "Helveig Blood Aegis.\n\nAbsorbs {0:0.#} damage.\nTime remaining: {1:0.#}s.",
+                    Mathf.Max(0f, state.Amount),
+                    Mathf.Max(0f, state.Remaining)));
 
             SEMan seMan = target.GetSEMan();
             seMan.RemoveStatusEffect(buff.NameHash(), true);
@@ -25997,11 +27196,86 @@ namespace Fran.EpicLootRaritySets
 
         private static void RemoveHealingShield(Character target)
         {
+            HealingShieldState state;
+            if (target != null && HealingShields.TryGetValue(target, out state) && state != null && state.Visual != null)
+            {
+                UnityEngine.Object.Destroy(state.Visual);
+                state.Visual = null;
+            }
+
             HealingShields.Remove(target);
             if (target != null && _healingShieldBuff != null)
             {
                 target.GetSEMan().RemoveStatusEffect(_healingShieldBuff.NameHash(), true);
             }
+        }
+
+        private static void TrySendHealingShieldRpc(Character target, float shieldAmount, float remaining)
+        {
+            Player targetPlayer = target as Player;
+            if (targetPlayer == null || targetPlayer == Player.m_localPlayer)
+            {
+                return;
+            }
+
+            RegisterRpcs();
+            if (!_rpcsRegistered || ZRoutedRpc.instance == null)
+            {
+                return;
+            }
+
+            ZDOID targetId;
+            long owner;
+            if (!TryGetCharacterNetworkIdentity(target, out targetId, out owner) || owner == 0L)
+            {
+                return;
+            }
+
+            try
+            {
+                ZRoutedRpc.instance.InvokeRoutedRPC(owner, ApplyHealingShieldRpc, targetId, shieldAmount, Mathf.Max(0.1f, remaining));
+            }
+            catch
+            {
+            }
+        }
+
+        private static Character FindCharacterByZdoId(ZDOID targetId)
+        {
+            foreach (Character character in Character.GetAllCharacters())
+            {
+                ZDOID characterId;
+                long owner;
+                if (character != null &&
+                    TryGetCharacterNetworkIdentity(character, out characterId, out owner) &&
+                    characterId.Equals(targetId))
+                {
+                    return character;
+                }
+            }
+
+            return null;
+        }
+
+        private static bool TryGetCharacterNetworkIdentity(Character target, out ZDOID id, out long owner)
+        {
+            id = default(ZDOID);
+            owner = 0L;
+            if (target == null)
+            {
+                return false;
+            }
+
+            ZNetView view = target.GetComponent<ZNetView>();
+            ZDO zdo = view != null ? view.GetZDO() : null;
+            if (zdo == null)
+            {
+                return false;
+            }
+
+            id = zdo.m_uid;
+            owner = zdo.GetOwner();
+            return true;
         }
 
         private static void RefreshHealingPowerBuff(Player player)
@@ -26013,13 +27287,22 @@ namespace Fran.EpicLootRaritySets
 
             StatusEffect buff = GetOrCreateHealingPowerBuff(AbilityPanelIconCatalog.GetIcon("Buffs", "helveig_sanguine_devotion.png") ?? FindHelveigIcon(player) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
             buff.m_name = string.Format("{0} {1}/{2}", LocalizedText.AbilityName("Sanguine Devotion"), _healingPowerStacks, HealingPowerMaxStacks);
-            buff.m_ttl = 0f;
-            buff.m_tooltip = string.Format(
-                "Devocion sanguinea de Helveig.\n\nCargas: {0}/{1}.\nDano de invocaciones: +{2:0.#}%.\nDano de Golpe sagrado: +{3:0.#}%.",
-                _healingPowerStacks,
-                HealingPowerMaxStacks,
-                (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
-                (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f);
+            buff.m_ttl = Mathf.Max(0.1f, _healingPowerRemaining + 0.1f);
+            buff.m_tooltip = LocalizedText.Select(
+                string.Format(
+                    "Devocion sanguinea de Helveig.\n\nCargas: {0}/{1}.\nDano de invocaciones: +{2:0.#}%.\nDano de Golpe sagrado: +{3:0.#}%.\nTiempo restante: {4:0.#}s.",
+                    _healingPowerStacks,
+                    HealingPowerMaxStacks,
+                    (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
+                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f,
+                    Mathf.Max(0f, _healingPowerRemaining)),
+                string.Format(
+                    "Helveig Sanguine Devotion.\n\nStacks: {0}/{1}.\nSummon damage: +{2:0.#}%.\nHoly Strike damage: +{3:0.#}%.\nTime remaining: {4:0.#}s.",
+                    _healingPowerStacks,
+                    HealingPowerMaxStacks,
+                    (_healingPowerStacks * HealingPowerSummonDamagePerStack) * 100f,
+                    (_healingPowerStacks * HealingPowerHolyStrikeDamagePerStack) * 100f,
+                    Mathf.Max(0f, _healingPowerRemaining)));
 
             SEMan seMan = player.GetSEMan();
             seMan.RemoveStatusEffect(buff.NameHash(), true);
@@ -26034,7 +27317,7 @@ namespace Fran.EpicLootRaritySets
                 _healingPowerBuff.name = HealingPowerBuffName;
                 _healingPowerBuff.m_category = HealingPowerBuffCategory;
                 _healingPowerBuff.m_flashIcon = false;
-                _healingPowerBuff.m_cooldownIcon = false;
+                _healingPowerBuff.m_cooldownIcon = true;
                 _healingPowerBuff.m_hidden = false;
             }
 
@@ -26052,11 +27335,21 @@ namespace Fran.EpicLootRaritySets
 
         private static float GetHealingPowerSummonDamageMultiplier()
         {
+            if (_healingPowerRemaining <= 0f)
+            {
+                return 1f;
+            }
+
             return 1f + Mathf.Clamp(_healingPowerStacks, 0, HealingPowerMaxStacks) * HealingPowerSummonDamagePerStack;
         }
 
         private static float GetHealingPowerHolyStrikeDamageMultiplier()
         {
+            if (_healingPowerRemaining <= 0f)
+            {
+                return 1f;
+            }
+
             return 1f + Mathf.Clamp(_healingPowerStacks, 0, HealingPowerMaxStacks) * HealingPowerHolyStrikeDamagePerStack;
         }
 
@@ -26577,6 +27870,7 @@ namespace Fran.EpicLootRaritySets
         private static bool _crushArmed;
         private static bool _crushLeftGround;
         private static bool _crushForcesLoaded;
+        private static bool _wasActive;
         private static float _decayTickTimer;
         private static float _bloodFrenzyRemaining;
         private static float _bloodFrenzyCooldown;
@@ -26600,10 +27894,14 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _decayAuraActive || _bloodFrenzyRemaining > 0f || _furyStacks > 0 || _crushArmed || _crushTimer > 0f || _crushQueuedTimer > 0f)
+                {
+                    Clear(player);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateDecayAura(player, dt);
             UpdateFuryBuff(player, dt);
             UpdateBloodFrenzy(player, dt);
@@ -26660,6 +27958,7 @@ namespace Fran.EpicLootRaritySets
             RemoveBloodFrenzyBuff(player);
             DestroyVisual(ref _decayAuraVisual);
             DestroyVisual(ref _crushFlameVisual);
+            _wasActive = false;
         }
 
         internal static bool TryGetBloodSurgeStacks(out int stacks, out int maxStacks)
@@ -27830,6 +29129,7 @@ namespace Fran.EpicLootRaritySets
         private static float _recentBlockableDamageTimer;
         private static bool _loggedHarpoonProjectileFailure;
         private static bool _loggedHarpoonRopeFailure;
+        private static bool _wasActive;
 
         internal static void Update(Player player, float dt)
         {
@@ -27848,11 +29148,16 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _armorStacks > 0 || _lightningStormRemaining > 0f || _stoneShieldRemaining > 0f ||
+                    _lightningStormVisual != null || _stoneShieldVisual != null || _harpoonRopeVisual != null)
+                {
+                    Clear(player);
+                }
                 _lastObservedStamina = currentStamina;
                 return;
             }
 
+            _wasActive = true;
             UpdateLightningStorm(player, dt);
             UpdateStoneShield(player, dt);
 
@@ -27901,6 +29206,7 @@ namespace Fran.EpicLootRaritySets
             DestroyVisual(ref _lightningStormVisual);
             DestroyVisual(ref _stoneShieldVisual);
             DestroyVisual(ref _harpoonRopeVisual);
+            _wasActive = false;
         }
 
         internal static void ModifyIncomingDamage(Player player, HitData hit)
@@ -29623,6 +30929,7 @@ namespace Fran.EpicLootRaritySets
         private static float _nanoVisualRefreshTimer;
         private static bool _nanoAreaActive;
         private static bool _nanoPlayerInside;
+        private static bool _wasActive;
         private static float _nanoCooldown;
         private static float _shieldCooldown;
         private static bool _shieldActive;
@@ -29644,10 +30951,14 @@ namespace Fran.EpicLootRaritySets
 
             if (!IsEnabledAndActive())
             {
-                Clear(player);
+                if (_wasActive || _nanoRemaining > 0f || _shieldActive || _stoneGolem != null)
+                {
+                    Clear(player);
+                }
                 return;
             }
 
+            _wasActive = true;
             UpdateNanoCube(player, dt);
             UpdateElementalShield(player, dt);
             UpdateStoneGolem(player, dt);
@@ -29700,6 +31011,7 @@ namespace Fran.EpicLootRaritySets
             DestroyNanoVisuals();
             DestroyVisual(ref _shieldVisual);
             DestroyStoneGolem();
+            _wasActive = false;
         }
 
         internal static void ModifyIncomingDamage(Player player, HitData hit)
@@ -29855,6 +31167,7 @@ namespace Fran.EpicLootRaritySets
             NorseVisualEffectBridge.Spawn(spawn, Quaternion.identity, "ElementalGolem", "StoneGolem", "Golem", "Stone");
             _stoneGolem = UnityEngine.Object.Instantiate(prefab, spawn, Quaternion.LookRotation(player.transform.forward));
             SetupSummon(player, _stoneGolem);
+            ApplyStoneGolemScaling(player, _stoneGolem);
             _stoneGolemRemaining = Mathf.Max(1f, EpicLootRaritySetsPlugin.SeidrStoneGolemDuration.Value);
             _stoneGolemCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.SeidrStoneGolemCooldown.Value);
             RefreshStoneGolemBuff(player);
@@ -30063,8 +31376,12 @@ namespace Fran.EpicLootRaritySets
             StatusEffect buff = GetOrCreateStoneGolemBuff();
             buff.m_ttl = Mathf.Max(0.1f, _stoneGolemRemaining + 0.1f);
             StatusEffectIconHelper.Apply(buff, player, RequiredSet);
+            float skill = ClassSkillManager.GetLocalSkillLevel(RequiredSet);
             buff.m_tooltip = string.Format(
-                "Stone Golem aliado activo.\n\nAtaca enemigos cercanos y obedece ordenes de mascota.\nTiempo restante: {0:0.#}s.",
+                "Stone Golem aliado activo.\n\nVida: {0:0.#}.\nDano: x{1:0.##}.\nReduccion recibida: {2:0.#}%.\nTiempo restante: {3:0.#}s.\nCtrl + Mouse4: atacar objetivo. Ctrl + Mouse3: seguir pasivo. Ctrl + ataque secundario: libre.",
+                GetStoneGolemMaxHealth(skill),
+                GetStoneGolemDamageMultiplier(skill),
+                GetStoneGolemDamageTakenReduction(skill) * 100f,
                 Mathf.Max(0f, _stoneGolemRemaining));
             ApplyOrRefreshStatusEffect(player, buff, 0);
         }
@@ -30281,14 +31598,10 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            GameObject visual = NorseVisualEffectBridge.Spawn(
+            GameObject visual = NorseVisualEffectBridge.SpawnSeidrNanocube(
                 _nanoCenter,
-                Quaternion.identity,
-                Mathf.Max(0.2f, _nanoRemaining + 0.2f),
-                "FxNanoCube",
-                "NanoCube",
-                "Nanocube",
-                "Cube");
+                GetNanoLogicRadius(),
+                Mathf.Min(2.7f, Mathf.Max(0.2f, _nanoRemaining + 0.2f)));
             if (visual != null)
             {
                 NanoVisuals.Add(visual);
@@ -30366,16 +31679,7 @@ namespace Fran.EpicLootRaritySets
                 return;
             }
 
-            _shieldVisual = NorseVisualEffectBridge.SpawnAttached(
-                player,
-                Vector3.up * 1.0f,
-                Quaternion.identity,
-                1.4f,
-                "FxLightningShield",
-                "FxArcaneShield",
-                "ElementalShield",
-                "Shield",
-                "FxLightning");
+            _shieldVisual = NorseVisualEffectBridge.SpawnSeidrElementalShield(player.gameObject, 1.4f);
         }
 
         private static void DestroyVisual(ref GameObject visual)
@@ -30412,6 +31716,34 @@ namespace Fran.EpicLootRaritySets
             if (view != null && view.GetZDO() != null) view.GetZDO().Persistent = false;
             ApplyGhostVisual(summon);
             NorseVisualEffectBridge.SpawnAttached(summon, Vector3.up * 1.2f, Quaternion.identity, Mathf.Max(1f, EpicLootRaritySetsPlugin.SeidrStoneGolemDuration.Value), "ElementalGolem", "StoneGolem", "Golem", "Spirit", "Ghost");
+        }
+
+        private static void ApplyStoneGolemScaling(Player player, GameObject summon)
+        {
+            float skill = ClassSkillManager.GetSkillLevel(player, RequiredSet);
+            ClassPetScalingController.Register(
+                summon,
+                GetStoneGolemMaxHealth(skill),
+                GetStoneGolemDamageMultiplier(skill),
+                GetStoneGolemDamageTakenReduction(skill));
+        }
+
+        private static float GetStoneGolemMaxHealth(float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return 220f + skill * 2.2f;
+        }
+
+        private static float GetStoneGolemDamageMultiplier(float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return 0.35f + skill * 0.0035f;
+        }
+
+        private static float GetStoneGolemDamageTakenReduction(float skill)
+        {
+            skill = Mathf.Clamp(skill, 0f, 100f);
+            return Mathf.Min(0.25f, skill * 0.002f);
         }
 
         private static void ApplyGhostVisual(GameObject target)
@@ -30491,6 +31823,7 @@ namespace Fran.EpicLootRaritySets
         {
             if (_stoneGolem != null)
             {
+                ClassPetScalingController.Unregister(_stoneGolem);
                 if (ZNetScene.instance != null) ZNetScene.instance.Destroy(_stoneGolem);
                 else UnityEngine.Object.Destroy(_stoneGolem);
             }
@@ -31647,6 +32980,17 @@ namespace Fran.EpicLootRaritySets
     [HarmonyPatch(typeof(BaseAI), "IsEnemy", new[] { typeof(Character), typeof(Character) })]
     internal static class HraesvelgrSummonSameKindEnemyPatch
     {
+        private static bool Prefix(Character a, Character b, ref bool __result)
+        {
+            if (PetCommandController.ShouldPassivePetIgnoreEnemy(a, b))
+            {
+                __result = false;
+                return false;
+            }
+
+            return true;
+        }
+
         private static void Postfix(Character a, Character b, ref bool __result)
         {
             if (__result)
@@ -31787,6 +33131,7 @@ namespace Fran.EpicLootRaritySets
 
             Player defender = __instance as Player;
             HelveigAbilityController.ModifyIncomingDamage(__instance, hit);
+            ClassPetScalingController.ModifyIncomingDamage(__instance, hit);
             if (defender != null && defender == Player.m_localPlayer)
             {
                 FrostbrandAbilityController.ModifyIncomingDamage(defender, hit);
@@ -31800,8 +33145,8 @@ namespace Fran.EpicLootRaritySets
 
             FrostbrandAbilityController.ModifyOutgoingDamage(hit);
             MoonveinAbilityController.ModifyOutgoingDamage(__instance, hit);
-            MoonveinAbilityController.ModifySpiritWolfOutgoingDamage(hit);
             SeidrAbilityController.ModifyOutgoingDamage(hit);
+            ClassPetScalingController.ModifyOutgoingDamage(hit);
             HelveigAbilityController.ModifyBodyguardOutgoingDamage(hit);
             HraesvelgrAbilityController.ModifyOutgoingDamage(__instance, hit);
             SolomonKaneAbilityController.ModifyOutgoingDamage(__instance, hit);
@@ -31810,6 +33155,7 @@ namespace Fran.EpicLootRaritySets
             NottAbilityController.ModifyOutgoingDamage(__instance, hit);
             NottAbilityController.TryConsumeWarpStrike(__instance, hit);
             NottAbilityController.ApplyExecutor(__instance, hit);
+            PetCommandController.ModifyCommandedPetOutgoingDamage(hit);
         }
 
         private static void Postfix(Character __instance, HitData hit, float __state)
