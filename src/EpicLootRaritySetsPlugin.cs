@@ -902,6 +902,7 @@ namespace Fran.EpicLootRaritySets
             _harmony = new Harmony(PluginGuid);
             BetterArcheryInventorySlotsCompatibility.Patch(_harmony);
             WiresEnemyHudCompatibilitySynchronizer.Patch(_harmony);
+            RaritySetOptionalHarmonyPatches.Patch(_harmony);
             _harmony.PatchAll();
 
             Log.LogInfo("Epic Loot Rarity Sets loaded.");
@@ -36423,7 +36424,7 @@ namespace Fran.EpicLootRaritySets
         }
     }
 
-    [HarmonyPatch(typeof(ItemDataExtensions), "GetDisplayName")]
+    [HarmonyPatch(typeof(EpicLoot.ItemDataExtensions), "GetDisplayName")]
     internal static class RaritySetItemDisplayNameLocalizationPatch
     {
         private static void Postfix(ItemDrop.ItemData itemData, ref string __result)
@@ -36432,10 +36433,31 @@ namespace Fran.EpicLootRaritySets
         }
     }
 
-    [HarmonyPatch(typeof(PlayerExtensions), "GetAllActiveSetMagicEffects")]
-    internal static class GetAllActiveSetMagicEffectsPatch
+    internal static class RaritySetOptionalHarmonyPatches
     {
-        private static bool Prefix(Player player, string effectType, ref List<MagicItemEffect> __result)
+        internal static void Patch(Harmony harmony)
+        {
+            if (harmony == null)
+            {
+                return;
+            }
+
+            MethodInfo target = AccessTools.Method(typeof(EpicLoot.PlayerExtensions), "GetAllActiveSetMagicEffects", new[] { typeof(Player), typeof(string) });
+            MethodInfo prefix = AccessTools.Method(typeof(RaritySetOptionalHarmonyPatches), "GetAllActiveSetMagicEffectsPrefix");
+            if (target == null || prefix == null)
+            {
+                if (EpicLootRaritySetsPlugin.Log != null)
+                {
+                    EpicLootRaritySetsPlugin.Log.LogWarning("EpicLoot.PlayerExtensions.GetAllActiveSetMagicEffects was not found; rarity set active-value override will be skipped for this EpicLoot build.");
+                }
+
+                return;
+            }
+
+            harmony.Patch(target, prefix: new HarmonyMethod(prefix));
+        }
+
+        private static bool GetAllActiveSetMagicEffectsPrefix(Player player, string effectType, ref List<MagicItemEffect> __result)
         {
             List<MagicItemEffect> effects;
             if (RaritySetRegistry.TryBuildActiveSetMagicEffects(player, effectType, out effects))
@@ -36453,7 +36475,7 @@ namespace Fran.EpicLootRaritySets
     {
         private static MethodBase TargetMethod()
         {
-            return AccessTools.Method(typeof(ItemDataExtensions), "GetSetTooltip", new[] { typeof(ItemDrop.ItemData), typeof(string), typeof(int), typeof(bool) });
+            return AccessTools.Method(typeof(EpicLoot.ItemDataExtensions), "GetSetTooltip", new[] { typeof(ItemDrop.ItemData), typeof(string), typeof(int), typeof(bool) });
         }
 
         private static bool Prefix(ItemDrop.ItemData item, string setID, int setSize, bool isMundane, ref string __result)
@@ -36561,7 +36583,7 @@ namespace Fran.EpicLootRaritySets
         }
     }
 
-    [HarmonyPatch(typeof(ItemDataExtensions), "GetMundaneSetPieces")]
+    [HarmonyPatch(typeof(EpicLoot.ItemDataExtensions), "GetMundaneSetPieces")]
     internal static class GetMundaneSetPiecesPatch
     {
         private static bool Prefix(string setName, ref List<string> __result)

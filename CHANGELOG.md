@@ -5,6 +5,7 @@
 ### Compatibility
 - Disabled BetterArchery's quiver inventory-slot handling from this DLL, so `LeatherQuiver` no longer reserves or creates the three extra quiver slots even when equipped.
 - Neutralized BetterArchery's `FindEmptySlot`/`HaveEmptySlot` quiver overrides so InventorySlots expanded cells are counted correctly during normal loot pickup instead of reporting inventory full while expanded cells are free.
+- Fixed a startup Harmony error caused by the rarity set active-effect patch resolving `PlayerExtensions` against the wrong type; the patch now targets `EpicLoot.PlayerExtensions` explicitly and skips safely if that EpicLoot method is unavailable.
 
 ### UI
 - Ability and passive/orb panels now refresh their localized text when the game language changes.
