@@ -1,5 +1,61 @@
 # Changelog
 
+## [1.0.7] - 2026-09-22
+
+### General
+- Bumped `manifest.json` to `1.0.7`.
+- Added a safety guard around `ZNetScene.RemoveObjects`/destroyed `ZNetView` cleanup to reduce `NullReferenceException` crashes when leaving combat scenes quickly, especially after temporary Frostbrand lightning/passive objects.
+- Fixed EpicLoot magic set repairs so damaged magic rarity set pieces can appear as repairable and be repaired at valid stations.
+- Relaxed EpicLoot magic-effect item-type restrictions for all guaranteed rarity-set effects, so configured set-piece bonuses are no longer rejected and replaced by fallback rolls such as `Luck`.
+- Improved class active-effect localization refresh: active class buff names/tooltips now refresh after language changes instead of staying in the previous language.
+- Class-name buffs now show the current class skill level as their icon number and refresh as the skill levels up.
+- Updated the in-game compendium text for the latest class ability/balance changes in Spanish and English.
+- Updated class ability targeting so damage/control skills can interact with players only when PvP is active.
+- Fixed Hraesvelgr physical archer traps so they ignore players without PvP active.
+
+### UI
+- Reinforced passive stack/orb panels for classes with three-hit/passive charge mechanics so they survive equip/unequip transitions more reliably.
+- Added panel recentering when tabbing, making displaced passive/orb panels easier to recover.
+- Frostbrand Dash charge buff no longer flashes constantly; its icon text now shows seconds until the next charge only while recharging.
+- Frostbrand Dash charges and active state are reflected in the ability panel icon/buff state.
+- Added dedicated Frostbrand Dash and Dash speed-buff icons, separate from Hraesvelgr/Freyja Dash.
+
+### Ragnar
+- Added Blood Frenzy and Ragnar Crush details to the compendium active-effect text and EpicLoot rarity set descriptions.
+- Blood Surge now heals `25%` of maximum health instead of `5%`.
+- Ragnar Fury now grants `1%` lifesteal per stack instead of `0.5%`.
+- Blood Frenzy no longer costs health; it now consumes `50%` of maximum stamina.
+- Updated the compendium to reflect Blood Frenzy, Blood Surge, Fury and Crush changes.
+
+### Frostbrand
+- Moved Water Sphere out of Frostbrand and into Heimdall.
+- Added Frostbrand Dash using the NorseDemigods Ability Dash bridge with the Thor/lightning theme instead of Freyja/Nature, while keeping the player-facing name as `Dash`.
+- Frostbrand Dash now has `3` charges and recovers one charge every `15s`.
+- Frostbrand Dash now grants `+50%` movement speed for `3s`.
+- Slash now heals the caster for `50%` of actual damage dealt.
+- Thor Lightning Strike damage/root handling was reinforced: the root is applied around the impact, movement is actively locked while rooted, and the effect lasts `5s`.
+- Updated Frostbrand compendium text for Dash charges, Dash speed buff, Slash healing, Lightning Strike damage and root behavior.
+
+### Heimdall
+- Added Water Sphere to Heimdall.
+- Water Sphere pull radius increased to `30m`.
+- Water Sphere now keeps affected enemies pinned to the sphere until the effect ends.
+- Lightning Storm now slows hit enemies by `30%` for `6s`.
+- Updated Heimdall compendium text for Water Sphere and Lightning Storm slow behavior.
+
+### Hraesvelgr
+- Hraesvelgr summoned pets now remember whether they had a saddle equipped when stored, and restore that saddle state when summoned again.
+- The saddle state is persisted in config with the current tamed beast prefab, so it survives reinvocation and reloads.
+- Updated Hraesvelgr compendium text to mention saddle persistence.
+
+### Moonvein
+- Meteor now scales projectile count with Moonvein class skill: `1` meteor normally, `2` meteors from skill `60`, and `3` meteors from skill `90`.
+- Multi-meteor casts now land each meteor `1.5s` after the previous one.
+- Extra meteors land `1m` left/right of the main Meteor impact to avoid overlap.
+- Spirit Wolf now shows remaining duration seconds on both the active buff icon and the ability panel while summoned.
+- Arcane Shots now uses the same Moonvein charged-shots icon in the buff bar as it uses in the ability/orb panel.
+- Updated Moonvein compendium text to describe Meteor count thresholds.
+
 ## [1.0.6] - 2026-09-18
 
 ### General
@@ -58,9 +114,9 @@
 - Recharge buff now updates when it gains/renews charges and then expires naturally from its duration.
 
 ### Moonvein
-- Added `Disparos arcanos`: normal Moonvein bow shots add lightning and spirit damage, both scaling with Moonvein and passing through EpicLoot damage modifiers.
-- Added Moonvein `Recarga`, matching Frostbrand's charge style: hits build up to `5` stacks, increase all damage, and trigger guaranteed Chain Lightning at full stacks.
-- Added `Lobo espiritual` on `Bloqueo + Mouse3`: summons `wolf_spiritcaller`, scales health/damage with Moonvein, obeys the pet command panel, and applies death cooldown when killed.
+- Added `Arcane Shots`: normal Moonvein bow shots add lightning and spirit damage, both scaling with Moonvein and passing through EpicLoot damage modifiers.
+- Added Moonvein `Recharge`, matching Frostbrand's charge style: hits build up to `5` stacks, increase all damage, and trigger guaranteed Chain Lightning at full stacks.
+- Added `Spirit Wolf` on `Block + Mouse3`: summons `wolf_spiritcaller`, scales health/damage with Moonvein, obeys the pet command panel, and applies death cooldown when killed.
 - Added Spirit Wolf support to pet command/enemy relationship handling.
 - Rebalanced Moonvein charged-shot projectiles:
   - Acid Bolt base damage `20 -> 40`.
@@ -75,11 +131,11 @@
 - Moonvein passive and Spirit Wolf buffs now keep fixed icons while active instead of being refreshed continuously.
 
 ### Nott
-- Added permanent passive `Ejecutor`: all Nott damage against enemies already at or below `30%` health deals `300%` total damage.
-- Added `Golpe de cuchillo`: requires a knife, has `8s` cooldown, uses secondary attack input, plays a Norse slash visual, deals `50%` weapon damage plus Nott scaling, and slows the target by `50%` for `5s`.
-- Added `Guardia de Warp`: after a successful Warp, Nott takes `90%` less incoming damage for `3s`.
-- Added generated icons for `Ejecutor`, `Golpe de cuchillo` and `Guardia de Warp`.
-- Made `Ejecutor` and `Filo venenoso` permanent non-flashing buffs.
+- Added permanent passive `Executor`: all Nott damage against enemies already at or below `30%` health deals `300%` total damage.
+- Added `Knife Strike`: requires a knife, has `8s` cooldown, uses secondary attack input, plays a Norse slash visual, deals `50%` weapon damage plus Nott scaling, and slows the target by `50%` for `5s`.
+- Added `Warp Guard`: after a successful Warp, Nott takes `90%` less incoming damage for `3s`.
+- Added generated icons for `Executor`, `Knife Strike` and `Warp Guard`.
+- Made `Executor` and `Poison Edge` permanent non-flashing buffs.
 - Improved Executor handling so threshold damage is evaluated only from the target's current health state.
 - Shadow Momentum now also grants `+15%` outgoing damage while active.
 

@@ -1,62 +1,62 @@
 # EpicLootRaritySets
 
-Convierte EpicLoot en una progresion estable de clases por equipo para Valheim. Desde la version `1.0.0`, el mod se considera version estable y preparada para jugar disfrutando de la experiencia completa.
+Turns EpicLoot into a stable equipment-based class progression system for Valheim. Since version `1.0.0`, the mod is considered stable and ready for a full playthrough experience.
 
-Este mod anade sets personalizados por rareza, drops por etapa de boss, piezas especiales, bonus de set y habilidades activas al completar sets. La idea es que el jugador no solo encuentre objetos mejores: que pueda construir un personaje completo alrededor de una clase de equipo.
+This mod adds custom rarity sets, boss-stage drops, special pieces, set bonuses and active abilities unlocked by completing sets. The idea is not just to find stronger items, but to build a full character around a recognizable equipment class.
 
-Si te gusta EpicLoot pero quieres objetivos claros de farmeo, builds reconocibles y habilidades nuevas al cerrar un set completo, este mod es para eso.
+If you like EpicLoot but want clearer farming goals, recognizable builds and new abilities when you complete a full set, this mod is built for that.
 
-Dejo mi ko-fi por si te animas a dejarme una propina que me ayude a crecer. Muchas gracias y un abrazo por el apoyo a todos: https://ko-fi.com/daraodesigns
+I am leaving my Ko-fi here in case you want to leave a tip and help me keep growing. Thank you very much for the support: https://ko-fi.com/daraodesigns
 
-## Agradecimientos
+## Credits
 
-Agradecimientos a Alpus, Radamanto y RandyKnapp por sus mods, de los cuales he partido o utilizo para mejorar la jugabilidad de valheim.
+Thanks to Alpus, Radamanto and RandyKnapp for their mods, which this project builds on or uses to improve Valheim gameplay.
 
-## Que aporta
+## What It Adds
 
-- Sets por rareza: `Magic`, `Rare`, `Epic`, `Legendary`, `Mythic` y `Ancient`.
-- Clases por set: tanque, berserker, arquero, ballestero, asesino, mago elemental, mago de sangre, arquero magico y spellblade.
-- Habilidades activas y pasivas al completar el set.
-- Buffs visibles para set activo, pasivas, estados temporales y cargas.
-- Panel movible de habilidades activas con icono, nombre, tecla y cooldown.
-- Panel movible de pasivas estaticas con placa y 2 orbes de carga para Moonvein, Frostbrand, Hraesvelgr y Oleada de sangre de Ragnar.
-- Bonus de set crecientes segun rareza y numero de piezas.
-- Drops naturales de piezas de set desde EpicLoot.
-- Drops garantizados de boss por etapa cuando hay una tirada valida.
-- Configs de EpicLoot y NorseDemigods embebidas en la DLL y sincronizadas al arrancar.
-- Entrada nueva en el compendio/textos del juego: `Epic Loot Rarity Sets`, con descripcion de cada clase, habilidades, buffs y pasivas traducidos.
-- Textos, tooltips y compendio en espanol o ingles segun el idioma activo del juego.
-- Ordenes globales de mascotas con combinaciones `Ctrl`.
-- Integracion opcional con BetterArchery para `LeatherQuiver`.
-- Integracion con Bestiary para criaturas `RDB_*` en loot y contratos.
-- Compatibilidad opcional con WolfPack para controlar invocaciones de Hraesvelgr.
-- Compatibilidad opcional con Wires Enemy HUD: fuerza `HealthDisplay = Current HP/Max HP` si el mod esta instalado.
+- Rarity sets for `Magic`, `Rare`, `Epic`, `Legendary`, `Mythic` and `Ancient`.
+- Set-based classes: tank, berserker, archer, crossbow hunter, assassin, elemental mage, blood mage, magical archer and spellblade.
+- Active and passive abilities unlocked by completing sets.
+- Visible buffs for active sets, passives, temporary states and charges.
+- Movable active ability panel with icon, name, keybind and cooldown.
+- Movable static passive panel with plaques and 2 charge orbs for Moonvein, Frostbrand, Hraesvelgr and Ragnar Blood Surge.
+- Set bonuses that grow by rarity and piece count.
+- Natural EpicLoot drops for set pieces.
+- Guaranteed boss-stage set drops when a valid roll happens.
+- EpicLoot and NorseDemigods configs embedded in the DLL and synchronized at startup.
+- New in-game compendium/text entry: `Epic Loot Rarity Sets`, with class descriptions, abilities, buffs and passives translated.
+- Text, tooltips and compendium content in Spanish or English depending on the active game language.
+- Global pet commands using `Ctrl` combinations.
+- Optional BetterArchery integration for `LeatherQuiver`.
+- Bestiary integration for `RDB_*` creatures in loot and bounty contracts.
+- Optional WolfPack compatibility for controlling Hraesvelgr summons.
+- Optional Wires Enemy HUD compatibility: forces `HealthDisplay = Current HP/Max HP` if the mod is installed.
 
-## Dependencias
+## Dependencies
 
-Obligatorias:
+Required:
 
 - `RandyKnapp-EpicLoot`
 - `Alpus-NorseDemigods`
 - `Radamanto-Bestiary`
 
-Opcionales:
+Optional:
 
-- `BetterArchery`: integra `LeatherQuiver` como pieza encantable en sets de arquero desde Epic en adelante.
-- `WolfPack`: el mod puede ajustar su config para que las bestias invocadas por Hraesvelgr sean entrenables/controlables.
-- `WiresEnemyHUD`: el mod puede ajustar su config para mostrar vida actual y maxima sobre enemigos.
+- `BetterArchery`: integrates `LeatherQuiver` as an enchantable archer set piece from Epic onward.
+- `WolfPack`: the mod can adjust its config so Hraesvelgr summoned beasts are trainable/controllable.
+- `WiresEnemyHUD`: the mod can adjust its config to show current and maximum health above enemies.
 
-Aunque NorseDemigods aparece como dependencia, no tienes que jugar una clase de NorseDemigods. Este mod suprime su UI, energia, seleccion de clase e input cuando usa sus efectos como puente visual/mecanico.
+Although NorseDemigods is listed as a dependency, you do not need to play a NorseDemigods class. This mod suppresses its UI, energy, class selection and input while using some of its effects as visual/mechanical bridges.
 
-## Como funciona
+## How It Works
 
-El mod crea arquetipos de set. Al equipar todas las piezas no-arma de una misma linea, se activa un buff con el nombre base del set. La unica pieza que puede faltar para activar la clase es el arma del set; no vale que falte cualquier otra pieza.
+The mod creates set archetypes. When you equip every non-weapon piece from the same line, a buff with the base set name is activated. The only piece that may be missing while still activating the class is the set weapon; any other missing piece prevents activation.
 
-Ese buff sirve como bandera para habilitar las habilidades de clase. Si tienes el buff de clase activo, puedes usar sus habilidades aunque el arma del set sea la pieza que falta; cuando una habilidad necesita arma, valida el tipo real equipado, no que sea exactamente el arma del set.
+That buff acts as the class flag. If the class buff is active, you can use its abilities even if the set weapon is the missing piece. When an ability requires a weapon, it checks the real equipped weapon type, not whether it is exactly the set weapon.
 
-Lineas de clase activas:
+Active class lines:
 
-| Clase | Set IDs que activan la clase |
+| Class | Set IDs that activate the class |
 | --- | --- |
 | `Heimdall` | `MagicHeimdall`, `RareHeimdall`, `EpicHeimdall`, `Heimdall`, `MythicHeimdall`, `AncientHeimdall` |
 | `Ragnar` | `MagicRagnar`, `RareRagnar`, `EpicRagnar`, `Ragnar`, `MythicRagnar`, `AncientRagnar` |
@@ -68,49 +68,52 @@ Lineas de clase activas:
 | `Moonvein` | `MagicMoonvein`, `RareMoonvein`, `EpicMoonvein`, `Moonvein`, `MythicMoonvein`, `AncientMoonvein` |
 | `Frostbrand` | `MagicFrostbrand`, `RareFrostbrand`, `EpicFrostbrand`, `Frostbrand`, `MythicFrostbrand`, `AncientFrostbrand` |
 
-Los buffs de set completo muestran el nombre de clase y el nivel de habilidad (`Nivel`/`Level`). Las habilidades activas no usan la barra de buffs para sus cooldowns antiguos: se muestran en el panel de habilidades con nombre, tecla y contador. Las pasivas y estados temporales van en el area de buffs; las pasivas estaticas con cargas de Moonvein, Frostbrand, Hraesvelgr y Oleada de sangre de Ragnar se muestran ademas en el panel de orbes.
+Full-set buffs show the class name and class skill level (`Nivel`/`Level`). Active ability cooldowns are not shown through the old buff bar; they appear in the ability panel with name, keybind and counter. Passives and temporary states use the buff area, while static charge passives for Moonvein, Frostbrand, Hraesvelgr and Ragnar Blood Surge also appear in the orb panel.
 
-## Sistemas comunes
+## Shared Systems
 
-- `Panel de habilidades`: aparece al tener un buff de clase activo; muestra solo habilidades activas, su nombre, tecla y cooldown. Se puede arrastrar mientras el inventario esta abierto con `Tab`. Si hay mascotas activas, anade una seccion `Pets` con `Atacar` (`Ctrl + Mouse4`), `Seguir` (`Ctrl + Mouse3`) y `Libre` (`Ctrl + ataque secundario`); el estado actual queda resaltado.
-- `Panel de pasivas`: muestra placas de 2 orbes para pasivas estaticas con carga (`Disparos cargados`, `Bola de fuego`, `Disparo certero`, `Oleada de sangre`). Al llenar los 2 orbes, la placa completa se ilumina con borde pulsante y etiqueta `LISTO` para indicar que el siguiente disparo/ataque esta cargado. Se puede arrastrar con `Tab`.
-- `Ctrl + Mouse4`: ordena a las mascotas activas atacar al enemigo apuntado, sin limite practico de rango si el objetivo esta visible bajo la mira. Si el enemigo muere o deja de ser valido, pasan a seguir al jugador.
-- `Ctrl + Mouse3`: fuerza a las mascotas activas a seguir al jugador en modo pasivo; no atacan hasta volver a usar `Atacar` o `Libre`.
-- `Ctrl + ataque secundario`: libera a las mascotas al modo normal, sin seguimiento forzado.
-- Las ordenes de mascotas se aplican a invocaciones persistentes o controladas de `Hraesvelgr`, `Moonvein`, `Helveig` y `Seidr`, incluido el `Golem de piedra`.
-- Las mascotas de clase usan stats normalizados por el mod: vida, dano y reduccion recibida escalan con la skill de su clase para acompanar la aventura sin depender de valores brutos del prefab.
-- Las mascotas persistentes desaparecen al perder el buff de clase. Si mueren mientras siguen activas, usan un cooldown de reaparicion de `30s` cuando su clase lo permite.
-- Las explosiones propias de `T.N.T.`, `Fuego rapido` y efectos equivalentes evitan dano a aliados, jugadores friendly y mascotas.
-- Los buffs de habilidades, invocaciones y estados temporales usan los iconos generados del mod cuando existe icono especifico o icono de habilidad equivalente.
-- El compendio, los nombres de habilidades, tooltips y buffs usan espanol o ingles segun el idioma activo de Valheim.
+- `Ability Panel`: appears when a class buff is active. It shows active abilities only, with name, keybind and cooldown. It can be dragged while the inventory is open with `Tab`. If active pets exist, it adds a `Pets` section with `Attack` (`Ctrl + Mouse4`), `Follow` (`Ctrl + Mouse3`) and `Free` (`Ctrl + secondary attack`); the current state is highlighted.
+- `Passive Panel`: shows 2-orb plaques for static charge passives (`Charged Shots`, `Fire Ball`, `Headshot`, `Blood Surge`). When both orbs are filled, the whole plaque lights up with a pulsing border and `READY` label to show that the next shot/attack is charged. It can be dragged with `Tab`.
+- Pressing `Tab` recenters passive/orb panels so displaced panels can be recovered more easily.
+- `Ctrl + Mouse4`: orders active pets to attack the aimed enemy at practical long range as long as the target is visible under the crosshair. If the enemy dies or becomes invalid, pets return to following the player.
+- `Ctrl + Mouse3`: forces active pets to follow the player in passive mode; they do not attack until `Attack` or `Free` is used again.
+- `Ctrl + secondary attack`: releases pets back to normal behavior without forced following.
+- Pet commands apply to persistent or controlled summons from `Hraesvelgr`, `Moonvein`, `Helveig` and `Seidr`, including the `Stone Golem`.
+- Class pets use normalized mod stats: health, damage and damage taken reduction scale with the owner's class skill so they keep up with progression without relying on raw prefab values.
+- Persistent pets disappear when the class buff is lost. If they die while active, they use a `30s` respawn cooldown when their class allows it.
+- Friendly explosions from `T.N.T.`, `Rapid Fire` and equivalent effects avoid allied targets, friendly players and pets.
+- Class damage and control abilities can interact with player targets only when PvP is active.
+- Physical archer traps ignore players who do not have PvP active.
+- Ability, summon and temporary-state buffs use the mod's generated icons when a specific or equivalent ability icon exists.
+- The compendium, ability names, tooltips and buffs use Spanish or English according to Valheim's active language.
 
-## Probabilidades de drops naturales
+## Natural Drop Chances
 
-Las tiradas magicas normales de EpicLoot pueden convertirse en piezas de set:
+Normal EpicLoot magic rolls can be converted into set pieces:
 
 - Magic: `12%`
 - Rare: `10%`
 - Epic: `8%`
 - Ancient: `5%`
 
-Legendary y Mythic se gestionan desde las secciones generadas de EpicLoot y sus pools propios.
+Legendary and Mythic are handled through generated EpicLoot sections and their own pools.
 
-`bosssetdrops.json` fija la rareza de cada boss y convierte las tiradas validas de equipo en piezas aleatorias de set de esa etapa. No hereda una rareza aleatoria de la tirada base: cada boss usa su rareza asignada, valida que el prefab base pertenezca al pool permitido (`ForceSetDropItems`) y despues elige al azar entre los IDs reales de set de esa misma rareza (`ForceSetItemIds`).
+`bosssetdrops.json` fixes each boss stage to a set rarity and converts valid equipment rolls into random set pieces from that stage. It does not inherit a random rarity from the base roll: each boss uses its assigned rarity, checks that the base prefab belongs to the allowed pool (`ForceSetDropItems`) and then randomly selects from the real set item IDs of that same rarity (`ForceSetItemIds`).
 
-| Boss | Rareza de set |
+| Boss | Set rarity |
 | --- | --- |
 | Eikthyr | `Magic` |
-| Anciano | `Rare` |
+| The Elder | `Rare` |
 | Bonemass | `Epic` |
 | Moder | `Legendary` |
 | Yagluth | `Mythic` |
-| Reina | `Mythic` |
+| The Queen | `Mythic` |
 | Fader | `Ancient` |
 | FrozenKing | `Ancient` |
 
-## Configs gestionadas
+## Managed Configs
 
-Con `Generate Managed Config Files = true`, la DLL escribe/sincroniza:
+With `Generate Managed Config Files = true`, the DLL writes/synchronizes:
 
 - `config/EpicLoot/baseconfig/abilities.json`
 - `config/EpicLoot/raritysets.json`
@@ -122,240 +125,242 @@ Con `Generate Managed Config Files = true`, la DLL escribe/sincroniza:
 - `config/EpicLoot/bosssetdrops.json`
 - `config/NorseDemigods.cfg`
 
-Si un archivo existe y es distinto, primero crea backup `.bak-fran-managed-...` y despues escribe la version embebida. Por eso, los cambios manuales en JSON no son persistentes si no se actualizan tambien los recursos embebidos del DLL principal.
+If a file already exists and differs, the mod first creates a `.bak-fran-managed-...` backup and then writes the embedded version. This means manual JSON edits are not persistent unless the embedded resources in the main DLL are updated too.
 
-Para servidor, normalmente basta con subir los DLLs incluidos en el paquete y reiniciar:
+For servers, it is usually enough to upload the DLLs included in the package and restart:
 
-- `EpicLootRaritySets.dll`: DLL principal con sets, configs embebidas, compendio, clases, paneles, iconos y controladores base.
-- `EpicLootRaritySetsHotfix.dll`: capa incluida para habilidades y ajustes que siguen separados del DLL principal cuando el paquete la incluya.
+- `EpicLootRaritySets.dll`: main DLL with sets, embedded configs, compendium, classes, panels, icons and base controllers.
+- `EpicLootRaritySetsHotfix.dll`: included layer for abilities and adjustments that may remain separated from the main DLL when the package includes it.
 
-## Bonus custom de EpicLoot
+## Custom EpicLoot Bonuses
 
-- `Last Hope`: magic effect con ability propia. Cuando la salud entra en estado critico, evita el golpe entrante si lo hay, cura el `100%` de la salud maxima y activa un cooldown de `60s`.
-- Efectos custom de clase como `AddFrostbrandSkill`, `AddHellsyngSkill`, `AddSeidrSkill`, etc. aumentan el nivel efectivo de la skill de clase y pueden hacer que el escalado supere nivel `100`.
-- Los efectos usados en sets de rarezas bajas tambien tienen `ValuesPerRarity` configurados para evitar bonus sin valor, como `FrostDamageAOE` y `Bulwark`.
-- En los sets de Ragnar/Frostbrand, cada bonus `FrostDamageAOE` va emparejado en el mismo contador con `AddFrostDamage`, porque EpicLoot solo dispara el area de hielo si el golpe del arma ya contiene dano frost.
+- `Last Hope`: custom magic effect with its own ability. When health enters a critical state, it prevents the incoming hit if one exists, heals `100%` of maximum health and starts a `60s` cooldown.
+- Custom class effects such as `AddFrostbrandSkill`, `AddHellsyngSkill`, `AddSeidrSkill`, etc. increase the effective class skill level and can push scaling beyond level `100`.
+- Effects used in lower-rarity sets also have `ValuesPerRarity` configured to avoid empty bonuses, such as `FrostDamageAOE` and `Bulwark`.
+- In Ragnar/Frostbrand sets, each `FrostDamageAOE` bonus is paired in the same counter with `AddFrostDamage`, because EpicLoot only triggers the frost area if the weapon hit already contains frost damage.
 
-## Compendio dentro del juego
+## In-Game Compendium
 
-El mod anade una entrada al panel de textos/compendio del inventario:
+The mod adds an entry to the inventory text/compendium panel:
 
 `Epic Loot Rarity Sets`
 
-Incluye:
+It includes:
 
-- Explicacion del sistema de rarezas.
-- Descripcion de cada clase por set.
-- Habilidades, teclas, coste, cooldown, rango, escalado, duracion y dano.
-- Valores leidos desde la config actual cuando se abre el panel.
-- Secciones de efectos activos con buffs, cargas, tiempos de reutilizacion, pasivas y estados temporales.
-- Nombres de habilidades, buffs y pasivas localizados al idioma activo, igual que en el juego.
-- La pagina nativa de EpicLoot `Conjuntos legendarios` se amplia para comparar tambien `Magic`, `Rare`, `Epic` y `Ancient` junto a las rarezas especiales.
+- Explanation of the rarity system.
+- Description of every set class.
+- Abilities, keybinds, costs, cooldowns, ranges, scaling, durations and damage.
+- Values read from the current config when the panel is opened.
+- Active-effect sections with buffs, charges, cooldowns, passives and temporary states.
+- Ability, buff and passive names localized to the active language, just like in-game text.
+- The native EpicLoot `Legendary Sets` page is extended so it also compares `Magic`, `Rare`, `Epic` and `Ancient` alongside the special rarities.
 
-## Clases por set
+## Set Classes
 
-Los valores siguientes son los valores por defecto.
+The following values are the default values.
 
-### Heimdall - tanque de escudo
+### Heimdall - Shield Tank
 
-Tanque defensivo de escudo, bloqueo y control de amenaza.
+Defensive shield tank focused on blocking and threat control.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Escudo, arma de una mano y armadura defensiva.
-- Poder de bloqueo, menor coste de stamina al bloquear, fuerza de bloqueo y salud.
-- En rarezas altas gana efectos como `Bulwark`, `ReflectDamage`, `Undying` e `Immovable`.
+- Shield, one-handed weapon and defensive armor.
+- Block power, lower block stamina cost, block force and health.
+- At higher rarities it gains effects such as `Bulwark`, `ReflectDamage`, `Undying` and `Immovable`.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- Pasiva `Guardia de Heimdall`: recibir dano da `5%` de reduccion de todo el dano y `+10%` poder de bloqueo por carga durante `6s`; maximo `3` cargas.
-- `Mouse3` - `Tormenta de rayos`: cooldown `30s`; invoca tormenta fija durante `10s`, radio `8m`, pulso cada `1s`; dano rayo `24 + 0.60` por nivel de Heimdall; cada golpe redirige amenaza hacia Heimdall.
-- `Mouse4` - `Escudo de piedra`: coste `35` vigor, cooldown `24s`, duracion `8s`; reduce dano plano `20 + 0.55` por nivel de Heimdall; refleja `25% + 0.3%` por nivel de Heimdall del dano mitigado, maximo `75%`.
-- `Bloqueo + Mouse3` - `Arpon abisal`: cooldown `12s`; lanza una cuerda visible con aura al enemigo apuntado y lo atrae durante `5s`.
+- Passive `Heimdall Guard`: taking damage grants `5%` all-damage reduction and `+10%` block power per stack for `6s`; maximum `3` stacks.
+- `Mouse3` - `Lightning Storm`: cooldown `30s`; summons a fixed storm for `10s`, radius `8m`, pulse every `1s`; lightning damage `24 + 0.60` per Heimdall level; each hit redirects threat toward Heimdall and slows enemies by `30%` for `6s`.
+- `Block + Mouse4` - `Water Sphere`: cost `30` stamina, cooldown `20s`, duration `8s`; uses Njord's sphere, pulls enemies within `30m` and keeps them pinned to the sphere until it ends. Each impact deals blunt damage in the NorseDemigods damage radius and scales with Heimdall from `NorseDemigods.cfg`.
+- `Mouse4` - `Stone Shield`: cost `35` stamina, cooldown `24s`, duration `8s`; reduces flat damage by `20 + 0.55` per Heimdall level; reflects `25% + 0.3%` per Heimdall level of mitigated damage, maximum `75%`.
+- `Block + Mouse3` - `Abyssal Harpoon`: cooldown `12s`; fires a visible aura rope at the aimed enemy and pulls it for `5s`.
 
-### Ragnar - berserker de hachas
+### Ragnar - Axe Berserker
 
-Berserker de clase Ragnar centrado en sostenerse pegando.
+Ragnar berserker focused on staying alive through melee pressure.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Hachas como arma principal.
-- `LifeSteal` y reduccion de coste de vida de ataque.
-- En Ancient, el ultimo bonus pasa a `Undying`.
+- Axes as primary weapons.
+- `LifeSteal` and reduced life attack cost.
+- At Ancient, the final bonus becomes `Undying`.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- Pasiva `Furia de Ragnar`: cada golpe cuerpo a cuerpo contra enemigo activa un buff visible de `6s` con cargas; cada carga da `+3%` velocidad de ataque y `0.5%` robo de vida; maximo `10` cargas.
-- Pasiva `Oleada de sangre`: se muestra en el panel de pasivas con 2 orbes; al llegar a `2/2`, la placa se ilumina y el siguiente golpe cuerpo a cuerpo contra enemigos cura `5%` de salud maxima.
-- `Mouse3` - `Aura de decadencia`: conmutador; consume `8` vigor/s; radio `6m`; pulso cada `1s`; dano directo `8 + 0.35` por nivel de Ragnar. No aplica veneno.
-- `Mouse4` - `Frenesi de sangre`: sacrifica `30%` de salud maxima; durante `10s` da `+50%` velocidad de ataque, `+30%` velocidad de movimiento e `Immovable`; cooldown `30s`.
-- Saltar + `Mouse4` - `Crush`: coste `45` vigor, cooldown `14s`; replica el salto/ataque de Surt y al golpear el suelo activa tambien `Suelo ardiente`.
+- Passive `Ragnar Fury`: each melee hit against an enemy grants a visible `6s` stacking buff; each stack gives `+3%` attack speed and `1%` life steal; maximum `10` stacks.
+- Passive `Blood Surge`: shown in the passive panel with 2 orbs; at `2/2`, the plaque lights up and the next melee hit against enemies heals `25%` of maximum health.
+- `Mouse3` - `Decay Aura`: toggle; consumes `8` stamina/s; radius `6m`; pulse every `1s`; direct damage `8 + 0.35` per Ragnar level. Does not apply poison.
+- `Mouse4` - `Blood Frenzy`: consumes `50%` of maximum stamina; for `10s` grants `+50%` attack speed, `+30%` movement speed and `Immovable`; cooldown `30s`.
+- Jump + `Mouse4` - `Ragnar Crush`: cost `45` stamina, cooldown `14s`, radius `5m`; replicates Surt's jump attack and deals fire plus blunt damage, each `52 + 1.10` per Ragnar level.
 
-### Hraesvelgr - arquero fisico
+### Hraesvelgr - Physical Archer
 
-Arquero puro de sigilo, bestias, trampas, headshots y rafaga.
+Pure archer focused on stealth, beasts, traps, headshots and rapid volleys.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Arco, QuickDraw, coste de tensado, velocidad de proyectil y tasa de fuego.
-- `AddHraesvelgrSkill`, `HeadHunter`, `TripleBowShot` y dano fisico en rarezas altas.
-- `LeatherQuiver` entra como pieza extra desde Epic si BetterArchery esta instalado.
+- Bow, QuickDraw, bow draw cost, projectile speed and fire rate.
+- `AddHraesvelgrSkill`, `HeadHunter`, `TripleBowShot` and physical damage at high rarities.
+- `LeatherQuiver` becomes an extra piece from Epic onward if BetterArchery is installed.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- Pasiva `Sigilo`: al agacharte/en sigilo eres invisible para monstruos; ruido `x0.5`, deteccion `x0.3`, velocidad `+15%`.
-- Pasiva `Disparo certero`: cada `3` disparos con arco Hraesvelgr, la flecha cuenta como punto debil/headshot y aplica al menos `x1.5` dano. El panel de pasivas muestra `2/2` e ilumina la placa cuando la siguiente flecha esta cargada.
-- `Mouse3` - `Invocar bestias`: toggle sin cooldown; invoca o guarda la bestia actual con vida, dano y reduccion recibida escalados por Hraesvelgr; por defecto usa bjorn/bear; coste `35` vigor al invocar. Si muere estando activo, entra en cooldown de mascota muerta durante `60s`. Muestra buff visible mientras queda vivo.
-- `Bloqueo + Mouse4` - `Domar bestia`: doma una bestia valida a `10m`, elimina la mascota actual y hace que `Invocar bestias` use esa nueva criatura con el escalado de Hraesvelgr. Validas: wolf, bjorn, asksvin, lox, moose, volture, rdb_bee, rdb_crocodile, rdb_fox, seeker, seekerbrute, hatchling, bat, ulv, rdb_lion, deathsquito y rdb_smadrek.
-- `Bloqueo + Mouse3` - trampa armada: coste `20` vigor; maximo `5` cargas, recarga `1` cada `60s`; al atrapar un enemigo hace dano perforante `35 + 0.55` por nivel de Hraesvelgr, lo inmoviliza y da `30s` para que la siguiente flecha haga `+50%` dano.
-- `Mouse4` - `Rafaga rapida`: canaliza hasta `3s`, cooldown `18s`; mientras mantienes ataque y estas quieto, dispara como maximo `8` flechas exactas a `8` flechas/s; cada flecha hace `x0.5` dano normal, velocidad `90`. Si arma/flecha no aportan dano, usa alternativa perforante `12 + 0.25` por nivel de Hraesvelgr. Al llegar a 8 flechas se cancela y restaura todo el vigor.
-- Ataque secundario - Dash de Freyja: coste `20` vigor, cooldown `10s`, sin dano propio.
+- Passive `Stealth`: while crouched/in stealth, you are invisible to monsters; noise `x0.5`, detection `x0.3`, speed `+15%`.
+- Passive `Headshot`: every `3` Hraesvelgr bow shots, the arrow counts as a weak-point/headshot and applies at least `x1.5` damage. The passive panel shows `2/2` and lights up the plaque when the next arrow is charged.
+- `Mouse3` - `Summon Beasts`: no-cooldown toggle; summons or stores the current beast with health, damage and damage taken reduction scaled by Hraesvelgr; default creature is bjorn/bear; costs `35` stamina when summoning. If it dies while active, it enters a `60s` dead-pet cooldown. Shows a visible buff while alive.
+- If the summoned beast has a saddle equipped when stored, that saddle state is saved and restored the next time it is summoned.
+- `Block + Mouse4` - `Tame Beast`: tames a valid beast within `10m`, removes the current pet and makes `Summon Beasts` use that creature with Hraesvelgr scaling. Valid creatures: wolf, bjorn, asksvin, lox, moose, volture, rdb_bee, rdb_crocodile, rdb_fox, seeker, seekerbrute, hatchling, bat, ulv, rdb_lion, deathsquito and rdb_smadrek.
+- `Block + Mouse3` - armed trap: cost `20` stamina; maximum `5` charges, recovers `1` every `60s`; when it catches an enemy it deals pierce damage `35 + 0.55` per Hraesvelgr level, roots the target and grants `30s` for the next arrow to deal `+50%` damage.
+- `Mouse4` - `Rapid Volley`: channels up to `3s`, cooldown `18s`; while holding attack and standing still, fires up to exactly `8` arrows at `8` arrows/s; each arrow deals `x0.5` normal damage, speed `90`. If weapon/ammo provides no damage, it uses fallback pierce `12 + 0.25` per Hraesvelgr level. Reaching 8 arrows cancels the channel and restores all stamina.
+- Secondary attack - `Freyja Dash`: cost `20` stamina, cooldown `10s`, no built-in damage.
 
-### Hellsyng - ballestero
+### Hellsyng - Crossbow Hunter
 
-Ballestero cazador de brujas centrado en mascotas, cambios de forma, marcas explosivas y rafagas de ballesta.
+Witch-hunter crossbow class focused on pets, shapeshifting, explosive marks and crossbow bursts.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Ballesta, `AddHellsyngSkill`, `TripleBowShot`, `QuickDraw`, tasa de fuego y velocidad de proyectil.
-- `ExplosiveArrows` no queda permanente en el set Hellsyng: se activa temporalmente con `Fuego rapido`.
-- Empieza en Rare; no tiene version Magic.
+- Crossbow, `AddHellsyngSkill`, `TripleBowShot`, `QuickDraw`, fire rate and projectile speed.
+- `ExplosiveArrows` is not permanent on the Hellsyng set; it is temporarily enabled by `Rapid Fire`.
+- Starts at Rare; there is no Magic version.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- Pasiva `T.N.T.`: los disparos de ballesta Hellsyng marcan al objetivo. Si un enemigo marcado muere, detona con una explosion de fuego estilo disparo explosivo; no dana aliados, jugadores friendly ni mascotas. Dano fuego `45 + 0.65` por nivel de Hellsyng.
-- Pasiva `Balas de plata`: los disparos de ballesta hacen `+20%` dano contra muertos vivientes y criaturas similares: skeletons, draugr, ghosts, wraiths, vil/Bjorn muerto, espectros y variantes de no-muertos de Bestiary.
-- Ataque secundario sin cambio de forma - `Mascotas Hellsyng`: invoca o guarda un lobo y un murcielago aliados. El murcielago usa la vida reforzada del lobo para que no caiga tan rapido. Cooldown `30s` al invocar o guardar. Si mueren estando activos, reaparecen pasados `30s`. Muestra buff visible mientras queda alguna mascota viva.
-- `Bloqueo + Mouse4` - `Forma de hombre lobo`: dura `30s` o hasta cancelarse; cooldown `60s`, que empieza al acabar o cancelar. `Caceria` aumenta la velocidad del lobo un `40%` si hay enemigos a `50m`. Ataque normal: mordisco con cooldown `4s`, sin slash, aplica sangrado durante `10s` con dano `5 + 0.18` por nivel de Hellsyng por segundo. Ataque secundario: zarpazo con slash, derribo garantizado, cooldown `4s` y dano slash `45 + 0.55` por nivel de Hellsyng.
-- `Bloqueo + Mouse3` - `Forma de murcielago`: dura `30s` o hasta cancelarse; cooldown `60s`, que empieza al acabar o cancelar. Permite volar, no permite correr con shift y usa offset visual configurable para elevar el murcielago en camara. Ataque normal: drenaje de murcielago con dano `24 + 0.35` por nivel de Hellsyng que cura el `100%` del dano hecho. Ataque secundario: `Regeneracion de murcielago`, regeneracion de salud `+100%` durante `6s`, cooldown `20s`.
-- `Mouse4` - `Horda de murcielagos`: invoca una horda de murcielagos aliados sobre el objetivo durante `30s`. Escala con Hellsyng: `3/6/9/10` murcielagos, estrellas `0/1/2` y multiplicador de dano `1 + skill * 0.01`. Cooldown `60s`.
-- `Mouse3` - `Fuego rapido`: durante `10s` la ballesta recarga en `0.5s`; los disparos explotan usando `50%` del dano real del impacto y rebotan hasta `2` veces entre enemigos cercanos. Si el impacto no trae dano, usa alternativa escalada con Hellsyng: fuego `18 + 0.25` y espiritu `12 + 0.20` por nivel. Cooldown `30s`.
+- Passive `T.N.T.`: Hellsyng crossbow shots mark the target. If a marked enemy dies, it detonates with a fire explosion like an explosive shot; it does not damage allies, friendly players or pets. Fire damage `45 + 0.65` per Hellsyng level.
+- Passive `Silver Bullets`: crossbow shots deal `+20%` damage against undead and similar creatures: skeletons, draugr, ghosts, wraiths, dead vil/Bjorn, specters and Bestiary undead variants.
+- Secondary attack without shapeshift - `Hellsyng Pets`: summons or stores an allied wolf and bat. The bat uses the wolf's reinforced health so it does not fall too quickly. Cooldown `30s` when summoning or storing. If they die while active, they respawn after `30s`. Shows a visible buff while any pet remains alive.
+- `Block + Mouse4` - `Werewolf Form`: lasts `30s` or until canceled; cooldown `60s`, starting when it ends or is canceled. `Hunt` increases wolf speed by `40%` if enemies are within `50m`. Normal attack: bite with `4s` cooldown, no slash, applies bleed for `10s` with damage `5 + 0.18` per Hellsyng level per second. Secondary attack: claw slash with guaranteed knockback, `4s` cooldown and slash damage `45 + 0.55` per Hellsyng level.
+- `Block + Mouse3` - `Bat Form`: lasts `30s` or until canceled; cooldown `60s`, starting when it ends or is canceled. Allows flying, disables shift sprint and uses a configurable visual offset to raise the bat in camera. Normal attack: bat drain with damage `24 + 0.35` per Hellsyng level that heals `100%` of damage dealt. Secondary attack: `Bat Regeneration`, `+100%` health regeneration for `6s`, cooldown `20s`.
+- `Mouse4` - `Bat Horde`: summons an allied bat horde on the target for `30s`. Scales with Hellsyng: `3/6/9/10` bats, stars `0/1/2` and damage multiplier `1 + skill * 0.01`. Cooldown `60s`.
+- `Mouse3` - `Rapid Fire`: for `10s`, crossbow reload becomes `0.5s`; shots explode using `50%` of the real impact damage and bounce up to `2` times between nearby enemies. If the impact has no damage, it uses Hellsyng-scaled fallback damage: fire `18 + 0.25` and spirit `12 + 0.20` per level. Cooldown `30s`.
 
-### Nott - duelista/asesino
+### Nott - Duelist/Assassin
 
-Duelista de clase Nott, veneno, movilidad y sigilo.
+Nott duelist focused on poison, mobility and stealth.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Cuchillos, ruido reducido, `Duelist`, dano/duracion de stagger, `Opportunist`, movimiento y esquiva.
+- Knives, reduced noise, `Duelist`, stagger damage/duration, `Opportunist`, movement and dodge.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- Pasiva `Sigilo`: al agacharte/en sigilo eres invisible para monstruos; ruido `x0.4`, deteccion `x0.2`, velocidad `+20%`.
-- Pasiva `Momentum sombrio`: golpear enemigos da `+30%` velocidad y `+15%` dano durante `5s`; no acumula cargas, se refresca.
-- Pasiva `Filo venenoso`: cada golpe contra enemigos anade veneno `8 + 0.35` por nivel de Nott.
-- Pasiva `Ejecutor`: todo el dano de Nott contra enemigos que ya estan al `30%` o menos de vida hace `300%` de dano total.
-- `Mouse3` - `Warp`: coste `25` vigor, cooldown `18s`, rango `18m`; teletransporta detras del enemigo apuntado, al mas cercano si no hay objetivo apuntado, o hacia delante si no hay objetivo valido. Tras Warp, `Guardia de Warp` reduce el dano recibido un `90%` durante `3s`.
-- `Bloqueo + Mouse4` - `Marca de sombra`: marca al enemigo seleccionado a `5m` durante `6s` con un efecto visual de sombra sobre el objetivo; acumula el `50%` del dano que reciba mientras dura y al terminar explota en dano de espiritu sobre el objetivo. Cooldown `60s`; si muere un enemigo a `20m` mientras esta en cooldown, se reduce `10s`.
-- `Mouse4` - `Golpe de cuchillo`: requiere cuchillo, cooldown `8s`, rango `5m`; golpea al enemigo apuntado o frontal mas cercano con `50%` del dano del arma + `0.75` de dano de tajo por nivel de Nott, usa visual de slash de Norse y ralentiza `50%` durante `5s`.
-- Despues de `Warp`, `Golpe de Warp` hace que el siguiente ataque contra enemigo pegue `x2.5` dano.
-- Si muere un enemigo a `18m` mientras Warp esta en cooldown, se reinicia el cooldown y recuperas vigor.
+- Passive `Stealth`: while crouched/in stealth, you are invisible to monsters; noise `x0.4`, detection `x0.2`, speed `+20%`.
+- Passive `Shadow Momentum`: hitting enemies grants `+30%` speed and `+15%` damage for `5s`; does not stack, refreshes instead.
+- Passive `Poison Edge`: every hit against enemies adds poison `8 + 0.35` per Nott level.
+- Passive `Executor`: all Nott damage against enemies already at `30%` health or lower deals `300%` total damage.
+- `Mouse3` - `Warp`: cost `25` stamina, cooldown `18s`, range `18m`; teleports behind the aimed enemy, to the nearest enemy if none is aimed, or forward if no valid target exists. After Warp, `Warp Guard` reduces incoming damage by `90%` for `3s`.
+- `Block + Mouse4` - `Shadow Mark`: marks the selected enemy within `5m` for `6s` with a shadow visual above the target; stores `50%` of the damage it receives while active and then explodes as spirit damage on the target. Cooldown `60s`; if an enemy dies within `20m` while it is on cooldown, the cooldown is reduced by `10s`.
+- `Mouse4` - `Knife Strike`: requires a knife, cooldown `8s`, range `5m`; hits the aimed enemy or nearest frontal enemy with `50%` weapon damage plus `0.75` slash damage per Nott level, uses a Norse slash visual and slows by `50%` for `5s`.
+- After `Warp`, `Warp Strike` makes the next attack against an enemy deal `x2.5` damage.
+- If an enemy dies within `18m` while Warp is on cooldown, the cooldown resets and you regain stamina.
 
-### Seidr - mago elemental
+### Seidr - Elemental Mage
 
-Mago de eitr, control de zona e invocacion elemental.
+Eitr mage focused on area control and elemental summoning.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Bastones, eitr maximo, regeneracion de eitr, menor coste de eitr, tasa de magia.
-- `DoubleMagicShot`, `AddSeidrSkill` y `ModifyElementalDamage` en rarezas altas.
-- Empieza en Rare; no tiene version Magic.
+- Staves, maximum eitr, eitr regeneration, reduced eitr cost, magic rate.
+- `DoubleMagicShot`, `AddSeidrSkill` and `ModifyElementalDamage` at high rarities.
+- Starts at Rare; there is no Magic version.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- `Mouse3` - `Nanocubo`: coste `50` eitr, cooldown `30s`, duracion `10s`; empuja enemigos fuera de `5m`; dentro del cubo tu dano magico se multiplica `x1.30`.
-- `Mouse4` - `Escudo elemental`: toggle; coste inicial `25` eitr; sin cooldown; eres inmune al dano mientras haya eitr; consume `2%` de eitr maximo por segundo, minimo `1` eitr/s.
-- Ataque secundario - `Golem de piedra`: coste `80` eitr, cooldown `60s`, duracion `60s`; invoca un golem friendly de Brokkr con vida, dano y reduccion recibida escalados por Seidr. Obedece las ordenes globales de mascota.
-- `Bloqueo + Mouse4` - `Nova de escarcha`: coste `45` eitr, cooldown `12s`, radio `8m`; dano frost `45 + 0.85` por nivel de Seidr; ralentizacion `40%` durante `5s`.
+- `Mouse3` - `Nanocube`: cost `50` eitr, cooldown `30s`, duration `10s`; pushes enemies out of `5m`; inside the cube your magic damage is multiplied by `x1.30`.
+- `Mouse4` - `Elemental Shield`: toggle; initial cost `25` eitr; no cooldown; you are immune to damage while you have eitr; consumes `2%` maximum eitr per second, minimum `1` eitr/s.
+- Secondary attack - `Stone Golem`: cost `80` eitr, cooldown `60s`, duration `60s`; summons a friendly Brokkr golem with health, damage and damage taken reduction scaled by Seidr. Obeys global pet commands.
+- `Block + Mouse4` - `Frost Nova`: cost `45` eitr, cooldown `12s`, radius `8m`; frost damage `45 + 0.85` per Seidr level; `40%` slow for `5s`.
 
-### Helveig - mago de sangre
+### Helveig - Blood Mage
 
-Mago de sangre centrado en curacion, espiritu/fuego, guardaespaldas no muertos e invocaciones de bestias.
+Blood mage focused on healing, spirit/fire damage, undead bodyguards and beast summons.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- `AddHelveigSkill`, coste de eitr reducido, salud maxima, regeneracion, dano/vida de invocaciones.
-- El baston de sangre reduce coste de vida de ataque.
+- `AddHelveigSkill`, reduced eitr cost, maximum health, regeneration, summon damage/health.
+- The blood staff reduces life attack cost.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- `Mouse3` - `Curacion sagrada`: coste `25` eitr, cooldown `10s`; cura `35 + 0.75` por nivel de Helveig al aliado apuntado en rango (`30m`) o a ti si no hay objetivo.
-- Pasiva `Guardaespaldas no muerto`: al activar el set aparece `Charred_Melee_Dyrnwyn`; desaparece al perder el set. Si muere, reaparece automaticamente tras `30s`. Vida, dano y reduccion recibida escalan con Helveig de forma conservadora y obedece ordenes de mascota.
-- Pasiva `Egida de sangre`: cada curacion aplica al objetivo curado un escudo no acumulable equivalente al `15%` de la sanacion potencial de la habilidad durante `15s`, aunque el objetivo estuviera a vida maxima, con visual de escudo elemental.
-- Pasiva `Devocion sanguinea`: cada curacion otorga una carga durante `15s`, hasta `3`. Cada carga aumenta `+5%` el dano de invocaciones y `+10%` el dano de `Golpe sagrado`.
-- `Mouse4` - `Rito de sangre`: coste `45` eitr, cooldown `20s`; canaliza `10s`, radio `30m`, pulso cada `1s`; cura a ti, jugadores, NPCs aliados, mascotas activas y domesticados `12 + 0.30` por nivel de Helveig por pulso; moverte mas de `0.65m` cancela; el cooldown empieza al terminar o romperse.
-- Ataque secundario - `Golpe sagrado`: coste `25` eitr, cooldown `6s`, rango `30m`; dano fuego `55 + 0.45` y espiritu `65 + 0.70` por nivel de Helveig. Cada impacto devuelve `2` eitr.
-- `Bloqueo + Mouse3` - `Invocar monstruo`: coste `55` eitr, cooldown `60s`, duracion `20s`; invoca `Ent` / `Abomination` / `ElakingMole` / `FallenValkyrie` segun nivel de Helveig. Vida, dano y reduccion recibida escalan de forma conservadora, obedece ordenes de mascota y muestra buff activo con tiempo restante.
+- `Mouse3` - `Holy Healing`: cost `25` eitr, cooldown `10s`; heals `35 + 0.75` per Helveig level to the aimed ally in range (`30m`) or yourself if there is no target.
+- Passive `Undead Bodyguard`: activating the set summons `Charred_Melee_Dyrnwyn`; it disappears when the set is lost. If it dies, it automatically respawns after `30s`. Health, damage and damage taken reduction scale conservatively with Helveig and it obeys pet commands.
+- Passive `Blood Aegis`: every heal applies a non-stacking shield to the healed target equal to `15%` of the ability's potential healing for `15s`, even if the target was already at full health, with an elemental shield visual.
+- Passive `Sanguine Devotion`: every heal grants a stack for `15s`, up to `3`. Each stack increases summon damage by `+5%` and `Holy Strike` damage by `+10%`.
+- `Mouse4` - `Blood Rite`: cost `45` eitr, cooldown `20s`; channels for `10s`, radius `30m`, pulse every `1s`; heals you, players, allied NPCs, active pets and tamed creatures by `12 + 0.30` per Helveig level per pulse; moving more than `0.65m` cancels; cooldown starts when the channel ends or breaks.
+- Secondary attack - `Holy Strike`: cost `25` eitr, cooldown `6s`, range `30m`; fire damage `55 + 0.45` and spirit damage `65 + 0.70` per Helveig level. Each impact restores `2` eitr.
+- `Block + Mouse3` - `Summon Monster`: cost `55` eitr, cooldown `60s`, duration `20s`; summons `Ent` / `Abomination` / `ElakingMole` / `FallenValkyrie` depending on Helveig level. Health, damage and damage taken reduction scale conservatively, it obeys pet commands and shows an active buff with remaining time.
 
-### Moonvein - arquero magico
+### Moonvein - Magical Archer
 
-Arquero de eitr que mezcla arco, `SpellSword` y escalado Moonvein.
+Eitr archer mixing bow gameplay, `SpellSword` and Moonvein scaling.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Moonbow, `SpellSword`, `EitrLeech`, `AddMoonveinSkill`, `IncreaseEitr` y `AmmoConservation = 100`.
-- `LeatherQuiver` entra como pieza extra desde Epic si BetterArchery esta instalado.
-- Cada disparo con Moonbow consume eitr antes de reducciones de `ModifyAttackEitrUse`: Magic `6`, Rare `8`, Epic `10`, Legendary `12`, Mythic `14`, Ancient `16`.
+- Moonbow, `SpellSword`, `EitrLeech`, `AddMoonveinSkill`, `IncreaseEitr` and `AmmoConservation = 100`.
+- `LeatherQuiver` becomes an extra piece from Epic onward if BetterArchery is installed.
+- Every Moonbow shot consumes eitr before `ModifyAttackEitrUse` reductions: Magic `6`, Rare `8`, Epic `10`, Legendary `12`, Mythic `14`, Ancient `16`.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- Pasiva `Disparos cargados`: cada `3` disparos consecutivos lanza un hechizo aleatorio desde el arco. El panel de pasivas muestra `2/2` e ilumina la placa cuando el siguiente disparo esta cargado.
-- Pasiva `Disparos arcanos`: los disparos normales con arco Moonvein anaden dano de rayo `8 + 0.20` y espiritu `8 + 0.20` por nivel de Moonvein.
-- Pasiva `Recarga`: funciona igual que la de Frostbrand; ataques y habilidades Moonvein suman cargas al golpear. Dura `15s`, cada carga aumenta todo el dano un `4%` hasta `5` cargas, y a `5/5` dispara Cadena de rayos garantizada.
-- Probabilidades: Proyectil acido `40%`, Proyectil de rayo `40%`, Bola de fuego `20%`.
-- Proyectil acido: veneno `40 + 0.50` por nivel de Moonvein.
-- Proyectil de rayo: rayo `48 + 0.65` por nivel de Moonvein.
-- Bola de fuego: fuego `58 + 0.80` por nivel de Moonvein.
-- `Mouse3` - `Meteoro`: coste `30` eitr, cooldown `10s`, rango `60m`; dano fuego + contundente, cada tipo `35 + 1.20` por nivel de Moonvein; empuje `80`.
-- `Mouse4` - `Disparo tornado`: coste `20` eitr, cooldown `12s`; arma la siguiente flecha; al impactar invoca tornado de Njord durante `6s`; ralentizacion `40%` durante `6s`; alternativa de dano en `4m`: rayo `18 + 0.75` por nivel de Moonvein cada `0.5s`.
-- `Bloqueo + Mouse3` - `Lobo espiritual`: coste `20` eitr; invoca `wolf_spiritcaller`, obedece el panel de mascotas y escala vida, dano y reduccion recibida con Moonvein. Si muere, aplica cooldown de `60s`.
+- Passive `Charged Shots`: every `3` consecutive shots fires a random spell from the bow. The passive panel shows `2/2` and lights up the plaque when the next shot is charged.
+- Passive `Arcane Shots`: normal Moonvein bow shots add lightning damage `8 + 0.20` and spirit damage `8 + 0.20` per Moonvein level.
+- Passive `Recharge`: works like Frostbrand's; Moonvein attacks and abilities add charges when they hit. Lasts `15s`, each charge increases all damage by `4%` up to `5` charges, and at `5/5` fires guaranteed Chain Lightning.
+- Probabilities: Acid Bolt `40%`, Lightning Bolt `40%`, Fireball `20%`.
+- Acid Bolt: poison `40 + 0.50` per Moonvein level.
+- Lightning Bolt: lightning `48 + 0.65` per Moonvein level.
+- Fireball: fire `58 + 0.80` per Moonvein level.
+- `Mouse3` - `Meteor`: cost `30` eitr, cooldown `10s`, range `60m`; fire + blunt damage, each type `35 + 1.20` per Moonvein level; force `80`. Fires `1` meteor normally, `2` meteors from class skill `60`, and `3` meteors from class skill `90`. When more than one meteor fires, each meteor lands `1.5s` after the previous one; extra meteors land `1m` left/right of the main impact.
+- `Mouse4` - `Tornado Shot`: cost `20` eitr, cooldown `12s`; arms the next arrow; on impact summons Njord's tornado for `6s`; `40%` slow for `6s`; fallback damage in `4m`: lightning `18 + 0.75` per Moonvein level every `0.5s`.
+- `Block + Mouse3` - `Spirit Wolf`: cost `20` eitr; summons `wolf_spiritcaller`, obeys the pet panel and scales health, damage and damage taken reduction with Moonvein. If it dies, applies a `60s` cooldown.
 
-### Frostbrand - spellblade
+### Frostbrand - Spellblade
 
-Espadachin magico de arma a dos manos. Usa eitr, fuego, escudo elemental y ataques de Surt.
+Two-handed magical swordsman. Uses eitr, fire, lightning, elemental shields and Surt/Thor-style attacks.
 
-Equipo y bonus principales:
+Main equipment and bonuses:
 
-- Espada a dos manos, `SpellSword`, `EitrLeech`, `ModifyAttackEitrUse`, `AddFrostbrandSkill`, dano elemental/frost.
-- El arma da `IncreaseEitr = 100` para que `SpellSword` pueda atacar aunque el personaje no tenga eitr base.
+- Two-handed sword, `SpellSword`, `EitrLeech`, `ModifyAttackEitrUse`, `AddFrostbrandSkill`, elemental/frost damage.
+- The weapon grants `IncreaseEitr = 100` so `SpellSword` can attack even if the character has no base eitr.
 
-Habilidades con set completo:
+Full-set abilities:
 
-- `Mouse3` - `Esfera de agua`: coste `20` eitr, cooldown `20s`, duracion `8s`; usa la esfera de Njord, fuerza el punto de destino a donde apuntas respetando el rango de NorseDemigods y atrae e inmoviliza enemigos en `20m` con fuerza de gravedad `16`. Cada impacto aplica dano contundente en el radio de dano de NorseDemigods (`Aoe Damage Radius = 3` por defecto) y escala con Frostbrand usando `NorseDemigods.cfg` (`Base Damage = 8`, `Damage Per Level = 1.0` por nivel).
-- Ataque secundario - `Tajo`: coste `15` eitr, cooldown `8s`; ejecuta la animacion de ataque del arma, aplica dano fuego `16 + 0.90` y tajo `16 + 0.90` por nivel de Frostbrand, y suma al contador de `Bola de fuego`.
-- `Bloqueo + Mouse4` - `Escudo elemental`: coste `35` eitr, cooldown `24s`, duracion `8s`; anula fuego y mitiga todo dano `25% + 0.3%` por nivel de Frostbrand, maximo `70%`.
-- `Mouse4` - `Golpe de rayo`: reemplaza `Crush`; coste `25` eitr, cooldown `18s`, rango `80m`; lanza 3 impactos de rayo estilo Thor/NorseDemigods, separados `0.25s`, con radio alternativo `3m`; dano por impacto `14 + 1.80` por nivel de Frostbrand.
-- Pasiva `Bola de fuego`: cada `3` ataques iniciados con arma Frostbrand o usos de `Tajo` lanza Bola de fuego donde apuntas. El panel de pasivas muestra `2/2` e ilumina la placa cuando el siguiente ataque esta cargado; dano fuego `36 + 0.85` por nivel de Frostbrand; alternativa en radio `3.5m` si el proyectil no esta disponible.
-- Pasiva `Recarga`: ataques y habilidades solo suman cargas cuando golpean a un enemigo. Dura `15s`; cada carga aumenta todo el dano un `4%` con maximo `5` cargas. A `5/5`, los ataques activan Cadena de rayos garantizada en cada golpe; salta hasta `3` enemigos cercanos en `8m`, usando parte del dano real del golpe. Los rebotes de la propia Recarga no refrescan sus cargas.
+- `Mouse3` - `Dash`: cost `5` eitr; uses the NorseDemigods Ability Dash bridge with the Thor/lightning theme. Has `3` charges and recovers `1` charge every `15s`. On use, grants `+50%` movement speed for `3s`.
+- Secondary attack - `Slash`: cost `15` eitr, cooldown `8s`; performs the weapon attack animation, applies fire damage `16 + 0.90` and slash damage `16 + 0.90` per Frostbrand level, adds to the `Fire Ball` counter, and heals the caster for `50%` of actual damage dealt.
+- `Block + Mouse4` - `Elemental Shield`: cost `35` eitr, cooldown `24s`, duration `8s`; nullifies fire and mitigates all damage by `25% + 0.3%` per Frostbrand level, maximum `70%`.
+- `Mouse4` - `Thor Lightning Strike`: replaces `Crush`; cost `25` eitr, cooldown `18s`, range `80m`; fires 3 Thor/NorseDemigods lightning impacts, spaced `0.25s` apart, with fallback radius `3m`; damage per impact `14 + 1.80` per Frostbrand level before resistances; roots hit enemies for `5s`.
+- Passive `Fire Ball`: every `3` Frostbrand weapon attacks started or `Slash` uses launches Fireball where you aim. The passive panel shows `2/2` and lights up the plaque when the next attack is charged; fire damage `36 + 0.85` per Frostbrand level; fallback radius `3.5m` if the projectile is unavailable.
+- Passive `Recharge`: attacks and abilities only add charges when they hit an enemy. Lasts `15s`; each charge increases all damage by `4%`, maximum `5` charges. At `5/5`, attacks trigger guaranteed Chain Lightning on every hit; it jumps up to `3` nearby enemies within `8m`, using part of the real hit damage. Recharge's own bounces do not refresh its charges.
 
-### Thor - set especial Epic
+### Thor - Special Epic Set
 
-Set especial de hacha arrojadiza y tormenta.
+Special throwing-axe and storm set.
 
-No tiene controlador de hotkeys propio. Su identidad viene de:
+It does not have its own hotkey controller. Its identity comes from:
 
-- Hacha arrojadiza.
-- Recall del arma.
-- Dano de rayo.
-- Cadena de rayos (`ChainLightning`).
+- Throwing axe.
+- Weapon recall.
+- Lightning damage.
+- Chain Lightning (`ChainLightning`).
 
-### Floki - set especial Epic
+### Floki - Special Epic Set
 
-Set especial de constructor.
+Special builder set.
 
-No tiene controlador de hotkeys propio. Su identidad viene de:
+It does not have its own hotkey controller. Its identity comes from:
 
-- Martillo de construccion.
+- Building hammer.
 - `FreeBuild`.
-- Distancia de construccion.
-- Peso/carga.
-- Stamina y herramientas duraderas.
+- Building distance.
+- Weight/carry load.
+- Stamina and durable tools.
 
-## LeatherQuiver de BetterArchery
+## BetterArchery LeatherQuiver
 
-`LeatherQuiver` se trata como pieza `Utility` para EpicLoot y entra en loot desde Epic en adelante.
+`LeatherQuiver` is treated as a `Utility` piece for EpicLoot and enters loot from Epic onward.
 
-Sets que lo usan:
+Sets that use it:
 
 - `EpicHraesvelgr`
 - `Hraesvelgr`
@@ -366,46 +371,46 @@ Sets que lo usan:
 - `MythicMoonvein`
 - `AncientMoonvein`
 
-No sustituye piezas: se suma como pieza extra desde Epic.
+It does not replace pieces: it is added as an extra piece from Epic onward.
 
-- Epic: `6` piezas y `6` bonus.
-- Legendary: `7` piezas y `7` bonus.
-- Mythic: `8` piezas y `8` bonus.
-- Ancient: `9` piezas y `9` bonus, manteniendo tambien el trinket final.
+- Epic: `6` pieces and `6` bonuses.
+- Legendary: `7` pieces and `7` bonuses.
+- Mythic: `8` pieces and `8` bonuses.
+- Ancient: `9` pieces and `9` bonuses, while still keeping the final trinket.
 
-El bonus extra final es `HeadHunter` para Hraesvelgr y `ModifyElementalDamage` para Moonvein.
+The final extra bonus is `HeadHunter` for Hraesvelgr and `ModifyElementalDamage` for Moonvein.
 
-## Cambios de EpicLoot incluidos
+## Included EpicLoot Changes
 
-- Efectos de arco/ballesta extendidos para `Bows` y `Crossbows`.
-- `ModifyAttackEitrUse` disponible en Magic con valores bajos.
-- `LifeSteal` permitido en Magic para balance de Ragnar.
-- `IncreaseEitr` permitido en armas de una y dos manos.
-- `FreeBuild` permitido en Epic para Floki.
-- Ajustes de exclusividad entre `SpellSword`, `Duelist` y `EitrWeave`.
-- Pools de loot por rareza para piezas de set.
-- Pools de bosses para empujar progresion por etapa.
-- Bestiary: las 21 criaturas `RDB_*` heredan tiers de loot y aparecen como objetivos de bounty.
-- Tienda/adventure data con piezas generadas.
+- Extended bow/crossbow effects for `Bows` and `Crossbows`.
+- `ModifyAttackEitrUse` available on Magic with low values.
+- `LifeSteal` allowed on Magic for Ragnar balance.
+- `IncreaseEitr` allowed on one-handed and two-handed weapons.
+- `FreeBuild` allowed on Epic for Floki.
+- Exclusivity adjustments between `SpellSword`, `Duelist` and `EitrWeave`.
+- Rarity loot pools for set pieces.
+- Boss pools to push stage-based progression.
+- Bestiary: the 21 `RDB_*` creatures inherit loot tiers and appear as bounty targets.
+- Shop/adventure data with generated pieces.
 
-## Configuracion principal
+## Main Configuration
 
-Archivo:
+File:
 
 `config/fran.mods.epiclootraritysets.cfg`
 
-Opciones importantes:
+Important options:
 
-- `Generate Managed Config Files`: escribe las configs gestionadas desde la DLL.
-- `Enable Natural Drops`: permite conversion de tiradas normales de EpicLoot en piezas de set.
-- `Enable Set Activation Buffs`: muestra buffs de set completo.
-- `Enable Ability Panel`: muestra el panel movible de habilidades activas.
-- `Ability Panel Position X/Y`, `Scale`, `Opacity`: posicion, escala y opacidad del panel de habilidades.
-- `Enable Passive Stack Panel`: muestra el panel movible de pasivas con orbes y estado cargado sobre la placa completa.
-- `Passive Stack Panel Position X/Y`, `Scale`, `Opacity`: posicion, escala y opacidad del panel de pasivas.
+- `Generate Managed Config Files`: writes the managed configs from the DLL.
+- `Enable Natural Drops`: allows normal EpicLoot rolls to convert into set pieces.
+- `Enable Set Activation Buffs`: shows full-set buffs.
+- `Enable Ability Panel`: shows the movable active ability panel.
+- `Ability Panel Position X/Y`, `Scale`, `Opacity`: ability panel position, scale and opacity.
+- `Enable Passive Stack Panel`: shows the movable passive panel with orbs and charged state across the full plaque.
+- `Passive Stack Panel Position X/Y`, `Scale`, `Opacity`: passive panel position, scale and opacity.
 - `Enable Frostbrand Abilities`
 - `Enable Hraesvelgr Abilities`
-- `Enable Hellsyng Abilities`: activa `T.N.T.`, `Balas de plata`, `Mascotas Hellsyng`, `Forma de hombre lobo`, `Forma de murcielago`, `Horda de murcielagos` y `Fuego rapido`.
+- `Enable Hellsyng Abilities`: enables `T.N.T.`, `Silver Bullets`, `Hellsyng Pets`, `Werewolf Form`, `Bat Form`, `Bat Horde` and `Rapid Fire`.
 - `Enable Moonvein Abilities`
 - `Enable Nott Abilities`
 - `Enable Ragnar Abilities`
@@ -418,22 +423,22 @@ Opciones importantes:
 - `Configure WolfPack`
 - `Configure Wires Enemy HUD`
 
-Cada seccion de habilidades permite cambiar teclas, costes, cooldowns, radios, duraciones y escalados. Los valores del README son los defaults esperados; si una config local antigua ya existe, el mod intenta migrar defaults viejos a los valores actuales con `UpgradeFloatConfig` y `UpgradeShortcutConfig`.
+Each ability section lets you change keybinds, costs, cooldowns, radii, durations and scaling values. The README values are the expected defaults. If an older local config already exists, the mod tries to migrate old defaults to current values with `UpgradeFloatConfig` and `UpgradeShortcutConfig`.
 
-Si el paquete incluye `EpicLootRaritySetsHotfix.dll`, ese complemento puede usar `config/fran.mods.epiclootraritysets.hotfix.cfg` para ajustes separados del DLL principal, como opciones de forma de murcielago, `Frenesi de sangre`, `Marca de sombra` o `Ragnar Crush`.
+If the package includes `EpicLootRaritySetsHotfix.dll`, that companion plugin may use `config/fran.mods.epiclootraritysets.hotfix.cfg` for settings that remain separate from the main DLL, such as bat form options, `Blood Frenzy`, `Shadow Mark` or `Ragnar Crush`.
 
-## Desarrollo
+## Development
 
-Las configs embebidas viven en:
+Embedded configs live in:
 
 `src/GeneratedConfig/`
 
-Cuando cambies JSON/CFG manualmente y quieras que viajen dentro del mod, actualiza esos archivos y recompila la DLL. Si `Generate Managed Config Files` sigue activo y los recursos embebidos de la DLL estan desactualizados, el siguiente arranque volvera a escribir la version vieja.
+When you manually change JSON/CFG files and want those changes to ship inside the mod, update those files and rebuild the DLL. If `Generate Managed Config Files` remains enabled and the DLL embedded resources are outdated, the next startup will write the old version again.
 
 Build:
 
 `tools/Build-EpicLootRaritySets.ps1`
 
-Verificacion:
+Verification:
 
 `tools/Verify-RecoveredRaritySets.ps1`

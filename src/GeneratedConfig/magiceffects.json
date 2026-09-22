@@ -221,7 +221,9 @@
           "Torch",
           "Staff",
           "Bows",
-          "Crossbows"
+          "Crossbows",
+          "Chest",
+          "Helmet"
         ],
         "ExcludedItemNames": [
           "$item_fishingrod"
@@ -298,7 +300,9 @@
           "TwoHandedWeaponLeft",
           "Bow",
           "Torch",
-          "Staff"
+          "Staff",
+          "Helmet",
+          "Legs"
         ],
         "ExcludedSkillTypes": [
           "Pickaxes"
@@ -502,7 +506,12 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "TwoHandedWeaponLeft",
-          "Staff"
+          "Staff",
+          "Chest",
+          "Helmet",
+          "Legs",
+          "Trinket",
+          "Utility"
         ],
         "ItemHasBlockPower": true,
         "ExclusiveEffectTypes": [
@@ -557,7 +566,8 @@
       "Description": "$mod_epicloot_me_modifyblockforce_desc",
       "Requirements": {
         "AllowedItemTypes": [
-          "Shield"
+          "Shield",
+          "OneHandedWeapon"
         ],
         "ItemHasBlockPower": true
       },
@@ -675,7 +685,8 @@
           "Legs",
           "Shoulder",
           "Utility",
-          "Trinket"
+          "Trinket",
+          "OneHandedWeapon"
         ],
         "ItemHasArmor": true
       },
@@ -880,7 +891,9 @@
           "Shield",
           "Tool",
           "Torch",
-          "TwoHandedWeaponLeft"
+          "TwoHandedWeaponLeft",
+          "OneHandedWeapon",
+          "TwoHandedWeapon"
         ]
       },
       "ValuesPerRarity": {
@@ -983,7 +996,8 @@
           "Shield",
           "Tool",
           "Torch",
-          "TwoHandedWeaponLeft"
+          "TwoHandedWeaponLeft",
+          "Bows"
         ]
       },
       "ValuesPerRarity": {
@@ -1044,7 +1058,8 @@
           "Torch",
           "TwoHandedWeaponLeft",
           "OneHandedWeapon",
-          "TwoHandedWeapon"
+          "TwoHandedWeapon",
+          "Bows"
         ],
         "ExcludedItemNames": [
           "$item_hammer",
@@ -1395,7 +1410,8 @@
           "Shield",
           "Tool",
           "Torch",
-          "TwoHandedWeaponLeft"
+          "TwoHandedWeaponLeft",
+          "Bows"
         ]
       },
       "ValuesPerRarity": {
@@ -1444,7 +1460,8 @@
       "Description": "$mod_epicloot_me_ammoconservation_desc",
       "Requirements": {
         "AllowedItemTypes": [
-          "Bow"
+          "Bow",
+          "Bows"
         ]
       },
       "ValuesPerRarity": {
@@ -1494,7 +1511,9 @@
       "Requirements": {
         "AllowedItemTypes": [
           "Utility",
-          "Trinket"
+          "Trinket",
+          "Chest",
+          "Legs"
         ],
         "AllowedRarities": [
           "Magic",
@@ -1595,7 +1614,9 @@
       "Description": "$mod_epicloot_me_modifybuilddistance_desc",
       "Requirements": {
         "AllowedItemTypes": [
-          "Tool"
+          "Tool",
+          "Legs",
+          "Utility"
         ]
       },
       "ValuesPerRarity": {
@@ -1696,7 +1717,12 @@
         "AllowedItemTypes": [
           "Bow",
           "Bows",
-          "Crossbows"
+          "Crossbows",
+          "Chest",
+          "Helmet",
+          "Legs",
+          "Trinket",
+          "Utility"
         ]
       },
       "ValuesPerRarity": {
@@ -1745,7 +1771,9 @@
       "Description": "$mod_epicloot_me_modifymagicfirerate_desc",
       "Requirements": {
         "AllowedItemTypes": [
-          "Staff"
+          "Staff",
+          "Chest",
+          "Legs"
         ]
       },
       "ValuesPerRarity": {
@@ -1797,7 +1825,12 @@
           "Staff",
           "Bow",
           "Bows",
-          "Crossbows"
+          "Crossbows",
+          "Chest",
+          "Helmet",
+          "Legs",
+          "Trinket",
+          "Utility"
         ]
       },
       "ValuesPerRarity": {
@@ -3025,7 +3058,8 @@
           "Shield",
           "Tool",
           "Torch",
-          "TwoHandedWeaponLeft"
+          "TwoHandedWeaponLeft",
+          "OneHandedWeapon"
         ]
       },
       "ValuesPerRarity": {
@@ -3325,9 +3359,9 @@
           "Increment": 1
         },
         "Magic": {
-          "MinValue": 1.0,
-          "MaxValue": 6.0,
-          "Increment": 1.0
+          "MinValue": 1,
+          "MaxValue": 6,
+          "Increment": 1
         }
       },
       "SelectionWeight": 10,
@@ -3408,7 +3442,8 @@
           "TwoHandedWeapon",
           "TwoHandedWeaponLeft",
           "Torch",
-          "Tool"
+          "Tool",
+          "Legs"
         ],
         "ExcludedItemNames": [
           "$item_hammer",
@@ -3551,7 +3586,9 @@
           "TwoHandedWeapon",
           "TwoHandedWeaponLeft",
           "Staff",
-          "Tool"
+          "Tool",
+          "Trinket",
+          "Utility"
         ],
         "ExcludedItemNames": [
           "$item_fishingrod"
@@ -3745,7 +3782,8 @@
           "Legs",
           "Shoulder",
           "Utility",
-          "Trinket"
+          "Trinket",
+          "Tool"
         ]
       },
       "ValuesPerRarity": {
@@ -3797,7 +3835,9 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "TwoHandedWeaponLeft",
-          "Bow"
+          "Bow",
+          "Chest",
+          "Helmet"
         ],
         "ExcludedSkillTypes": [
           "Pickaxes"
@@ -3864,7 +3904,11 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "TwoHandedWeaponLeft",
-          "Bow"
+          "Bow",
+          "Bows",
+          "Chest",
+          "Helmet",
+          "Legs"
         ],
         "ExcludedSkillTypes": [
           "Pickaxes"
@@ -3931,7 +3975,11 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "Tool",
-          "Staff"
+          "Staff",
+          "Chest",
+          "Helmet",
+          "Legs",
+          "Utility"
         ],
         "ExcludedItemNames": [
           "$item_fishingrod",
@@ -4189,7 +4237,12 @@
         "AllowedItemTypes": [
           "Bow",
           "Bows",
-          "Crossbows"
+          "Crossbows",
+          "Chest",
+          "Helmet",
+          "Legs",
+          "Trinket",
+          "Utility"
         ],
         "ExcludedSkillTypes": [
           "Pickaxes"
@@ -4242,7 +4295,8 @@
       "Requirements": {
         "AllowedItemTypes": [
           "OneHandedWeapon",
-          "TwoHandedWeapon"
+          "TwoHandedWeapon",
+          "Utility"
         ],
         "AllowedSkillTypes": [
           "Swords"
@@ -5187,7 +5241,9 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "Bow",
-          "Shield"
+          "Shield",
+          "Chest",
+          "Helmet"
         ],
         "ExcludedSkillTypes": [
           "Pickaxes"
@@ -5374,7 +5430,10 @@
           "Utility",
           "Trinket",
           "OneHandedWeapon",
-          "TwoHandedWeapon"
+          "TwoHandedWeapon",
+          "Chest",
+          "Legs",
+          "Shield"
         ],
         "ExcludedItemNames": [
           "$item_fishingrod"
@@ -5428,7 +5487,9 @@
       "Requirements": {
         "AllowedItemTypes": [
           "Chest",
-          "Shield"
+          "Shield",
+          "Helmet",
+          "OneHandedWeapon"
         ]
       },
       "ValuesPerRarity": {
@@ -5478,7 +5539,9 @@
       "Requirements": {
         "AllowedItemTypes": [
           "Chest",
-          "Shield"
+          "Shield",
+          "Helmet",
+          "Legs"
         ]
       },
       "ValuesPerRarity": {
@@ -5994,7 +6057,9 @@
           "Torch",
           "Staff",
           "Bows",
-          "Crossbows"
+          "Crossbows",
+          "Chest",
+          "Legs"
         ]
       },
       "ValuesPerRarity": {
@@ -6168,7 +6233,8 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "Tool",
-          "Staff"
+          "Staff",
+          "Trinket"
         ],
         "ExcludedItemNames": [
           "$item_fishingrod",
@@ -6276,7 +6342,9 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "TwoHandedWeaponLeft",
-          "Bow"
+          "Bow",
+          "Helmet",
+          "Utility"
         ],
         "ExcludedSkillTypes": [
           "Pickaxes"
@@ -6533,7 +6601,9 @@
         "AllowedItemTypes": [
           "OneHandedWeapon",
           "TwoHandedWeapon",
-          "TwoHandedWeaponLeft"
+          "TwoHandedWeaponLeft",
+          "Chest",
+          "Legs"
         ],
         "ItemUsesStaminaOnAttack": true,
         "ExclusiveEffectTypes": [
@@ -6609,7 +6679,9 @@
         "AllowedItemTypes": [
           "OneHandedWeapon",
           "TwoHandedWeapon",
-          "Bow"
+          "Bow",
+          "Chest",
+          "Helmet"
         ],
         "ExcludedSkillTypes": [
           "Pickaxes"
@@ -6896,7 +6968,12 @@
           "OneHandedWeapon",
           "TwoHandedWeapon",
           "TwoHandedWeaponLeft",
-          "Bow"
+          "Bow",
+          "Bows",
+          "Chest",
+          "Helmet",
+          "Legs",
+          "Utility"
         ],
         "ExcludedSkillTypes": [
           "BloodMagic",
@@ -7132,7 +7209,10 @@
       "Description": "$mod_epicloot_me_headhunter_desc",
       "Requirements": {
         "AllowedItemTypes": [
-          "Helmet"
+          "Helmet",
+          "Chest",
+          "Trinket",
+          "Utility"
         ]
       },
       "ValuesPerRarity": {
