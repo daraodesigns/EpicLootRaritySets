@@ -48,6 +48,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> PassiveStackPanelPositionY;
         internal static ConfigEntry<float> PassiveStackPanelScale;
         internal static ConfigEntry<float> PassiveStackPanelOpacity;
+        internal static ConfigEntry<KeyboardShortcut> CenterPanelsHotkey;
         internal static ConfigEntry<bool> EnableFrostbrandAbilities;
         internal static ConfigEntry<bool> EnableHraesvelgrAbilities;
         internal static ConfigEntry<bool> EnableSolomonKaneAbilities;
@@ -322,6 +323,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<KeyboardShortcut> HelveigBloodRiteHotkey;
         internal static ConfigEntry<KeyboardShortcut> HelveigHolyStrikeHotkey;
         internal static ConfigEntry<KeyboardShortcut> HelveigSummonUndeadHotkey;
+        internal static ConfigEntry<KeyboardShortcut> HelveigBodyguardHotkey;
         internal static ConfigEntry<float> HelveigHolyHealCooldown;
         internal static ConfigEntry<float> HelveigHolyHealEitrUse;
         internal static ConfigEntry<float> HelveigHolyHealBaseHealing;
@@ -345,6 +347,7 @@ namespace Fran.EpicLootRaritySets
         internal static ConfigEntry<float> HelveigSummonUndeadCooldown;
         internal static ConfigEntry<float> HelveigSummonUndeadEitrUse;
         internal static ConfigEntry<float> HelveigSummonUndeadDuration;
+        internal static ConfigEntry<float> HelveigBodyguardToggleCooldown;
         internal static ConfigEntry<float> HelveigBodyguardRespawnCooldown;
         internal static ConfigEntry<float> HelveigBodyguardGuardRadius;
         internal static ConfigEntry<KeyboardShortcut> HeimdallLightningStormHotkey;
@@ -425,6 +428,7 @@ namespace Fran.EpicLootRaritySets
             PassiveStackPanelPositionY = Config.Bind("Passive Stack Panel", "Position Y", -245f, new ConfigDescription("Passive stack panel anchored Y position. Open the inventory with Tab and drag the panel to change it.", new AcceptableValueRange<float>(-1600f, 1600f)));
             PassiveStackPanelScale = Config.Bind("Passive Stack Panel", "Scale", 1f, new ConfigDescription("Passive stack panel UI scale.", new AcceptableValueRange<float>(0.65f, 1.5f)));
             PassiveStackPanelOpacity = Config.Bind("Passive Stack Panel", "Opacity", 0.92f, new ConfigDescription("Passive stack panel opacity.", new AcceptableValueRange<float>(0.2f, 1f)));
+            CenterPanelsHotkey = Config.Bind("Panels", "Center Panels Hotkey", new KeyboardShortcut(KeyCode.Home), "Hotkey used while the inventory is open to move the ability panel and passive/orb panel to the center of the screen.");
             GenerateManagedConfigFiles = Config.Bind("Files", "Generate Managed Config Files", true, "Write the EpicLoot and NorseDemigods config files managed by this DLL into BepInEx/config on startup.");
             ReadLegendariesJson = Config.Bind("Files", "Read Extra Sections From Legendaries Json", true, "Read MagicItems/RareItems/EpicItems/AncientItems and matching *Sets arrays from EpicLoot/baseconfig/legendaries.json.");
             ReadRaritySetsJson = Config.Bind("Files", "Read Rarity Sets Json", true, "Read extra rarity set definitions from EpicLoot/raritysets.json.");
@@ -783,6 +787,7 @@ namespace Fran.EpicLootRaritySets
             HelveigBloodRiteHotkey = Config.Bind("Helveig Abilities", "Blood Rite Hotkey", new KeyboardShortcut(KeyCode.Mouse4), "Hotkey for Helveig Blood Rite channel.");
             HelveigHolyStrikeHotkey = Config.Bind("Helveig Abilities", "Holy Strike Hotkey", new KeyboardShortcut(KeyCode.None), "Legacy fallback hotkey for Helveig Holy Strike. The primary input is the game's secondary attack.");
             HelveigSummonUndeadHotkey = Config.Bind("Helveig Abilities", "Summon Undead Hotkey", new KeyboardShortcut(KeyCode.Mouse3), "Hotkey for Helveig Summon Monster. Hold block with this hotkey to cast it so Holy Heal stays on Mouse3.");
+            HelveigBodyguardHotkey = Config.Bind("Helveig Abilities", "Bodyguard Hotkey", new KeyboardShortcut(KeyCode.Mouse3, KeyCode.LeftAlt), "Hotkey for storing or recalling Helveig's passive undead bodyguard.");
             HelveigHolyHealCooldown = Config.Bind("Helveig Abilities", "Holy Heal Cooldown", 10f, new ConfigDescription("Cooldown in seconds for Helveig Holy Heal.", new AcceptableValueRange<float>(0f, 120f)));
             HelveigHolyHealEitrUse = Config.Bind("Helveig Abilities", "Holy Heal Eitr Use", 25f, new ConfigDescription("Eitr consumed by Helveig Holy Heal.", new AcceptableValueRange<float>(0f, 250f)));
             HelveigHolyHealBaseHealing = Config.Bind("Helveig Abilities", "Holy Heal Base Healing", 35f, new ConfigDescription("Base healing for Helveig Holy Heal before Helveig scaling.", new AcceptableValueRange<float>(0f, 1000f)));
@@ -806,6 +811,7 @@ namespace Fran.EpicLootRaritySets
             HelveigSummonUndeadCooldown = Config.Bind("Helveig Abilities", "Summon Undead Cooldown", 60f, new ConfigDescription("Cooldown in seconds for Helveig Summon Monster.", new AcceptableValueRange<float>(0f, 300f)));
             HelveigSummonUndeadEitrUse = Config.Bind("Helveig Abilities", "Summon Undead Eitr Use", 55f, new ConfigDescription("Eitr consumed by Helveig Summon Monster.", new AcceptableValueRange<float>(0f, 250f)));
             HelveigSummonUndeadDuration = Config.Bind("Helveig Abilities", "Summon Undead Duration", 20f, new ConfigDescription("Duration in seconds for Helveig's summoned monster ally.", new AcceptableValueRange<float>(1f, 600f)));
+            HelveigBodyguardToggleCooldown = Config.Bind("Helveig Abilities", "Bodyguard Toggle Cooldown", 30f, new ConfigDescription("Cooldown in seconds after manually storing or recalling Helveig's passive undead bodyguard.", new AcceptableValueRange<float>(0f, 300f)));
             HelveigBodyguardRespawnCooldown = Config.Bind("Helveig Abilities", "Bodyguard Respawn Cooldown", 30f, new ConfigDescription("Seconds after a Helveig undead bodyguard dies before it automatically respawns while the set remains active.", new AcceptableValueRange<float>(1f, 300f)));
             HelveigBodyguardGuardRadius = Config.Bind("Helveig Abilities", "Bodyguard Guard Radius", 30f, new ConfigDescription("Radius in meters around the player where Helveig undead bodyguards look for hostile targets.", new AcceptableValueRange<float>(5f, 100f)));
             UpgradeFloatConfig(HelveigHolyHealCooldown, 6f, 10f);
@@ -894,6 +900,7 @@ namespace Fran.EpicLootRaritySets
             WiresEnemyHudCompatibilitySynchronizer.Sync();
             ClassSkillManager.Initialize();
             LastHopeController.Initialize();
+            CharacterControlEffects.RegisterRpcs();
             HelveigAbilityController.RegisterRpcs();
 
             ReloadExternalConfigs();
@@ -5203,7 +5210,7 @@ namespace Fran.EpicLootRaritySets
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
                 return string.Format(
-                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida, dano y reduccion recibida con Helveig y reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion aplica al objetivo un escudo no acumulable del 15% de la sanacion potencial de la habilidad durante 15s, incluso si el objetivo estaba a vida maxima, con visual de escudo elemental.\nSanguine Devotion: cada curacion otorga 1 carga durante 15s, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida, dano y reduccion recibida. Invocacion actual: {29}.",
+                    "Helveig set completo activo.\n\nEscalado actual: Helveig {24:0.#}.\n\nPasivas:\nUndead Bodyguards: invoca un Charred Dyrnwyn como guardaespaldas mientras el set este activo. Escala vida, dano y reduccion recibida con Helveig; puedes guardarlo o invocarlo con {32}, con CD {33:0}s al usar la habilidad. Si muere, reaparece {30:0.#}s despues de morir.\nBlood Aegis: cada curacion aplica al objetivo un escudo no acumulable del 15% de la sanacion potencial de la habilidad durante 15s, incluso si el objetivo estaba a vida maxima, con visual de escudo elemental.\nSanguine Devotion: cada curacion otorga 1 carga durante 15s, hasta 3. Cada carga da +5% dano de invocaciones y +10% dano de Holy Strike.\n\nHabilidades:\nHoly Heal: tecla {0}. Coste {1:0} eitr. CD {2:0}s. Cura al aliado apuntado en {15:0.#}m o a ti si no hay objetivo. Escala con Helveig: {3:0.#}+{4:0.##}/nivel = {25:0.#} cura.\nBlood Rite: tecla {5}. Coste {6:0} eitr. CD {7:0}s. Canaliza {8:0.#}s sin moverte, radio {9:0.#}m, pulso cada {10:0.#}s. Cura aliados, jugadores, NPCs aliados, mascotas y a ti: {11:0.#}+{12:0.##}/nivel = {26:0.#} por pulso. El CD empieza al terminar o romperse.\nHoly Strike: tecla ataque secundario. Coste {13:0} eitr. CD {14:0}s. Rango {15:0.#}m. Escala con Helveig: fuego {16:0.#}+{17:0.##}/nivel = {27:0.#}; espiritu {18:0.#}+{19:0.##}/nivel = {28:0.#}. Cada impacto devuelve {31:0.#} eitr.\nSummon Monster: tecla {20} + bloquear. Coste {21:0} eitr. CD {22:0}s. Dura {23:0.#}s. Invoca Ent/Abomination/ElakingMole/Fallen Valkyrie segun Helveig y escala vida, dano y reduccion recibida. Invocacion actual: {29}.",
                     FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey),
                     EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value,
                     EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value,
@@ -5235,7 +5242,9 @@ namespace Fran.EpicLootRaritySets
                     holyStrikeSpirit,
                     GetHelveigUndeadNameForSkill(blood),
                     EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value,
-                    EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrRefund.Value);
+                    EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrRefund.Value,
+                    FormatShortcut(EpicLootRaritySetsPlugin.HelveigBodyguardHotkey),
+                    EpicLootRaritySetsPlugin.HelveigBodyguardToggleCooldown.Value);
             }
 
             return baseSetName + " set completo activo.";
@@ -5361,7 +5370,7 @@ namespace Fran.EpicLootRaritySets
                 float bloodRite = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value, EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value, blood);
                 float holyStrikeFire = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value, blood);
                 float holyStrikeSpirit = ScaleSkillValue(EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value, EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value, blood);
-                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health, damage and damage taken reduction scale with Helveig and it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: each heal grants the healed target a non-stacking shield equal to 15% of the ability's potential healing for 15s, even if the target was already at full health, with the Elemental Shield visual.\nSanguine Devotion: each heal grants 1 stack for 15s, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
+                return "Helveig full set active.\n\nCurrent scaling: Helveig " + blood.ToString("0.#") + ".\n\nPassives:\nUndead Bodyguards: summons a Charred Dyrnwyn bodyguard while the set is active. Health, damage and damage taken reduction scale with Helveig; use " + FormatShortcut(EpicLootRaritySetsPlugin.HelveigBodyguardHotkey) + " to store or recall it, with a " + EpicLootRaritySetsPlugin.HelveigBodyguardToggleCooldown.Value.ToString("0") + "s cooldown after use. If it dies, it respawns " + EpicLootRaritySetsPlugin.HelveigBodyguardRespawnCooldown.Value.ToString("0.#") + "s after death.\nBlood Aegis: each heal grants the healed target a non-stacking shield equal to 15% of the ability's potential healing for 15s, even if the target was already at full health, with the Elemental Shield visual.\nSanguine Devotion: each heal grants 1 stack for 15s, up to 3. Each stack gives +5% summon damage and +10% Holy Strike damage.\n\nAbilities:\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigHolyHealHotkey) + ": Holy Heal. Cost " + EpicLootRaritySetsPlugin.HelveigHolyHealEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyHealCooldown.Value.ToString("0") + "s. Heals the aimed ally within " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m, or yourself if no target exists. Scales with Helveig: " + EpicLootRaritySetsPlugin.HelveigHolyHealBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyHealHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyHeal.ToString("0.#") + " healing.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigBloodRiteHotkey) + ": Blood Rite. Cost " + EpicLootRaritySetsPlugin.HelveigBloodRiteEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigBloodRiteCooldown.Value.ToString("0") + "s. Channels " + EpicLootRaritySetsPlugin.HelveigBloodRiteDuration.Value.ToString("0.#") + "s without moving, radius " + EpicLootRaritySetsPlugin.HelveigBloodRiteRadius.Value.ToString("0.#") + "m, tick every " + EpicLootRaritySetsPlugin.HelveigBloodRiteTickInterval.Value.ToString("0.#") + "s. Heals allies, players, allied NPCs, pets and you: " + EpicLootRaritySetsPlugin.HelveigBloodRiteBaseHealing.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigBloodRiteHealingPerBloodMagicLevel.Value.ToString("0.##") + "/level = " + bloodRite.ToString("0.#") + " per tick. CD starts when the channel finishes or breaks.\nSecondary attack: Holy Strike. Cost " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigHolyStrikeCooldown.Value.ToString("0") + "s. Range " + EpicLootRaritySetsPlugin.HelveigHolyStrikeRange.Value.ToString("0.#") + "m. Scales with Helveig: fire " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseFireDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeFireDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeFire.ToString("0.#") + "; spirit " + EpicLootRaritySetsPlugin.HelveigHolyStrikeBaseSpiritDamage.Value.ToString("0.#") + "+" + EpicLootRaritySetsPlugin.HelveigHolyStrikeSpiritDamagePerBloodMagicLevel.Value.ToString("0.##") + "/level = " + holyStrikeSpirit.ToString("0.#") + ". Each impact restores " + EpicLootRaritySetsPlugin.HelveigHolyStrikeEitrRefund.Value.ToString("0.#") + " eitr.\n"
                     + FormatShortcut(EpicLootRaritySetsPlugin.HelveigSummonUndeadHotkey) + " + block: Summon Monster. Cost " + EpicLootRaritySetsPlugin.HelveigSummonUndeadEitrUse.Value.ToString("0") + " eitr. CD " + EpicLootRaritySetsPlugin.HelveigSummonUndeadCooldown.Value.ToString("0") + "s. Lasts " + EpicLootRaritySetsPlugin.HelveigSummonUndeadDuration.Value.ToString("0.#") + "s. Summons Ent/Abomination/ElakingMole/Fallen Valkyrie based on Helveig and scales health, damage and damage taken reduction. Current summon: " + GetHelveigUndeadNameForSkill(blood) + ".";
@@ -5910,6 +5919,7 @@ namespace Fran.EpicLootRaritySets
             { "HelveigHolyStrike", new IconRef("Abilities", "helveig_holy_strike.png") },
             { "HelveigBloodRite", new IconRef("Abilities", "helveig_blood_rite.png") },
             { "HelveigSummonUndead", new IconRef("Abilities", "helveig_summon_monster.png") },
+            { "HelveigBodyguardToggle", new IconRef("Buffs", "helveig_undead_bodyguard.png") },
             { "HelveigBodyguardsDeath", new IconRef("Buffs", "helveig_bodyguard_respawn.png") },
             { "HelveigBloodAegis", new IconRef("Buffs", "helveig_blood_aegis.png") },
             { "HelveigSanguineDevotion", new IconRef("Buffs", "helveig_sanguine_devotion.png") },
@@ -6203,6 +6213,7 @@ namespace Fran.EpicLootRaritySets
             new AbilityPanelEntry("Helveig", "Abilities", "helveig_blood_rite.png", "Blood Rite", "shortcut:HelveigBloodRiteHotkey", false, "HelveigBloodRite"),
             new AbilityPanelEntry("Helveig", "Abilities", "helveig_holy_strike.png", "Holy Strike", "secondary", false, "HelveigHolyStrike"),
             new AbilityPanelEntry("Helveig", "Abilities", "helveig_summon_monster.png", "Summon Monster", "blockShortcut:HelveigSummonUndeadHotkey", false, "HelveigSummonUndead"),
+            new AbilityPanelEntry("Helveig", "Abilities", "helveig_undead_bodyguard.png", "Undead Bodyguard", "shortcut:HelveigBodyguardHotkey", false, "HelveigBodyguardToggle"),
             new AbilityPanelEntry("Helveig", "Buffs", "helveig_undead_bodyguard.png", "Undead Bodyguard", "passive", true),
             new AbilityPanelEntry("Helveig", "Buffs", "helveig_blood_aegis.png", "Blood Aegis", "buff", true, "HelveigBloodAegis"),
             new AbilityPanelEntry("Helveig", "Buffs", "helveig_sanguine_devotion.png", "Sanguine Devotion", "passive", true, "HelveigSanguineDevotion"),
@@ -6691,6 +6702,23 @@ namespace Fran.EpicLootRaritySets
                 cooldownText = Mathf.Clamp(charges, 0, maxCharges).ToString(CultureInfo.InvariantCulture) + "/" + Mathf.Max(1, maxCharges).ToString(CultureInfo.InvariantCulture);
                 textVisible = true;
             }
+
+            if (string.Equals(entry.ClassName, "Helveig", StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(entry.IconFile, "helveig_undead_bodyguard.png", StringComparison.OrdinalIgnoreCase) &&
+                !entry.IsBuff)
+            {
+                bool bodyguardActive;
+                bool bodyguardStored;
+                if (HelveigAbilityController.TryGetBodyguardPanelState(out bodyguardActive, out bodyguardStored))
+                {
+                    active = bodyguardActive;
+                    if (bodyguardStored && !overlayVisible)
+                    {
+                        cooldownText = "OFF";
+                        textVisible = true;
+                    }
+                }
+            }
         }
 
         private static bool IsCellValid(AbilityPanelCell cell)
@@ -6880,6 +6908,23 @@ namespace Fran.EpicLootRaritySets
                 {
                     EpicLootRaritySetsPlugin.AbilityPanelPositionY.Value = _root.anchoredPosition.y;
                 }
+            }
+        }
+
+        internal static void CenterPanelAndSave()
+        {
+            _dragging = false;
+            if (EpicLootRaritySetsPlugin.AbilityPanelPositionX != null)
+            {
+                EpicLootRaritySetsPlugin.AbilityPanelPositionX.Value = 0f;
+            }
+            if (EpicLootRaritySetsPlugin.AbilityPanelPositionY != null)
+            {
+                EpicLootRaritySetsPlugin.AbilityPanelPositionY.Value = 0f;
+            }
+            if (_root != null)
+            {
+                _root.anchoredPosition = Vector2.zero;
             }
         }
 
@@ -7310,7 +7355,6 @@ namespace Fran.EpicLootRaritySets
         private static Font _font;
         private static string _signature;
         private static bool _dragging;
-        private static bool _wasInventoryVisible;
         private static Vector2 _dragOffset;
         private static float _refreshTimer;
 
@@ -7374,7 +7418,6 @@ namespace Fran.EpicLootRaritySets
             Cells.Clear();
             _signature = null;
             _dragging = false;
-            _wasInventoryVisible = false;
             _refreshTimer = 0f;
         }
 
@@ -7789,12 +7832,6 @@ namespace Fran.EpicLootRaritySets
             }
 
             bool inventoryVisible = InventoryGui.instance != null && InventoryGui.IsVisible();
-            if (inventoryVisible && !_wasInventoryVisible)
-            {
-                CenterPanelAndSave();
-            }
-            _wasInventoryVisible = inventoryVisible;
-
             if (_dragSurface != null)
             {
                 _dragSurface.raycastTarget = inventoryVisible;
@@ -7871,14 +7908,9 @@ namespace Fran.EpicLootRaritySets
             }
         }
 
-        private static void CenterPanelAndSave()
+        internal static void CenterPanelAndSave()
         {
-            if (_root == null)
-            {
-                return;
-            }
-
-            _root.anchoredPosition = Vector2.zero;
+            _dragging = false;
             if (EpicLootRaritySetsPlugin.PassiveStackPanelPositionX != null)
             {
                 EpicLootRaritySetsPlugin.PassiveStackPanelPositionX.Value = 0f;
@@ -7886,6 +7918,10 @@ namespace Fran.EpicLootRaritySets
             if (EpicLootRaritySetsPlugin.PassiveStackPanelPositionY != null)
             {
                 EpicLootRaritySetsPlugin.PassiveStackPanelPositionY.Value = 0f;
+            }
+            if (_root != null)
+            {
+                _root.anchoredPosition = Vector2.zero;
             }
         }
 
@@ -8143,6 +8179,67 @@ namespace Fran.EpicLootRaritySets
             internal bool LastCharged;
             internal bool CurrentCharged;
             internal float PulseSeed;
+        }
+    }
+
+    internal static class PanelCenterHotkeyController
+    {
+        internal static void Update(Player player)
+        {
+            if (player == null || player != Player.m_localPlayer)
+            {
+                return;
+            }
+
+            if (!IsInventoryVisible() || IsInputBlocked())
+            {
+                return;
+            }
+
+            if (!IsShortcutDown(EpicLootRaritySetsPlugin.CenterPanelsHotkey))
+            {
+                return;
+            }
+
+            AbilityPanelController.CenterPanelAndSave();
+            PassiveStackPanelController.CenterPanelAndSave();
+            player.Message(MessageHud.MessageType.TopLeft, LocalizedText.Select("Paneles centrados", "Panels centered"), 0, null, false);
+        }
+
+        private static bool IsInventoryVisible()
+        {
+            return InventoryGui.instance != null && InventoryGui.IsVisible();
+        }
+
+        private static bool IsInputBlocked()
+        {
+            return (Menu.instance != null && Menu.IsVisible()) ||
+                   (TextInput.instance != null && TextInput.IsVisible());
+        }
+
+        private static bool IsShortcutDown(ConfigEntry<KeyboardShortcut> entry)
+        {
+            KeyboardShortcut shortcut = entry != null ? entry.Value : new KeyboardShortcut(KeyCode.Home);
+            if (shortcut.IsDown())
+            {
+                return true;
+            }
+
+            KeyCode mainKey = shortcut.MainKey;
+            if (mainKey == KeyCode.None || !Input.GetKeyDown(mainKey))
+            {
+                return false;
+            }
+
+            foreach (KeyCode modifier in shortcut.Modifiers)
+            {
+                if (!Input.GetKey(modifier))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 
@@ -8846,6 +8943,9 @@ namespace Fran.EpicLootRaritySets
 
     internal static class CharacterControlEffects
     {
+        private const string ApplyRootRpc = "Fran_ELRS_ControlRoot";
+        private const string ApplyPullRpc = "Fran_ELRS_ControlPull";
+
         private static readonly MethodInfo CharacterStaggerMethod = AccessTools.GetDeclaredMethods(typeof(Character))
             .FirstOrDefault(method =>
             {
@@ -8857,6 +8957,25 @@ namespace Fran.EpicLootRaritySets
                 ParameterInfo[] parameters = method.GetParameters();
                 return parameters.Length > 0 && parameters[0].ParameterType == typeof(Vector3);
             });
+        private static bool _rpcsRegistered;
+
+        internal static void RegisterRpcs()
+        {
+            if (_rpcsRegistered || ZRoutedRpc.instance == null)
+            {
+                return;
+            }
+
+            try
+            {
+                ZRoutedRpc.instance.Register<ZDOID, float>(ApplyRootRpc, RPC_ApplyRoot);
+                ZRoutedRpc.instance.Register<ZDOID, Vector3, float, float, float, int>(ApplyPullRpc, RPC_ApplyPull);
+                _rpcsRegistered = true;
+            }
+            catch
+            {
+            }
+        }
 
         internal static void TryStagger(Character target, Vector3 direction)
         {
@@ -8896,6 +9015,276 @@ namespace Fran.EpicLootRaritySets
             }
             catch
             {
+            }
+        }
+
+        internal static void ApplyRemoteRoot(Character target, float duration)
+        {
+            if (duration <= 0.01f)
+            {
+                return;
+            }
+
+            Player targetPlayer = target as Player;
+            if (targetPlayer == null || targetPlayer == Player.m_localPlayer)
+            {
+                return;
+            }
+
+            ZDOID targetId;
+            long owner;
+            if (!TryGetCharacterNetworkIdentity(target, out targetId, out owner) || owner == 0L)
+            {
+                return;
+            }
+
+            RegisterRpcs();
+            if (!_rpcsRegistered || ZRoutedRpc.instance == null)
+            {
+                return;
+            }
+
+            try
+            {
+                ZRoutedRpc.instance.InvokeRoutedRPC(owner, ApplyRootRpc, targetId, Mathf.Max(0.1f, duration));
+            }
+            catch
+            {
+            }
+        }
+
+        internal static void ApplyRemotePull(Character target, Vector3 pullPoint, float stopDistance, float force, float duration, bool hold)
+        {
+            Player targetPlayer = target as Player;
+            if (targetPlayer == null || targetPlayer == Player.m_localPlayer || duration <= 0.01f || force <= 0f)
+            {
+                return;
+            }
+
+            ZDOID targetId;
+            long owner;
+            if (!TryGetCharacterNetworkIdentity(target, out targetId, out owner) || owner == 0L)
+            {
+                return;
+            }
+
+            RegisterRpcs();
+            if (!_rpcsRegistered || ZRoutedRpc.instance == null)
+            {
+                return;
+            }
+
+            try
+            {
+                ZRoutedRpc.instance.InvokeRoutedRPC(
+                    owner,
+                    ApplyPullRpc,
+                    targetId,
+                    pullPoint,
+                    Mathf.Max(0.05f, stopDistance),
+                    Mathf.Max(0f, force),
+                    Mathf.Max(0.05f, duration),
+                    hold ? 1 : 0);
+            }
+            catch
+            {
+            }
+        }
+
+        private static void RPC_ApplyRoot(long sender, ZDOID targetId, float duration)
+        {
+            Character target = FindCharacterByZdoId(targetId);
+            Player targetPlayer = target as Player;
+            if (targetPlayer == null || targetPlayer != Player.m_localPlayer)
+            {
+                return;
+            }
+
+            FrostbrandLightningRootController controller = target.GetComponent<FrostbrandLightningRootController>();
+            if (controller == null)
+            {
+                controller = target.gameObject.AddComponent<FrostbrandLightningRootController>();
+            }
+
+            controller.Refresh(Mathf.Max(0.1f, duration));
+        }
+
+        private static void RPC_ApplyPull(long sender, ZDOID targetId, Vector3 pullPoint, float stopDistance, float force, float duration, int hold)
+        {
+            Character target = FindCharacterByZdoId(targetId);
+            Player targetPlayer = target as Player;
+            if (targetPlayer == null || targetPlayer != Player.m_localPlayer)
+            {
+                return;
+            }
+
+            CharacterForcedPullController controller = target.GetComponent<CharacterForcedPullController>();
+            if (controller == null)
+            {
+                controller = target.gameObject.AddComponent<CharacterForcedPullController>();
+            }
+
+            controller.Refresh(pullPoint, Mathf.Max(0.05f, stopDistance), Mathf.Max(0f, force), Mathf.Max(0.05f, duration), hold != 0);
+        }
+
+        private static Character FindCharacterByZdoId(ZDOID targetId)
+        {
+            foreach (Character character in Character.GetAllCharacters())
+            {
+                ZDOID characterId;
+                long owner;
+                if (character != null &&
+                    TryGetCharacterNetworkIdentity(character, out characterId, out owner) &&
+                    characterId.Equals(targetId))
+                {
+                    return character;
+                }
+            }
+
+            return null;
+        }
+
+        private static bool TryGetCharacterNetworkIdentity(Character target, out ZDOID id, out long owner)
+        {
+            id = default(ZDOID);
+            owner = 0L;
+            if (target == null)
+            {
+                return false;
+            }
+
+            ZNetView view = target.GetComponent<ZNetView>();
+            ZDO zdo = view != null ? view.GetZDO() : null;
+            if (zdo == null)
+            {
+                return false;
+            }
+
+            id = zdo.m_uid;
+            owner = zdo.GetOwner();
+            return true;
+        }
+    }
+
+    internal sealed class CharacterForcedPullController : MonoBehaviour
+    {
+        private Character _character;
+        private Rigidbody _body;
+        private Vector3 _pullPoint;
+        private float _stopDistance;
+        private float _force;
+        private float _remaining;
+        private bool _hold;
+
+        internal void Refresh(Vector3 pullPoint, float stopDistance, float force, float duration, bool hold)
+        {
+            _character = _character != null ? _character : GetComponent<Character>();
+            _body = _body != null ? _body : GetComponent<Rigidbody>();
+            _pullPoint = pullPoint;
+            _stopDistance = Mathf.Max(0.05f, stopDistance);
+            _force = Mathf.Max(0f, force);
+            _remaining = Mathf.Max(_remaining, Mathf.Max(0.05f, duration));
+            _hold = hold;
+            Apply(Time.deltaTime);
+        }
+
+        private void Update()
+        {
+            if (_remaining <= 0f || _character == null || _character.IsDead())
+            {
+                Destroy(this);
+                return;
+            }
+
+            _remaining -= Time.deltaTime;
+            Apply(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            if (_remaining > 0f)
+            {
+                Apply(Time.fixedDeltaTime);
+            }
+        }
+
+        private void Apply(float dt)
+        {
+            if (_character == null || _force <= 0f)
+            {
+                return;
+            }
+
+            Vector3 position = _character.transform.position;
+            Vector3 delta = _pullPoint - position;
+            float distance = delta.magnitude;
+            if (distance <= 0.001f)
+            {
+                StopMovement();
+                return;
+            }
+
+            Vector3 direction = delta / distance;
+            direction.y = Mathf.Clamp(direction.y, -0.1f, 0.35f);
+            if (direction.sqrMagnitude <= 0.001f)
+            {
+                StopMovement();
+                return;
+            }
+
+            direction.Normalize();
+            Vector3 holdPosition = _pullPoint - direction * _stopDistance;
+            if (_hold && distance <= _stopDistance * 1.6f)
+            {
+                _character.transform.position = Vector3.Lerp(position, holdPosition, Mathf.Clamp01(dt * 14f));
+                StopMovement();
+                return;
+            }
+
+            float distanceFactor = Mathf.Lerp(0.85f, 1.75f, Mathf.InverseLerp(_stopDistance, 18f, distance));
+            float pullSpeed = Mathf.Max(8f, _force * distanceFactor);
+            Vector3 pullStep = direction * Mathf.Min(Mathf.Max(0f, distance - _stopDistance), pullSpeed * dt);
+            if (_body != null && !_body.isKinematic)
+            {
+                _body.WakeUp();
+#pragma warning disable 0618
+                Vector3 existingVelocity = _body.velocity;
+                Vector3 dampedVelocity = Vector3.ProjectOnPlane(existingVelocity, Vector3.up) * 0.22f + Vector3.up * Mathf.Min(existingVelocity.y, 0.35f);
+                _body.velocity = Vector3.ClampMagnitude(dampedVelocity + direction * pullSpeed, 32f);
+#pragma warning restore 0618
+                _body.MovePosition(_body.position + pullStep);
+            }
+            else
+            {
+                _character.transform.position += pullStep;
+            }
+
+            if (_hold && distance <= _stopDistance * 4f)
+            {
+                _character.transform.position = Vector3.Lerp(_character.transform.position, holdPosition, Mathf.Clamp01(dt * 5f));
+                StopMovement();
+            }
+            else
+            {
+                _character.SetMoveDir(Vector3.zero);
+                _character.SetRun(false);
+            }
+        }
+
+        private void StopMovement()
+        {
+            if (_character != null)
+            {
+                _character.SetMoveDir(Vector3.zero);
+                _character.SetRun(false);
+                _character.StopMovement();
+                _character.StopMovementXZ();
+            }
+
+            if (_body != null)
+            {
+                _body.linearVelocity = Vector3.zero;
+                _body.angularVelocity = Vector3.zero;
             }
         }
     }
@@ -10929,6 +11318,7 @@ namespace Fran.EpicLootRaritySets
                     body.linearVelocity = Vector3.Lerp(body.linearVelocity, Vector3.zero, Mathf.Clamp01(dt * 18f));
                 }
 
+                CharacterControlEffects.ApplyRemotePull(character, spherePosition, holdDistance, force, WaterSphereRootRefreshSeconds, true);
                 return;
             }
 
@@ -10953,6 +11343,8 @@ namespace Fran.EpicLootRaritySets
                     body.linearVelocity = Vector3.Lerp(body.linearVelocity, Vector3.zero, Mathf.Clamp01(dt * 4f));
                 }
             }
+
+            CharacterControlEffects.ApplyRemotePull(character, spherePosition, holdDistance, force, WaterSphereRootRefreshSeconds, true);
         }
 
         private static void ApplyWaterSphereRoot(Character target, string iconSet)
@@ -15069,6 +15461,7 @@ namespace Fran.EpicLootRaritySets
             seMan.RemoveStatusEffect(buff.NameHash(), true);
             seMan.AddStatusEffect(buff, true, 0, 0f, 0);
             ApplyLightningRootController(target, duration);
+            CharacterControlEffects.ApplyRemoteRoot(target, duration);
             StopTargetMovement(target);
         }
 
@@ -15982,32 +16375,7 @@ namespace Fran.EpicLootRaritySets
 
         private static void RefreshLightningStackBuff(Player player)
         {
-            if (player == null || !IsFrostbrandEnabledAndActive())
-            {
-                return;
-            }
-
-            StatusEffect buff = GetOrCreateLightningStackBuff(GetWeaponIcon(player.GetCurrentWeapon()) ?? StatusEffectIconHelper.GetIcon(player, RequiredSet));
-            int required = Mathf.Max(1, EpicLootRaritySetsPlugin.FrostbrandLightningStrikeAttackCount.Value);
-            _lightningStrikeHits = Mathf.Clamp(_lightningStrikeHits, 0, required);
-            buff.m_ttl = 0f;
-            buff.m_name = string.Format("{0} {1}/{2}", LocalizedText.AbilityName("Frostbrand Charge"), _lightningStrikeHits, required);
-            buff.m_tooltip = string.Format(
-                "Frostbrand esta cargando Bola de fuego.\n\nCargas: {0}/{1}.\nCuenta cada ataque iniciado con arma Frostbrand y cada uso de Tajo.\nAl completar lanza una bola de fuego = {2:0.#}+{3:0.##}/nivel de Frostbrand. Si el proyectil no esta disponible, aplica dano en {4:0.#}m.",
-                _lightningStrikeHits,
-                required,
-                EpicLootRaritySetsPlugin.FrostbrandLightningStrikeBaseDamage.Value,
-                EpicLootRaritySetsPlugin.FrostbrandLightningStrikeDamagePerElementalMagicLevel.Value,
-                EpicLootRaritySetsPlugin.FrostbrandLightningStrikeRadius.Value);
-            SEMan seMan = player.GetSEMan();
-            StatusEffect active = seMan.GetStatusEffect(buff.NameHash());
-            if (active == null)
-            {
-                seMan.AddStatusEffect(buff, true, 1, 0f, 0);
-                return;
-            }
-
-            ApplyStatusEffectFields(active, buff);
+            RemoveLightningStackBuffIcon(player);
         }
 
         private static StatusEffect GetOrCreateLightningStackBuff(Sprite icon)
@@ -16031,10 +16399,18 @@ namespace Fran.EpicLootRaritySets
         private static void RemoveLightningStackBuff(Player player)
         {
             _lightningStrikeHits = 0;
-            if (player != null && _lightningStackBuff != null)
+            RemoveLightningStackBuffIcon(player);
+        }
+
+        private static void RemoveLightningStackBuffIcon(Player player)
+        {
+            if (player == null)
             {
-                player.GetSEMan().RemoveStatusEffect(_lightningStackBuff.NameHash(), true);
+                return;
             }
+
+            StatusEffect buff = _lightningStackBuff ?? GetOrCreateLightningStackBuff(null);
+            player.GetSEMan().RemoveStatusEffect(buff.NameHash(), true);
         }
 
         private static void ApplyOrRefreshStatusEffect(Player player, StatusEffect buff, int itemLevel)
@@ -27427,6 +27803,7 @@ namespace Fran.EpicLootRaritySets
         private static float _holyStrikeCooldown;
         private static float _bloodRiteCooldown;
         private static float _undeadSummonCooldown;
+        private static float _bodyguardToggleCooldown;
         private static float _bodyguardRespawnCooldown;
         private static float _bodyguardCombatRefreshTimer;
         private static float _undeadSummonRemaining;
@@ -27438,6 +27815,7 @@ namespace Fran.EpicLootRaritySets
         private static Vector3 _bloodRiteOrigin;
         private static bool _bloodRiteActive;
         private static bool _undeadSummonActive;
+        private static bool _bodyguardStored;
         private static bool _rpcsRegistered;
         private static bool _wasActive;
         private static int _healingPowerStacks;
@@ -27461,6 +27839,7 @@ namespace Fran.EpicLootRaritySets
             _holyStrikeCooldown = Mathf.Max(0f, _holyStrikeCooldown - dt);
             _bloodRiteCooldown = Mathf.Max(0f, _bloodRiteCooldown - dt);
             _undeadSummonCooldown = Mathf.Max(0f, _undeadSummonCooldown - dt);
+            _bodyguardToggleCooldown = Mathf.Max(0f, _bodyguardToggleCooldown - dt);
             _bodyguardRespawnCooldown = Mathf.Max(0f, _bodyguardRespawnCooldown - dt);
             _bodyguardCombatRefreshTimer = Mathf.Max(0f, _bodyguardCombatRefreshTimer - dt);
 
@@ -27496,6 +27875,12 @@ namespace Fran.EpicLootRaritySets
                 SetAbilityInput.IsBlockHeld())
             {
                 TrySummonUndead(player);
+                return;
+            }
+
+            if (IsShortcutDown(EpicLootRaritySetsPlugin.HelveigBodyguardHotkey))
+            {
+                TryToggleBodyguard(player);
                 return;
             }
 
@@ -27536,9 +27921,18 @@ namespace Fran.EpicLootRaritySets
             _healingPowerStacks = 0;
             _healingPowerRemaining = 0f;
             RemoveHealingPowerBuff(player);
+            _bodyguardStored = false;
+            _bodyguardToggleCooldown = 0f;
             _bodyguardRespawnCooldown = 0f;
             _bodyguardCombatRefreshTimer = 0f;
             _wasActive = false;
+        }
+
+        internal static bool TryGetBodyguardPanelState(out bool active, out bool stored)
+        {
+            active = CountLivingBodyguards() > 0;
+            stored = _bodyguardStored;
+            return IsHelveigEnabledAndActive();
         }
 
         private static void TryHolyHeal(Player player)
@@ -27737,6 +28131,57 @@ namespace Fran.EpicLootRaritySets
             ClassSkillManager.RaiseSkill(player, RequiredSet, 1f);
             NorseVisualEffectBridge.Spawn(spawn, Quaternion.identity, "fx_DvergerMage_Support", "sfx_seekerqueen_callout", "vfx_StaffSkeleton", "Spirit");
             ShowMessage(player, "Summon Monster: " + _undeadSummonDisplayName + ".");
+        }
+
+        private static void TryToggleBodyguard(Player player)
+        {
+            if (_bodyguardToggleCooldown > 0f)
+            {
+                ShowMessage(player, string.Format(LocalizedText.Select("Guardaespaldas: {0:0}s de cooldown.", "Bodyguard: {0:0}s cooldown."), _bodyguardToggleCooldown));
+                return;
+            }
+
+            if (CountLivingBodyguards() > 0)
+            {
+                _bodyguardStored = true;
+                _bodyguardRespawnCooldown = 0f;
+                AbilityCooldownBuffController.Clear(player, "HelveigBodyguardsDeath");
+                DestroyBodyguards(player, true);
+                StartBodyguardToggleCooldown(player);
+                RefreshBodyguardBuff(player);
+                ShowMessage(player, LocalizedText.Select("Guardaespaldas guardado.", "Bodyguard stored."));
+                return;
+            }
+
+            if (!_bodyguardStored && _bodyguardRespawnCooldown > 0f)
+            {
+                ShowMessage(player, string.Format(LocalizedText.Select("Guardaespaldas: reaparece en {0:0}s.", "Bodyguard: respawns in {0:0}s."), _bodyguardRespawnCooldown));
+                return;
+            }
+
+            _bodyguardStored = false;
+            _bodyguardRespawnCooldown = 0f;
+            AbilityCooldownBuffController.Clear(player, "HelveigBodyguardsDeath");
+            if (!SpawnMissingBodyguards(player))
+            {
+                _bodyguardStored = true;
+                RefreshBodyguardBuff(player);
+                ShowMessage(player, LocalizedText.Select("Guardaespaldas: prefab no disponible.", "Bodyguard: prefab unavailable."));
+                return;
+            }
+
+            StartBodyguardToggleCooldown(player);
+            RefreshBodyguardBuff(player);
+            ShowMessage(player, LocalizedText.Select("Guardaespaldas invocado.", "Bodyguard recalled."));
+        }
+
+        private static void StartBodyguardToggleCooldown(Player player)
+        {
+            _bodyguardToggleCooldown = Mathf.Max(0f, EpicLootRaritySetsPlugin.HelveigBodyguardToggleCooldown != null ? EpicLootRaritySetsPlugin.HelveigBodyguardToggleCooldown.Value : 30f);
+            if (player != null && _bodyguardToggleCooldown > 0f)
+            {
+                AbilityCooldownBuffController.Start(player, "HelveigBodyguardToggle", "Undead Bodyguard", _bodyguardToggleCooldown, AbilityPanelIconCatalog.GetIcon("Buffs", "helveig_undead_bodyguard.png") ?? FindHelveigIcon(player));
+            }
         }
 
         private static void UpdateUndeadSummon(Player player, float dt)
@@ -28026,7 +28471,7 @@ namespace Fran.EpicLootRaritySets
                 PetCommandController.ApplyToPet(player, bodyguard, target => IsEnemyTarget(player, target));
             }
 
-            if (lostBodyguard)
+            if (lostBodyguard && !_bodyguardStored)
             {
                 StartBodyguardRespawnCooldown(player);
             }
@@ -28040,7 +28485,7 @@ namespace Fran.EpicLootRaritySets
                 }
             }
 
-            if (_bodyguardRespawnCooldown <= 0f)
+            if (!_bodyguardStored && _bodyguardRespawnCooldown <= 0f)
             {
                 SpawnMissingBodyguards(player);
             }
@@ -28048,11 +28493,11 @@ namespace Fran.EpicLootRaritySets
             RefreshBodyguardBuff(player);
         }
 
-        private static void SpawnMissingBodyguards(Player player)
+        private static bool SpawnMissingBodyguards(Player player)
         {
             if (player == null)
             {
-                return;
+                return false;
             }
 
             bool spawned = false;
@@ -28074,6 +28519,8 @@ namespace Fran.EpicLootRaritySets
             {
                 ClassSkillManager.RaiseSkill(player, RequiredSet, 0.25f);
             }
+
+            return spawned;
         }
 
         private static GameObject SpawnBodyguard(Player player, GameObject prefab, string kind, Vector3 offset)
@@ -28818,17 +29265,24 @@ namespace Fran.EpicLootRaritySets
 
             int living = CountLivingBodyguards();
             float skill = Player.m_localPlayer != null ? ClassSkillManager.GetSkillLevel(Player.m_localPlayer, RequiredSet) : 0f;
+            string state = _bodyguardStored
+                ? LocalizedText.Select("Estado: guardado.", "State: stored.")
+                : LocalizedText.Select("Estado: activo.", "State: active.");
             string respawn = _bodyguardRespawnCooldown > 0f
-                ? string.Format("\nReaparicion: {0:0.#}s.", _bodyguardRespawnCooldown)
+                ? string.Format(LocalizedText.Select("\nReaparicion: {0:0.#}s.", "\nRespawn: {0:0.#}s."), _bodyguardRespawnCooldown)
                 : string.Empty;
             _bodyguardBuff.m_ttl = 0f;
             _bodyguardBuff.m_tooltip = string.Format(
-                "Guardaespaldas no muerto de Helveig.\n\nVivos: {0}/1.\nCharred Dyrnwyn: {1:0} vida, x{2:0.##} dano, {3:0.#}% reduccion recibida.{4}",
+                LocalizedText.Select(
+                    "Guardaespaldas no muerto de Helveig.\n\n{5}\nTecla: {6}.\nVivos: {0}/1.\nCharred Dyrnwyn: {1:0} vida, x{2:0.##} dano, {3:0.#}% reduccion recibida.{4}",
+                    "Helveig undead bodyguard.\n\n{5}\nHotkey: {6}.\nAlive: {0}/1.\nCharred Dyrnwyn: {1:0} health, x{2:0.##} damage, {3:0.#}% damage taken reduction.{4}"),
                 living,
                 GetBodyguardMaxHealth(BodyguardDyrnwynKind, skill),
                 GetBodyguardDamageMultiplier(BodyguardDyrnwynKind, skill),
                 GetBodyguardDamageTakenReduction(BodyguardDyrnwynKind, skill) * 100f,
-                respawn);
+                respawn,
+                state,
+                FormatShortcut(EpicLootRaritySetsPlugin.HelveigBodyguardHotkey));
             StatusEffectIconHelper.Apply(_bodyguardBuff, RequiredSet, icon);
 
             return _bodyguardBuff;
@@ -29893,6 +30347,17 @@ namespace Fran.EpicLootRaritySets
             }
 
             return true;
+        }
+
+        private static string FormatShortcut(ConfigEntry<KeyboardShortcut> shortcut)
+        {
+            if (shortcut == null)
+            {
+                return LocalizedText.Select("Sin tecla", "Unbound");
+            }
+
+            string value = shortcut.Value.ToString();
+            return string.IsNullOrEmpty(value) ? LocalizedText.Select("Sin tecla", "Unbound") : value;
         }
 
         private static StatusEffect GetOrCreateBloodRiteBuff()
@@ -32559,6 +33024,8 @@ namespace Fran.EpicLootRaritySets
                 {
                     _target.transform.position += direction * Mathf.Min(afterDelta.magnitude - StopDistance, pullStep.magnitude * 0.35f);
                 }
+
+                CharacterControlEffects.ApplyRemotePull(_target, pullPoint, StopDistance, _pullForce, 0.35f, false);
             }
 
             private void OnDestroy()
@@ -35155,10 +35622,12 @@ namespace Fran.EpicLootRaritySets
     {
         private static void Postfix(Player __instance)
         {
+            CharacterControlEffects.RegisterRpcs();
             SetActivationBuffController.Update(__instance, Time.deltaTime);
             AbilityCooldownBuffController.Update(__instance, Time.deltaTime);
             AbilityPanelController.Update(__instance, Time.deltaTime);
             PassiveStackPanelController.Update(__instance, Time.deltaTime);
+            PanelCenterHotkeyController.Update(__instance);
             PetCommandController.Update(__instance, Time.deltaTime);
             if (!PetCommandController.IsInputConsumedThisFrame())
             {

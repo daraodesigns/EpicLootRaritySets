@@ -74,7 +74,7 @@ Full-set buffs show the class name and class skill level (`Nivel`/`Level`). Acti
 
 - `Ability Panel`: appears when a class buff is active. It shows active abilities only, with name, keybind and cooldown. It can be dragged while the inventory is open with `Tab`. If active pets exist, it adds a `Pets` section with `Attack` (`Ctrl + Mouse4`), `Follow` (`Ctrl + Mouse3`) and `Free` (`Ctrl + secondary attack`); the current state is highlighted.
 - `Passive Panel`: shows 2-orb plaques for static charge passives (`Charged Shots`, `Fire Ball`, `Headshot`, `Blood Surge`). When both orbs are filled, the whole plaque lights up with a pulsing border and `READY` label to show that the next shot/attack is charged. It can be dragged with `Tab`.
-- Pressing `Tab` recenters passive/orb panels so displaced panels can be recovered more easily.
+- Pressing `Home` while the inventory is open recenters the ability and passive/orb panels so displaced panels can be recovered without moving them automatically when tabbing.
 - `Ctrl + Mouse4`: orders active pets to attack the aimed enemy at practical long range as long as the target is visible under the crosshair. If the enemy dies or becomes invalid, pets return to following the player.
 - `Ctrl + Mouse3`: forces active pets to follow the player in passive mode; they do not attack until `Attack` or `Free` is used again.
 - `Ctrl + secondary attack`: releases pets back to normal behavior without forced following.
@@ -285,7 +285,7 @@ Main equipment and bonuses:
 Full-set abilities:
 
 - `Mouse3` - `Holy Healing`: cost `25` eitr, cooldown `10s`; heals `35 + 0.75` per Helveig level to the aimed ally in range (`30m`) or yourself if there is no target.
-- Passive `Undead Bodyguard`: activating the set summons `Charred_Melee_Dyrnwyn`; it disappears when the set is lost. If it dies, it automatically respawns after `30s`. Health, damage and damage taken reduction scale conservatively with Helveig and it obeys pet commands.
+- Passive `Undead Bodyguard`: activating the set summons `Charred_Melee_Dyrnwyn`; it disappears when the set is lost. `LeftAlt + Mouse3` stores or recalls it with a `30s` cooldown after use. If it dies, it automatically respawns after `30s`. Health, damage and damage taken reduction scale conservatively with Helveig and it obeys pet commands.
 - Passive `Blood Aegis`: every heal applies a non-stacking shield to the healed target equal to `15%` of the ability's potential healing for `15s`, even if the target was already at full health, with an elemental shield visual.
 - Passive `Sanguine Devotion`: every heal grants a stack for `15s`, up to `3`. Each stack increases summon damage by `+5%` and `Holy Strike` damage by `+10%`.
 - `Mouse4` - `Blood Rite`: cost `45` eitr, cooldown `20s`; channels for `10s`, radius `30m`, pulse every `1s`; heals you, players, allied NPCs, active pets and tamed creatures by `12 + 0.30` per Helveig level per pulse; moving more than `0.65m` cancels; cooldown starts when the channel ends or breaks.
@@ -408,6 +408,7 @@ Important options:
 - `Ability Panel Position X/Y`, `Scale`, `Opacity`: ability panel position, scale and opacity.
 - `Enable Passive Stack Panel`: shows the movable passive panel with orbs and charged state across the full plaque.
 - `Passive Stack Panel Position X/Y`, `Scale`, `Opacity`: passive panel position, scale and opacity.
+- `Center Panels Hotkey`: hotkey used while the inventory is open to center the ability and passive/orb panels. Default: `Home`.
 - `Enable Frostbrand Abilities`
 - `Enable Hraesvelgr Abilities`
 - `Enable Hellsyng Abilities`: enables `T.N.T.`, `Silver Bullets`, `Hellsyng Pets`, `Werewolf Form`, `Bat Form`, `Bat Horde` and `Rapid Fire`.

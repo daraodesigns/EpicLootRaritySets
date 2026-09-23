@@ -1,11 +1,25 @@
 # Changelog
 
+## [1.0.9] - 2026-09-23
+
+### Compatibility
+- Fixed a startup Harmony error caused by the rarity set active-effect patch resolving `PlayerExtensions` against the wrong type; the patch now targets `EpicLoot.PlayerExtensions` explicitly and skips safely if that EpicLoot method is unavailable.
+
+### UI
+- Opening the inventory with `Tab` no longer auto-centers the passive/orb panel; press the configurable `Home` hotkey while the inventory is open to center both class panels instead.
+- Frostbrand Fire Ball charge progress no longer appears as a separate status buff because it is already shown in the passive/orb panel.
+- Helveig's ability panel now shows an `Undead Bodyguard` action for storing or recalling the passive bodyguard.
+
+### Combat
+- Helveig's passive undead bodyguard can now be manually stored/recalled with a configurable hotkey, default `LeftAlt + Mouse3`, and starts a `30s` cooldown after use.
+- Heimdall Water Sphere gravity, Heimdall Abyssal Harpoon pull and Frostbrand Lightning Strike immobilize now apply their movement control on the affected player's client when both players have PvP enabled.
+- Updated Active Effects and Epic Loot Rarity Sets compendium text in Spanish and English for Helveig Undead Bodyguard.
+
 ## [1.0.8] - 2026-09-22
 
 ### Compatibility
 - Disabled BetterArchery's quiver inventory-slot handling from this DLL, so `LeatherQuiver` no longer reserves or creates the three extra quiver slots even when equipped.
 - Neutralized BetterArchery's `FindEmptySlot`/`HaveEmptySlot` quiver overrides so InventorySlots expanded cells are counted correctly during normal loot pickup instead of reporting inventory full while expanded cells are free.
-- Fixed a startup Harmony error caused by the rarity set active-effect patch resolving `PlayerExtensions` against the wrong type; the patch now targets `EpicLoot.PlayerExtensions` explicitly and skips safely if that EpicLoot method is unavailable.
 
 ### UI
 - Ability and passive/orb panels now refresh their localized text when the game language changes.
